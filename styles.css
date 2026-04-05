@@ -11,8 +11,8 @@
     --text-dark: #102027;
     --text-muted: #54626c;
     --paper: #ffffff;
-    --bg-light: #f8f9fa;
-    --bg-dim: #f0f2f5;
+    --bg-light: #ffffff;
+    --bg-dim: #ffffff;
     --bg-dark: #0f0c29;
     --glass: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
@@ -79,17 +79,17 @@ section {
     gap: 8px;
     padding: 10px 22px !important;
     font-size: 0.85rem !important;
-    background: rgba(255, 255, 255, 0.8);
+    background: #ffffff;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1); /* More defined border */
     border-radius: 99px;
     color: #1d1d1f;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Slightly deeper shadow */
     text-decoration: none;
 }
 
@@ -97,8 +97,8 @@ section {
     background: #ffffff;
     color: #0071e3;
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(0, 113, 227, 0.12);
-    border-color: rgba(0, 113, 227, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 113, 227, 0.15); /* Blue-ish glow on hover */
+    border-color: rgba(0, 113, 227, 0.3);
 }
 
 .btn-small .icon {
@@ -368,7 +368,7 @@ header.polymath-hero h2 {
     align-items: center;
     text-align: center;
     position: relative;
-    background: #fbfbfd;
+    background: #ffffff;
     overflow: hidden;
     padding-top: 60px;
 }
@@ -474,20 +474,24 @@ header.polymath-hero h2 {
 }
 
 .btn-apple-secondary {
-    background: rgba(0,0,0,0.03);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     color: #1d1d1f;
     padding: 18px 40px;
     border-radius: 99px;
     font-size: 1.1rem;
     font-weight: 700;
     text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
 .btn-apple-secondary:hover {
-    background: rgba(0,0,0,0.06);
-    transform: scale(1.03);
+    background: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 /* Experience */
