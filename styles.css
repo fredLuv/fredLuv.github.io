@@ -60,6 +60,22 @@ section {
     position: relative;
 }
 
+.section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.section-header-row .section-title {
+    margin-bottom: 0;
+}
+
+.btn-small {
+    padding: 12px 24px !important;
+    font-size: 0.95rem !important;
+}
+
 .section-title::after {
     content: '';
     position: absolute;
