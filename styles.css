@@ -63,17 +63,37 @@ section {
 .section-header-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 40px;
+    align-items: center;
+    margin-bottom: 50px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 20px;
 }
 
 .section-header-row .section-title {
     margin-bottom: 0;
 }
 
+.section-header-row .section-title::after {
+    display: none; /* Removing the old bar for a cleaner row look */
+}
+
 .btn-small {
-    padding: 12px 24px !important;
-    font-size: 0.95rem !important;
+    padding: 10px 20px !important;
+    font-size: 0.9rem !important;
+    background: rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 99px;
+    color: #1d1d1f;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-small:hover {
+    background: rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .section-title::after {
