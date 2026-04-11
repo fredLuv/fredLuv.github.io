@@ -17,4 +17,4 @@ A premium, single-page portfolio showcasing a multi-faceted professional identit
 - **Material Elevation** (multi-layered shadows).
 - **Editorial Typography** (Inter & high-contrast serif).
 
-Built for Global Freedom.
+Built for Global Customers.
