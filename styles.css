@@ -171,6 +171,51 @@ section {
     margin-right: 15px;
 }
 
+/* Market Tools */
+.tool-feature {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.tool-feature h3 {
+    margin: 18px 0 16px;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: -0.04em;
+}
+
+.tool-feature p {
+    max-width: 720px;
+    color: var(--text-muted);
+    font-size: 1.08rem;
+}
+
+.dark-tag {
+    border-color: rgba(16, 32, 39, 0.18);
+    color: var(--accent);
+    background: rgba(114, 9, 183, 0.08);
+}
+
+.tool-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 28px 0 34px;
+}
+
+.tool-meta span {
+    padding: 8px 14px;
+    border-radius: 99px;
+    background: #eef2f3;
+    color: var(--text-dark);
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.tool-link {
+    display: inline-flex;
+    align-items: center;
+}
+
 /* Professional Foundation / Pedigree Styles */
 .career-highlight-card {
     margin-bottom: 30px;
