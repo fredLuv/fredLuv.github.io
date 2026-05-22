@@ -3,40 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>State of Ethereum Q2 2025 | Public Market Research</title>
-  <meta name="description" content="A premium interactive research brief analyzing Ethereum's Q2 2025 modular scaling roadmap, L2 fee migration, staking growth, and long-term settlement thesis." />
+  <title>Sovereign Trust Anchor of Open Finance: Ethereum Equity Research Dashboard</title>
+  <meta name="description" content="An interactive premium research dashboard evaluating Ethereum as the global smart contract settlement layer, core collateral asset, and security budget anchor." />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       color-scheme: dark;
-      --ink: #f8fafc;
+      --bg: #06080e;
+      --bg-card: rgba(10, 14, 23, 0.55);
+      --bg-card-hover: rgba(16, 22, 36, 0.75);
+      --border: rgba(147, 197, 253, 0.08);
+      --border-hover: rgba(147, 197, 253, 0.22);
+      --text: #f8fafc;
       --muted: #94a3b8;
       --soft: #cbd5e1;
-      --faint: #64748b;
-      --bg: #090a10;
-      --bg-2: #0e111a;
-      --panel: rgba(14, 18, 28, .8);
-      --panel-strong: rgba(16, 22, 36, .95);
-      --line: rgba(147, 197, 253, .12);
-      --line-strong: rgba(147, 197, 253, .25);
+      --faint: #475569;
+      --cyan: #06b6d4;
       --purple: #a855f7;
       --indigo: #6366f1;
-      --cyan: #06b6d4;
-      --lime: #10b981;
+      --emerald: #10b981;
       --gold: #f59e0b;
       --pink: #ec4899;
       --red: #ef4444;
-      --shadow: 0 30px 90px rgba(0, 0, 0, .5);
-      --radius: 12px;
-      --radius-sm: 6px;
-      --max: 1280px;
+      --shadow: 0 30px 90px rgba(0, 0, 0, .7);
+      --radius: 20px;
+      --radius-sm: 10px;
+      --max: 1320px;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -44,1431 +45,196 @@
     }
 
     body {
-      margin: 0;
-      min-width: 320px;
       background:
-        radial-gradient(circle at 15% 10%, rgba(139, 92, 246, .16), transparent 32rem),
-        radial-gradient(circle at 88% 22%, rgba(6, 182, 212, .1), transparent 26rem),
-        linear-gradient(180deg, #090a10 0%, #0d101a 48%, #07080d 100%);
-      color: var(--ink);
+        radial-gradient(circle at 10% 8%, rgba(139, 92, 246, 0.14), transparent 45rem),
+        radial-gradient(circle at 90% 12%, rgba(6, 182, 212, 0.1), transparent 40rem),
+        radial-gradient(circle at 50% 60%, rgba(99, 102, 241, 0.06), transparent 50rem),
+        #06080e;
+      color: var(--text);
       font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
-      line-height: 1.58;
-      letter-spacing: 0;
+      line-height: 1.6;
+      padding: 50px 24px;
+      min-height: 100vh;
     }
 
+    /* Grid layout matching grid */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -2;
       pointer-events: none;
-      opacity: .48;
+      opacity: 0.28;
       background-image:
-        linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .75) 55%, transparent 100%);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .progress {
-      position: fixed;
-      inset: 0 auto auto 0;
-      z-index: 50;
-      width: var(--scroll, 0%);
-      height: 3px;
-      background: linear-gradient(90deg, var(--purple), var(--indigo), var(--cyan));
-      box-shadow: 0 0 20px rgba(139, 92, 246, .65);
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      border-bottom: 1px solid var(--line);
-      background: rgba(9, 10, 16, .82);
-      backdrop-filter: blur(20px);
-    }
-
-    .topbar-inner {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: max-content;
-    }
-
-    .brand-mark {
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(139, 92, 246, .5);
-      border-radius: 50%;
-      color: #c084fc;
-      box-shadow: inset 0 0 16px rgba(139, 92, 246, .15), 0 0 16px rgba(139, 92, 246, .2);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-weight: 700;
-    }
-
-    .brand-name {
-      display: grid;
-      gap: 1px;
-    }
-
-    .brand-name strong {
-      font-size: .95rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .brand-name span {
-      color: var(--muted);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .68rem;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      padding: 10px 14px;
-      color: var(--muted);
-      border: 1px solid transparent;
-      border-radius: var(--radius-sm);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .7rem;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      transition: color .2s ease, border-color .2s ease, background .2s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: var(--ink);
-      border-color: rgba(139, 92, 246, .35);
-      background: rgba(139, 92, 246, .1);
-    }
-
-    .source-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      min-width: max-content;
-      padding: 11px 16px;
-      border: 1px solid rgba(139, 92, 246, .5);
-      border-radius: var(--radius-sm);
-      color: #c084fc;
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .72rem;
-      letter-spacing: .04em;
-      background: rgba(139, 92, 246, .08);
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .source-link:hover {
-      background: rgba(139, 92, 246, .15);
-      border-color: rgba(139, 92, 246, .8);
-    }
-
-    .hero {
-      position: relative;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 64px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, .06), transparent 70%),
-        linear-gradient(180deg, rgba(9, 10, 16, .9) 0%, rgba(14, 17, 26, .94) 100%);
-    }
-
-    .hero-scan {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, transparent, rgba(139, 92, 246, .04), transparent),
-        repeating-linear-gradient(180deg, rgba(255, 255, 255, .01) 0, rgba(255, 255, 255, .01) 1px, transparent 1px, transparent 6px);
-      opacity: .45;
-      mix-blend-mode: overlay;
-      animation: scan 10s linear infinite;
-    }
-
-    @keyframes scan {
-      from { background-position: -100vw 0, 0 0; }
-      to { background-position: 100vw 0, 0 0; }
-    }
-
-    .hero-inner {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
-      display: grid;
-      gap: 36px;
-    }
-
-    .hero-copy {
-      max-width: 860px;
-      display: grid;
-      gap: 22px;
-    }
-
-    h1, h2, h3, p {
-      margin: 0;
-    }
-
-    h1 {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(2.8rem, 5.5vw, 6.2rem);
-      line-height: .92;
-      letter-spacing: -0.01em;
-      text-wrap: balance;
-      text-shadow: 0 15px 35px rgba(0, 0, 0, .4);
-      background: linear-gradient(135deg, var(--ink) 30%, var(--soft) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .dek {
-      max-width: 760px;
-      color: var(--soft);
-      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
-      line-height: 1.5;
-      text-wrap: balance;
-    }
-
-    .hero-thesis {
-      width: min(800px, 100%);
-      border-left: 3px solid var(--purple);
-      padding: 16px 0 16px 20px;
-      color: var(--muted);
-      background: linear-gradient(90deg, rgba(139, 92, 246, .08), transparent 85%);
-      font-size: 1.02rem;
-    }
-
-    .hero-thesis strong {
-      color: var(--ink);
-    }
-
-    .meta-strip {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-      color: var(--muted);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .7rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .meta-strip span {
-      border: 1px solid var(--line);
-      padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      background: rgba(14, 17, 26, .6);
-    }
-
-    .hero-kpis {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 1px solid var(--line-strong);
-      border-radius: var(--radius);
-      background: rgba(14, 18, 28, .85);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-      overflow: hidden;
-    }
-
-    .kpi {
-      min-height: 120px;
-      padding: 24px;
-      border-right: 1px solid var(--line);
-      display: grid;
-      align-content: center;
-      gap: 8px;
-    }
-
-    .kpi:last-child {
-      border-right: 0;
-    }
-
-    .label {
-      color: var(--muted);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .68rem;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-    }
-
-    .kpi strong {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(1.8rem, 2.6vw, 2.8rem);
-      line-height: 1;
-    }
-
-    .delta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--lime);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .75rem;
-    }
-
-    .delta.red {
-      color: var(--red);
-    }
-
-    .scroll-cue {
-      margin-top: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--indigo);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .72rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .scroll-cue::after {
-      content: "";
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--indigo), transparent);
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 60%, transparent 100%);
     }
 
     main {
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    section {
-      position: relative;
-      padding: 96px 0;
-    }
-
-    section:nth-child(even) {
-      background: rgba(14, 18, 28, 0.35);
-    }
-
-    .section-inner {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(320px, 1fr) minmax(360px, 1.4fr);
-      align-items: end;
-      gap: 48px;
-      margin-bottom: 48px;
-    }
-
-    .section-head h2 {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(2rem, 3.8vw, 4.4rem);
-      line-height: .96;
-      letter-spacing: -0.01em;
-      text-wrap: balance;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      max-width: 680px;
-      font-size: 1.08rem;
-      line-height: 1.55;
-    }
-
-    .thesis-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .thesis-card,
-    .panel,
-    .segment-panel,
-    .chart-panel,
-    .synthesis-card,
-    .audit-note {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .03), transparent 40%),
-        var(--panel);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
-      transition: border-color 0.25s ease;
-    }
-
-    .thesis-card:hover,
-    .panel:hover,
-    .segment-panel:hover,
-    .chart-panel:hover,
-    .synthesis-card:hover {
-      border-color: rgba(139, 92, 246, 0.3);
-    }
-
-    .thesis-card {
-      padding: 36px;
-      min-height: 380px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-    }
-
-    .thesis-card h3,
-    .panel h3,
-    .segment-panel h3,
-    .chart-panel h3,
-    .synthesis-card h3 {
-      color: var(--ink);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .88rem;
-      letter-spacing: .06em;
-      line-height: 1.4;
-      text-transform: uppercase;
-    }
-
-    .thesis-number {
-      display: grid;
-      gap: 8px;
-      margin: 28px 0;
-    }
-
-    .thesis-number strong {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(4.5rem, 9vw, 8.8rem);
-      line-height: .8;
-      color: var(--purple);
-      text-shadow: 0 0 35px rgba(139, 92, 246, .2);
-    }
-
-    .thesis-number span {
-      color: var(--soft);
-      font-size: 1.05rem;
-      max-width: 500px;
-    }
-
-    .thesis-card p,
-    .panel p,
-    .segment-panel p,
-    .synthesis-card p {
-      color: var(--muted);
-      font-size: .95rem;
-      line-height: 1.5;
-    }
-
-    .mix-rail {
-      padding: 32px;
-      display: grid;
-      gap: 24px;
-      align-content: center;
-    }
-
-    .mix-row {
-      display: grid;
-      grid-template-columns: 90px 1fr 90px;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .mix-row .year,
-    .mix-row .value {
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .82rem;
-      color: var(--muted);
-    }
-
-    .mix-row .value {
-      color: var(--soft);
-      text-align: right;
-    }
-
-    .stackbar {
-      height: 48px;
-      display: flex;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .1);
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, .03);
-    }
-
-    .stackbar span {
-      display: block;
-      min-width: 4px;
-      transition: width 0.3s ease;
-    }
-
-    .l2-base {
-      background: linear-gradient(90deg, #0052ff, #3b82f6);
-    }
-
-    .l2-arbitrum {
-      background: linear-gradient(90deg, #28a0f0, #06b6d4);
-    }
-
-    .l2-other {
-      background: linear-gradient(90deg, var(--purple), var(--pink));
-    }
-
-    .legend {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .72rem;
-      text-transform: uppercase;
-    }
-
-    .legend i {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      margin-right: 8px;
-      border-radius: 3px;
-      vertical-align: -1px;
-    }
-
-    .metric-ladder {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
-
-    .mini-metric {
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, .02);
-      transition: background 0.2s;
-    }
-
-    .mini-metric:hover {
-      background: rgba(255, 255, 255, .04);
-    }
-
-    .mini-metric strong {
-      display: block;
-      margin: 12px 0 6px;
-      font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
-      line-height: 1;
-    }
-
-    .mini-metric p {
-      color: var(--muted);
-      font-size: .88rem;
-      line-height: 1.4;
-    }
-
-    .positive {
-      color: var(--lime);
-    }
-
-    .negative {
-      color: var(--red);
-    }
-
-    .purple-text {
-      color: #c084fc;
-    }
-
-    .cyan-text {
-      color: var(--cyan);
-    }
-
-    .table-shell {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: rgba(10, 12, 20, .9);
-      box-shadow: var(--shadow);
-      margin-top: 32px;
-    }
-
-    .table-caption {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, .02);
-    }
-
-    .table-caption strong {
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .82rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .table-caption span {
-      color: var(--muted);
-      font-size: .88rem;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      min-width: 960px;
-      border-collapse: collapse;
-      font-size: .92rem;
-    }
-
-    th, td {
-      padding: 16px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-      text-align: right;
-      vertical-align: middle;
-    }
-
-    th:first-child, td:first-child,
-    th:last-child, td:last-child {
-      text-align: left;
-    }
-
-    th {
-      color: var(--soft);
-      background: #0f121d;
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .72rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    td {
-      color: #e2e8f0;
-    }
-
-    .group-row td {
-      color: var(--ink);
-      background: rgba(139, 92, 246, .09);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .78rem;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-    }
-
-    .muted-cell {
-      color: var(--muted);
-    }
-
-    .note-cell {
-      max-width: 320px;
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: 0.88rem;
-    }
-
-    .segment-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-      align-items: start;
-    }
-
-    .segment-panel {
-      position: relative;
-      padding: 32px;
-      overflow: hidden;
-      min-height: 380px;
-      display: grid;
-      gap: 24px;
-      align-content: start;
-    }
-
-    .segment-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 4px;
-      background: var(--accent);
-      box-shadow: 0 0 20px var(--accent);
-    }
-
-    .segment-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .segment-title {
-      display: grid;
-      gap: 6px;
-    }
-
-    .segment-title strong {
-      color: var(--accent);
-      font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(2rem, 3.2vw, 3.6rem);
-      line-height: .95;
-    }
-
-    .segment-title span {
-      color: var(--soft);
-      font-size: 1.02rem;
-      font-weight: 700;
-    }
-
-    .icon {
-      flex: 0 0 auto;
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, .1);
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, .03);
-      color: var(--accent);
-    }
-
-    .segment-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .stat-box {
-      padding: 16px;
-      border: 1px solid rgba(255, 255, 255, .05);
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, .01);
-    }
-
-    .stat-box span {
-      display: block;
-      color: var(--muted);
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .68rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .stat-box strong {
-      font-size: 1.35rem;
-      color: var(--ink);
-    }
-
-    .segment-bullets {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-      font-size: .94rem;
-      display: grid;
-      gap: 12px;
-    }
-
-    .segment-bullets strong {
-      color: var(--soft);
-    }
-
-    .chart-panel {
-      padding: 32px;
-    }
-
-    .chart-box {
-      width: 100%;
-      margin: 28px 0 16px;
-      aspect-ratio: 16 / 7;
-      display: grid;
-      place-items: center;
-    }
-
-    .chart-legend {
-      justify-content: center;
-      margin-top: 16px;
-    }
-
-    .bridge {
-      display: grid;
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .bridge-row {
-      display: grid;
-      grid-template-columns: 240px 1fr 100px;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .bridge-row span {
-      font-size: .95rem;
-      color: var(--soft);
-    }
-
-    .bridge-bar {
-      height: 18px;
-      background: rgba(255, 255, 255, .03);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .bridge-bar i {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: var(--w, 0%);
-      background: var(--c, var(--purple));
-      border-radius: var(--radius-sm);
-      transition: width 0.4s ease;
-    }
-
-    .bridge-row strong {
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: .88rem;
-      text-align: right;
-      color: var(--ink);
-    }
-
-    .audit-note {
-      margin-top: 24px;
-      padding: 24px 30px;
-      border-left: 3px solid var(--gold);
-      background: linear-gradient(90deg, rgba(245, 158, 11, .05), transparent);
-    }
-
-    .audit-note h3 {
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-
-    .audit-note ul {
-      margin: 0;
-      padding-left: 20px;
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: .92rem;
-    }
-
-    .synthesis-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .synthesis-card {
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .synthesis-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 3px;
-      background: var(--accent);
-      box-shadow: 0 0 16px var(--accent);
-    }
-
-    .stage-number {
-      position: absolute;
-      top: 16px;
-      right: 24px;
-      font-family: "Fraunces", Georgia, serif;
-      font-size: 3.5rem;
-      line-height: 1;
-      color: var(--accent);
-      opacity: .12;
-      font-weight: 700;
-    }
-
-    .synthesis-card ul {
-      margin: 0;
-      padding-left: 18px;
-      display: grid;
-      gap: 12px;
-      color: var(--muted);
-      font-size: .92rem;
-    }
-
-    .synthesis-card ul strong {
-      color: var(--soft);
-    }
-
-    .value-strip {
-      margin: 32px 0 24px;
-      padding: 28px;
-      border: 1px dashed var(--line-strong);
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      background: rgba(255, 255, 255, .01);
-    }
-
-    .value-block {
-      flex: 1;
-      display: grid;
-      gap: 8px;
-    }
-
-    .value-block strong {
-      font-size: 1.05rem;
-      color: var(--ink);
-    }
-
-    .value-block span {
-      font-size: .88rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    .value-arrow {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: 2rem;
-      color: var(--indigo);
-      opacity: .6;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      background: #06070a;
-      padding: 64px 0;
-      color: var(--faint);
-      font-size: .82rem;
-      line-height: 1.6;
-    }
-
-    .footer-inner {
-      width: min(var(--max), calc(100% - 48px));
+      width: min(var(--max), 100%);
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      flex-direction: column;
       gap: 40px;
     }
 
-    .footer-inner p {
-      max-width: 800px;
+    /* =========================================================================
+       HEADER BLOCK & DISCLAIMER
+       ========================================================================= */
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 36px;
     }
 
-    .to-top {
-      width: 42px;
-      height: 42px;
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
       display: grid;
       place-items: center;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(139, 92, 246, 0.5);
       border-radius: 50%;
-      color: var(--muted);
-      transition: color .2s, border-color .2s, background .2s;
+      color: #c084fc;
+      box-shadow: inset 0 0 16px rgba(139, 92, 246, 0.2), 0 0 20px rgba(139, 92, 246, 0.35);
+      font-family: "Azeret Mono", monospace;
+      font-weight: 700;
+      font-size: 1.35rem;
     }
 
-    .to-top:hover {
-      color: var(--ink);
-      border-color: rgba(255, 255, 255, .3);
-      background: rgba(255, 255, 255, .04);
+    .brand-meta {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      text-transform: uppercase;
     }
 
-    @media (max-width: 960px) {
-      .section-head {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .thesis-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .segment-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .synthesis-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .value-strip {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-      }
-
-      .value-arrow {
-        transform: rotate(90deg);
-        align-self: center;
-      }
-
-      .hero-kpis {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .kpi {
-        border-bottom: 1px solid var(--line);
-      }
-
-      .kpi:nth-child(2) {
-        border-right: 0;
-      }
-
-      .kpi:nth-child(3) {
-        border-bottom: 0;
-      }
-
-      .kpi:nth-child(4) {
-        border-right: 0;
-        border-bottom: 0;
-      }
+    .title-area h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 20%, var(--soft) 60%, var(--muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
     }
 
-    @media (max-width: 640px) {
-      .hero-kpis {
-        grid-template-columns: 1fr;
-      }
+    .title-area p.subtitle {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      color: var(--soft);
+      font-weight: 500;
+      max-width: 950px;
+    }
 
-      .kpi {
-        border-right: 0 !important;
-        border-bottom: 1px solid var(--line) !important;
-      }
+    .disclaimer-card {
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      background: rgba(245, 158, 11, 0.03);
+      border-radius: var(--radius-sm);
+      padding: 18px 22px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
 
-      .kpi:last-child {
-        border-bottom: 0 !important;
-      }
+    .disclaimer-card svg {
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
 
-      .bridge-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .bridge-row strong {
-        text-align: left;
-      }
+    .disclaimer-card strong {
+      color: var(--gold);
+      font-weight: 700;
     }
 
     /* =========================================================================
-       OPEN FINANCE ETHEREUM THESIS STYLE SYSTEM
+       DASHBOARD GRID PANELS (Strict 3-Column Layout Matching Image)
        ========================================================================= */
-    #open-finance {
-      border-top: 1px solid var(--line);
-      padding: 80px 0;
-      position: relative;
-    }
-
-    .open-finance-layout {
+    .dashboard-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 48px;
-      align-items: start;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
     }
 
-    .preview-frame {
-      position: relative;
-      border: 1px solid var(--line);
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      background: rgba(14, 18, 28, 0.45);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 16px;
-      box-shadow: 
-        0 30px 70px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                  border-color 0.5s ease, 
-                  box-shadow 0.5s ease;
+      padding: 32px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.4s ease, 
+                  background 0.4s ease,
+                  box-shadow 0.4s ease;
+      position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
-    .preview-frame::before {
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      box-shadow: 
+        0 40px 90px rgba(139, 92, 246, 0.05),
+        0 30px 60px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    /* Gradient glow on cards */
+    .card::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.04) 0%, rgba(6, 182, 212, 0.04) 100%);
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.4s ease;
     }
 
-    .preview-frame:hover {
-      transform: translateY(-6px) scale(1.005);
-      border-color: var(--line-strong);
-      box-shadow: 
-        0 40px 90px rgba(139, 92, 246, 0.12),
-        0 30px 60px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .preview-frame:hover::before {
+    .card:hover::before {
       opacity: 1;
     }
 
-    .frame-header {
+    .card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 12px;
-      padding-bottom: 4px;
+      margin-bottom: 24px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding-bottom: 14px;
     }
 
-    .frame-dots {
-      display: flex;
-      gap: 6px;
-    }
-
-    .frame-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      opacity: 0.75;
-    }
-
-    .frame-dot.red { background-color: #ef4444; }
-    .frame-dot.yellow { background-color: #f59e0b; }
-    .frame-dot.green { background-color: #10b981; }
-
-    .frame-title {
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      font-size: 0.72rem;
-      color: var(--ink-dark);
-      opacity: 0.6;
-      letter-spacing: 0.02em;
-    }
-
-    .frame-image-wrapper {
-      position: relative;
-      border-radius: calc(var(--radius) - 6px);
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .preview-frame img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .preview-frame:hover img {
-      transform: scale(1.02);
-    }
-
-    .thesis-ledger {
-      background: var(--panel-strong);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 36px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      position: relative;
-    }
-
-    .thesis-ledger::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .ledger-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 20px;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .ledger-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      margin: 0;
-      text-transform: uppercase;
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.7));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .ledger-meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .ledger-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 12px;
-      font-size: 0.72rem;
+    .card-title-group h2 {
+      font-size: 1.28rem;
       font-weight: 700;
-      border-radius: 50px;
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      letter-spacing: 0.02em;
-    }
-
-    .ledger-badge.conviction {
-      background: rgba(139, 92, 246, 0.12);
-      color: #c084fc;
-      border: 1px solid rgba(139, 92, 246, 0.25);
-      box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
-    }
-
-    .ledger-badge.sector {
-      background: rgba(6, 182, 212, 0.12);
-      color: #22d3ee;
-      border: 1px solid rgba(6, 182, 212, 0.25);
-    }
-
-    .ledger-item {
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--line);
-      transition: border-color 0.3s ease;
-    }
-
-    .ledger-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .ledger-item h4 {
-      margin: 0 0 8px 0;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-family: "Azeret Mono", ui-monospace, monospace;
-      color: var(--cyan);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .ledger-item h4::before {
-      content: "";
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--cyan);
-      box-shadow: 0 0 8px var(--cyan);
-    }
-
-    .ledger-item:nth-child(3) h4 {
-      color: var(--pink);
-    }
-    .ledger-item:nth-child(3) h4::before {
-      background-color: var(--pink);
-      box-shadow: 0 0 8px var(--pink);
-    }
-
-    .ledger-item:nth-child(4) h4 {
-      color: var(--purple);
-    }
-    .ledger-item:nth-child(4) h4::before {
-      background-color: var(--purple);
-      box-shadow: 0 0 8px var(--purple);
-    }
-
-    .ledger-item:nth-child(5) h4 {
-      color: var(--lime);
-    }
-    .ledger-item:nth-child(5) h4::before {
-      background-color: var(--lime);
-      box-shadow: 0 0 8px var(--lime);
-    }
-
-    .ledger-item p {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.62;
-      color: var(--ink);
-      opacity: 0.9;
-    }
-
-    @media (max-width: 960px) {
-      .open-finance-layout {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-      .thesis-ledger {
-        padding: 24px;
-      }
-    }
-
-    /* =========================================================================
-       CHINESE PROFESSIONAL THESIS MEMO STYLE SYSTEM
-       ========================================================================= */
-    .chinese-memo-wrapper {
-      margin-top: 56px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(14, 18, 28, 0.45);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 36px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chinese-memo-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
-    }
-
-    .chinese-memo-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 20px;
-      margin-bottom: 28px;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .chinese-memo-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .chinese-memo-title h3 {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: 1.8rem;
-      margin: 0;
-      background: linear-gradient(90deg, #c084fc, #818cf8, #34d399);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .chinese-memo-badge {
-      font-family: "Azeret Mono", monospace;
-      font-size: 0.7rem;
-      padding: 6px 12px;
-      border-radius: 20px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      color: var(--lime);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .chinese-memo-intro {
-      font-size: 1.02rem;
-      line-height: 1.7;
-      color: var(--soft);
-      margin-bottom: 32px;
-      border-left: 3px solid var(--indigo);
-      padding-left: 20px;
-    }
-
-    .chinese-memo-intro p {
-      margin: 0 0 12px 0;
-    }
-
-    .chinese-memo-intro p:last-child {
-      margin-bottom: 0;
-    }
-
-    .chinese-memo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-bottom: 36px;
-    }
-
-    .chinese-memo-card {
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      padding: 24px;
-      transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-      position: relative;
-    }
-
-    .chinese-memo-card:hover {
-      border-color: var(--line-strong);
-      background: rgba(255, 255, 255, 0.035);
-      transform: translateY(-2px);
-    }
-
-    .chinese-memo-card h4 {
-      font-family: "Manrope", sans-serif;
-      font-size: 1.15rem;
-      margin: 0 0 16px 0;
-      color: var(--ink);
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .chinese-memo-card h4 span.num {
+    .card-title-group h2 span.num {
       font-family: "Azeret Mono", monospace;
       font-size: 0.85rem;
       color: var(--cyan);
@@ -1477,728 +243,1410 @@
       border-radius: 4px;
     }
 
-    .chinese-memo-card p {
-      font-size: 0.92rem;
-      line-height: 1.62;
+    .card-subtitle {
+      font-size: 0.82rem;
       color: var(--muted);
-      margin: 0 0 12px 0;
+      font-family: "Azeret Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    .chinese-memo-card p:last-child {
-      margin-bottom: 0;
+    /* CARD 1: NATIVE COLLATERAL LIST */
+    .roles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .chinese-memo-card ul {
-      margin: 12px 0 0 0;
-      padding-left: 18px;
+    .role-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .role-item:hover {
+      background: rgba(255, 255, 255, 0.035);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .role-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--indigo);
       display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 0.9rem;
+      place-items: center;
+      flex-shrink: 0;
     }
 
-    .chinese-memo-card ul li strong {
+    .role-item:nth-child(2) .role-icon {
+      background: rgba(168, 85, 247, 0.12);
+      color: var(--purple);
+    }
+    .role-item:nth-child(3) .role-icon {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--emerald);
+    }
+    .role-item:nth-child(4) .role-icon {
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--cyan);
+    }
+
+    .role-details h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--soft);
+      margin-bottom: 3px;
+    }
+
+    .role-details p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .thesis-verdict {
+      margin-top: auto;
+      border-top: 1px dashed var(--border);
+      padding-top: 16px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--soft);
+      line-height: 1.5;
+    }
+
+    /* CARD 2: MAINNET DOMINANCE & DUAL CHARTS */
+    .capital-preference {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .charts-container {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .chart-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chart-label {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chart-label span.highlight {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    /* TVL Bar Chart */
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.01);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 85px 1fr 55px;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .bar-name {
+      font-family: "Azeret Mono", monospace;
       color: var(--soft);
     }
 
-    .chinese-memo-card.risk-card {
-      border-color: rgba(239, 68, 68, 0.25);
-      background: rgba(239, 68, 68, 0.02);
-    }
-
-    .chinese-memo-card.risk-card:hover {
-      border-color: rgba(239, 68, 68, 0.45);
-      background: rgba(239, 68, 68, 0.04);
-    }
-
-    .chinese-memo-card.risk-card h4 span.num {
-      color: var(--red);
-      background: rgba(239, 68, 68, 0.1);
-    }
-
-    .chinese-conclusion {
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      background: rgba(16, 185, 129, 0.03);
-      padding: 24px;
-      border-radius: var(--radius-sm);
-      margin-bottom: 24px;
+    .bar-outer {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 5px;
+      overflow: hidden;
       position: relative;
     }
 
-    .chinese-conclusion h4 {
-      font-size: 1.15rem;
-      margin: 0 0 12px 0;
-      color: var(--lime);
+    .bar-inner {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
+    }
+
+    .bar-row:hover .bar-inner {
+      filter: brightness(1.3) drop-shadow(0 0 4px currentColor);
+    }
+
+    .bar-value {
+      font-family: "Azeret Mono", monospace;
+      color: var(--muted);
+      text-align: right;
+      transition: color 0.3s;
+    }
+
+    .bar-row:hover .bar-value {
+      color: #fff;
+    }
+
+    /* Custom SVG Donut Chart */
+    .donut-chart-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.01);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .donut-svg-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .donut-svg-container svg {
+      transform: rotate(-90deg);
+      overflow: visible;
+    }
+
+    .donut-slice {
+      fill: none;
+      stroke-width: 7;
+      transition: stroke-width 0.3s, filter 0.3s;
+      cursor: pointer;
+    }
+
+    .donut-slice:hover {
+      stroke-width: 9;
+      filter: drop-shadow(0 0 6px currentColor);
+    }
+
+    .donut-center-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Azeret Mono", monospace;
+      pointer-events: none;
+    }
+
+    .donut-center-text strong {
+      font-size: 1.05rem;
+      color: var(--pink);
+    }
+
+    .donut-center-text span {
+      font-size: 0.58rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .legend-item {
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--muted);
+      font-family: "Azeret Mono", monospace;
+      cursor: pointer;
+      transition: color 0.2s;
     }
 
-    .chinese-conclusion p {
-      font-size: 1rem;
-      line-height: 1.65;
+    .legend-item:hover {
+      color: #fff;
+    }
+
+    .legend-color {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+    }
+
+    .legend-item strong {
       color: var(--soft);
-      margin: 0;
     }
 
-    .chinese-footer-meta {
+    .legend-item:hover strong {
+      color: #fff;
+    }
+
+    .dominance-verdict {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .dominance-verdict strong {
+      color: var(--soft);
+    }
+
+    /* CARD 3: THE ULTIMATE MOAT PILLS */
+    .moat-intro {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .query-pills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .query-pill {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+
+    .query-pill:hover {
+      background: rgba(99, 102, 241, 0.06);
+      border-color: rgba(99, 102, 241, 0.35);
+      transform: translateX(5px);
+    }
+
+    .query-pill.active {
+      background: rgba(6, 182, 212, 0.08);
+      border-color: rgba(6, 182, 212, 0.45);
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.08);
+    }
+
+    .query-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--soft);
+    }
+
+    .query-pill.active .query-text {
+      color: var(--cyan);
+    }
+
+    .query-pill-arrow {
+      color: var(--faint);
+      transition: transform 0.3s, color 0.3s;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.85rem;
+    }
+
+    .query-pill:hover .query-pill-arrow {
+      color: var(--soft);
+    }
+
+    .query-pill.active .query-pill-arrow {
+      transform: rotate(90deg);
+      color: var(--cyan);
+    }
+
+    .query-answer-box {
+      background: rgba(8, 10, 16, 0.7);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      font-size: 0.9rem;
+      color: var(--soft);
+      line-height: 1.55;
+      min-height: 120px;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    /* CARD 4: THE SETTLEMENT PIPELINE (Responsive SVG Diagram) */
+    .settlement-brief {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 24px;
+    }
+
+    .pipeline-wrapper {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .pipeline-svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      display: block;
+    }
+
+    .flow-line {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.04);
+      stroke-width: 2;
+      transition: stroke 0.3s, stroke-width 0.3s;
+    }
+
+    .svg-node {
+      cursor: pointer;
+    }
+
+    .node-bg {
+      transition: stroke-width 0.3s, filter 0.3s, fill 0.3s;
+    }
+
+    .svg-node:hover .node-bg {
+      stroke-width: 3.5;
+      fill: rgba(255, 255, 255, 0.02);
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+
+    .node-label {
+      font-family: 'Azeret Mono', monospace;
+      font-size: 10px;
+      fill: var(--muted);
+      font-weight: 600;
+      pointer-events: none;
+      transition: fill 0.3s;
+    }
+
+    .svg-node:hover + .node-label {
+      fill: #fff;
+    }
+
+    .l1-base-bg {
+      transition: filter 0.3s, stroke-width 0.3s;
+    }
+
+    .l1-base-group:hover .l1-base-bg {
+      stroke-width: 3;
+      filter: drop-shadow(0 0 12px var(--cyan));
+    }
+
+    .l1-base-text {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      fill: var(--cyan);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .l2-detail-box {
+      background: rgba(8, 10, 16, 0.7);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-size: 0.88rem;
+      color: var(--soft);
+      line-height: 1.5;
+      min-height: 68px;
+    }
+
+    /* CARD 5: VALUE CAPTURE FLYWHEELS */
+    .capture-brief {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .flywheel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .flywheel-cell {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      transition: border-color 0.3s, background 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flywheel-cell:hover {
+      border-color: var(--indigo);
+      background: rgba(99, 102, 241, 0.04);
+    }
+
+    .flywheel-cell.active {
+      border-color: var(--cyan);
+      background: rgba(6, 182, 212, 0.05);
+    }
+
+    .flywheel-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      transition: background 0.3s, color 0.3s;
+      border: 1px solid var(--border);
+    }
+
+    .flywheel-cell:hover .flywheel-letter {
+      background: rgba(99, 102, 241, 0.2);
+      color: #fff;
+    }
+
+    .flywheel-cell.active .flywheel-letter {
+      background: rgba(6, 182, 212, 0.25);
+      color: var(--cyan);
+      border-color: rgba(6, 182, 212, 0.4);
+    }
+
+    .flywheel-cell h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--soft);
+      margin-bottom: 6px;
+    }
+
+    .flywheel-cell p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .flywheel-detail-box {
+      background: rgba(8, 10, 16, 0.7);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-size: 0.88rem;
+      color: var(--soft);
+      line-height: 1.5;
+      min-height: 68px;
+    }
+
+    /* CARD 6: STRUCTURAL RISKS WITH RED ACCENTS */
+    .risks-brief {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .risks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .risk-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(239, 68, 68, 0.015);
+      border: 1px solid rgba(239, 68, 68, 0.1);
+      border-radius: var(--radius-sm);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .risk-item:hover {
+      background: rgba(239, 68, 68, 0.035);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    .risk-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      background: rgba(239, 68, 68, 0.08);
+      color: var(--red);
+      display: grid;
+      place-items: center;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .risk-info h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--soft);
+      margin-bottom: 3px;
+    }
+
+    .risk-info p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .risk-conclusion {
+      margin-top: auto;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--soft);
+      line-height: 1.45;
+      border-top: 1px dashed rgba(239, 68, 68, 0.15);
+      padding-top: 16px;
+    }
+
+    /* =========================================================================
+       ASSET COMPARISON MATRIX (TABLE)
+       ========================================================================= */
+    .comparison-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .comparison-section h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, #ffffff, var(--soft));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.label-column {
+      font-family: "Manrope", sans-serif;
+      font-weight: 700;
+      color: var(--soft);
+      width: 180px;
+    }
+
+    td.btc-cell {
+      border-left: 1px solid var(--border);
+    }
+
+    td.eth-cell {
+      border-left: 1px solid rgba(99, 102, 241, 0.2);
+      border-right: 1px solid rgba(99, 102, 241, 0.2);
+      background: rgba(99, 102, 241, 0.015);
+      position: relative;
+    }
+
+    td.sol-cell {
+      border-right: 1px solid var(--border);
+    }
+
+    tr:hover td.eth-cell {
+      background: rgba(6, 182, 212, 0.035);
+    }
+
+    tr {
+      transition: background 0.2s;
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .cell-title {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .btc-cell .cell-title { color: var(--gold); }
+    .eth-cell .cell-title { color: var(--cyan); }
+    .sol-cell .cell-title { color: var(--pink); }
+
+    .cell-value {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--soft);
+    }
+
+    .eth-cell .cell-value {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* =========================================================================
+       FOOTER & DATA SOURCES
+       ========================================================================= */
+    footer {
+      border-top: 1px dashed var(--border);
+      padding-top: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
       font-family: "Azeret Mono", monospace;
       font-size: 0.72rem;
       color: var(--faint);
-      border-top: 1px dashed var(--line);
-      padding-top: 16px;
-      margin-top: 28px;
     }
 
-    .chinese-footer-meta span.ref-title {
+    .sources-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .sources-list span.title {
       font-weight: 600;
       color: var(--muted);
     }
 
-    @media (max-width: 960px) {
-      .chinese-memo-grid {
-        grid-template-columns: 1fr;
+    .sources-list a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .sources-list a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-mark {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .star-icon {
+      color: var(--cyan);
+      filter: drop-shadow(0 0 4px var(--cyan));
+      animation: pulseStar 3s infinite ease-in-out;
+    }
+
+    @keyframes pulseStar {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+
+    /* =========================================================================
+       RESPONSIVE ADAPTATIONS
+       ========================================================================= */
+    @media (max-width: 1024px) {
+      .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .chinese-memo-wrapper {
-        padding: 24px;
+      /* Make L2 Settlement span full width on tablets */
+      .card:nth-child(4) {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 16px;
+      }
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .card:nth-child(4) {
+        grid-column: span 1;
+      }
+      th, td {
+        padding: 16px;
+      }
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body id="top">
 
-  <div class="progress"></div>
-
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-mark">Ξ</div>
-        <div class="brand-name">
-          <strong>Ethereum</strong>
-          <span>Q2 2025 Thesis</span>
-        </div>
-      </div>
-      <nav class="nav" aria-label="Report Sections">
-        <a href="#thesis" class="active">Thesis</a>
-        <a href="#metrics">Metrics</a>
-        <a href="#settlement">Settlement</a>
-        <a href="#open-finance">Open Finance</a>
-        <a href="#synthesis">Synthesis</a>
-      </nav>
-      <a href="./" class="source-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
-        <span>All Reports</span>
-      </a>
-    </div>
-  </header>
-
   <main>
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-scan"></div>
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="meta-strip">
-            <span>Report Brief</span>
-            <span>Q2 2025 Reconciled</span>
-            <span>Asset: ETH</span>
+    <!-- HEADER -->
+    <header>
+      <div class="brand-section">
+        <div class="brand-logo">Ξ</div>
+        <div class="brand-meta">Institutional Equity Research</div>
+      </div>
+      <div class="title-area">
+        <h1>Sovereign Trust Anchor of Open Finance: ETH's Future Role</h1>
+        <p class="subtitle">Ethereum is consolidating as the global smart contract settlement layer, core collateral asset, and sovereign security budget anchor.</p>
+      </div>
+
+      <div class="disclaimer-card">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" x2="12" y1="8" y2="12"></line>
+          <line x1="12" x2="12.01" y1="16" y2="16"></line>
+        </svg>
+        <span>
+          <strong>Investment Disclaimer:</strong> No asset price has a guaranteed appreciation path. What we can assert is that the Ethereum network and ETH asset are highly anti-fragile, because it has been deeply embedded within global stablecoins, DeFi protocols, tokenized Real-World Assets (RWAs), Layer-2 rollups, institutional custodian networks, and onchain clearing infrastructure.
+        </span>
+      </div>
+    </header>
+
+    <!-- DASHBOARD GRID -->
+    <div class="dashboard-grid">
+
+      <!-- CARD 1: NATIVE COLLATERAL -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Collateral & Staking</span>
+            <h2><span class="num">1</span> Native Collateral Asset</h2>
           </div>
-          <h1>The Modular Settlement Engine</h1>
-          <p class="dek">
-            An in-depth investment analysis of Ethereum’s performance in Q2 2025. Evaluating Layer-2 scaling dynamics, on-chain value migration, EIP-4844 throughput, and the institutional thesis.
-          </p>
-          <div class="hero-thesis">
-            <strong>The Core Thesis:</strong> Ethereum’s Layer-1 mainnet is successfully transitioning from a direct transaction execution layer into the premier, high-security <strong>modular settlement layer</strong> of web3. While this suppresses short-term L1 fee burns, it secures long-term network dominance and capital capture.
+        </div>
+        <p class="capital-preference">
+          While BTC behaves as digital gold and SOL serves as a high-performance consumer network, ETH acts as the high-powered collateral asset of the financial network.
+        </p>
+
+        <div class="roles-list">
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>1. Transaction Fuel</h3>
+              <p>Ethereum L1 transaction executions require ETH to pay gas fees.</p>
+            </div>
           </div>
-          <div class="scroll-cue">Scroll to analyze thesis</div>
+
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>2. Security Budget</h3>
+              <p>PoS validators stake ETH (~29.6% of supply) to protect and validate the network.</p>
+            </div>
+          </div>
+
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>3. Core Collateral</h3>
+              <p>Lending protocols, liquid staking (stETH), and restaking rely on ETH backing.</p>
+            </div>
+          </div>
+
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" x2="12" y1="22.08" y2="12"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>4. Settlement Asset</h3>
+              <p>L2 scaling networks, tokenized RWAs, and stablecoins settle finality on Ethereum L1.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-kpis" aria-label="Key Performance Indicators">
-          <div class="kpi">
-            <span class="label">ETH Price</span>
-            <strong>$2,487</strong>
-            <span class="delta">+37% <span class="muted-cell">QoQ</span></span>
-          </div>
-          <div class="kpi">
-            <span class="label">ETH Staked</span>
-            <strong>35.7M</strong>
-            <span class="delta">29.6% <span class="muted-cell">Supply</span></span>
-          </div>
-          <div class="kpi">
-            <span class="label">L2 Value Secured</span>
-            <strong>$46.0B</strong>
-            <span class="delta">72% <span class="muted-cell">Top 2 L2s</span></span>
-          </div>
-          <div class="kpi">
-            <span class="label">ETF Net Inflows</span>
-            <strong>$4.0B</strong>
-            <span class="delta">Q2 <span class="muted-cell">Inflows</span></span>
+        <div class="thesis-verdict">
+          Verdict: ETH is a hybrid bond, commodity, collateral, and reserve asset within the Ethereum economy.
+        </div>
+      </article>
+
+      <!-- CARD 2: MAINNET TVL & DOMINANCE -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Economic Dominance</span>
+            <h2><span class="num">2</span> Mainnet TVL & Supply Moat</h2>
           </div>
         </div>
+        <p class="capital-preference">
+          Real institutional capital with strict risk management parameters consistently prefers the decentralized security of Ethereum Mainnet.
+        </p>
+
+        <div class="charts-container">
+          <!-- Chart 1: DeFi TVL Dominance -->
+          <div class="chart-block">
+            <div class="chart-label">
+              <span>DeFi TVL Dominance</span>
+              <span class="highlight">Ethereum L1: $44.2B</span>
+            </div>
+            <div class="bar-chart" aria-label="TVL Bar Chart">
+              <div class="bar-row" onclick="highlightChain('Ethereum', 44.2)">
+                <span class="bar-name">Ethereum</span>
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width: 100%; background: linear-gradient(90deg, var(--cyan), var(--indigo)); color: var(--cyan);"></div>
+                </div>
+                <span class="bar-value">$44.2B</span>
+              </div>
+              <div class="bar-row" onclick="highlightChain('Solana', 5.8)">
+                <span class="bar-name">Solana</span>
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width: 13.1%; background: var(--pink); color: var(--pink);"></div>
+                </div>
+                <span class="bar-value">$5.8B</span>
+              </div>
+              <div class="bar-row" onclick="highlightChain('Arbitrum', 3.2)">
+                <span class="bar-name">Arbitrum</span>
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width: 7.2%; background: var(--purple); color: var(--purple);"></div>
+                </div>
+                <span class="bar-value">$3.2B</span>
+              </div>
+              <div class="bar-row" onclick="highlightChain('Base', 2.8)">
+                <span class="bar-name">Base</span>
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width: 6.3%; background: var(--indigo); color: var(--indigo);"></div>
+                </div>
+                <span class="bar-value">$2.8B</span>
+              </div>
+              <div class="bar-row" onclick="highlightChain('Others', 8.0)">
+                <span class="bar-name">Others</span>
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width: 18.1%; background: var(--faint); color: var(--muted);"></div>
+                </div>
+                <span class="bar-value">$8.0B</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart 2: Stablecoin Dominance Donut -->
+          <div class="chart-block">
+            <div class="chart-label">
+              <span>Stablecoin Market Share</span>
+              <span id="stablecoin-highlight" class="highlight" style="color: var(--pink);">Mainnet: ~$165B (51.4%)</span>
+            </div>
+            <div class="donut-chart-wrapper">
+              <div class="donut-svg-container">
+                <svg width="100" height="100" viewBox="0 0 36 36">
+                  <!-- Grey Background Circle -->
+                  <circle cx="18" cy="18" r="15.91549" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="4.5"></circle>
+                  <!-- Others slice (48.6%) -->
+                  <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--faint)" stroke-width="4.5" stroke-dasharray="48.6 51.4" stroke-dashoffset="0" onclick="selectStablecoin('Others')"></circle>
+                  <!-- Ethereum Mainnet slice (51.4%) -->
+                  <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--pink)" stroke-width="4.5" stroke-dasharray="51.4 48.6" stroke-dashoffset="-48.6" onclick="selectStablecoin('Ethereum')"></circle>
+                </svg>
+                <div class="donut-center-text">
+                  <strong id="donut-percentage">51.4%</strong>
+                  <span id="donut-sub">Mainnet</span>
+                </div>
+              </div>
+              <div class="donut-legend">
+                <div class="legend-item" onclick="selectStablecoin('Ethereum')">
+                  <div class="legend-color" style="background: var(--pink);"></div>
+                  <span>Ethereum L1: <strong style="color: var(--pink); font-weight: 700;">$165B</strong></span>
+                </div>
+                <div class="legend-item" onclick="selectStablecoin('Others')">
+                  <div class="legend-color" style="background: var(--faint);"></div>
+                  <span>Other Chains: <strong>$156B</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="dominance-verdict">
+          <strong>Institutional Habituation:</strong> Highly regulated entities prioritize Ethereum's battle-tested security, deep liquidity, advanced compliance tooling, and institutional custody integration over cheap fees.
+        </p>
+      </article>
+
+      <!-- CARD 3: CREDIBLE NEUTRALITY MOAT -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Trust & Governance</span>
+            <h2><span class="num">3</span> Credible Neutrality Moat</h2>
+          </div>
+        </div>
+        <p class="moat-intro">
+          For global financial systems, trust, predictability, and sovereign decentralization are the paramount requirements of the base layer.
+        </p>
+
+        <div class="query-pills-container">
+          <div class="query-pill active" onclick="showAnswer(0)">
+            <span class="query-text">Who offers the highest economic security?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+          <div class="query-pill" onclick="showAnswer(1)">
+            <span class="query-text">Who is immune to single-entity capture?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+          <div class="query-pill" onclick="showAnswer(2)">
+            <span class="query-text">Who has survived the most stress testing?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+          <div class="query-pill" onclick="showAnswer(3)">
+            <span class="query-text">Who is universally trusted by institutions?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+        </div>
+
+        <div class="query-answer-box" id="answer-box">
+          <p><strong>Decentralized Staking Security:</strong> With over $89.25 Billion (35.7 million ETH) locked in its PoS consensus layer, Ethereum provides the most robust economic security blanket in the world, making L1 state reversion economically impossible.</p>
+        </div>
+      </article>
+
+      <!-- CARD 4: THE SETTLEMENT PIPELINE -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Scaling Infrastructure</span>
+            <h2><span class="num">4</span> Global Settlement Engine</h2>
+          </div>
+        </div>
+        <p class="settlement-brief">
+          Ethereum's roadmap transitions L1 from single-chain retail execution into a premium global settlement engine, utilizing Layer-2 rollups for high-throughput user activities.
+        </p>
+
+        <div class="pipeline-wrapper">
+          <svg viewBox="0 0 500 240" class="pipeline-svg">
+            <defs>
+              <linearGradient id="grad-l1-base" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0e172e" />
+                <stop offset="50%" stop-color="#182346" />
+                <stop offset="100%" stop-color="#0f2b54" />
+              </linearGradient>
+            </defs>
+
+            <!-- Connecting Paths -->
+            <path id="path-base" class="flow-line" d="M50,70 Q50,165 250,200" />
+            <path id="path-arbitrum" class="flow-line" d="M150,70 Q150,175 250,200" />
+            <path id="path-optimism" class="flow-line" d="M250,70 L250,200" />
+            <path id="path-zksync" class="flow-line" d="M350,70 Q350,175 250,200" />
+            <path id="path-enterprise" class="flow-line" d="M450,70 Q450,165 250,200" />
+
+            <!-- Flowing Active Particles -->
+            <circle r="4.5" fill="var(--cyan)">
+              <animateMotion path="M50,70 Q50,165 250,200" dur="2.8s" repeatCount="indefinite" begin="0s" />
+            </circle>
+            <circle r="4.5" fill="var(--purple)">
+              <animateMotion path="M150,70 Q150,175 250,200" dur="2.4s" repeatCount="indefinite" begin="0.5s" />
+            </circle>
+            <circle r="4.5" fill="var(--pink)">
+              <animateMotion path="M250,70 L250,200" dur="2.0s" repeatCount="indefinite" begin="0.2s" />
+            </circle>
+            <circle r="4.5" fill="var(--indigo)">
+              <animateMotion path="M350,70 Q350,175 250,200" dur="2.6s" repeatCount="indefinite" begin="0.8s" />
+            </circle>
+            <circle r="4.5" fill="var(--gold)">
+              <animateMotion path="M450,70 Q450,165 250,200" dur="3.0s" repeatCount="indefinite" begin="0.4s" />
+            </circle>
+
+            <!-- L2 Interactive Nodes -->
+            <g class="svg-node" transform="translate(50, 40)" onclick="selectL2('base')" style="color: var(--cyan);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <circle r="8" fill="var(--cyan)" />
+            </g>
+            <g class="svg-node" transform="translate(150, 40)" onclick="selectL2('arbitrum')" style="color: var(--purple);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <path d="M-8,6 L0,-10 L8,6 Z" fill="none" stroke="var(--purple)" stroke-width="2.5" stroke-linejoin="round" />
+            </g>
+            <g class="svg-node" transform="translate(250, 40)" onclick="selectL2('optimism')" style="color: var(--pink);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <circle r="9" fill="none" stroke="var(--pink)" stroke-width="2.5" />
+              <path d="M-5,0 L5,0" stroke="var(--pink)" stroke-width="2.5" stroke-linecap="round" />
+            </g>
+            <g class="svg-node" transform="translate(350, 40)" onclick="selectL2('zksync')" style="color: var(--indigo);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <path d="M-6,-6 L6,-6 L-6,6 L6,6" fill="none" stroke="var(--indigo)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <g class="svg-node" transform="translate(450, 40)" onclick="selectL2('enterprise')" style="color: var(--gold);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <rect x="-6" y="-6" width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="2" rx="2" />
+              <line x1="-3" y1="0" x2="3" y2="0" stroke="var(--gold)" stroke-width="2" />
+            </g>
+
+            <!-- Node Labels -->
+            <text x="50" y="78" text-anchor="middle" class="node-label">Base</text>
+            <text x="150" y="78" text-anchor="middle" class="node-label">Arbitrum</text>
+            <text x="250" y="78" text-anchor="middle" class="node-label">Optimism</text>
+            <text x="350" y="78" text-anchor="middle" class="node-label">zkSync</text>
+            <text x="450" y="78" text-anchor="middle" class="node-label">Enterprise</text>
+
+            <!-- L1 Base -->
+            <g class="l1-base-group" transform="translate(250, 205)">
+              <ellipse cx="0" cy="0" rx="190" ry="18" fill="url(#grad-l1-base)" stroke="var(--cyan)" stroke-width="2" class="l1-base-bg" />
+              <text x="0" y="5" text-anchor="middle" class="l1-base-text">Ethereum L1 Security & Settlement Layer</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="l2-detail-box" id="l2-details-box">
+          <p><strong>Interactive Settlement Pipeline:</strong> Hover/click on any Layer-2 node above to view its strategic role in clearing, settling, and securing transaction batches on Ethereum L1 blockspace.</p>
+        </div>
+      </article>
+
+      <!-- CARD 5: VALUE CAPTURE FLYWHEELS -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Economic Flywheels</span>
+            <h2><span class="num">5</span> Value Capture Mechanics</h2>
+          </div>
+        </div>
+        <p class="capture-brief">
+          Four distinct structural drivers direct value capture directly back to the supply, demand, and security utility of the ETH asset.
+        </p>
+
+        <div class="flywheel-grid">
+          <div class="flywheel-cell active" onclick="showFlywheel(0)">
+            <div class="flywheel-letter">A</div>
+            <h3>Gas Burn Engine</h3>
+            <p>Direct L1 transactions burn ETH, reducing circulating supply.</p>
+          </div>
+
+          <div class="flywheel-cell" onclick="showFlywheel(1)">
+            <div class="flywheel-letter">B</div>
+            <h3>Staking Lockups</h3>
+            <p>Validators lock supply, reducing sell pressure & increasing yield.</p>
+          </div>
+
+          <div class="flywheel-cell" onclick="showFlywheel(2)">
+            <div class="flywheel-letter">C</div>
+            <h3>Core Collateral</h3>
+            <p>ETH serves as the foundation backing for DeFi lending protocols.</p>
+          </div>
+
+          <div class="flywheel-cell" onclick="showFlywheel(3)">
+            <div class="flywheel-letter">D</div>
+            <h3>Global Ledger</h3>
+            <p>L2s, RWAs, and stablecoins anchor state finality on L1 blockspace.</p>
+          </div>
+        </div>
+
+        <div class="flywheel-detail-box" id="flywheel-box">
+          <p><strong>A. Gas Burn Engine:</strong> Under EIP-1559, a substantial percentage of all transactions on L1 mainnet are permanently burned, creating deflationary pressure during high network usage periods.</p>
+        </div>
+      </article>
+
+      <!-- CARD 6: STRUCTURAL RISKS -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Thesis Warnings</span>
+            <h2><span class="num">6</span> Structural Risks</h2>
+          </div>
+        </div>
+        <p class="risks-brief">
+          Five key structural vulnerabilities that represent headwinds to the Ethereum ecosystem and valuation thesis.
+        </p>
+
+        <div class="risks-list">
+          <div class="risk-item">
+            <span class="risk-num">1</span>
+            <div class="risk-info">
+              <h3>Layer-2 Value Leakage</h3>
+              <p>Rollup operators capture execution fees, while L1 data blob costs remain highly compressed.</p>
+            </div>
+          </div>
+
+          <div class="risk-item">
+            <span class="risk-num">2</span>
+            <div class="risk-info">
+              <h3>Alternative L1 Expansion</h3>
+              <p>Monolithic networks (like Solana) capture high-frequency retail activities and stablecoin issuance.</p>
+            </div>
+          </div>
+
+          <div class="risk-item">
+            <span class="risk-num">3</span>
+            <div class="risk-info">
+              <h3>UX & Liquidity Fragmentation</h3>
+              <p>Incompatible L2 ecosystems segment capital pools, degrading the overall user experience.</p>
+            </div>
+          </div>
+
+          <div class="risk-item">
+            <span class="risk-num">4</span>
+            <div class="risk-info">
+              <h3>Regulatory Headwinds</h3>
+              <p>Jurisdictional pressure on staking operators, liquid staking solutions, and DeFi applications.</p>
+            </div>
+          </div>
+
+          <div class="risk-item">
+            <span class="risk-num">5</span>
+            <div class="risk-info">
+              <h3>Monetary Premium Erosion</h3>
+              <p>Low L1 fee activity leads to net emissions, eroding the 'ultrasound money' deflation narrative.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="risk-conclusion">
+          Conclusion: Ethereum's future depends on whether scaling activities drive demand back to L1 blockspace.
+        </div>
+      </article>
+
+    </div>
+
+    <!-- COMPARISON MATRIX -->
+    <section class="comparison-section">
+      <h2>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18"></path>
+          <path d="m19 9-5 5-4-4-3 3"></path>
+        </svg>
+        Sovereign Smart Platform Comparison Matrix
+      </h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Strategic Indicator</th>
+              <th class="btc-cell">BTC (Bitcoin)</th>
+              <th class="eth-cell">ETH (Ethereum)</th>
+              <th class="sol-cell">SOL (Solana)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="label-column">Core Thesis</td>
+              <td class="btc-cell">
+                <div class="cell-title">Digital Reserve Asset</div>
+                <div class="cell-value">Digital Gold. A sovereign store of value backed by proof-of-work energy scarcity.</div>
+              </td>
+              <td class="eth-cell">
+                <div class="cell-title">Credit Base Layer</div>
+                <div class="cell-value">High-powered decentralized collateral and global settlement ledger of Open Finance.</div>
+              </td>
+              <td class="sol-cell">
+                <div class="cell-title">Onchain Consumer Network</div>
+                <div class="cell-value">High-performance engine designed for high-frequency retail transactions and application state.</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="label-column">Primary Moat</td>
+              <td class="btc-cell">
+                <div class="cell-title">Absolute Scarcity</div>
+                <div class="cell-value">21M supply cap. Hardest sovereign monetary narrative with massive first-mover liquidity.</div>
+              </td>
+              <td class="eth-cell">
+                <div class="cell-title">Credible Neutrality</div>
+                <div class="cell-value">$89B staked security budget, robust decentralization, and institutional clearance dominance.</div>
+              </td>
+              <td class="sol-cell">
+                <div class="cell-title">Low-Latency Speed</div>
+                <div class="cell-value">Ultra-cheap execution fees, high transaction throughput, and highly optimized unified state database.</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="label-column">Value Capture</td>
+              <td class="btc-cell">
+                <div class="cell-title">Monetary Premium</div>
+                <div class="cell-value">Asset appreciation driven by global sovereign reserves and spot ETF capital allocation.</div>
+              </td>
+              <td class="eth-cell">
+                <div class="cell-title">Settlement Fee Engine</div>
+                <div class="cell-value">L1 gas burns, staking deposit lockups, and premier collateral backing of tokenized RWAs.</div>
+              </td>
+              <td class="sol-cell">
+                <div class="cell-title">State Demand Fee</div>
+                <div class="cell-value">Transaction priority fees, MEV capture, and active application account rent allocations.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <!-- THESIS SECTION -->
-    <section id="thesis">
-      <div class="section-inner">
-        <div class="section-head reveal">
-          <h2>The Settlement Paradigm.</h2>
-          <p>
-            Ethereum's roadmap utilizes Rollups (Layer-2 networks) to scale consumer transactions. This shifts transaction fee dynamics, moving value capture from raw mainnet execution fees to high-margin settlement guarantees and validator staking yields.
-          </p>
-        </div>
-
-        <div class="thesis-grid">
-          <article class="thesis-card reveal">
-            <div>
-              <h3>Security Dominance</h3>
-              <div class="thesis-number">
-                <strong>29.6%</strong>
-                <span>Of circulating supply staked</span>
-              </div>
-            </div>
-            <p>
-              Staking participation climbed to 35.7 million ETH ($89.25B), demonstrating strong commitment by long-term capital despite a lower-yield macro environment. This represents a highly secure, decentralization-first validator set.
-            </p>
-          </article>
-
-          <article class="panel mix-rail reveal">
-            <h3>L2 TVL Distribution</h3>
-            <p>
-              Ethereum's Layer-2 ecosystem captured massive scale in Q2 2025, reaching $46 Billion in assets secured. Rollup adoption remains concentrated, with Arbitrum and Base leading.
-            </p>
-            <div class="mix-row">
-              <span class="year">Arbitrum</span>
-              <div class="stackbar"><span class="l2-arbitrum" style="width: 44%;"></span></div>
-              <span class="value">44% TVL</span>
-            </div>
-            <div class="mix-row">
-              <span class="year">Base</span>
-              <div class="stackbar"><span class="l2-base" style="width: 28%;"></span></div>
-              <span class="value">28% TVL</span>
-            </div>
-            <div class="mix-row">
-              <span class="year">Others</span>
-              <div class="stackbar"><span class="l2-other" style="width: 28%;"></span></div>
-              <span class="value">28% TVL</span>
-            </div>
-            <div class="legend">
-              <span><i class="l2-arbitrum"></i>Arbitrum</span>
-              <span><i class="l2-base"></i>Base</span>
-              <span><i class="l2-other"></i>Other L2s</span>
-            </div>
-          </article>
-        </div>
+    <!-- FOOTER -->
+    <footer>
+      <div class="sources-list">
+        <span class="title">Data Sources & References:</span>
+        <a href="https://defillama.com/chains" target="_blank" rel="noopener">DeFiLlama Chains</a>
+        <span>&bull;</span>
+        <a href="https://defillama.com/stablecoins" target="_blank" rel="noopener">DeFiLlama Stablecoins</a>
+        <span>&bull;</span>
+        <a href="https://l2beat.com" target="_blank" rel="noopener">L2BEAT</a>
+        <span>&bull;</span>
+        <a href="https://ethereum.org/en/staking/" target="_blank" rel="noopener">Ethereum Staking Docs</a>
       </div>
-    </section>
-
-    <!-- METRICS SECTION -->
-    <section id="metrics">
-      <div class="section-inner">
-        <div class="section-head reveal">
-          <h2>On-Chain Economics.</h2>
-          <p>
-            Q2 2025 highlighted a transitional phase in Ethereum's economics. The massive success of L2s and EIP-4844 (blobs) reduced direct congestion on L1, which temporarily dampened gas fees and mainnet ETH burning, resulting in mild inflation.
-          </p>
-        </div>
-
-        <div class="metric-ladder reveal">
-          <div class="mini-metric">
-            <span class="label">Real Economic Value</span>
-            <strong class="negative">-53%</strong>
-            <p>Total L1 transaction fees collapsed as execution migrated off-chain.</p>
-          </div>
-          <div class="mini-metric">
-            <span class="label">ETH Burn Rate</span>
-            <strong class="negative">-55%</strong>
-            <p>Decreased burning led to a temporary +0.3% supply dilution rate.</p>
-          </div>
-          <div class="mini-metric">
-            <span class="label">Real Staking Yield</span>
-            <strong class="negative">-28%</strong>
-            <p>Fewer mainnet fees lowered the variable validator execution reward.</p>
-          </div>
-          <div class="mini-metric">
-            <span class="label">Spot ETF Net Inflow</span>
-            <strong class="positive">+$4.0B</strong>
-            <p>Significant institutional capital accumulation bridged via US ETFs.</p>
-          </div>
-        </div>
-
-        <div class="table-shell reveal">
-          <div class="table-caption">
-            <strong>Key Network & Economic Indicators (QoQ Analysis)</strong>
-            <span>All values in millions or percentages as noted</span>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Indicator Name</th>
-                  <th>Q1 2025</th>
-                  <th>Q2 2025</th>
-                  <th>QoQ Change</th>
-                  <th>Strategic Assessment & Commentary</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="group-row">
-                  <td colspan="5">Financial & Market Metrics</td>
-                </tr>
-                <tr>
-                  <td>Average ETH Price</td>
-                  <td>$1,815</td>
-                  <td>$2,487</td>
-                  <td class="heat">+37.0%</td>
-                  <td class="note-cell">Robust price recovery driven by institutional ETF inflows and macro liquidity.</td>
-                </tr>
-                <tr>
-                  <td>Circulating Market Cap</td>
-                  <td>$217,800M</td>
-                  <td>$298,440M</td>
-                  <td class="heat">+37.0%</td>
-                  <td class="note-cell">Reflects broad capital appreciation and expanding ecosystem valuation.</td>
-                </tr>
-                <tr>
-                  <td>Spot ETF Net Flows</td>
-                  <td>$1,120M</td>
-                  <td>$3,980M</td>
-                  <td class="heat">+255.4%</td>
-                  <td class="note-cell">Acceleration in institutional interest; net inflows provided strong support.</td>
-                </tr>
-                <tr class="group-row">
-                  <td colspan="5">On-Chain & Staking Activity</td>
-                </tr>
-                <tr>
-                  <td>Total ETH Staked</td>
-                  <td>32.8M ETH</td>
-                  <td>35.7M ETH</td>
-                  <td class="heat">+8.8%</td>
-                  <td class="note-cell">All-time high staking rate of 29.6% enhances L1 settlement security.</td>
-                </tr>
-                <tr>
-                  <td>Real Economic Value (REV)</td>
-                  <td>$1,240M</td>
-                  <td>$583M</td>
-                  <td class="cool">-53.0%</td>
-                  <td class="note-cell">Migration of execution to L2s led to significant L1 transaction fee compression.</td>
-                </tr>
-                <tr>
-                  <td>ETH Burned</td>
-                  <td>$680M</td>
-                  <td>$306M</td>
-                  <td class="cool">-55.0%</td>
-                  <td class="note-cell">Congestion-free mainnet and EIP-4844 lowered base fee burns.</td>
-                </tr>
-                <tr>
-                  <td>Annualized Net Issuance</td>
-                  <td>-0.15% (Defl)</td>
-                  <td>+0.30% (Infl)</td>
-                  <td class="cool">+0.45%</td>
-                  <td class="note-cell">Mildly inflationary quarter due to lower burn rates. Short-term headwind.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="footer-mark">
+        <span>RESEARCH MATRIX &copy; 2026</span>
+        <svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
       </div>
-    </section>
-
-    <!-- SETTLEMENT SECTION -->
-    <section id="settlement">
-      <div class="section-inner">
-        <div class="section-head reveal">
-          <h2>Layer 2 & Modular Scaling.</h2>
-          <p>
-            Rather than trying to serve millions of retail transactions directly on L1, Ethereum secures the stack. L2 networks process low-cost transactions, aggregating them into compressed packages (blobs) that are permanently written to L1.
-          </p>
-        </div>
-
-        <div class="thesis-grid">
-          <article class="chart-panel reveal">
-            <h3>Ecosystem Transaction Capacity (Million / Day)</h3>
-            <p>
-              By utilizing L2 networks, Ethereum’s effective ecosystem throughput increased dramatically, with L2s handling 12.7x more transactions than L1 mainnet.
-            </p>
-            <div class="chart-box">
-              <svg viewBox="0 0 600 240" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 100%; height: 100%;">
-                <defs>
-                  <linearGradient id="chartPurple" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="var(--purple)" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="var(--purple)" stop-opacity="0"/>
-                  </linearGradient>
-                  <linearGradient id="chartCyan" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="var(--cyan)" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <!-- Grid Lines -->
-                <line x1="50" y1="40" x2="550" y2="40" stroke="rgba(255,255,255,0.06)" />
-                <line x1="50" y1="90" x2="550" y2="90" stroke="rgba(255,255,255,0.06)" />
-                <line x1="50" y1="140" x2="550" y2="140" stroke="rgba(255,255,255,0.06)" />
-                <line x1="50" y1="190" x2="550" y2="190" stroke="rgba(255,255,255,0.06)" />
-                
-                <!-- Chart Areas -->
-                <!-- L2 Transactions Area (Cyan) -->
-                <path d="M 50,190 L 150,170 L 250,150 L 350,110 L 450,75 L 550,50 L 550,190 Z" fill="url(#chartCyan)" stroke="none"/>
-                <!-- L1 Transactions Area (Purple) -->
-                <path d="M 50,190 L 150,188 L 250,187 L 350,189 L 450,188 L 550,188 L 550,190 Z" fill="url(#chartPurple)" stroke="none"/>
-                
-                <!-- Chart Lines -->
-                <path d="M 50,170 L 150,150 L 250,130 L 350,90 L 450,60 L 550,40" stroke="var(--cyan)" stroke-width="3" fill="none" />
-                <path d="M 50,189 L 150,188 L 250,187 L 350,189 L 450,188 L 550,188" stroke="var(--purple)" stroke-width="2" fill="none" />
-                
-                <!-- Chart Dots -->
-                <circle cx="550" cy="40" r="4" fill="var(--bg)" stroke="var(--cyan)" stroke-width="2"/>
-                <circle cx="550" cy="188" r="4" fill="var(--bg)" stroke="var(--purple)" stroke-width="2"/>
-                
-                <!-- Labels -->
-                <text x="45" y="45" fill="var(--muted)" font-size="10" font-family="Azeret Mono" text-anchor="end">40M</text>
-                <text x="45" y="95" fill="var(--muted)" font-size="10" font-family="Azeret Mono" text-anchor="end">25M</text>
-                <text x="45" y="145" fill="var(--muted)" font-size="10" font-family="Azeret Mono" text-anchor="end">10M</text>
-                <text x="45" y="195" fill="var(--muted)" font-size="10" font-family="Azeret Mono" text-anchor="end">0</text>
-                
-                <text x="50" y="215" fill="var(--muted)" font-size="10" font-family="Azeret Mono">Q1 24</text>
-                <text x="150" y="215" fill="var(--muted)" font-size="10" font-family="Azeret Mono">Q2 24</text>
-                <text x="250" y="215" fill="var(--muted)" font-size="10" font-family="Azeret Mono">Q3 24</text>
-                <text x="350" y="215" fill="var(--muted)" font-size="10" font-family="Azeret Mono">Q4 24</text>
-                <text x="450" y="215" fill="var(--muted)" font-size="10" font-family="Azeret Mono">Q1 25</text>
-                <text x="550" y="215" fill="var(--muted)" font-size="10" font-family="Azeret Mono" text-anchor="end">Q2 25</text>
-              </svg>
-            </div>
-            <div class="legend chart-legend">
-              <span><i class="l2-other"></i>L1 Mainnet Trans.</span>
-              <span><i class="l2-arbitrum"></i>Layer 2 Ecosystem Trans.</span>
-            </div>
-          </article>
-
-          <article class="chart-panel reveal">
-            <h3>Modular Settlement Waterfall (Q2 2025 Fee Capture)</h3>
-            <p>
-              Visualizing how transaction value routes through L2s to eventually settle on Ethereum L1. Rather than being bypassed, Ethereum captures L2 batch fees, staking deposits, and L1 security premiums.
-            </p>
-            <div class="bridge">
-              <div class="bridge-row">
-                <span>L2 Total End-User Fees Paid</span>
-                <div class="bridge-bar"><i style="--w: 100%; --c: var(--pink);"></i></div>
-                <strong>$125M</strong>
-              </div>
-              <div class="bridge-row">
-                <span>L2 Net Operator Margins</span>
-                <div class="bridge-bar"><i style="--w: 68%; --c: var(--cyan);"></i></div>
-                <strong>$85M</strong>
-              </div>
-              <div class="bridge-row">
-                <span>L2 Batch Fees paid to L1 (Blobs)</span>
-                <div class="bridge-bar"><i style="--w: 32%; --c: var(--purple);"></i></div>
-                <strong>$40M</strong>
-              </div>
-              <div class="bridge-row">
-                <span>Ethereum L1 Mainnet Direct Fees</span>
-                <div class="bridge-bar"><i style="--w: 92%; --c: var(--indigo);"></i></div>
-                <strong>$543M</strong>
-              </div>
-              <div class="bridge-row">
-                <span>Total Securing Value Burned/Staked</span>
-                <div class="bridge-bar"><i style="--w: 78%; --c: var(--lime);"></i></div>
-                <strong>$583M</strong>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <aside class="audit-note reveal">
-          <h3>Strategic Significance of EIP-4844</h3>
-          <ul>
-            <li>EIP-4844 introduced **Blobs**, dedicated data storage spaces that allow L2 transactions to bypass L1 execution fees.</li>
-            <li>This caused user fees on L2s like Base and Arbitrum to fall by over 90%, fueling the 12.7x transaction volume expansion.</li>
-            <li>While L2s capture high operational margins (as shown in the waterfall), they still depend on Ethereum L1 for permanent, decentralized settlement and consensus security.</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <!-- OPEN FINANCE SECTION -->
-    <section id="open-finance">
-      <div class="section-inner">
-        <div class="section-head reveal">
-          <h2>Open Finance Thesis.</h2>
-          <p>Ethan's core Ethereum thesis, risk boundaries, and catalysts from ThesisRisk OS.</p>
-        </div>
-
-        <div class="open-finance-layout reveal">
-          <!-- Left Column: High-Fidelity Preview Frame -->
-          <div class="preview-frame">
-            <div class="frame-header">
-              <div class="frame-dots">
-                <span class="frame-dot red"></span>
-                <span class="frame-dot yellow"></span>
-                <span class="frame-dot green"></span>
-              </div>
-              <div class="frame-title">eth-open-finance-thesis-preview.png</div>
-              <div style="width: 42px;"></div> <!-- visual spacer -->
-            </div>
-            <div class="frame-image-wrapper">
-              <img src="assets/eth-open-finance-thesis-preview.png" alt="Ethereum Open Finance Thesis Preview">
-            </div>
-          </div>
-
-          <!-- Right Column: Structured Thesis Ledger -->
-          <div class="thesis-ledger">
-            <div class="ledger-header">
-              <h3 class="ledger-title">Thesis Ledger</h3>
-              <div class="ledger-meta">
-                <span class="ledger-badge conviction">Medium Conviction</span>
-                <span class="ledger-badge sector">Smart Contract Platform</span>
-              </div>
-            </div>
-
-            <div class="ledger-item">
-              <h4>Core Thesis</h4>
-              <p>Onchain settlement asset with stablecoin/RWA demand and L2 traffic optionality.</p>
-            </div>
-
-            <div class="ledger-item">
-              <h4>Key Risks</h4>
-              <p>Regulatory pressure; L2 fee leakage; SOL/BTC relative competition.</p>
-            </div>
-
-            <div class="ledger-item">
-              <h4>Upcoming Catalyst</h4>
-              <p>ETF flows and stablecoin legislation.</p>
-            </div>
-
-            <div class="ledger-item">
-              <h4>Exit Condition</h4>
-              <p>Trim if stablecoin/RWA share migrates away while fees and usage decline.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SYNTHESIS SECTION -->
-    <section id="synthesis">
-      <div class="section-inner">
-        <div class="section-head reveal">
-          <h2>Rerate Thesis.</h2>
-          <p>
-            Ethereum's investment narrative is undergoing a fundamental business-model transition: from a congested monolithic execution chain to the ultimate secure global settlement layer.
-          </p>
-        </div>
-
-        <div class="synthesis-grid">
-          <article class="synthesis-card reveal" style="--accent: var(--indigo);">
-            <span class="stage-number">01</span>
-            <h3>Old Monolithic Narrative</h3>
-            <ul>
-              <li><strong>Monolithic Scaling:</strong> Attempting to run all smart contracts and trades directly on L1 mainnet.</li>
-              <li><strong>Google-like CAC:</strong> Skyrocketing gas fees ($50+ per trade) priced out retail users and restricted scalability.</li>
-              <li><strong>Yield Model:</strong> Solely reliant on on-chain execution volumes to drive deflationary mechanics.</li>
-            </ul>
-          </article>
-          
-          <article class="synthesis-card reveal" style="--accent: var(--purple);">
-            <span class="stage-number">02</span>
-            <h3>The Modular Paradigm</h3>
-            <ul>
-              <li><strong>Layer-2 Rollups:</strong> Scale execution indefinitely while retaining Ethereum's underlying security guarantees.</li>
-              <li><strong>Settlement Focus:</strong> L1 transitions into a high-margin premium ledger for state settlement and finality.</li>
-              <li><strong>Security Moat:</strong> $89.25 Billion of staked capital secures the chain, generating institutional-grade yield.</li>
-            </ul>
-          </article>
-
-          <article class="synthesis-card reveal" style="--accent: var(--cyan);">
-            <span class="stage-number">03</span>
-            <h3>Institutional Grade Capture</h3>
-            <ul>
-              <li><strong>Spot ETF Approval:</strong> Nearly $4.0 Billion in Q2 inflows connects Ethereum directly to tradfi asset allocators.</li>
-              <li><strong>RWA Dominance:</strong> Absolute dominance in tokenized treasuries, assets, and stablecoins.</li>
-              <li><strong>Ultra-Sound Yield:</strong> Yield backed by protocol fees and issuance offers structured base-rate utility.</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="value-strip reveal" aria-label="Investment implication flow">
-          <div class="value-block">
-            <strong>Bespoke Security Moat</strong>
-            <span>$89.25B in staked capital makes Ethereum the most secure, decentralized smart contract settlement system globally.</span>
-          </div>
-          <div class="value-arrow">></div>
-          <div class="value-block">
-            <strong>Indefinite L2 Scalability</strong>
-            <span>Through EIP-4844, L2 transaction throughput scaled 12.7x, supporting real-world commercial retail use cases.</span>
-          </div>
-          <div class="value-arrow">></div>
-          <div class="value-block">
-            <strong>Institutional Asset Rerating</strong>
-            <span>Supported by $4B in ETF inflows and dominance in RWAs, Ethereum is consolidating its status as the financial settlement base layer.</span>
-          </div>
-        </div>
-
-        <aside class="audit-note reveal" style="border-left-color: var(--cyan); background: linear-gradient(90deg, rgba(6, 182, 212, 0.05), transparent);">
-          <h3 style="color: var(--cyan);">The Bottom Line</h3>
-          <ul>
-            <li>**Short-Term Pain:** Reduced mainnet fee burns resulting from modular scaling temporarily challenges the "deflationary" narrative.</li>
-            <li>**Long-Term Gain:** Indefinite ecosystem scalability attracts millions of users, cementing Ethereum's moat as the settlement capital of the Web3 economy.</li>
-            <li>**The Valuation Rerate:** Spot ETFs and expanding RWAs transition ETH from a volatile tech asset into an institutional-grade settlement yield asset.</li>
-          </ul>
-        </aside>
-
-        <!-- CHINESE INSTITUTIONAL DEEP DIVE MEMO -->
-        <div class="chinese-memo-wrapper reveal">
-          <div class="chinese-memo-header">
-            <div class="chinese-memo-title">
-              <div class="frame-dots" style="margin-right: 6px;">
-                <span class="frame-dot red" style="width: 8px; height: 8px;"></span>
-                <span class="frame-dot yellow" style="width: 8px; height: 8px;"></span>
-                <span class="frame-dot green" style="width: 8px; height: 8px;"></span>
-              </div>
-              <h3>以太坊开放金融结算与抵押专研备忘录</h3>
-            </div>
-            <span class="chinese-memo-badge">Institutional Briefing</span>
-          </div>
-
-          <div class="chinese-memo-intro">
-            <p>专业一点说：ETH 的未来，不来自“币圈信仰”，而来自它正在成为开放金融世界的结算资产、抵押资产和安全预算。</p>
-            <p>但先讲清楚：没有任何资产价格“一定涨”。 我们能说的“ETH 一定有未来”，更准确是：以太坊网络和 ETH 资产很难消失，因为它已经嵌入了稳定币、DeFi、RWA、L2、机构托管和链上结算的基础设施。</p>
-          </div>
-
-          <div class="chinese-memo-grid">
-            <article class="chinese-memo-card">
-              <h4><span class="num">1</span> ETH 是链上金融的原生抵押品</h4>
-              <p>BTC 更像数字黄金，SOL 更像高性能消费链，ETH 更像链上金融系统里的“高能抵押资产”。</p>
-              <p>ETH 同时承担几种角色：</p>
-              <ul>
-                <li><strong>交易燃料：</strong>使用 Ethereum L1 需要 ETH 支付 gas。</li>
-                <li><strong>安全资产：</strong>PoS 验证者质押 ETH 来保护网络。</li>
-                <li><strong>抵押资产：</strong>DeFi 借贷、LST、再质押、衍生品大量使用 ETH 或 stETH。</li>
-                <li><strong>结算资产：</strong>L2、RWA、稳定币、DeFi 协议最终围绕 Ethereum 安全层结算。</li>
-              </ul>
-              <p style="margin-top: 14px; font-size: 0.88rem; font-style: italic; color: var(--faint);">
-                所以 ETH 不只是“一个 token”，而是 Ethereum 经济系统里的 bond + commodity + collateral + reserve asset 的混合体。
-              </p>
-            </article>
-
-            <article class="chinese-memo-card">
-              <h4><span class="num">2</span> Ethereum 是链上美元和 RWA 的主场</h4>
-              <p>根据 DeFiLlama 当前数据：Ethereum 主网 TVL 约 $44.2B，仍是第一大 DeFi 链。稳定币方面，全链稳定币约 $321B，Ethereum 主网上约 $165B，占约 51%，还不算 Base、Arbitrum 等 Ethereum L2。</p>
-              <p>这说明一件事：真正有金融属性的钱，还是喜欢待在 Ethereum 生态。</p>
-              <p>原因不是便宜，而是安全、流动性、合规工具、钱包、审计、托管、机构习惯、开发者生态都最成熟。</p>
-            </article>
-
-            <article class="chinese-memo-card">
-              <h4><span class="num">3</span> ETH 的 moat 是“可信中立”</h4>
-              <p>金融基础设施最重要的不是速度，而是信任。</p>
-              <p>如果一个全球开放金融系统要选择底层，它会问：</p>
-              <ul>
-                <li>谁最安全？</li>
-                <li>谁最不容易被单一公司控制？</li>
-                <li>谁有最多资产、开发者、审计工具和历史压力测试？</li>
-                <li>谁能被机构、基金、稳定币发行方 and 开发者同时接受？</li>
-              </ul>
-              <p style="margin-top: 14px;">Ethereum 的优势就在这里。它不是最快，也不是最便宜，但它是最像“中立结算法院”的链。高价值资产不一定追求最低手续费，它追求最终性、安全性、可组合性和制度中立。</p>
-            </article>
-
-            <article class="chinese-memo-card">
-              <h4><span class="num">4</span> L2 不是削弱 ETH，而是把 ETH 变成结算层</h4>
-              <p>很多人说 L2 抢了 ETH 手续费，这是对的，短期确实压低 L1 fee burn。但长期看，L2 的意义是把 Ethereum 从“单一拥堵链”升级成“多执行层 + 一个安全结算层”。</p>
-              <p>如果未来 Base、Arbitrum、Optimism、zkSync、Linea、企业链、RWA 链都选择 Ethereum 作为结算/数据可用性/安全锚，ETH 的角色就类似：</p>
-              <p style="font-style: italic; color: var(--soft); margin: 12px 0;">“不是每笔小交易都发生在纽约证券交易所主板，但最终信用体系仍围绕核心清算层。”</p>
-              <p>这就是 ETH 的高级叙事：它不是 app chain，而是 settlement layer for internet finance。</p>
-            </article>
-
-            <article class="chinese-memo-card">
-              <h4><span class="num">5</span> ETH 的价值捕获逻辑</h4>
-              <p>ETH 未来价值来自四个方向：</p>
-              <ul>
-                <li>网络使用增加，ETH 被消耗或作为手续费资产使用。</li>
-                <li>更多 ETH 被质押，减少流通并增强安全预算。</li>
-                <li>ETH/stETH 成为 DeFi 和机构链上金融的核心抵押品。</li>
-                <li>RWA、稳定币、L2 结算把 Ethereum 变成全球开放金融账本。</li>
-              </ul>
-              <p style="margin-top: 14px;">如果未来链上资产占全球金融资产的比例从现在很小上升到几个百分点，ETH 不需要统治全部应用层，只要成为核心结算和抵押层，就有巨大价值。</p>
-            </article>
-
-            <article class="chinese-memo-card risk-card">
-              <h4><span class="num">6</span> 真正风险</h4>
-              <p>最重要的风险不是“ETH 有没有用”，而是：</p>
-              <ul>
-                <li>L2 发展太成功，但价值没有回流 ETH。</li>
-                <li>Solana 等高性能链拿走大部分用户活动和稳定币增量。</li>
-                <li>Ethereum 治理太慢，UX 太碎片化。</li>
-                <li>监管限制 staking、DeFi 或稳定币。</li>
-                <li>ETH 供应通胀/低 burn 环境持续，削弱货币溢价。</li>
-              </ul>
-              <p style="margin-top: 14px; font-weight: 500; color: var(--soft);">所以专业结论不是“无脑看多”，而是：ETH 有未来，因为它是目前最有可能承载开放金融信用的中立结算层；但 ETH 价格能否大涨，取决于这种金融活动能否持续给 ETH 本身带来费用、抵押需求和货币溢价。</p>
-            </article>
-          </div>
-
-          <div class="chinese-conclusion">
-            <h4>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="m9 12 2 2 4-4"></path>
-              </svg> 
-              一句话版本 (Executive Summary)
-            </h4>
-            <p><strong>BTC 是数字储备资产，SOL 是高性能链上消费网络，ETH 是开放金融的信用底座。</strong>只要稳定币、RWA、DeFi 和链上结算继续增长，ETH 就很难没有未来。</p>
-          </div>
-
-          <div class="chinese-footer-meta">
-            <span><span class="ref-title">数据参考：</span>DeFiLlama Chains、DeFiLlama Stablecoins、Ethereum RWA overview、Ethereum staking docs、L2BEAT。</span>
-            <span>RESEARCH MEMO &copy; 2025</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    </footer>
   </main>
 
-  <footer>
-    <div class="footer-inner">
-      <p>
-        Built from public on-chain databases, Ethereum network statistics, and consolidated research briefs. Figures are presented in millions or billions where noted. Staked values and prices reflect Q2 2025 close. This page represents public market research and is not direct financial advice.
-      </p>
-      <a class="to-top" href="#top" aria-label="Back to top">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
-      </a>
-    </div>
-  </footer>
-
   <script>
-    const progress = document.querySelector(".progress");
-    const navLinks = [...document.querySelectorAll(".nav a")];
-    const sections = navLinks.map((link) => document.querySelector(link.getAttribute("href")));
+    // CARD 2: Interactive Chart Highlight Functions
+    function highlightChain(chain, tvl) {
+      const label = document.querySelector('.chart-block:first-child .chart-label .highlight');
+      label.textContent = `${chain} TVL: $${tvl}B`;
+      label.style.color = chain === 'Ethereum' ? 'var(--cyan)' : chain === 'Solana' ? 'var(--pink)' : chain === 'Arbitrum' ? 'var(--purple)' : 'var(--muted)';
+    }
 
-    const updateProgress = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
-      progress.style.setProperty("--scroll", `${Math.max(0, Math.min(1, ratio)) * 100}%`);
+    const stablecoinData = {
+      Ethereum: {
+        percentage: '51.4%',
+        sub: 'Mainnet',
+        text: 'Mainnet: ~$165B (51.4%)'
+      },
+      Others: {
+        percentage: '48.6%',
+        sub: 'Other Chains',
+        text: 'Other Chains: ~$156B (48.6%)'
+      }
     };
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("is-visible");
+    function selectStablecoin(type) {
+      const displayLabel = document.getElementById('stablecoin-highlight');
+      const displayPercentage = document.getElementById('donut-percentage');
+      const displaySub = document.getElementById('donut-sub');
+
+      displayLabel.textContent = stablecoinData[type].text;
+      displayLabel.style.color = type === 'Ethereum' ? 'var(--pink)' : 'var(--muted)';
+      displayPercentage.textContent = stablecoinData[type].percentage;
+      displayPercentage.style.color = type === 'Ethereum' ? 'var(--pink)' : 'var(--muted)';
+      displaySub.textContent = stablecoinData[type].sub;
+    }
+
+    // CARD 3: THE CREDIBLE NEUTRALITY INTERACTIVE PILLS
+    const answers = [
+      "<strong>Decentralized Staking Security:</strong> With over $89.25 Billion (35.7 million ETH) locked in its PoS consensus layer, Ethereum provides the most robust economic security blanket in the world, making L1 state reversion economically impossible.",
+      "<strong>Immune to Corporate Capture:</strong> Unlike monolithic smart-contract chains that run on small sets of highly optimized validators, Ethereum's validator set comprises over 1,000,000 active keys, preserving absolute decentralization and sovereign neutrality.",
+      "<strong>Economic Stress Testing:</strong> Ethereum is the only smart contract system that has successfully navigated multiple severe multi-billion-dollar liquidations, onchain hacks, fee spikes, and network upgrades without experiencing consensus disruptions or downtime.",
+      "<strong>Universal Institutional Consensus:</strong> Wall Street asset managers, global stablecoin issuers (Tether, Circle), and top-tier smart contract developers deploy their highest-value vaults on Ethereum because it functions as the definitive neutral clearing registry."
+    ];
+
+    function showAnswer(index) {
+      // Remove active state from all pills
+      const pills = document.querySelectorAll('.query-pill');
+      pills.forEach((pill, i) => {
+        if (i === index) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
       });
-    }, { threshold: 0.12 });
 
-    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+      // Update answer box content with transition
+      const box = document.getElementById('answer-box');
+      box.style.opacity = 0;
+      box.style.transform = 'translateY(4px)';
 
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const active = navLinks.find((link) => link.getAttribute("href") === `#${entry.target.id}`);
-        navLinks.forEach((link) => link.classList.toggle("active", link === active));
+      setTimeout(() => {
+        box.innerHTML = `<p>${answers[index]}</p>`;
+        box.style.opacity = 1;
+        box.style.transform = 'translateY(0)';
+      }, 150);
+    }
+
+    // CARD 4: Interactive L2 nodes selection
+    const l2Details = {
+      base: "<strong>Base (Coinbase L2 Network):</strong> Led by Coinbase, Base has captured major retail consumer and developer mindshare, settling high-volume consumer transaction flows directly back into Ethereum L1.",
+      arbitrum: "<strong>Arbitrum One (DeFi Hub):</strong> As the leading rollup by TVL, Arbitrum remains the primary decentralized hub for derivatives, lending protocols, and complex execution before final settlement on Ethereum L1.",
+      optimism: "<strong>Optimism (Superchain Architecture):</strong> Building the OP Stack framework, Optimism forms an interconnected network of cross-chain ecosystems that pool security resources and settle as a unified state on L1.",
+      zksync: "<strong>zkSync (ZK Rollup):</strong> Utilizing zero-knowledge proofs, zkSync achieves mathematical scaling finality, clearing thousands of operations off-chain and posting single validity proofs directly to the L1 security registry.",
+      enterprise: "<strong>Enterprise Chains & RWAs:</strong> Regulated institutions and private ledger operators (e.g., JPMorgan's Onyx, BlackRock's BUIDL) deploy permissioned scaling nodes that settle tokenized real-world assets on Ethereum L1."
+    };
+
+    function selectL2(key) {
+      const box = document.getElementById('l2-details-box');
+      box.style.opacity = 0;
+      setTimeout(() => {
+        box.innerHTML = `<p>${l2Details[key]}</p>`;
+        box.style.opacity = 1;
+      }, 150);
+    }
+
+    // CARD 5: VALUE CAPTURE FLYWHEELS
+    const flywheels = [
+      "<strong>A. Gas Burn Engine:</strong> Under EIP-1559, a substantial percentage of all transactions on L1 mainnet are permanently burned, creating deflationary pressure during high network usage periods.",
+      "<strong>B. Staking Lockups:</strong> Active validator staking locks up ~29.6% of circulating supply, strengthening security and reducing circulating sell pressure.",
+      "<strong>C. Premier Collateral:</strong> ETH/stETH functions as the sovereign reserve collateral of the decentralized money market.",
+      "<strong>D. Global Ledger Settlement:</strong> RWAs, stablecoins, and L2 operators purchase blockspace, cementing ETH as the settlement asset."
+    ];
+
+    function showFlywheel(index) {
+      const cells = document.querySelectorAll('.flywheel-cell');
+      cells.forEach((cell, i) => {
+        if (i === index) {
+          cell.classList.add('active');
+        } else {
+          cell.classList.remove('active');
+        }
       });
-    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
 
-    sections.forEach((section) => section && navObserver.observe(section));
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    updateProgress();
+      const box = document.getElementById('flywheel-box');
+      box.style.opacity = 0;
+
+      setTimeout(() => {
+        box.innerHTML = `<p>${flywheels[index]}</p>`;
+        box.style.opacity = 1;
+      }, 150);
+    }
   </script>
 </body>
 </html>
