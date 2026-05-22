@@ -1863,12 +1863,15 @@
             </div>
             
             <div class="sliders-panel">
-              <div class="slider-group">
-                <div class="slider-info-row">
-                  <span class="slider-title">Sovereign TVL (DeFi + Stablecoins)</span>
-                  <span id="val-tvl-readout" class="slider-value">$210B</span>
+              <div class="starting-metrics-box" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border); padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;">Active Base Anchor (Fact)</span>
+                  <span style="font-size: 1.05rem; font-weight: 700; color: var(--text);">Sovereign TVL: <span style="color: var(--cyan); font-family: 'Azeret Mono', monospace;">$210.0B</span></span>
                 </div>
-                <input id="slider-tvl" type="range" min="50" max="400" value="210" class="val-slider" oninput="recalculateValuation()">
+                <div style="text-align: right; font-family: 'Azeret Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 1.45;">
+                  <div>DeFi TVL: <span style="color: var(--soft); font-weight: 600;">$44.2B</span></div>
+                  <div>Stablecoins: <span style="color: var(--soft); font-weight: 600;">$165.8B</span></div>
+                </div>
               </div>
               
               <div class="slider-group">
@@ -2198,9 +2201,9 @@
 
     // CARD 7: PROTOCOL VALUATION FRAMEWORK INTERACTIVITY
     const scenarios = {
-      bear: { tvl: 180, tvlGrowth: 11, flow: 5, growth: 3, discount: 12 },
+      bear: { tvl: 210, tvlGrowth: 4, flow: 5, growth: 3, discount: 12 },
       base: { tvl: 210, tvlGrowth: 10, flow: 12, growth: 8, discount: 10 },
-      bull: { tvl: 300, tvlGrowth: 10, flow: 20, growth: 14, discount: 8 }
+      bull: { tvl: 210, tvlGrowth: 16, flow: 20, growth: 14, discount: 8 }
     };
 
     function setScenario(caseName) {
@@ -2208,7 +2211,6 @@
       document.getElementById(`preset-${caseName}`).classList.add('active');
 
       const vals = scenarios[caseName];
-      document.getElementById('slider-tvl').value = vals.tvl;
       document.getElementById('slider-tvl-growth').value = vals.tvlGrowth;
       document.getElementById('slider-flow').value = vals.flow;
       document.getElementById('slider-growth').value = vals.growth;
@@ -2218,13 +2220,12 @@
     }
 
     function recalculateValuation() {
-      const tvl = parseFloat(document.getElementById('slider-tvl').value);
+      const tvl = 210; // Hardcoded Sovereign TVL today ($44.2B DeFi + $165.8B Stablecoins)
       const tvlGrowth = parseFloat(document.getElementById('slider-tvl-growth').value) / 100;
       const flow = parseFloat(document.getElementById('slider-flow').value);
       const growth = parseFloat(document.getElementById('slider-growth').value) / 100;
       const discount = parseFloat(document.getElementById('slider-discount').value) / 100;
 
-      document.getElementById('val-tvl-readout').textContent = `$${tvl}B`;
       document.getElementById('val-tvl-growth-readout').textContent = `${Math.round(tvlGrowth * 100)}%`;
       document.getElementById('val-flow-readout').textContent = `$${flow}B`;
       document.getElementById('val-growth-readout').textContent = `${Math.round(growth * 100)}%`;
