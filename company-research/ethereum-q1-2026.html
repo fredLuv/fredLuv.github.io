@@ -1826,23 +1826,23 @@
             <span style="color: var(--muted); font-weight: 500;">Valuation Formula:</span>
             <span class="equation-term term-mc">Implied Market Cap</span>
             <span style="color: var(--faint);">=</span>
-            <span class="equation-term term-val">Book Value (TVL)</span>
+            <span class="equation-term term-val">Sovereign TVL & Stablecoins</span>
             <span style="color: var(--faint);">+</span>
             <span class="equation-term term-fcf">Future Cash Flows (15-Yr Present Value)</span>
           </div>
           
           <div class="val-headline-row">
             <p class="moat-intro" style="margin-bottom: 0; max-width: 620px;">
-              An institutional-grade valuation engine aggregating Ethereum L1/L2 DeFi TVL as the network's book value, combined with a 15-year Discounted Cash Flow (DCF) model projecting core fee burns and staking yields.
+              An institutional-grade valuation engine aggregating Ethereum L1/L2 DeFi TVL and stablecoin float as the network's sovereign book value, combined with a 15-year Discounted Cash Flow (DCF) model projecting core fee burns and staking yields.
             </p>
             <div class="target-display-group">
               <div class="target-box" style="margin-right: 12px;">
                 <span class="target-label">Implied ETH Price Target</span>
-                <span id="eth-price-target" class="target-price">$3,022</span>
+                <span id="eth-price-target" class="target-price">$3,049</span>
               </div>
               <div class="target-box">
                 <span class="target-label">Projected Market Cap</span>
-                <span id="eth-mcap-target" class="target-mcap">$362.7B</span>
+                <span id="eth-mcap-target" class="target-mcap">$365.9B</span>
               </div>
             </div>
           </div>
@@ -1860,26 +1860,26 @@
             <div class="sliders-panel">
               <div class="slider-group">
                 <div class="slider-info-row">
-                  <span class="slider-title">DeFi TVL (Book Value)</span>
-                  <span id="val-tvl-readout" class="slider-value">$50B</span>
+                  <span class="slider-title">Sovereign TVL (DeFi + Stablecoins)</span>
+                  <span id="val-tvl-readout" class="slider-value">$210B</span>
                 </div>
-                <input id="slider-tvl" type="range" min="20" max="150" value="50" class="val-slider" oninput="recalculateValuation()">
+                <input id="slider-tvl" type="range" min="50" max="400" value="210" class="val-slider" oninput="recalculateValuation()">
               </div>
               
               <div class="slider-group">
                 <div class="slider-info-row">
                   <span class="slider-title">Annual Base Economic Flow</span>
-                  <span id="val-flow-readout" class="slider-value" style="color: var(--indigo);">$18B</span>
+                  <span id="val-flow-readout" class="slider-value" style="color: var(--indigo);">$12B</span>
                 </div>
-                <input id="slider-flow" type="range" min="5" max="30" value="18" class="val-slider" oninput="recalculateValuation()">
+                <input id="slider-flow" type="range" min="2" max="40" value="12" class="val-slider" oninput="recalculateValuation()">
               </div>
               
               <div class="slider-group">
                 <div class="slider-info-row">
                   <span class="slider-title">Projected Annual Growth</span>
-                  <span id="val-growth-readout" class="slider-value" style="color: var(--purple);">12%</span>
+                  <span id="val-growth-readout" class="slider-value" style="color: var(--purple);">8%</span>
                 </div>
-                <input id="slider-growth" type="range" min="5" max="25" value="12" class="val-slider" oninput="recalculateValuation()">
+                <input id="slider-growth" type="range" min="2" max="25" value="8" class="val-slider" oninput="recalculateValuation()">
               </div>
               
               <div class="slider-group">
@@ -1887,7 +1887,7 @@
                   <span class="slider-title">Discount Rate (Cost of Capital)</span>
                   <span id="val-discount-readout" class="slider-value" style="color: var(--pink);">10%</span>
                 </div>
-                <input id="slider-discount" type="range" min="6" max="15" value="10" class="val-slider" oninput="recalculateValuation()">
+                <input id="slider-discount" type="range" min="6" max="18" value="10" class="val-slider" oninput="recalculateValuation()">
               </div>
             </div>
           </div>
@@ -1896,8 +1896,8 @@
           <div class="output-breakdown">
             <div class="breakdown-row">
               <div class="breakdown-label">
-                <span>Book Value Component (TVL)</span>
-                <strong id="bar-tvl-val">$50.0B</strong>
+                <span>Sovereign TVL Component</span>
+                <strong id="bar-tvl-val">$210.0B</strong>
               </div>
               <div class="breakdown-bar-outer">
                 <div id="bar-tvl-inner" class="breakdown-bar-inner" style="background: linear-gradient(90deg, var(--cyan), var(--indigo));"></div>
@@ -1907,7 +1907,7 @@
             <div class="breakdown-row">
               <div class="breakdown-label">
                 <span>Future Cash Flows Present Value (DCF)</span>
-                <strong id="bar-fcf-val">$312.7B</strong>
+                <strong id="bar-fcf-val">$155.9B</strong>
               </div>
               <div class="breakdown-bar-outer">
                 <div id="bar-fcf-inner" class="breakdown-bar-inner" style="background: linear-gradient(90deg, var(--indigo), var(--purple));"></div>
@@ -2144,9 +2144,9 @@
 
     // CARD 7: PROTOCOL VALUATION FRAMEWORK INTERACTIVITY
     const scenarios = {
-      bear: { tvl: 45, flow: 15, growth: 8, discount: 12 },
-      base: { tvl: 50, flow: 18, growth: 12, discount: 10 },
-      bull: { tvl: 100, flow: 25, growth: 18, discount: 8 }
+      bear: { tvl: 150, flow: 6, growth: 4, discount: 12 },
+      base: { tvl: 210, flow: 12, growth: 8, discount: 10 },
+      bull: { tvl: 300, flow: 20, growth: 14, discount: 8 }
     };
 
     function setScenario(caseName) {
