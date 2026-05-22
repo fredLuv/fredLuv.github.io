@@ -511,6 +511,80 @@
       color: var(--soft);
     }
 
+    /* Card Tabs */
+    .card-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+    }
+
+    .card-tab {
+      flex: 1;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-family: "Manrope", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: calc(var(--radius-sm) - 2px);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .card-tab:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .card-tab.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-tab.active.stablecoin-tab {
+      border-color: rgba(236, 72, 153, 0.3);
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.15);
+    }
+
+    .card-tab.active.tvl-tab {
+      border-color: rgba(6, 182, 212, 0.3);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+    }
+
+    .tab-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* CARD 3: THE ULTIMATE MOAT PILLS */
     .moat-intro {
       font-size: 0.94rem;
@@ -1129,81 +1203,97 @@
           Real institutional capital with strict risk management parameters consistently prefers the decentralized security of Ethereum Mainnet.
         </p>
 
+        <!-- Dynamic Card Tabs: Stablecoins on the left (higher than DeFi TVL) -->
+        <div class="card-tabs">
+          <button id="tab-btn-stablecoin" class="card-tab active stablecoin-tab" onclick="switchCardTab('stablecoin')">
+            <span class="tab-indicator" style="background: var(--pink);"></span>
+            Stablecoins ($165B)
+          </button>
+          <button id="tab-btn-tvl" class="card-tab tvl-tab" onclick="switchCardTab('tvl')">
+            <span class="tab-indicator" style="background: var(--cyan);"></span>
+            DeFi TVL ($44.2B)
+          </button>
+        </div>
+
         <div class="charts-container">
-          <!-- Chart 1: DeFi TVL Dominance -->
-          <div class="chart-block">
-            <div class="chart-label">
-              <span>DeFi TVL Dominance</span>
-              <span class="highlight">Ethereum L1: $44.2B</span>
-            </div>
-            <div class="bar-chart" aria-label="TVL Bar Chart">
-              <div class="bar-row" onclick="highlightChain('Ethereum', 44.2)">
-                <span class="bar-name">Ethereum</span>
-                <div class="bar-outer">
-                  <div class="bar-inner" style="width: 100%; background: linear-gradient(90deg, var(--cyan), var(--indigo)); color: var(--cyan);"></div>
-                </div>
-                <span class="bar-value">$44.2B</span>
+          <!-- Tab 1 Content: Stablecoin Dominance Donut (Active by default because $165B is higher than $44.2B DeFi TVL) -->
+          <div id="stablecoin-content" class="tab-content active">
+            <div class="chart-block">
+              <div class="chart-label">
+                <span>Stablecoin Market Share</span>
+                <span id="stablecoin-highlight" class="highlight" style="color: var(--pink);">Mainnet: ~$165B (51.4%)</span>
               </div>
-              <div class="bar-row" onclick="highlightChain('Solana', 5.8)">
-                <span class="bar-name">Solana</span>
-                <div class="bar-outer">
-                  <div class="bar-inner" style="width: 13.1%; background: var(--pink); color: var(--pink);"></div>
+              <div class="donut-chart-wrapper">
+                <div class="donut-svg-container">
+                  <svg width="100" height="100" viewBox="0 0 36 36">
+                    <!-- Grey Background Circle -->
+                    <circle cx="18" cy="18" r="15.91549" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="4.5"></circle>
+                    <!-- Others slice (48.6%) -->
+                    <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--faint)" stroke-width="4.5" stroke-dasharray="48.6 51.4" stroke-dashoffset="0" onclick="selectStablecoin('Others')"></circle>
+                    <!-- Ethereum Mainnet slice (51.4%) -->
+                    <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--pink)" stroke-width="4.5" stroke-dasharray="51.4 48.6" stroke-dashoffset="-48.6" onclick="selectStablecoin('Ethereum')"></circle>
+                  </svg>
+                  <div class="donut-center-text">
+                    <strong id="donut-percentage">51.4%</strong>
+                    <span id="donut-sub">Mainnet</span>
+                  </div>
                 </div>
-                <span class="bar-value">$5.8B</span>
-              </div>
-              <div class="bar-row" onclick="highlightChain('Arbitrum', 3.2)">
-                <span class="bar-name">Arbitrum</span>
-                <div class="bar-outer">
-                  <div class="bar-inner" style="width: 7.2%; background: var(--purple); color: var(--purple);"></div>
+                <div class="donut-legend">
+                  <div class="legend-item" onclick="selectStablecoin('Ethereum')">
+                    <div class="legend-color" style="background: var(--pink);"></div>
+                    <span>Ethereum L1: <strong style="color: var(--pink); font-weight: 700;">$165B</strong></span>
+                  </div>
+                  <div class="legend-item" onclick="selectStablecoin('Others')">
+                    <div class="legend-color" style="background: var(--faint);"></div>
+                    <span>Other Chains: <strong>$156B</strong></span>
+                  </div>
                 </div>
-                <span class="bar-value">$3.2B</span>
-              </div>
-              <div class="bar-row" onclick="highlightChain('Base', 2.8)">
-                <span class="bar-name">Base</span>
-                <div class="bar-outer">
-                  <div class="bar-inner" style="width: 6.3%; background: var(--indigo); color: var(--indigo);"></div>
-                </div>
-                <span class="bar-value">$2.8B</span>
-              </div>
-              <div class="bar-row" onclick="highlightChain('Others', 8.0)">
-                <span class="bar-name">Others</span>
-                <div class="bar-outer">
-                  <div class="bar-inner" style="width: 18.1%; background: var(--faint); color: var(--muted);"></div>
-                </div>
-                <span class="bar-value">$8.0B</span>
               </div>
             </div>
           </div>
 
-          <!-- Chart 2: Stablecoin Dominance Donut -->
-          <div class="chart-block">
-            <div class="chart-label">
-              <span>Stablecoin Market Share</span>
-              <span id="stablecoin-highlight" class="highlight" style="color: var(--pink);">Mainnet: ~$165B (51.4%)</span>
-            </div>
-            <div class="donut-chart-wrapper">
-              <div class="donut-svg-container">
-                <svg width="100" height="100" viewBox="0 0 36 36">
-                  <!-- Grey Background Circle -->
-                  <circle cx="18" cy="18" r="15.91549" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="4.5"></circle>
-                  <!-- Others slice (48.6%) -->
-                  <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--faint)" stroke-width="4.5" stroke-dasharray="48.6 51.4" stroke-dashoffset="0" onclick="selectStablecoin('Others')"></circle>
-                  <!-- Ethereum Mainnet slice (51.4%) -->
-                  <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--pink)" stroke-width="4.5" stroke-dasharray="51.4 48.6" stroke-dashoffset="-48.6" onclick="selectStablecoin('Ethereum')"></circle>
-                </svg>
-                <div class="donut-center-text">
-                  <strong id="donut-percentage">51.4%</strong>
-                  <span id="donut-sub">Mainnet</span>
-                </div>
+          <!-- Tab 2 Content: DeFi TVL Dominance -->
+          <div id="tvl-content" class="tab-content">
+            <div class="chart-block">
+              <div class="chart-label">
+                <span>DeFi TVL Dominance</span>
+                <span id="tvl-highlight" class="highlight">Ethereum L1: $44.2B</span>
               </div>
-              <div class="donut-legend">
-                <div class="legend-item" onclick="selectStablecoin('Ethereum')">
-                  <div class="legend-color" style="background: var(--pink);"></div>
-                  <span>Ethereum L1: <strong style="color: var(--pink); font-weight: 700;">$165B</strong></span>
+              <div class="bar-chart" aria-label="TVL Bar Chart">
+                <div class="bar-row" onclick="highlightChain('Ethereum', 44.2)">
+                  <span class="bar-name">Ethereum</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 100%; background: linear-gradient(90deg, var(--cyan), var(--indigo)); color: var(--cyan);"></div>
+                  </div>
+                  <span class="bar-value">$44.2B</span>
                 </div>
-                <div class="legend-item" onclick="selectStablecoin('Others')">
-                  <div class="legend-color" style="background: var(--faint);"></div>
-                  <span>Other Chains: <strong>$156B</strong></span>
+                <div class="bar-row" onclick="highlightChain('Solana', 5.8)">
+                  <span class="bar-name">Solana</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 13.1%; background: var(--pink); color: var(--pink);"></div>
+                  </div>
+                  <span class="bar-value">$5.8B</span>
+                </div>
+                <div class="bar-row" onclick="highlightChain('Arbitrum', 3.2)">
+                  <span class="bar-name">Arbitrum</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 7.2%; background: var(--purple); color: var(--purple);"></div>
+                  </div>
+                  <span class="bar-value">$3.2B</span>
+                </div>
+                <div class="bar-row" onclick="highlightChain('Base', 2.8)">
+                  <span class="bar-name">Base</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 6.3%; background: var(--indigo); color: var(--indigo);"></div>
+                  </div>
+                  <span class="bar-value">$2.8B</span>
+                </div>
+                <div class="bar-row" onclick="highlightChain('Others', 8.0)">
+                  <span class="bar-name">Others</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 18.1%; background: var(--faint); color: var(--muted);"></div>
+                  </div>
+                  <span class="bar-value">$8.0B</span>
                 </div>
               </div>
             </div>
@@ -1540,9 +1630,25 @@
   </main>
 
   <script>
+    // Dynamic Card Tabs
+    function switchCardTab(tabId) {
+      document.getElementById('stablecoin-content').classList.remove('active');
+      document.getElementById('tvl-content').classList.remove('active');
+      document.getElementById('tab-btn-stablecoin').classList.remove('active');
+      document.getElementById('tab-btn-tvl').classList.remove('active');
+
+      if (tabId === 'stablecoin') {
+        document.getElementById('stablecoin-content').classList.add('active');
+        document.getElementById('tab-btn-stablecoin').classList.add('active');
+      } else {
+        document.getElementById('tvl-content').classList.add('active');
+        document.getElementById('tab-btn-tvl').classList.add('active');
+      }
+    }
+
     // CARD 2: Interactive Chart Highlight Functions
     function highlightChain(chain, tvl) {
-      const label = document.querySelector('.chart-block:first-child .chart-label .highlight');
+      const label = document.getElementById('tvl-highlight');
       label.textContent = `${chain} TVL: $${tvl}B`;
       label.style.color = chain === 'Ethereum' ? 'var(--cyan)' : chain === 'Solana' ? 'var(--pink)' : chain === 'Arbitrum' ? 'var(--purple)' : 'var(--muted)';
     }
