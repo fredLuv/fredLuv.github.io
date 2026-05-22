@@ -1106,9 +1106,7 @@
       transform: scale(1.1);
     }
     
-    #slider-tvl::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
     #slider-tvl-growth::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
-    #slider-flow::-webkit-slider-thumb { background: var(--indigo); box-shadow: 0 0 8px var(--indigo); }
     #slider-growth::-webkit-slider-thumb { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
     #slider-discount::-webkit-slider-thumb { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
     
@@ -1863,14 +1861,20 @@
             </div>
             
             <div class="sliders-panel">
-              <div class="starting-metrics-box" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border); padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;">Active Base Anchor (Fact)</span>
-                  <span style="font-size: 1.05rem; font-weight: 700; color: var(--text);">Sovereign TVL: <span style="color: var(--cyan); font-family: 'Azeret Mono', monospace;">$210.0B</span></span>
+              <div class="starting-metrics-box" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border); padding: 16px 20px; border-radius: var(--radius-sm); margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="border-right: 1px solid rgba(255, 255, 255, 0.06); padding-right: 16px;">
+                  <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Book Value (Fact)</span>
+                  <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Sovereign TVL: <span style="color: var(--cyan); font-family: 'Azeret Mono', monospace;">$210B</span></span>
+                  <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
+                    DeFi TVL: $44.2B<br>Stablecoins: $165.8B
+                  </span>
                 </div>
-                <div style="text-align: right; font-family: 'Azeret Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 1.45;">
-                  <div>DeFi TVL: <span style="color: var(--soft); font-weight: 600;">$44.2B</span></div>
-                  <div>Stablecoins: <span style="color: var(--soft); font-weight: 600;">$165.8B</span></div>
+                <div style="padding-left: 4px;">
+                  <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Economic Capture (Fact)</span>
+                  <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Economic Flow: <span style="color: var(--indigo); font-family: 'Azeret Mono', monospace;">$12B</span></span>
+                  <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
+                    Gas Burns & Settles: $6.0B<br>Staking Rewards: $6.0B
+                  </span>
                 </div>
               </div>
               
@@ -1880,14 +1884,6 @@
                   <span id="val-tvl-growth-readout" class="slider-value" style="color: var(--cyan);">10%</span>
                 </div>
                 <input id="slider-tvl-growth" type="range" min="2" max="20" value="10" class="val-slider" oninput="recalculateValuation()">
-              </div>
-              
-              <div class="slider-group">
-                <div class="slider-info-row">
-                  <span class="slider-title">Annual Base Economic Flow</span>
-                  <span id="val-flow-readout" class="slider-value" style="color: var(--indigo);">$12B</span>
-                </div>
-                <input id="slider-flow" type="range" min="2" max="40" value="12" class="val-slider" oninput="recalculateValuation()">
               </div>
               
               <div class="slider-group">
@@ -2201,9 +2197,9 @@
 
     // CARD 7: PROTOCOL VALUATION FRAMEWORK INTERACTIVITY
     const scenarios = {
-      bear: { tvl: 210, tvlGrowth: 4, flow: 5, growth: 3, discount: 12 },
+      bear: { tvl: 210, tvlGrowth: 4, flow: 12, growth: 3, discount: 12 },
       base: { tvl: 210, tvlGrowth: 10, flow: 12, growth: 8, discount: 10 },
-      bull: { tvl: 210, tvlGrowth: 16, flow: 20, growth: 14, discount: 8 }
+      bull: { tvl: 210, tvlGrowth: 16, flow: 12, growth: 14, discount: 8 }
     };
 
     function setScenario(caseName) {
@@ -2212,7 +2208,6 @@
 
       const vals = scenarios[caseName];
       document.getElementById('slider-tvl-growth').value = vals.tvlGrowth;
-      document.getElementById('slider-flow').value = vals.flow;
       document.getElementById('slider-growth').value = vals.growth;
       document.getElementById('slider-discount').value = vals.discount;
 
@@ -2222,12 +2217,11 @@
     function recalculateValuation() {
       const tvl = 210; // Hardcoded Sovereign TVL today ($44.2B DeFi + $165.8B Stablecoins)
       const tvlGrowth = parseFloat(document.getElementById('slider-tvl-growth').value) / 100;
-      const flow = parseFloat(document.getElementById('slider-flow').value);
+      const flow = 12; // Hardcoded Economic Flow today ($12B fee burns, settlement yields, validator staking rewards)
       const growth = parseFloat(document.getElementById('slider-growth').value) / 100;
       const discount = parseFloat(document.getElementById('slider-discount').value) / 100;
 
       document.getElementById('val-tvl-growth-readout').textContent = `${Math.round(tvlGrowth * 100)}%`;
-      document.getElementById('val-flow-readout').textContent = `$${flow}B`;
       document.getElementById('val-growth-readout').textContent = `${Math.round(growth * 100)}%`;
       document.getElementById('val-discount-readout').textContent = `${Math.round(discount * 100)}%`;
 
@@ -2261,7 +2255,6 @@
       for (const [key, preset] of Object.entries(scenarios)) {
         if (tvl === preset.tvl && 
             Math.round(tvlGrowth * 100) === preset.tvlGrowth && 
-            flow === preset.flow && 
             Math.round(growth * 100) === preset.growth && 
             Math.round(discount * 100) === preset.discount) {
           matchesPreset = key;
