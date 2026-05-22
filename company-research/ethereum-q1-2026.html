@@ -1837,13 +1837,17 @@
               An institutional-grade valuation engine aggregating Ethereum L1/L2 DeFi TVL and stablecoin float as the network's sovereign book value, combined with a 15-year Discounted Cash Flow (DCF) model projecting core fee burns and staking yields.
             </p>
             <div class="target-display-group">
-              <div class="target-box" style="margin-right: 12px;">
+              <div class="target-box">
                 <span class="target-label">Implied ETH Price Target</span>
                 <span id="eth-price-target" class="target-price">$3,053</span>
               </div>
               <div class="target-box">
                 <span class="target-label">Projected Market Cap</span>
                 <span id="eth-mcap-target" class="target-mcap">$366.3B</span>
+              </div>
+              <div class="target-box">
+                <span class="target-label">Implied Yield Factor</span>
+                <span id="eth-yield-target" class="target-mcap" style="color: var(--emerald); text-shadow: 0 0 10px rgba(16, 185, 129, 0.15);">3.3%</span>
               </div>
             </div>
           </div>
@@ -1958,6 +1962,9 @@
                   <text x="260" y="94" fill="var(--muted)" font-family="Azeret Mono" font-size="6.5" text-anchor="middle">Year 10</text>
                   <text x="380" y="94" fill="var(--muted)" font-family="Azeret Mono" font-size="6.5" text-anchor="middle">Year 15 (Terminal)</text>
                 </svg>
+              </div>
+              <div style="font-size: 0.68rem; color: var(--muted); margin-top: 8px; font-style: italic; line-height: 1.35; padding: 0 4px;">
+                *Note: Implied price CAGR is lower than the discount rate because intermediate economic flows (staking yields & gas fee burns) act as a yield distribution, delivering a portion of the total expected return before terminal value maturity.
               </div>
             </div>
             
@@ -2238,6 +2245,8 @@
 
       document.getElementById('eth-price-target').textContent = `$${Math.round(priceTarget).toLocaleString()}`;
       document.getElementById('eth-mcap-target').textContent = `$${mcap.toFixed(1)}B`;
+      const flowYield = (flow / mcap) * 100;
+      document.getElementById('eth-yield-target').textContent = `${flowYield.toFixed(1)}%`;
       document.getElementById('bar-tvl-val').textContent = `$${tvlPV.toFixed(1)}B`;
       document.getElementById('bar-fcf-val').textContent = `$${fcfPV.toFixed(1)}B`;
 
