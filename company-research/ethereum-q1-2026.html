@@ -1923,6 +1923,40 @@
               </div>
             </div>
             
+            <div class="projection-chart-block" style="margin-top: 18px; margin-bottom: 4px;">
+              <div class="breakdown-label" style="margin-bottom: 6px;">
+                <span>15-Year Implied Price Projection Path</span>
+                <strong id="projected-cagr-readout" style="color: var(--cyan); font-size: 0.72rem;">Compounding at 10% p.a.</strong>
+              </div>
+              <div class="projection-chart-container" style="background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); padding: 12px 10px; height: 120px; box-sizing: border-box;">
+                <svg id="price-projection-svg" viewBox="0 0 400 100" style="width: 100%; height: 100%; overflow: visible;">
+                  <!-- Grid lines -->
+                  <line x1="20" y1="80" x2="380" y2="80" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+                  <line x1="20" y1="45" x2="380" y2="45" stroke="rgba(255,255,255,0.03)" stroke-dasharray="2,2"></line>
+                  <line x1="20" y1="10" x2="380" y2="10" stroke="rgba(255,255,255,0.05)" stroke-dasharray="2,2"></line>
+                  
+                  <!-- Y Axis Grid Labels -->
+                  <text x="15" y="82" fill="var(--muted)" font-family="Azeret Mono" font-size="6" text-anchor="end">$0</text>
+                  
+                  <!-- Projection curve -->
+                  <path id="projection-line" fill="none" stroke="var(--cyan)" stroke-width="2.5" stroke-linecap="round" style="transition: d 0.4s ease, stroke 0.4s ease; filter: drop-shadow(0 0 4px var(--cyan));" d=""></path>
+                  
+                  <!-- Value dots & labels -->
+                  <circle id="dot-start" cx="20" cy="80" r="3.5" fill="var(--cyan)" style="transition: cx 0.4s ease, cy 0.4s ease, fill 0.4s ease;"></circle>
+                  <circle id="dot-end" cx="380" cy="10" r="3.5" fill="var(--cyan)" style="transition: cx 0.4s ease, cy 0.4s ease, fill 0.4s ease;"></circle>
+                  
+                  <text id="lbl-start" x="20" y="70" fill="var(--soft)" font-family="Azeret Mono" font-size="7.5" font-weight="600" text-anchor="start" style="transition: x 0.4s ease, y 0.4s ease;"></text>
+                  <text id="lbl-end" x="380" y="25" fill="var(--soft)" font-family="Azeret Mono" font-size="7.5" font-weight="600" text-anchor="end" style="transition: x 0.4s ease, y 0.4s ease;"></text>
+                  
+                  <!-- Year ticks -->
+                  <text x="20" y="94" fill="var(--muted)" font-family="Azeret Mono" font-size="6.5" text-anchor="middle">Year 0 (Today)</text>
+                  <text x="140" y="94" fill="var(--muted)" font-family="Azeret Mono" font-size="6.5" text-anchor="middle">Year 5</text>
+                  <text x="260" y="94" fill="var(--muted)" font-family="Azeret Mono" font-size="6.5" text-anchor="middle">Year 10</text>
+                  <text x="380" y="94" fill="var(--muted)" font-family="Azeret Mono" font-size="6.5" text-anchor="middle">Year 15 (Terminal)</text>
+                </svg>
+              </div>
+            </div>
+            
             <div class="methodology-box">
               <strong>Institutional Methodology:</strong> Economic Flow aggregates L1 network fee burn, rollup settlement yields, validator staking rewards, and capital-efficiency utility fees. Projected cash flows are discounted over 15 years assuming 120M circulating supply.
             </div>
@@ -2225,6 +2259,59 @@
       if (matchesPreset) {
         document.getElementById(`preset-${matchesPreset}`).classList.add('active');
       }
+
+      // Draw price target projection path compounding at the cost of capital (discount rate)
+      const points = [];
+      const endPrice = priceTarget * Math.pow(1 + discount, years);
+      const maxVal = endPrice * 1.1; // 10% buffer at the top
+      
+      for (let t = 0; t <= years; t++) {
+        const val_t = priceTarget * Math.pow(1 + discount, t);
+        const px = 20 + (t / years) * 360;
+        const py = 80 - (val_t / maxVal) * 70; // Map from height of 80 to 10
+        points.push(`${px.toFixed(1)},${py.toFixed(1)}`);
+      }
+      
+      const pathD = `M ${points.join(' L ')}`;
+      const lineEl = document.getElementById('projection-line');
+      lineEl.setAttribute('d', pathD);
+      
+      // Set active color themed with presets
+      let activeColor = '#06b6d4'; // Default cyan
+      if (matchesPreset === 'bear' || discount >= 0.11) {
+        activeColor = '#ef4444'; // Red
+      } else if (matchesPreset === 'bull' || discount <= 0.09) {
+        activeColor = '#a855f7'; // Purple
+      }
+      
+      lineEl.setAttribute('stroke', activeColor);
+      lineEl.style.filter = `drop-shadow(0 0 5px ${activeColor})`;
+      
+      // Position start/end points
+      const startY = 80 - (priceTarget / maxVal) * 70;
+      const endY = 80 - (endPrice / maxVal) * 70;
+      
+      const dotStart = document.getElementById('dot-start');
+      dotStart.setAttribute('cy', startY.toFixed(1));
+      dotStart.setAttribute('fill', activeColor);
+      
+      const dotEnd = document.getElementById('dot-end');
+      dotEnd.setAttribute('cy', endY.toFixed(1));
+      dotEnd.setAttribute('fill', activeColor);
+      
+      // Position start/end text labels
+      const lblStart = document.getElementById('lbl-start');
+      lblStart.setAttribute('y', (startY - 8).toFixed(1));
+      lblStart.textContent = `$${Math.round(priceTarget).toLocaleString()}`;
+      
+      const lblEnd = document.getElementById('lbl-end');
+      lblEnd.setAttribute('y', (endY - 8).toFixed(1));
+      lblEnd.textContent = `$${Math.round(endPrice).toLocaleString()}`;
+      
+      // Update heading CAGR text
+      const readoutEl = document.getElementById('projected-cagr-readout');
+      readoutEl.textContent = `Compounding at ${Math.round(discount * 100)}% p.a.`;
+      readoutEl.style.color = activeColor;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
