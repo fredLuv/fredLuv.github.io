@@ -1107,6 +1107,7 @@
     }
     
     #slider-tvl::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    #slider-tvl-growth::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
     #slider-flow::-webkit-slider-thumb { background: var(--indigo); box-shadow: 0 0 8px var(--indigo); }
     #slider-growth::-webkit-slider-thumb { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
     #slider-discount::-webkit-slider-thumb { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
@@ -1838,11 +1839,11 @@
             <div class="target-display-group">
               <div class="target-box" style="margin-right: 12px;">
                 <span class="target-label">Implied ETH Price Target</span>
-                <span id="eth-price-target" class="target-price">$3,049</span>
+                <span id="eth-price-target" class="target-price">$3,053</span>
               </div>
               <div class="target-box">
                 <span class="target-label">Projected Market Cap</span>
-                <span id="eth-mcap-target" class="target-mcap">$365.9B</span>
+                <span id="eth-mcap-target" class="target-mcap">$366.3B</span>
               </div>
             </div>
           </div>
@@ -1868,6 +1869,14 @@
               
               <div class="slider-group">
                 <div class="slider-info-row">
+                  <span class="slider-title">TVL Projected Annual Growth</span>
+                  <span id="val-tvl-growth-readout" class="slider-value" style="color: var(--cyan);">10%</span>
+                </div>
+                <input id="slider-tvl-growth" type="range" min="2" max="20" value="10" class="val-slider" oninput="recalculateValuation()">
+              </div>
+              
+              <div class="slider-group">
+                <div class="slider-info-row">
                   <span class="slider-title">Annual Base Economic Flow</span>
                   <span id="val-flow-readout" class="slider-value" style="color: var(--indigo);">$12B</span>
                 </div>
@@ -1876,7 +1885,7 @@
               
               <div class="slider-group">
                 <div class="slider-info-row">
-                  <span class="slider-title">Projected Annual Growth</span>
+                  <span class="slider-title">Revenue Projected Annual Growth</span>
                   <span id="val-growth-readout" class="slider-value" style="color: var(--purple);">8%</span>
                 </div>
                 <input id="slider-growth" type="range" min="2" max="25" value="8" class="val-slider" oninput="recalculateValuation()">
@@ -1907,7 +1916,7 @@
             <div class="breakdown-row">
               <div class="breakdown-label">
                 <span>Future Cash Flows Present Value (DCF)</span>
-                <strong id="bar-fcf-val">$155.9B</strong>
+                <strong id="bar-fcf-val">$156.3B</strong>
               </div>
               <div class="breakdown-bar-outer">
                 <div id="bar-fcf-inner" class="breakdown-bar-inner" style="background: linear-gradient(90deg, var(--indigo), var(--purple));"></div>
@@ -2144,9 +2153,9 @@
 
     // CARD 7: PROTOCOL VALUATION FRAMEWORK INTERACTIVITY
     const scenarios = {
-      bear: { tvl: 180, flow: 5, growth: 3, discount: 12 },
-      base: { tvl: 210, flow: 12, growth: 8, discount: 10 },
-      bull: { tvl: 300, flow: 20, growth: 14, discount: 8 }
+      bear: { tvl: 180, tvlGrowth: 11, flow: 5, growth: 3, discount: 12 },
+      base: { tvl: 210, tvlGrowth: 10, flow: 12, growth: 8, discount: 10 },
+      bull: { tvl: 300, tvlGrowth: 10, flow: 20, growth: 14, discount: 8 }
     };
 
     function setScenario(caseName) {
@@ -2155,6 +2164,7 @@
 
       const vals = scenarios[caseName];
       document.getElementById('slider-tvl').value = vals.tvl;
+      document.getElementById('slider-tvl-growth').value = vals.tvlGrowth;
       document.getElementById('slider-flow').value = vals.flow;
       document.getElementById('slider-growth').value = vals.growth;
       document.getElementById('slider-discount').value = vals.discount;
@@ -2164,30 +2174,36 @@
 
     function recalculateValuation() {
       const tvl = parseFloat(document.getElementById('slider-tvl').value);
+      const tvlGrowth = parseFloat(document.getElementById('slider-tvl-growth').value) / 100;
       const flow = parseFloat(document.getElementById('slider-flow').value);
       const growth = parseFloat(document.getElementById('slider-growth').value) / 100;
       const discount = parseFloat(document.getElementById('slider-discount').value) / 100;
 
       document.getElementById('val-tvl-readout').textContent = `$${tvl}B`;
+      document.getElementById('val-tvl-growth-readout').textContent = `${Math.round(tvlGrowth * 100)}%`;
       document.getElementById('val-flow-readout').textContent = `$${flow}B`;
       document.getElementById('val-growth-readout').textContent = `${Math.round(growth * 100)}%`;
       document.getElementById('val-discount-readout').textContent = `${Math.round(discount * 100)}%`;
 
-      let fcfPV = 0;
       const years = 15;
+      
+      // PV of growing TVL = TVL_0 * ((1 + g_TVL) / (1 + r))^N
+      const tvlPV = tvl * Math.pow((1 + tvlGrowth) / (1 + discount), years);
+
+      let fcfPV = 0;
       for (let t = 1; t <= years; t++) {
         fcfPV += (flow * Math.pow(1 + growth, t)) / Math.pow(1 + discount, t);
       }
 
-      const mcap = tvl + fcfPV;
+      const mcap = tvlPV + fcfPV;
       const priceTarget = (mcap * 1000) / 120;
 
       document.getElementById('eth-price-target').textContent = `$${Math.round(priceTarget).toLocaleString()}`;
       document.getElementById('eth-mcap-target').textContent = `$${mcap.toFixed(1)}B`;
-      document.getElementById('bar-tvl-val').textContent = `$${tvl.toFixed(1)}B`;
+      document.getElementById('bar-tvl-val').textContent = `$${tvlPV.toFixed(1)}B`;
       document.getElementById('bar-fcf-val').textContent = `$${fcfPV.toFixed(1)}B`;
 
-      const tvlWidth = (tvl / mcap) * 100;
+      const tvlWidth = (tvlPV / mcap) * 100;
       const fcfWidth = (fcfPV / mcap) * 100;
 
       document.getElementById('bar-tvl-inner').style.width = `${tvlWidth}%`;
@@ -2195,7 +2211,9 @@
 
       let matchesPreset = null;
       for (const [key, preset] of Object.entries(scenarios)) {
-        if (tvl === preset.tvl && flow === preset.flow && 
+        if (tvl === preset.tvl && 
+            Math.round(tvlGrowth * 100) === preset.tvlGrowth && 
+            flow === preset.flow && 
             Math.round(growth * 100) === preset.growth && 
             Math.round(discount * 100) === preset.discount) {
           matchesPreset = key;
