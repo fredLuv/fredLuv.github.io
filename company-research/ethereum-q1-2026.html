@@ -1112,6 +1112,12 @@
     #slider-tvl-growth::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
     #slider-growth::-webkit-slider-thumb { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
     #slider-discount::-webkit-slider-thumb { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
+    #slider-btc-gold::-webkit-slider-thumb { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+    #slider-btc-gold::-webkit-slider-thumb:hover { background: #fff; box-shadow: 0 0 14px #f59e0b; }
+    #slider-eth-btc::-webkit-slider-thumb { background: #eab308; box-shadow: 0 0 8px #eab308; }
+    #slider-eth-btc::-webkit-slider-thumb:hover { background: #fff; box-shadow: 0 0 14px #eab308; }
+    #slider-discount-spec::-webkit-slider-thumb { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+    #slider-discount-spec::-webkit-slider-thumb:hover { background: #fff; box-shadow: 0 0 14px #f59e0b; }
     
     .output-breakdown {
       display: flex;
@@ -1865,45 +1871,92 @@
             </div>
             
             <div class="sliders-panel">
-              <div class="starting-metrics-box" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border); padding: 16px 20px; border-radius: var(--radius-sm); margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div style="border-right: 1px solid rgba(255, 255, 255, 0.06); padding-right: 16px;">
-                  <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Book Value (Fact)</span>
-                  <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Sovereign TVL: <span style="color: var(--cyan); font-family: 'Azeret Mono', monospace;">$210B</span></span>
-                  <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
-                    DeFi TVL: $44.2B<br>Stablecoins: $165.8B
-                  </span>
+              <!-- Sub-panel: Economic Model Sliders -->
+              <div id="panel-economic-model">
+                <div class="starting-metrics-box" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border); padding: 16px 20px; border-radius: var(--radius-sm); margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                  <div style="border-right: 1px solid rgba(255, 255, 255, 0.06); padding-right: 16px;">
+                    <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Book Value (Fact)</span>
+                    <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Sovereign TVL: <span style="color: var(--cyan); font-family: 'Azeret Mono', monospace;">$210B</span></span>
+                    <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
+                      DeFi TVL: $44.2B<br>Stablecoins: $165.8B
+                    </span>
+                  </div>
+                  <div style="padding-left: 4px;">
+                    <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Economic Capture (Fact)</span>
+                    <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Economic Flow: <span style="color: var(--indigo); font-family: 'Azeret Mono', monospace;">$12B</span></span>
+                    <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
+                      Gas Burns & Settles: $6.0B<br>Staking Rewards: $6.0B
+                    </span>
+                  </div>
                 </div>
-                <div style="padding-left: 4px;">
-                  <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Economic Capture (Fact)</span>
-                  <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Economic Flow: <span style="color: var(--indigo); font-family: 'Azeret Mono', monospace;">$12B</span></span>
-                  <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
-                    Gas Burns & Settles: $6.0B<br>Staking Rewards: $6.0B
-                  </span>
+                
+                <div class="slider-group">
+                  <div class="slider-info-row">
+                    <span class="slider-title">TVL Projected Annual Growth</span>
+                    <span id="val-tvl-growth-readout" class="slider-value" style="color: var(--cyan);">10%</span>
+                  </div>
+                  <input id="slider-tvl-growth" type="range" min="2" max="20" value="10" class="val-slider" oninput="recalculateValuation()">
+                </div>
+                
+                <div class="slider-group">
+                  <div class="slider-info-row">
+                    <span class="slider-title">Revenue Projected Annual Growth</span>
+                    <span id="val-growth-readout" class="slider-value" style="color: var(--purple);">8%</span>
+                  </div>
+                  <input id="slider-growth" type="range" min="2" max="25" value="8" class="val-slider" oninput="recalculateValuation()">
+                </div>
+                
+                <div class="slider-group">
+                  <div class="slider-info-row">
+                    <span class="slider-title">Discount Rate (Cost of Capital)</span>
+                    <span id="val-discount-readout" class="slider-value" style="color: var(--pink);">10%</span>
+                  </div>
+                  <input id="slider-discount" type="range" min="6" max="18" value="10" class="val-slider" oninput="recalculateValuation()">
                 </div>
               </div>
-              
-              <div class="slider-group">
-                <div class="slider-info-row">
-                  <span class="slider-title">TVL Projected Annual Growth</span>
-                  <span id="val-tvl-growth-readout" class="slider-value" style="color: var(--cyan);">10%</span>
+
+              <!-- Sub-panel: Speculative Mindshare Model Sliders -->
+              <div id="panel-mindshare-model" style="display: none;">
+                <div class="starting-metrics-box" style="background: rgba(255, 255, 255, 0.015); border: 1px solid var(--border); padding: 16px 20px; border-radius: var(--radius-sm); margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                  <div style="border-right: 1px solid rgba(255, 255, 255, 0.06); padding-right: 16px;">
+                    <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Store of Value Anchor</span>
+                    <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Global Gold Cap: <span style="color: #f59e0b; font-family: 'Azeret Mono', monospace;">$15.88T</span></span>
+                    <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
+                      Physical Store of Value benchmark reference.
+                    </span>
+                  </div>
+                  <div style="padding-left: 4px;">
+                    <span class="slider-title" style="display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Sovereign Assets Floor</span>
+                    <span style="font-size: 1.05rem; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px;">Sovereign TVL: <span style="color: var(--cyan); font-family: 'Azeret Mono', monospace;">$210B</span></span>
+                    <span style="display: block; font-family: 'Azeret Mono', monospace; font-size: 0.62rem; color: var(--muted); line-height: 1.3;">
+                      Hard physical asset backing floor.
+                    </span>
+                  </div>
                 </div>
-                <input id="slider-tvl-growth" type="range" min="2" max="20" value="10" class="val-slider" oninput="recalculateValuation()">
-              </div>
-              
-              <div class="slider-group">
-                <div class="slider-info-row">
-                  <span class="slider-title">Revenue Projected Annual Growth</span>
-                  <span id="val-growth-readout" class="slider-value" style="color: var(--purple);">8%</span>
+
+                <div class="slider-group">
+                  <div class="slider-info-row">
+                    <span class="slider-title">BTC / Gold Terminal Ratio</span>
+                    <span id="val-btc-gold-readout" class="slider-value" style="color: #f59e0b;">33.3%</span>
+                  </div>
+                  <input id="slider-btc-gold" type="range" min="5" max="50" step="0.1" value="33.3" class="val-slider" oninput="recalculateValuation()">
                 </div>
-                <input id="slider-growth" type="range" min="2" max="25" value="8" class="val-slider" oninput="recalculateValuation()">
-              </div>
-              
-              <div class="slider-group">
-                <div class="slider-info-row">
-                  <span class="slider-title">Discount Rate (Cost of Capital)</span>
-                  <span id="val-discount-readout" class="slider-value" style="color: var(--pink);">10%</span>
+                
+                <div class="slider-group">
+                  <div class="slider-info-row">
+                    <span class="slider-title">ETH / BTC Terminal Ratio</span>
+                    <span id="val-eth-btc-readout" class="slider-value" style="color: #eab308;">33.3%</span>
+                  </div>
+                  <input id="slider-eth-btc" type="range" min="5" max="50" step="0.1" value="33.3" class="val-slider" oninput="recalculateValuation()">
                 </div>
-                <input id="slider-discount" type="range" min="6" max="18" value="10" class="val-slider" oninput="recalculateValuation()">
+                
+                <div class="slider-group">
+                  <div class="slider-info-row">
+                    <span class="slider-title">Speculative Discount Rate</span>
+                    <span id="val-discount-spec-readout" class="slider-value" style="color: #f59e0b;">7%</span>
+                  </div>
+                  <input id="slider-discount-spec" type="range" min="6" max="18" step="0.5" value="7" class="val-slider" oninput="recalculateValuation()">
+                </div>
               </div>
             </div>
           </div>
@@ -1912,7 +1965,7 @@
           <div class="output-breakdown">
             <div class="breakdown-row">
               <div class="breakdown-label">
-                <span>Sovereign TVL Component</span>
+                <span id="label-tvl">Sovereign TVL Component</span>
                 <strong id="bar-tvl-val">$210.0B</strong>
               </div>
               <div class="breakdown-bar-outer">
@@ -1922,7 +1975,7 @@
             
             <div class="breakdown-row">
               <div class="breakdown-label">
-                <span>Future Cash Flows Present Value (DCF)</span>
+                <span id="label-fcf">Future Cash Flows Present Value (DCF)</span>
                 <strong id="bar-fcf-val">$156.3B</strong>
               </div>
               <div class="breakdown-bar-outer">
@@ -1966,7 +2019,7 @@
                   <text x="380" y="94" fill="var(--muted)" font-family="Azeret Mono" font-size="6.5" text-anchor="middle">Year 15 (Terminal)</text>
                 </svg>
               </div>
-              <div style="font-size: 0.68rem; color: var(--muted); margin-top: 8px; font-style: italic; line-height: 1.35; padding: 0 4px;">
+              <div id="chart-note" style="font-size: 0.68rem; color: var(--muted); margin-top: 8px; font-style: italic; line-height: 1.35; padding: 0 4px;">
                 *Note: Implied price CAGR is lower than the discount rate because intermediate economic flows (staking yields & gas fee burns) act as a yield distribution, delivering a portion of the total expected return before terminal value maturity.
               </div>
             </div>
@@ -2201,53 +2254,131 @@
 
     // CARD 7: PROTOCOL VALUATION FRAMEWORK INTERACTIVITY
     const scenarios = {
-      bear: { tvl: 210, tvlGrowth: 0, flow: 12, growth: 0, discount: 12 },
-      base: { tvl: 210, tvlGrowth: 10, flow: 12, growth: 8, discount: 10 },
-      bull: { tvl: 210, tvlGrowth: 16, flow: 12, growth: 14, discount: 8 },
-      speculative: { tvl: 210, tvlGrowth: 20, flow: 12, growth: 18, discount: 7 }
+      bear: { mode: 'economic', tvl: 210, tvlGrowth: 0, flow: 12, growth: 0, discount: 12 },
+      base: { mode: 'economic', tvl: 210, tvlGrowth: 10, flow: 12, growth: 8, discount: 10 },
+      bull: { mode: 'economic', tvl: 210, tvlGrowth: 16, flow: 12, growth: 14, discount: 8 },
+      speculative: { mode: 'mindshare', btcGold: 33.3, ethBtc: 33.3, discount: 7 }
     };
 
+    let valuationMode = 'economic';
+
     function setScenario(caseName) {
+      const vals = scenarios[caseName];
+      valuationMode = vals.mode || 'economic';
+
+      if (valuationMode === 'economic') {
+        document.getElementById('panel-economic-model').style.display = 'block';
+        document.getElementById('panel-mindshare-model').style.display = 'none';
+
+        document.getElementById('slider-tvl-growth').value = vals.tvlGrowth;
+        document.getElementById('slider-growth').value = vals.growth;
+        document.getElementById('slider-discount').value = vals.discount;
+      } else {
+        document.getElementById('panel-economic-model').style.display = 'none';
+        document.getElementById('panel-mindshare-model').style.display = 'block';
+
+        document.getElementById('slider-btc-gold').value = vals.btcGold;
+        document.getElementById('slider-eth-btc').value = vals.ethBtc;
+        document.getElementById('slider-discount-spec').value = vals.discount;
+      }
+
       document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(`preset-${caseName}`).classList.add('active');
-
-      const vals = scenarios[caseName];
-      document.getElementById('slider-tvl-growth').value = vals.tvlGrowth;
-      document.getElementById('slider-growth').value = vals.growth;
-      document.getElementById('slider-discount').value = vals.discount;
 
       recalculateValuation();
     }
 
     function recalculateValuation() {
-      const tvl = 210; // Hardcoded Sovereign TVL today ($44.2B DeFi + $165.8B Stablecoins)
-      const tvlGrowth = parseFloat(document.getElementById('slider-tvl-growth').value) / 100;
-      const flow = 12; // Hardcoded Economic Flow today ($12B fee burns, settlement yields, validator staking rewards)
-      const growth = parseFloat(document.getElementById('slider-growth').value) / 100;
-      const discount = parseFloat(document.getElementById('slider-discount').value) / 100;
-
-      document.getElementById('val-tvl-growth-readout').textContent = `${Math.round(tvlGrowth * 100)}%`;
-      document.getElementById('val-growth-readout').textContent = `${Math.round(growth * 100)}%`;
-      document.getElementById('val-discount-readout').textContent = `${Math.round(discount * 100)}%`;
-
-      const years = 15;
-      
-      // Sovereign TVL represents assets locked on the network today. As an already existing asset balance rather than a future cash flow,
-      // it is not discounted to guarantee the valuation can never drop below locked TVL (providing a pricing floor).
-      const tvlPV = tvl;
-
+      let tvlPV = 210; // Hardcoded Sovereign TVL today ($44.2B DeFi + $165.8B Stablecoins)
       let fcfPV = 0;
-      for (let t = 1; t <= years; t++) {
-        fcfPV += (flow * Math.pow(1 + growth, t)) / Math.pow(1 + discount, t);
-      }
+      let mcap = 210;
+      let priceTarget = 1750;
+      let endPrice = 0;
+      let impliedCAGR = 0;
+      let discount = 0.10; // default baseline for coloring logic
+      const years = 15;
 
-      const mcap = tvlPV + fcfPV;
-      const priceTarget = (mcap * 1000) / 120;
+      if (valuationMode === 'economic') {
+        const tvlGrowth = parseFloat(document.getElementById('slider-tvl-growth').value) / 100;
+        const flow = 12; // Hardcoded Economic Flow today ($12B fee burns, settlement yields, validator staking rewards)
+        const growth = parseFloat(document.getElementById('slider-growth').value) / 100;
+        discount = parseFloat(document.getElementById('slider-discount').value) / 100;
+
+        document.getElementById('val-tvl-growth-readout').textContent = `${Math.round(tvlGrowth * 100)}%`;
+        document.getElementById('val-growth-readout').textContent = `${Math.round(growth * 100)}%`;
+        document.getElementById('val-discount-readout').textContent = `${Math.round(discount * 100)}%`;
+
+        // Sovereign TVL represents assets locked on the network today. As an already existing asset balance rather than a future cash flow,
+        // it is not discounted to guarantee the valuation can never drop below locked TVL (providing a pricing floor).
+        tvlPV = 210;
+
+        for (let t = 1; t <= years; t++) {
+          fcfPV += (flow * Math.pow(1 + growth, t)) / Math.pow(1 + discount, t);
+        }
+
+        mcap = tvlPV + fcfPV;
+        priceTarget = (mcap * 1000) / 120;
+
+        // Draw price target projection path to a fixed nominal Year 15 terminal value (independent of discount rate)
+        const terminalTvl = tvlPV * Math.pow(1 + tvlGrowth, years);
+        let nominalFcfSum = 0;
+        for (let t = 1; t <= years; t++) {
+          nominalFcfSum += flow * Math.pow(1 + growth, t);
+        }
+        endPrice = ((terminalTvl + nominalFcfSum) * 1000) / 120;
+        impliedCAGR = Math.pow(endPrice / priceTarget, 1 / years) - 1;
+
+        // Update display factors
+        document.getElementById('label-tvl').textContent = "Sovereign TVL Component";
+        document.getElementById('label-fcf').textContent = "Future Cash Flows Present Value (DCF)";
+        document.getElementById('chart-note').innerHTML = "*Note: Implied price CAGR is lower than the discount rate because intermediate economic flows (staking yields & gas fee burns) act as a yield distribution, delivering a portion of the total expected return before terminal value maturity.";
+        
+        // Implied yield factor is standard flow / mcap
+        const flowYield = (flow / mcap) * 100;
+        document.getElementById('eth-yield-target').textContent = `${flowYield.toFixed(1)}%`;
+
+      } else {
+        // Speculative relative mindshare model
+        const btcGold = parseFloat(document.getElementById('slider-btc-gold').value) / 100;
+        const ethBtc = parseFloat(document.getElementById('slider-eth-btc').value) / 100;
+        const discountSpec = parseFloat(document.getElementById('slider-discount-spec').value) / 100;
+
+        document.getElementById('val-btc-gold-readout').textContent = `${(btcGold * 100).toFixed(1)}%`;
+        document.getElementById('val-eth-btc-readout').textContent = `${(ethBtc * 100).toFixed(1)}%`;
+        document.getElementById('val-discount-spec-readout').textContent = `${(discountSpec * 100).toFixed(1)}%`;
+
+        const goldMcap = 15880; // $15.88 Trillion
+        const btcMcapY15 = goldMcap * btcGold;
+        const ethMcapY15 = btcMcapY15 * ethBtc;
+        
+        // Year 15 speculative nominal price
+        endPrice = (ethMcapY15 * 1000) / 120;
+        
+        // Today's speculative market cap (unfloored)
+        const specMcap = ethMcapY15 / Math.pow(1 + discountSpec, 15);
+        
+        // Enforce the $210B TVL floor as guaranteed support
+        mcap = Math.max(210, specMcap);
+        priceTarget = (mcap * 1000) / 120;
+        
+        // Speculative premium is the difference above TVL floor
+        tvlPV = 210;
+        fcfPV = Math.max(0, mcap - tvlPV);
+        
+        // Implied CAGR required to go from priceTarget to endPrice
+        impliedCAGR = Math.pow(endPrice / priceTarget, 1 / years) - 1;
+
+        // Update display factors
+        document.getElementById('label-tvl').textContent = "Sovereign TVL Floor";
+        document.getElementById('label-fcf').textContent = "Speculative Mindshare Premium";
+        document.getElementById('chart-note').innerHTML = "*Note: In a pure store-of-value/mindshare model with no intermediate cash flow yields or staking distributions, the Implied CAGR matches the discount rate (CAGR = " + (discountSpec * 100).toFixed(1) + "%) as a clean textbook monetary asset projection.";
+        
+        // Speculative Store-of-value yields no flows
+        document.getElementById('eth-yield-target').textContent = "0.0%";
+      }
 
       document.getElementById('eth-price-target').textContent = `$${Math.round(priceTarget).toLocaleString()}`;
       document.getElementById('eth-mcap-target').textContent = `$${mcap.toFixed(1)}B`;
-      const flowYield = (flow / mcap) * 100;
-      document.getElementById('eth-yield-target').textContent = `${flowYield.toFixed(1)}%`;
       document.getElementById('bar-tvl-val').textContent = `$${tvlPV.toFixed(1)}B`;
       document.getElementById('bar-fcf-val').textContent = `$${fcfPV.toFixed(1)}B`;
 
@@ -2258,13 +2389,27 @@
       document.getElementById('bar-fcf-inner').style.width = `${fcfWidth}%`;
 
       let matchesPreset = null;
-      for (const [key, preset] of Object.entries(scenarios)) {
-        if (tvl === preset.tvl && 
-            Math.round(tvlGrowth * 100) === preset.tvlGrowth && 
-            Math.round(growth * 100) === preset.growth && 
-            Math.round(discount * 100) === preset.discount) {
-          matchesPreset = key;
-          break;
+      if (valuationMode === 'economic') {
+        const tvlGrowth = parseFloat(document.getElementById('slider-tvl-growth').value) / 100;
+        const growth = parseFloat(document.getElementById('slider-growth').value) / 100;
+        for (const [key, preset] of Object.entries(scenarios)) {
+          if (preset.mode === 'economic' && 
+              Math.round(tvlGrowth * 100) === preset.tvlGrowth && 
+              Math.round(growth * 100) === preset.growth && 
+              Math.round(discount * 100) === preset.discount) {
+            matchesPreset = key;
+            break;
+          }
+        }
+      } else {
+        const btcGold = parseFloat(document.getElementById('slider-btc-gold').value);
+        const ethBtc = parseFloat(document.getElementById('slider-eth-btc').value);
+        const discountSpec = parseFloat(document.getElementById('slider-discount-spec').value);
+        const specPreset = scenarios.speculative;
+        if (Math.abs(btcGold - specPreset.btcGold) < 0.11 &&
+            Math.abs(ethBtc - specPreset.ethBtc) < 0.11 &&
+            Math.abs(discountSpec - specPreset.discount) < 0.11) {
+          matchesPreset = 'speculative';
         }
       }
 
@@ -2273,17 +2418,7 @@
         document.getElementById(`preset-${matchesPreset}`).classList.add('active');
       }
 
-      // Draw price target projection path to a fixed nominal Year 15 terminal value (independent of discount rate)
-      const terminalTvl = tvl * Math.pow(1 + tvlGrowth, years);
-      let nominalFcfSum = 0;
-      for (let t = 1; t <= years; t++) {
-        nominalFcfSum += flow * Math.pow(1 + growth, t);
-      }
-      const endPrice = ((terminalTvl + nominalFcfSum) * 1000) / 120;
       const maxVal = endPrice * 1.1; // 10% buffer at the top
-      
-      // Implied CAGR required to reach the fixed terminal price from today's present value
-      const impliedCAGR = Math.pow(endPrice / priceTarget, 1 / years) - 1;
       
       const points = [];
       for (let t = 0; t <= years; t++) {
@@ -2308,12 +2443,16 @@
       } else if (matchesPreset === 'base') {
         activeColor = '#06b6d4'; // Cyan
       } else {
-        if (discount >= 0.11) {
-          activeColor = '#ef4444'; // Red
-        } else if (discount === 0.07 || discount === 0.06) {
+        if (valuationMode === 'mindshare') {
           activeColor = '#f59e0b'; // Gold
-        } else if (discount === 0.08) {
-          activeColor = '#a855f7'; // Purple
+        } else {
+          if (discount >= 0.11) {
+            activeColor = '#ef4444'; // Red
+          } else if (discount === 0.08) {
+            activeColor = '#a855f7'; // Purple
+          } else {
+            activeColor = '#06b6d4'; // Cyan
+          }
         }
       }
       
