@@ -74,6 +74,9 @@
 
     .card {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       min-height: 330px;
       padding: 28px;
       overflow: hidden;
@@ -138,16 +141,17 @@
       position: relative;
       z-index: 1;
       max-width: 520px;
-      margin: 0;
+      margin: 0 0 28px;
       color: var(--muted);
       font-size: 1.02rem;
       line-height: 1.58;
     }
 
     .open {
-      position: absolute;
-      left: 28px;
-      bottom: 28px;
+      position: relative;
+      display: inline-flex;
+      width: fit-content;
+      margin-top: auto;
       z-index: 1;
       color: var(--text);
       font-weight: 850;
@@ -176,13 +180,12 @@
       }
 
       .card {
-        min-height: 300px;
+        min-height: 320px;
         padding: 24px;
       }
 
-      .open {
-        left: 24px;
-        bottom: 24px;
+      h2 {
+        margin-top: 46px;
       }
     }
   </style>
