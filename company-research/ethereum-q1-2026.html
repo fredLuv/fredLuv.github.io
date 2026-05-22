@@ -1005,7 +1005,8 @@
     
     .val-presets {
       display: flex;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 20px;
       background: rgba(255, 255, 255, 0.015);
       padding: 4px;
@@ -1015,6 +1016,7 @@
     
     .preset-btn {
       flex: 1;
+      min-width: 80px;
       background: transparent;
       border: 1px solid transparent;
       color: var(--muted);
@@ -1042,6 +1044,7 @@
     .preset-btn.active.bear-btn { border-color: rgba(239, 68, 68, 0.25); color: var(--red); }
     .preset-btn.active.base-btn { border-color: rgba(6, 182, 212, 0.25); color: var(--cyan); }
     .preset-btn.active.bull-btn { border-color: rgba(168, 85, 247, 0.25); color: var(--purple); }
+    .preset-btn.active.spec-btn { border-color: rgba(245, 158, 11, 0.25); color: var(--gold); }
     
     .sliders-panel {
       display: flex;
@@ -1858,6 +1861,7 @@
               <button id="preset-bear" class="preset-btn bear-btn" onclick="setScenario('bear')">Bear Case</button>
               <button id="preset-base" class="preset-btn base-btn active" onclick="setScenario('base')">Base Case</button>
               <button id="preset-bull" class="preset-btn bull-btn" onclick="setScenario('bull')">Bull Case</button>
+              <button id="preset-speculative" class="preset-btn spec-btn" onclick="setScenario('speculative')">Speculative Case</button>
             </div>
             
             <div class="sliders-panel">
@@ -1968,7 +1972,7 @@
             </div>
             
             <div class="methodology-box">
-              <strong>Institutional Methodology:</strong> Economic Flow aggregates L1 network fee burn, rollup settlement yields, validator staking rewards, and capital-efficiency utility fees. Projected cash flows are discounted over 15 years assuming 120M circulating supply.
+              <strong>Institutional Methodology:</strong> Sovereign TVL represents the present value of assets locked on the network; as an asset-backed floor, it is not discounted to guarantee the network's valuation does not drop below TVL. Economic Flow (aggregating gas burns, staking rewards, and L2 settlement fees) is discounted over 15 years assuming 120M circulating supply.
             </div>
           </div>
         </div>
@@ -2197,9 +2201,10 @@
 
     // CARD 7: PROTOCOL VALUATION FRAMEWORK INTERACTIVITY
     const scenarios = {
-      bear: { tvl: 210, tvlGrowth: 4, flow: 12, growth: 3, discount: 12 },
+      bear: { tvl: 210, tvlGrowth: 0, flow: 12, growth: 0, discount: 12 },
       base: { tvl: 210, tvlGrowth: 10, flow: 12, growth: 8, discount: 10 },
-      bull: { tvl: 210, tvlGrowth: 16, flow: 12, growth: 14, discount: 8 }
+      bull: { tvl: 210, tvlGrowth: 16, flow: 12, growth: 14, discount: 8 },
+      speculative: { tvl: 210, tvlGrowth: 20, flow: 12, growth: 18, discount: 7 }
     };
 
     function setScenario(caseName) {
@@ -2227,8 +2232,9 @@
 
       const years = 15;
       
-      // PV of growing TVL = TVL_0 * ((1 + g_TVL) / (1 + r))^N
-      const tvlPV = tvl * Math.pow((1 + tvlGrowth) / (1 + discount), years);
+      // Sovereign TVL represents assets locked on the network today. As an already existing asset balance rather than a future cash flow,
+      // it is not discounted to guarantee the valuation can never drop below locked TVL (providing a pricing floor).
+      const tvlPV = tvl;
 
       let fcfPV = 0;
       for (let t = 1; t <= years; t++) {
@@ -2293,10 +2299,22 @@
       
       // Set active color themed with presets
       let activeColor = '#06b6d4'; // Default cyan
-      if (matchesPreset === 'bear' || discount >= 0.11) {
+      if (matchesPreset === 'bear') {
         activeColor = '#ef4444'; // Red
-      } else if (matchesPreset === 'bull' || discount <= 0.09) {
+      } else if (matchesPreset === 'speculative') {
+        activeColor = '#f59e0b'; // Gold
+      } else if (matchesPreset === 'bull') {
         activeColor = '#a855f7'; // Purple
+      } else if (matchesPreset === 'base') {
+        activeColor = '#06b6d4'; // Cyan
+      } else {
+        if (discount >= 0.11) {
+          activeColor = '#ef4444'; // Red
+        } else if (discount === 0.07 || discount === 0.06) {
+          activeColor = '#f59e0b'; // Gold
+        } else if (discount === 0.08) {
+          activeColor = '#a855f7'; // Purple
+        }
       }
       
       lineEl.setAttribute('stroke', activeColor);
