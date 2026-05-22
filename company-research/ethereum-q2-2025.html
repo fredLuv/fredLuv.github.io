@@ -1097,6 +1097,382 @@
         text-align: left;
       }
     }
+
+    /* =========================================================================
+       NEXUS PREDICTION FUSION STYLE SYSTEM
+       ========================================================================= */
+    #nexus {
+      border-top: 1px solid var(--line);
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .nexus-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+    }
+
+    .formula-display {
+      margin: 24px 0;
+      padding: 24px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(6, 182, 212, 0.05));
+      font-family: "Azeret Mono", ui-monospace, monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--ink);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .formula-math {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #b388ff, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .caution-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .caution-metric {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.01);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .caution-metric span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .caution-bar-wrap {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .caution-bar-fill {
+      height: 100%;
+      background: var(--c, var(--purple));
+      width: var(--w, 0%);
+      box-shadow: 0 0 8px var(--c, var(--purple));
+    }
+
+    .backtest-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .backtest-box {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: rgba(8, 11, 18, 0.6);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .backtest-box::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+    }
+
+    .strategy-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .strategy-card-perf {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .strategy-card-perf.enhanced {
+      border-color: rgba(168, 85, 247, 0.3);
+      background: linear-gradient(185deg, rgba(168, 85, 247, 0.03), transparent);
+    }
+
+    .strategy-name {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .strategy-card-perf.enhanced .strategy-name {
+      color: #b388ff;
+    }
+
+    .perf-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.88rem;
+    }
+
+    .perf-val {
+      font-family: "Azeret Mono", ui-monospace, monospace;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .perf-val.positive {
+      color: var(--green);
+    }
+
+    .perf-val.negative {
+      color: var(--pink);
+    }
+
+    .perf-big {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .skipped-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.05);
+      color: var(--green);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 12px;
+      gap: 6px;
+    }
+
+    /* Scenario studio panel styles */
+    .studio-panel {
+      margin-top: 40px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 32px;
+      background: linear-gradient(180deg, rgba(8, 11, 18, 0.4), rgba(5, 8, 15, 0.6));
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4);
+    }
+
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .scenario-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .scenario-btn {
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.01);
+      color: var(--muted);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scenario-btn:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .scenario-btn.active {
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.05));
+      border-color: var(--purple);
+      color: var(--ink);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+    }
+
+    .scenario-btn i {
+      font-family: "Azeret Mono", ui-monospace, monospace;
+      font-size: 0.8rem;
+      font-style: normal;
+      color: var(--accent, var(--purple));
+      font-weight: 700;
+    }
+
+    .studio-display {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .studio-display::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.05), transparent 60%);
+      pointer-events: none;
+    }
+
+    .gauge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .gauge-meter {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .gauge-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.04);
+      stroke-width: 8;
+    }
+
+    .gauge-fill {
+      fill: none;
+      stroke: url(#gaugeGrad);
+      stroke-width: 8;
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      transition: stroke-dashoffset 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      stroke-linecap: round;
+    }
+
+    .gauge-text {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge-val {
+      font-family: "Azeret Mono", ui-monospace, monospace;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .gauge-lbl {
+      font-size: 0.65rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .studio-expl {
+      display: grid;
+      gap: 10px;
+    }
+
+    .studio-expl h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .studio-expl p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .impact-badges {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .impact-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: "Azeret Mono", ui-monospace, monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .impact-badge.boost {
+      background: rgba(16, 185, 129, 0.08);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+    }
+
+    .impact-badge.stress {
+      background: rgba(239, 68, 68, 0.08);
+      color: var(--pink);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+    }
+
+    @media (max-width: 960px) {
+      .nexus-layout, .studio-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .studio-panel {
+        padding: 24px;
+      }
+    }
   </style>
 </head>
 <body id="top">
@@ -1116,6 +1492,7 @@
         <a href="#thesis" class="active">Thesis</a>
         <a href="#metrics">Metrics</a>
         <a href="#settlement">Settlement</a>
+        <a href="#nexus">Nexus Fusion</a>
         <a href="#synthesis">Synthesis</a>
       </nav>
       <a href="./" class="source-link">
@@ -1452,6 +1829,188 @@
       </div>
     </section>
 
+    <!-- NEXUS SECTION -->
+    <section id="nexus">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <h2>Nexus Fusion.</h2>
+          <p>Integrating technical signals with prediction market risk overlays to isolate authentic capital inflection on Ethereum.</p>
+        </div>
+
+        <div class="nexus-layout reveal">
+          <!-- Left Column: Formula & Caution -->
+          <div class="formula-column">
+            <h3>The Fusion Engine</h3>
+            <p>Our trading thesis leverages Polymarket event contracts as a real-time risk-filtering layer. By feeding predictive crowd sentiment into technical asset indicators, the system filters high-risk false breakouts and isolates high-conviction momentum.</p>
+            
+            <div class="formula-display">
+              <span class="formula-math">Final Confidence = 0.55 * TechConf + 0.25 * PMConfirm + 0.10 * PMQuality - 0.10 * PMConflict - 0.25 * CautionScore</span>
+              <span>The core formula dynamically weights order-book metrics against prediction market probabilities and a multi-dimensional Caution Score penalty.</span>
+            </div>
+
+            <h4>Caution Score Metrics</h4>
+            <div class="caution-grid">
+              <div class="caution-metric">
+                <span>Volatility Spike (24%)</span>
+                <div class="caution-bar-wrap">
+                  <div class="caution-bar-fill" style="--w: 65%; --c: var(--purple);"></div>
+                </div>
+              </div>
+              <div class="caution-metric">
+                <span>Drawdown Stress (18%)</span>
+                <div class="caution-bar-wrap">
+                  <div class="caution-bar-fill" style="--w: 40%; --c: var(--indigo);"></div>
+                </div>
+              </div>
+              <div class="caution-metric">
+                <span>Spread Stress (16%)</span>
+                <div class="caution-bar-wrap">
+                  <div class="caution-bar-fill" style="--w: 30%; --c: var(--cyan);"></div>
+                </div>
+              </div>
+              <div class="caution-metric">
+                <span>Whipsaw Probability (14%)</span>
+                <div class="caution-bar-wrap">
+                  <div class="caution-bar-fill" style="--w: 50%; --c: var(--lime);"></div>
+                </div>
+              </div>
+              <div class="caution-metric">
+                <span>Event Resolution Risk (14%)</span>
+                <div class="caution-bar-wrap">
+                  <div class="caution-bar-fill" style="--w: 75%; --c: var(--yellow);"></div>
+                </div>
+              </div>
+              <div class="caution-metric">
+                <span>Signal Divergence (14%)</span>
+                <div class="caution-bar-wrap">
+                  <div class="caution-bar-fill" style="--w: 45%; --c: var(--pink);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Performance Card -->
+          <div class="backtest-container">
+            <div class="backtest-box">
+              <h3>Empirical Backtest: ETH/USD</h3>
+              <p>Performance overview of the Nexus Fusion system backtested against standard Technical-Only trading models during high-volatility market transitions.</p>
+              
+              <div class="strategy-comparison">
+                <!-- Control -->
+                <div class="strategy-card-perf">
+                  <div class="strategy-name">Control (Tech Only)</div>
+                  <div class="perf-big negative">-2.08%</div>
+                  <div class="perf-metric">
+                    <span>Final Equity</span>
+                    <span class="perf-val">$9,792.27</span>
+                  </div>
+                  <div class="perf-metric">
+                    <span>Max Drawdown</span>
+                    <span class="perf-val negative">-3.20%</span>
+                  </div>
+                  <div class="perf-metric">
+                    <span>Round Trips</span>
+                    <span class="perf-val">106 Trades</span>
+                  </div>
+                  <div class="perf-metric">
+                    <span>Win Rate</span>
+                    <span class="perf-val">50.94%</span>
+                  </div>
+                </div>
+
+                <!-- Enhanced -->
+                <div class="strategy-card-perf enhanced">
+                  <div class="strategy-name">Enhanced (Polymarket Fusion)</div>
+                  <div class="perf-big positive">+1.49%</div>
+                  <div class="perf-metric">
+                    <span>Final Equity</span>
+                    <span class="perf-val">$10,148.78</span>
+                  </div>
+                  <div class="perf-metric">
+                    <span>Max Drawdown</span>
+                    <span class="perf-val positive">-1.99%</span>
+                  </div>
+                  <div class="perf-metric">
+                    <span>Round Trips</span>
+                    <span class="perf-val">14 Trades</span>
+                  </div>
+                  <div class="perf-metric">
+                    <span>Outperformance</span>
+                    <span class="perf-val positive">+3.57%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="skipped-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>Filtered 189 False Entries (Slashed Overtrading by 86.8%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studio Panel -->
+        <div class="studio-panel reveal">
+          <h3>Interactive Scenario Confidence Impact Studio</h3>
+          <p>Simulate how shifts in fundamental risk vectors and prediction market odds impact the Nexus Fusion Engine's directional confidence and active trading posture in real-time.</p>
+          
+          <div class="studio-grid">
+            <div class="scenario-buttons">
+              <button class="scenario-btn active" data-scenario="neutral" style="--accent: var(--purple);">
+                <span>Standard Neutral Scenario</span>
+                <i>58%</i>
+              </button>
+              <button class="scenario-btn" data-scenario="etf" style="--accent: var(--cyan);">
+                <span>ETF Net Inflow Surge</span>
+                <i>78%</i>
+              </button>
+              <button class="scenario-btn" data-scenario="crash" style="--accent: var(--pink);">
+                <span>Flash Liquidity Crash</span>
+                <i>13%</i>
+              </button>
+              <button class="scenario-btn" data-scenario="regulatory" style="--accent: var(--yellow);">
+                <span>Regulatory Escalation (FUD)</span>
+                <i>33%</i>
+              </button>
+              <button class="scenario-btn" data-scenario="l2" style="--accent: var(--lime);">
+                <span>L2 Blob Gas Scaling</span>
+                <i>63%</i>
+              </button>
+            </div>
+
+            <div class="studio-display">
+              <div class="gauge-wrap">
+                <div class="gauge-meter">
+                  <svg class="gauge-svg" viewBox="0 0 100 100">
+                    <defs>
+                      <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#a855f7" />
+                        <stop offset="100%" stop-color="#06b6d4" />
+                      </linearGradient>
+                    </defs>
+                    <circle class="gauge-bg" cx="50" cy="50" r="45" />
+                    <circle class="gauge-fill" id="gauge-circle" cx="50" cy="50" r="45" />
+                  </svg>
+                  <div class="gauge-text">
+                    <span class="gauge-val" id="gauge-value">58%</span>
+                    <span class="gauge-lbl">Confidence</span>
+                  </div>
+                </div>
+                <div class="studio-expl">
+                  <h4 id="scenario-title">Standard Neutral Scenario</h4>
+                  <p id="scenario-desc">Base confidence at 58%. Staking yield and RWA dominance represent key anchors; technical bias is slightly bullish, matched by steady order books.</p>
+                  <div class="impact-badges">
+                    <span class="impact-badge boost" id="badge-primary">Leverage: 0.50x</span>
+                    <span class="impact-badge stress" id="badge-secondary" style="display:none;"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SYNTHESIS SECTION -->
     <section id="synthesis">
       <div class="section-inner">
@@ -1564,6 +2123,106 @@
     sections.forEach((section) => section && navObserver.observe(section));
     window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
+
+    // =========================================================================
+    // NEXUS SCENARIO STUDIO LOGIC
+    // =========================================================================
+    const scenarios = {
+      neutral: {
+        title: "Standard Neutral Scenario",
+        desc: "Base confidence at 58%. Staking yield and RWA dominance represent key anchors; technical bias is slightly bullish, matched by steady order books.",
+        val: 58,
+        leverage: "Size: 0.50x",
+        caution: "Caution: 35%",
+        cautionIsStress: false
+      },
+      etf: {
+        title: "ETF Net Inflow Surge",
+        desc: "Confidence climbs to 78%. Heavy institutional ETF net inflows act as a structural liquidity bridge, overriding L1 fee-burn pressures and scaling confidence to optimal levels.",
+        val: 78,
+        leverage: "Size: 0.75x",
+        caution: "Caution: 18%",
+        cautionIsStress: false
+      },
+      crash: {
+        title: "Flash Liquidity Crash",
+        desc: "Confidence crushed to 13%. Forced into 'Avoid' Zone. Extreme technical drawdown and spike in Polymarket spread stress override all positive signals, blocking capital entries.",
+        val: 13,
+        leverage: "Size: 0.00x",
+        caution: "Caution: 85% [AVOID]",
+        cautionIsStress: true
+      },
+      regulatory: {
+        title: "Regulatory Escalation (FUD)",
+        desc: "Confidence falls to 33%. Polymarket event risk clusters near resolution; conflict penalty triggers divergence, forcing the engine into a cautious, capital-protecting posture.",
+        val: 33,
+        leverage: "Size: 0.00x",
+        caution: "Caution: 65%",
+        cautionIsStress: true
+      },
+      l2: {
+        title: "L2 Blob Gas Scaling",
+        desc: "Confidence increases to 63%. Blob gas capacity expands, driving L2 transactions to a new all-time high, confirming long-term modular settlement dominance.",
+        val: 63,
+        leverage: "Size: 0.50x",
+        caution: "Caution: 28%",
+        cautionIsStress: false
+      }
+    };
+
+    const gaugeCircle = document.getElementById("gauge-circle");
+    const gaugeValue = document.getElementById("gauge-value");
+    const scenarioTitle = document.getElementById("scenario-title");
+    const scenarioDesc = document.getElementById("scenario-desc");
+    const badgePrimary = document.getElementById("badge-primary");
+    const badgeSecondary = document.getElementById("badge-secondary");
+
+    function setScenario(key) {
+      const data = scenarios[key];
+      if (!data) return;
+
+      // Update active button state
+      document.querySelectorAll(".scenario-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.getAttribute("data-scenario") === key);
+      });
+
+      // Update gauge display
+      const percent = data.val;
+      const offset = 283 - (283 * percent) / 100;
+      if (gaugeCircle) {
+        gaugeCircle.style.strokeDashoffset = offset;
+      }
+      if (gaugeValue) {
+        gaugeValue.textContent = `${percent}%`;
+      }
+
+      // Update text
+      if (scenarioTitle) scenarioTitle.textContent = data.title;
+      if (scenarioDesc) scenarioDesc.textContent = data.desc;
+
+      // Update badges
+      if (badgePrimary) badgePrimary.textContent = data.leverage;
+      
+      if (badgeSecondary) {
+        badgeSecondary.textContent = data.caution;
+        badgeSecondary.style.display = "inline-flex";
+        if (data.cautionIsStress) {
+          badgeSecondary.className = "impact-badge stress";
+        } else {
+          badgeSecondary.className = "impact-badge boost";
+        }
+      }
+    }
+
+    // Set initial scenario
+    setScenario("neutral");
+
+    // Add event listeners to scenario buttons
+    document.querySelectorAll(".scenario-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setScenario(btn.getAttribute("data-scenario"));
+      });
+    });
   </script>
 </body>
 </html>
