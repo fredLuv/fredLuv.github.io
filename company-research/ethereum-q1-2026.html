@@ -2260,13 +2260,21 @@
         document.getElementById(`preset-${matchesPreset}`).classList.add('active');
       }
 
-      // Draw price target projection path compounding at the cost of capital (discount rate)
-      const points = [];
-      const endPrice = priceTarget * Math.pow(1 + discount, years);
+      // Draw price target projection path to a fixed nominal Year 15 terminal value (independent of discount rate)
+      const terminalTvl = tvl * Math.pow(1 + tvlGrowth, years);
+      let nominalFcfSum = 0;
+      for (let t = 1; t <= years; t++) {
+        nominalFcfSum += flow * Math.pow(1 + growth, t);
+      }
+      const endPrice = ((terminalTvl + nominalFcfSum) * 1000) / 120;
       const maxVal = endPrice * 1.1; // 10% buffer at the top
       
+      // Implied CAGR required to reach the fixed terminal price from today's present value
+      const impliedCAGR = Math.pow(endPrice / priceTarget, 1 / years) - 1;
+      
+      const points = [];
       for (let t = 0; t <= years; t++) {
-        const val_t = priceTarget * Math.pow(1 + discount, t);
+        const val_t = priceTarget * Math.pow(1 + impliedCAGR, t);
         const px = 20 + (t / years) * 360;
         const py = 80 - (val_t / maxVal) * 70; // Map from height of 80 to 10
         points.push(`${px.toFixed(1)},${py.toFixed(1)}`);
@@ -2308,9 +2316,9 @@
       lblEnd.setAttribute('y', (endY - 8).toFixed(1));
       lblEnd.textContent = `$${Math.round(endPrice).toLocaleString()}`;
       
-      // Update heading CAGR text
+      // Update heading CAGR text to display the implied return (CAGR) dynamically
       const readoutEl = document.getElementById('projected-cagr-readout');
-      readoutEl.textContent = `Compounding at ${Math.round(discount * 100)}% p.a.`;
+      readoutEl.textContent = `Implied CAGR: ${Math.round(impliedCAGR * 100)}% p.a.`;
       readoutEl.style.color = activeColor;
     }
 
