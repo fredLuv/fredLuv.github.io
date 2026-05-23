@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Globalization Titans: Rippling vs. Deel | Institutional Research</title>
+  <meta name="description" content="An interactive equity research dashboard comparing Rippling's compound software ecosystem against Deel's global-first compliance and EOR network." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #03050c;
+      --bg-card: rgba(8, 12, 28, 0.7);
+      --bg-card-hover: rgba(14, 22, 48, 0.88);
+      --border: rgba(2, 168, 124, 0.12);
+      --border-hover: rgba(2, 168, 124, 0.32);
+      --text: #f3f4f6;
+      --muted: #94a3b8;
+      --soft: #e2e8f0;
+      --faint: #0f172a;
+      
+      --rippling: #02a87c;
+      --rippling-glow: rgba(2, 168, 124, 0.3);
+      --deel: #fdfcf7;
+      --deel-dark: #0a1128;
+      --deel-accent: #ffa000;
+      
+      --gold: #ffa000;
+      --cyan: #00d4ff;
+      --emerald: #10b981;
+      --purple: #a855f7;
+      --shadow: 0 40px 100px rgba(0, 0, 0, .85);
+      --radius: 20px;
+      --radius-sm: 10px;
+      --max: 1360px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 8%, rgba(2, 168, 124, 0.14), transparent 50rem),
+        radial-gradient(circle at 90% 12%, rgba(255, 160, 0, 0.08), transparent 45rem),
+        radial-gradient(circle at 50% 60%, rgba(10, 17, 40, 0.95), transparent 55rem),
+        #03050c;
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      line-height: 1.6;
+      padding: 60px 24px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 60%, transparent 100%);
+    }
+
+    main {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 36px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-meta-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(2, 168, 124, 0.6);
+      border-radius: 50%;
+      color: #02a87c;
+      box-shadow: inset 0 0 16px rgba(2, 168, 124, 0.25), 0 0 24px rgba(2, 168, 124, 0.45);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .brand-meta {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--soft);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--rippling);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .title-area h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 30%, var(--muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-area p {
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      max-width: 800px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-hover);
+      box-shadow: 0 15px 30px rgba(2, 168, 124, 0.05);
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      font-family: "Azeret Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .kpi-value {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .kpi-subtext {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .trend-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(2, 168, 124, 0.15);
+      color: var(--rippling);
+      border: 1px solid rgba(2, 168, 124, 0.3);
+      width: fit-content;
+    }
+
+    .trend-badge.deel-badge {
+      background: rgba(255, 160, 0, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(255, 160, 0, 0.3);
+    }
+
+    /* Tab Controller */
+    .tab-controller {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 32px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .tab-trigger {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px 4px 16px;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-trigger:hover {
+      color: #fff;
+    }
+
+    .tab-trigger.active {
+      color: #fff;
+    }
+
+    .tab-trigger.active::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rippling), var(--gold));
+      border-radius: 999px;
+    }
+
+    /* Tab Content panels */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-panel.active {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Main Dashboard Cards Layout */
+    .dashboard-row {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+
+    @media (max-width: 968px) {
+      .span-8, .span-6, .span-4 {
+        grid-column: span 12;
+      }
+    }
+
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .content-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Platform Architecture Split CSS */
+    .arch-split-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .arch-split-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .arch-panel {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .arch-panel.rippling-panel {
+      border-left: 4px solid var(--rippling);
+    }
+
+    .arch-panel.deel-panel {
+      border-left: 4px solid var(--gold);
+    }
+
+    .arch-panel h4 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* SVG Blueprint Graphics */
+    .arch-svg-wrapper {
+      background: radial-gradient(circle at center, #070c1d 0%, #03050c 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .svg-node {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .svg-node:hover {
+      transform: scale(1.1);
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    th {
+      padding: 16px 20px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      color: var(--soft);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+    }
+
+    tr:hover td {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .text-white { color: #fff; }
+    .text-right { text-align: right; }
+    .text-rippling { color: var(--rippling); font-weight: 600; }
+    .text-deel { color: var(--gold); font-weight: 600; }
+
+    /* Sandbox Interactive CSS */
+    .sandbox-container {
+      display: grid;
+      grid-template-columns: 3.2fr 2.8fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 968px) {
+      .sandbox-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sandbox-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-sm);
+      padding: 28px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .input-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .input-label-row label {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--soft);
+    }
+
+    .input-value {
+      font-family: "Azeret Mono", monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rippling), var(--gold));
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .sandbox-results {
+      background: rgba(10, 15, 36, 0.8);
+      border: 1px solid rgba(2, 168, 124, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      box-shadow: inset 0 0 20px rgba(2, 168, 124, 0.05);
+    }
+
+    .sandbox-header h4 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cost-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .cost-block {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cost-block.rip-block {
+      border-top: 3px solid var(--rippling);
+    }
+
+    .cost-block.del-block {
+      border-top: 3px solid var(--gold);
+    }
+
+    .cost-block-label {
+      font-size: 0.72rem;
+      font-family: "Azeret Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .cost-block-value {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cost-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+      padding-bottom: 4px;
+      margin-top: 4px;
+    }
+
+    .cost-item:last-child {
+      border-bottom: none;
+    }
+
+    .cost-item span:last-child {
+      font-family: "Azeret Mono", monospace;
+      color: #fff;
+    }
+
+    .orchestration-recommendation {
+      background: rgba(2, 168, 124, 0.05);
+      border: 1px solid rgba(2, 168, 124, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .orchestration-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--rippling);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .orchestration-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Comparison matrix bullets */
+    .moats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 760px) {
+      .moats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .moat-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .moat-column h4 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .moat-bullet-card {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .moat-bullet-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--soft);
+    }
+
+    .moat-bullet-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Interactive elements for Blueprint details */
+    .blueprint-detail-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 80px;
+    }
+
+    .blueprint-active-title {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand-section">
+        <div class="brand-meta-wrapper">
+          <div class="brand-logo">RD</div>
+          <div>
+            <div class="brand-meta">Pre-IPO Globalization Flagships</div>
+            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; color: #fff;">Equity Research Platform</h2>
+          </div>
+        </div>
+        <a class="back-btn" href="index.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Hub
+        </a>
+      </div>
+      
+      <div class="title-area">
+        <h1>Rippling vs. Deel: Digital Globalization Titans</h1>
+        <p>A rigorous comparative deep dive into the corporate strategies, financial structures, compound platform moats, and operational engines defining pre-IPO globalization tech.</p>
+      </div>
+    </header>
+
+    <!-- KPI Grid -->
+    <div class="kpi-grid" aria-label="Workforce Globalization Key Stats">
+      <div class="kpi-card" style="border-left: 4px solid var(--rippling);">
+        <span class="kpi-label">Rippling Valuation</span>
+        <span class="kpi-value">$16.8B</span>
+        <span class="kpi-subtext">Series G (May 2025)</span>
+        <span class="trend-badge">ARR CAGR 91.9%</span>
+      </div>
+
+      <div class="kpi-card" style="border-left: 4px solid var(--gold);">
+        <span class="kpi-label">Deel Valuation</span>
+        <span class="kpi-value">$17.3B</span>
+        <span class="kpi-subtext">Series E (Oct 2025)</span>
+        <span class="trend-badge deel-badge">ARR CAGR 165.5%</span>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-label">Rippling ARR Run Rate</span>
+        <span class="kpi-value">~$1.0B</span>
+        <span class="kpi-subtext">Reached March 2026</span>
+        <span class="trend-badge">Compound SaaS Moat</span>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-label">Deel ARR Run Rate</span>
+        <span class="kpi-value">~$1.4B+</span>
+        <span class="kpi-subtext">Estimated early 2026</span>
+        <span class="trend-badge deel-badge">Organic Cash Positive</span>
+      </div>
+    </div>
+
+    <!-- Tab Controller -->
+    <div class="tab-controller" role="tablist">
+      <button class="tab-trigger active" role="tab" aria-selected="true" aria-controls="panel-thesis" id="tab-thesis">1. Pre-IPO Thesis &amp; Moats</button>
+      <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-architecture" id="tab-architecture">2. Architectural Showdown</button>
+      <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-sandbox" id="tab-sandbox">3. Financial &amp; TAM Sandbox</button>
+    </div>
+
+    <!-- Tab 1: Pre-IPO Thesis -->
+    <div class="tab-panel active" id="panel-thesis" role="tabpanel" aria-labelledby="tab-thesis">
+      <div class="dashboard-row">
+        
+        <div class="content-card span-8">
+          <div class="card-header">
+            <span class="trend-badge">Strategic Analysis</span>
+            <h3 class="card-title">Hiring and Operating in a Borderless World</h3>
+            <p class="card-subtitle">Comparing the Zenefits redemption arc vs. YC hyper-speed execution paradigms.</p>
+          </div>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.6;">
+            The expansion of global employment software (EOR, Contractor management, and multi-country HRIS) marks one of the most capital-dense, strategically vital themes in pre-IPO enterprise software. The market is dominated by two polar opposite philosophies represented by <strong>Rippling</strong> and <strong>Deel</strong>.
+          </p>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.6;">
+            <strong>Rippling's Strategy:</strong> Founded in 2016 by Parker Conrad, Rippling is built on the concept of the <em>Compound Startup</em>. Rather than selling a standalone HRIS or device-tracking wedge, Rippling builds an integrated ecosystem encompassing HR (payroll, talent, benefits), IT (identity management, automatic app provisioning, laptop shipping/MDM), and Finance (corporate cards, travel, bills). Everything ties into a centralized database called the <strong>Employee Graph</strong>.
+          </p>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.6;">
+            <strong>Deel's Strategy:</strong> Founded in 2019 by Alex Bouaziz and Shuo Wang, Deel launched with hyper-focused speed during the remote work renaissance. Deel took the legal and logistical complexity of international employment and standardized it. By building its own legal entity network in over 100 countries, Deel internalizes the <strong>Employer of Record (EOR)</strong> role—acting as the legal employer for distributed teams. Deel scaled from $4M ARR in 2020 to over $1B ARR by 2025, defining one of the fastest growth trajectories in venture history.
+          </p>
+        </div>
+
+        <div class="content-card span-4">
+          <div class="card-header">
+            <span class="trend-badge">Comparative Summary</span>
+            <h3 class="card-title">High-Level Metrics</h3>
+            <p class="card-subtitle">Key institutional benchmarks.</p>
+          </div>
+          <div class="table-container" style="border: none;">
+            <table style="font-size: 0.85rem;">
+              <tbody>
+                <tr>
+                  <td>Founding Year</td>
+                  <td class="text-white">Rippling: 2016<br>Deel: 2019</td>
+                </tr>
+                <tr>
+                  <td>Lead Founders</td>
+                  <td class="text-white">Rippling: Parker Conrad<br>Deel: Alex Bouaziz</td>
+                </tr>
+                <tr>
+                  <td>Last Valuation</td>
+                  <td class="text-white">Rippling: $16.8B (Series G)<br>Deel: $17.3B (Series E)</td>
+                </tr>
+                <tr>
+                  <td>Capital Raised</td>
+                  <td class="text-white">Rippling: ~$1.4B<br>Deel: ~$950M</td>
+                </tr>
+                <tr>
+                  <td>Net Retention (NRR)</td>
+                  <td class="text-white">Rippling: ~130% - 140%<br>Deel: ~120% - 130%</td>
+                </tr>
+                <tr>
+                  <td>Owned Entities</td>
+                  <td class="text-white">Rippling: ~20+ countries<br>Deel: ~100+ countries</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-card span-12">
+          <div class="card-header">
+            <h3 class="card-title">Competitive Moats: Deep Organic Differentiation</h3>
+            <p class="card-subtitle">How both firms protect their recurring capital pools and leverage cross-sell flywheels.</p>
+          </div>
+          
+          <div class="moats-grid">
+            <div class="moat-column">
+              <h4 class="text-rippling">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Rippling: The Platform Cross-Sell Engine
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title">Centralized Identity Integrations</div>
+                <div class="moat-bullet-desc">By combining IAM (Identity & Access Management) with HR records, Rippling provisions AD/Okta, Google Workspace, and Slack profiles instantly at hire, creating a structural lock-in.</div>
+              </div>
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title">Physical Laptop/MDM Logistics</div>
+                <div class="moat-bullet-desc">Direct hardware coordination—storing, provisioning, global shipping, and remote wiping of laptops—erects a massive operational moat that pure software players struggle to copy.</div>
+              </div>
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title">The NRR Compound Expansion</div>
+                <div class="moat-bullet-desc">With 20+ distinct native modules across HRIS, IT, and Spend, Rippling expands account contract value (ACV) organically as customers scale, driving Net Revenue Retention near 140%.</div>
+              </div>
+            </div>
+
+            <div class="moat-column">
+              <h4 class="text-deel">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Deel: The Global Infrastructure Network
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title">The Owned Entity Regulatory Wedge</div>
+                <div class="moat-bullet-desc">Owning local legal entities in 100+ countries provides massive gross margin leverage (~85%) compared to peers who outsource entities, allowing Deel to win price wars.</div>
+              </div>
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title">Multi-Currency Global Treasury</div>
+                <div class="moat-bullet-desc">Deel operates as a major payment pipeline, handling high-speed treasury routing, tax filings, and local compliance under international legal codes.</div>
+              </div>
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title">Hyper-efficient Expansion Velocity</div>
+                <div class="moat-bullet-desc">Unprecedented sales velocity (harnessing remote globalization trends) allowed Deel to bootstrap its cash generation early, achieving sustained organic profitability.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 2: Architectural Showdown -->
+    <div class="tab-panel" id="panel-architecture" role="tabpanel" aria-labelledby="tab-architecture">
+      <div class="dashboard-row">
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge">Architectural Showdown</span>
+            <h3 class="card-title">How the Engines Work Under the Hood</h3>
+            <p class="card-subtitle">Click nodes in the blueprints below to inspect the database pipelines driving operational superiority.</p>
+          </div>
+
+          <div class="arch-split-container">
+            <!-- Rippling Panel -->
+            <div class="arch-panel rippling-panel">
+              <h4 class="text-rippling">Rippling's "Employee Graph" Model</h4>
+              <p style="font-size: 0.88rem; color: var(--muted);">Centralized unified relational system where HR, IT, and Finance sit on top of a single record.</p>
+              
+              <div class="arch-svg-wrapper">
+                <svg width="100%" height="100%" viewBox="0 0 300 220" style="max-width: 320px;">
+                  <!-- Connectors -->
+                  <line x1="150" y1="110" x2="70" y2="60" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
+                  <line x1="150" y1="110" x2="230" y2="60" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
+                  <line x1="150" y1="110" x2="70" y2="160" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
+                  <line x1="150" y1="110" x2="230" y2="160" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
+                  
+                  <!-- Center Core -->
+                  <circle cx="150" cy="110" r="30" fill="rgba(2,168,124,0.15)" stroke="#02a87c" stroke-width="2" class="svg-node" onclick="showBlueprintDetail('rip-core')" />
+                  <text x="150" y="114" fill="#fff" font-size="10" font-family="'Space Grotesk',sans-serif" font-weight="700" text-anchor="middle" pointer-events="none">Identity</text>
+                  
+                  <!-- Node 1: HRIS & Payroll -->
+                  <circle cx="70" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-hris')" />
+                  <text x="70" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Payroll</text>
+                  
+                  <!-- Node 2: IT Provisioning -->
+                  <circle cx="230" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-it')" />
+                  <text x="230" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">IT/Apps</text>
+                  
+                  <!-- Node 3: Device MDM -->
+                  <circle cx="70" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-devices')" />
+                  <text x="70" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Devices</text>
+                  
+                  <!-- Node 4: Finance Expense -->
+                  <circle cx="230" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-spend')" />
+                  <text x="230" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Cards</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Deel Panel -->
+            <div class="arch-panel deel-panel">
+              <h4 class="text-deel">Deel's "Global Entity Compliance Network"</h4>
+              <p style="font-size: 0.88rem; color: var(--muted);">Distributed global compliance ledger connected to local operational legal infrastructure.</p>
+              
+              <div class="arch-svg-wrapper">
+                <svg width="100%" height="100%" viewBox="0 0 300 220" style="max-width: 320px;">
+                  <!-- Connectors -->
+                  <line x1="150" y1="110" x2="70" y2="60" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
+                  <line x1="150" y1="110" x2="230" y2="60" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
+                  <line x1="150" y1="110" x2="70" y2="160" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
+                  <line x1="150" y1="110" x2="230" y2="160" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
+                  
+                  <!-- Center Core -->
+                  <circle cx="150" cy="110" r="30" fill="rgba(255,160,0,0.15)" stroke="#ffa000" stroke-width="2" class="svg-node" onclick="showBlueprintDetail('del-core')" />
+                  <text x="150" y="114" fill="#fff" font-size="10" font-family="'Space Grotesk',sans-serif" font-weight="700" text-anchor="middle" pointer-events="none">Deel Hub</text>
+                  
+                  <!-- Node 1: EOR Compliance -->
+                  <circle cx="70" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-eor')" />
+                  <text x="70" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">EOR</text>
+                  
+                  <!-- Node 2: Treasury Route -->
+                  <circle cx="230" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-treasury')" />
+                  <text x="230" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">FX/Pay</text>
+                  
+                  <!-- Node 3: Legal & Visas -->
+                  <circle cx="70" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-visas')" />
+                  <text x="70" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Immigr.</text>
+                  
+                  <!-- Node 4: Domestic Free Wedge -->
+                  <circle cx="230" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-hr')" />
+                  <text x="230" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Deel HR</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blueprint Details Display -->
+          <div class="blueprint-detail-box" id="blueprint-details-display">
+            <div class="blueprint-active-title">System Architecture Node Inspector</div>
+            <div>Select any circular hub node in the blueprints above to audit the under-the-hood technical specs, database schemas, and API configurations.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Sandbox -->
+    <div class="tab-panel" id="panel-sandbox" role="tabpanel" aria-labelledby="tab-sandbox">
+      <div class="dashboard-row">
+        
+        <!-- Year-by-Year Financial Visuals -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge">ARR Growth Mapping</span>
+            <h3 class="card-title">Pre-IPO Financial Trajectories</h3>
+            <p class="card-subtitle">Comparing the hyper-growth ARR cycles (in Millions $) and Valuation escalations side-by-side.</p>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="arch-svg-wrapper" style="height: 320px; background: #03050c; border: 1px solid rgba(255,255,255,0.05); padding: 20px;">
+              <svg width="100%" height="100%" viewBox="0 0 600 240" style="font-family: 'Space Grotesk',sans-serif;">
+                <!-- Grid Lines -->
+                <line x1="50" y1="40" x2="560" y2="40" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+                <line x1="50" y1="90" x2="560" y2="90" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+                <line x1="50" y1="140" x2="560" y2="140" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+                <line x1="50" y1="190" x2="560" y2="190" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+                
+                <!-- Y-Axis Labels -->
+                <text x="40" y="44" fill="var(--muted)" font-size="9" text-anchor="end">1.4B</text>
+                <text x="40" y="94" fill="var(--muted)" font-size="9" text-anchor="end">1.0B</text>
+                <text x="40" y="144" fill="var(--muted)" font-size="9" text-anchor="end">500M</text>
+                <text x="40" y="194" fill="var(--muted)" font-size="9" text-anchor="end">0</text>
+                
+                <!-- X-Axis Years -->
+                <text x="100" y="212" fill="var(--muted)" font-size="9" text-anchor="middle">2020</text>
+                <text x="180" y="212" fill="var(--muted)" font-size="9" text-anchor="middle">2021</text>
+                <text x="260" y="212" fill="var(--muted)" font-size="9" text-anchor="middle">2022</text>
+                <text x="340" y="212" fill="var(--muted)" font-size="9" text-anchor="middle">2023</text>
+                <text x="420" y="212" fill="var(--muted)" font-size="9" text-anchor="middle">2024</text>
+                <text x="500" y="212" fill="var(--muted)" font-size="9" text-anchor="middle">2026 (Run)</text>
+
+                <!-- Rippling Bars -->
+                <!-- 2020: 20M -->
+                <rect x="85" y="188" width="12" height="2" fill="var(--rippling)" rx="2" />
+                <!-- 2021: 50M -->
+                <rect x="165" y="185" width="12" height="5" fill="var(--rippling)" rx="2" />
+                <!-- 2022: 150M -->
+                <rect x="245" y="175" width="12" height="15" fill="var(--rippling)" rx="2" />
+                <!-- 2023: 350M -->
+                <rect x="325" y="155" width="12" height="35" fill="var(--rippling)" rx="2" />
+                <!-- 2024: 532M -->
+                <rect x="405" y="137" width="12" height="53" fill="var(--rippling)" rx="2" />
+                <!-- 2026: 1B -->
+                <rect x="485" y="90" width="12" height="100" fill="var(--rippling)" rx="2" />
+
+                <!-- Deel Bars -->
+                <!-- 2020: 4M -->
+                <rect x="100" y="189" width="12" height="1" fill="var(--gold)" rx="2" />
+                <!-- 2021: 54M -->
+                <rect x="180" y="185" width="12" height="5" fill="var(--gold)" rx="2" />
+                <!-- 2022: 295M -->
+                <rect x="260" y="160" width="12" height="30" fill="var(--gold)" rx="2" />
+                <!-- 2023: 400M -->
+                <rect x="340" y="150" width="12" height="40" fill="var(--gold)" rx="2" />
+                <!-- 2024: 500M -->
+                <rect x="420" y="140" width="12" height="50" fill="var(--gold)" rx="2" />
+                <!-- 2026: 1.4B -->
+                <rect x="500" y="50" width="12" height="140" fill="var(--gold)" rx="2" />
+                
+                <!-- Legend -->
+                <circle cx="65" cy="15" r="5" fill="var(--rippling)" />
+                <text x="75" y="18" fill="var(--soft)" font-size="9">Rippling ARR</text>
+                <circle cx="165" cy="15" r="5" fill="var(--gold)" />
+                <text x="175" y="18" fill="var(--soft)" font-size="9">Deel ARR</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sandbox Cost Calculator -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge">Interactive Model</span>
+            <h3 class="card-title">Digital Globalization Cost &amp; TAM Sandbox</h3>
+            <p class="card-subtitle">Adjust sliding variables to simulate the corporate spend of scaling a globalized remote-first workforce.</p>
+          </div>
+
+          <div class="sandbox-container">
+            <!-- Inputs -->
+            <div class="sandbox-inputs">
+              <!-- Domestic Users -->
+              <div class="input-group">
+                <div class="input-label-row">
+                  <label for="slide-domestic">Domestic Employees (HRIS/Payroll)</label>
+                  <span class="input-value" id="val-domestic">150</span>
+                </div>
+                <input type="range" id="slide-domestic" min="10" max="1000" step="10" value="150" oninput="runSandboxCalculations()" />
+              </div>
+              
+              <!-- EOR Hires -->
+              <div class="input-group">
+                <div class="input-label-row">
+                  <label for="slide-eor">Global EOR Employees</label>
+                  <span class="input-value" id="val-eor">15</span>
+                </div>
+                <input type="range" id="slide-eor" min="0" max="100" step="1" value="15" oninput="runSandboxCalculations()" />
+              </div>
+
+              <!-- Contractors -->
+              <div class="input-group">
+                <div class="input-label-row">
+                  <label for="slide-contractors">Global Contractors</label>
+                  <span class="input-value" id="val-contractors">30</span>
+                </div>
+                <input type="range" id="slide-contractors" min="0" max="200" step="5" value="30" oninput="runSandboxCalculations()" />
+              </div>
+
+              <!-- Devices -->
+              <div class="input-group">
+                <div class="input-label-row">
+                  <label for="slide-devices">Managed IT Laptops/Devices</label>
+                  <span class="input-value" id="val-devices">150</span>
+                </div>
+                <input type="range" id="slide-devices" min="10" max="1000" step="10" value="150" oninput="runSandboxCalculations()" />
+              </div>
+            </div>
+
+            <!-- Results -->
+            <div class="sandbox-results">
+              <div class="sandbox-header">
+                <h4>Simulated Annual Platform Spend</h4>
+              </div>
+              
+              <div class="cost-grid">
+                <!-- Rippling Cost -->
+                <div class="cost-block rip-block">
+                  <span class="cost-block-label">Rippling Annual Total</span>
+                  <span class="cost-block-value" id="res-rip-total">$128,040</span>
+                  
+                  <div class="cost-item">
+                    <span>Platform Base</span>
+                    <span id="res-rip-base">$420</span>
+                  </div>
+                  <div class="cost-item">
+                    <span>Software Modules</span>
+                    <span id="res-rip-software">$32,400</span>
+                  </div>
+                  <div class="cost-item">
+                    <span>Device MDM</span>
+                    <span id="res-rip-device">$9,000</span>
+                  </div>
+                  <div class="cost-item">
+                    <span>EOR (Global)</span>
+                    <span id="res-rip-eor">$71,820</span>
+                  </div>
+                  <div class="cost-item">
+                    <span>Contractors</span>
+                    <span id="res-rip-contractor">$14,400</span>
+                  </div>
+                </div>
+
+                <!-- Deel Cost -->
+                <div class="cost-block del-block">
+                  <span class="cost-block-label">Deel Annual Total</span>
+                  <span class="cost-block-value" id="res-deel-total">$184,860</span>
+                  
+                  <div class="cost-item">
+                    <span>HRIS Base</span>
+                    <span>$0</span>
+                  </div>
+                  <div class="cost-item">
+                    <span>Payroll + Zavvy</span>
+                    <span id="res-deel-payroll">$59,400</span>
+                  </div>
+                  <div class="cost-item">
+                    <span>EOR (Global)</span>
+                    <span id="res-deel-eor">$107,820</span>
+                  </div>
+                  <div class="cost-item">
+                    <span>Contractors</span>
+                    <span id="res-deel-contractor">$17,640</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recommendation Engine -->
+              <div class="orchestration-recommendation" id="recommendation-box">
+                <div class="orchestration-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  System Recommendations
+                </div>
+                <div class="orchestration-desc" id="recommendation-text">
+                  With a domestic-heavy workforce and multiple managed IT devices, Rippling offers structural software consolidation, saving you an estimated $56,820 annually.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Tab Switching Logic
+    const tabTriggers = document.querySelectorAll('.tab-trigger');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        // Deactivate all triggers and panels
+        tabTriggers.forEach(t => t.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+
+        // Activate selected trigger and panel
+        trigger.classList.add('active');
+        const controlPanel = trigger.getAttribute('aria-controls');
+        document.getElementById(controlPanel).classList.add('active');
+      });
+    });
+
+    // Blueprint Node Details Object
+    const blueprintDetails = {
+      'rip-core': {
+        title: "Rippling Core Identity & Employee Graph",
+        desc: "Rippling's database architecture maps every node (roles, departments, locations, access rights) directly onto a central employee record. If an employee is promoted, Rippling automatically cascades adjustments across payroll brackets, device security restrictions, IAM login credentials, and corporate card limits instantly in one transaction."
+      },
+      'rip-hris': {
+        title: "HRIS & Payroll Module Engine",
+        desc: "Rippling runs deep native tax calculation pipelines supporting multi-state US compliance and local regional payroll brackets in key foreign subsidiaries. All software elements scale automatically at flat rates (e.g. $8/user/mo)."
+      },
+      'rip-it': {
+        title: "IT App Provisioning & IAM Layer",
+        desc: "A built-in single sign-on (SSO) and application credential router. When an engineer is hired, Rippling automatically spins up AWS sandboxes, Slack channels, and GitHub repo access using granular role variables defined in the Employee Graph."
+      },
+      'rip-devices': {
+        title: "Device Logistics & MDM Profiles",
+        desc: "Direct integration with Apple Business Manager and Windows Autopilot. Rippling orders, pre-configs, ships, and monitors company laptops. Outgoing assets automatically apply security profiles via MDM agents, tracking serial hashes on the Employee Graph."
+      },
+      'rip-spend': {
+        title: "Finance Spend Cloud & Corporate Cards",
+        desc: "Rippling issues Visa business cards where transaction spending rules are tied directly to role graphs. A sales manager's travel card automatically locks or opens based on current CRM data or active company travel status."
+      },
+      'del-core': {
+        title: "Deel Global Hub compliance Ledger",
+        desc: "A centralized legal and FX treasury database focused on resolving local tax compliance across international labor boundaries. The engine coordinates contractor payment contracts, EOR agreements, and treasury currency routing."
+      },
+      'del-eor': {
+        title: "Employer of Record (EOR) Entity Infrastructure",
+        desc: "Deel employs your distributed talent legally through its 100+ owned international entities. Deel assumes complete local statutory employment liability, processing local benefits, pension filings, and local tax declarations automatically (standard pricing starts at $599/mo per employee)."
+      },
+      'del-treasury': {
+        title: "Treasury routing & FX Engine",
+        desc: "High-speed multi-currency treasury engine. Clients fund one consolidated invoice in primary currencies (USD, EUR), and Deel routes payments locally to contractors in 120+ legal currencies, optimizing mid-market conversion fees."
+      },
+      'del-visas': {
+        title: "Global Immigration & Visa Coordination",
+        desc: "Interactive visa tracking module. Deel acts as a corporate visa sponsor inside countries where it owns entities, processing immigration workflows, background checks, and mobility documentation in real-time."
+      },
+      'del-hr': {
+        title: "Deel HR: Free Domestic HRIS Wedge",
+        desc: "Deel's domestic HRIS platform, launched completely free of software cost. This serves as a land-and-expand wedge to upsell cross-border contractor management, Zavvy performance add-ons, or EOR global hiring."
+      }
+    };
+
+    function showBlueprintDetail(nodeKey) {
+      const detail = blueprintDetails[nodeKey];
+      const box = document.getElementById('blueprint-details-display');
+      if (detail) {
+        box.innerHTML = `
+          <div class="blueprint-active-title" style="color: var(--rippling);">${detail.title}</div>
+          <div>${detail.desc}</div>
+        `;
+      }
+    }
+
+    // Cost Calculator JavaScript Sandbox
+    function runSandboxCalculations() {
+      // Inputs
+      const domestic = parseInt(document.getElementById('slide-domestic').value);
+      const eor = parseInt(document.getElementById('slide-eor').value);
+      const contractors = parseInt(document.getElementById('slide-contractors').value);
+      const devices = parseInt(document.getElementById('slide-devices').value);
+
+      // Display inputs
+      document.getElementById('val-domestic').innerText = domestic.toLocaleString();
+      document.getElementById('val-eor').innerText = eor.toLocaleString();
+      document.getElementById('val-contractors').innerText = contractors.toLocaleString();
+      document.getElementById('val-devices').innerText = devices.toLocaleString();
+
+      // --- Rippling Formulas ---
+      const ripPlatform = 35 * 12;
+      const ripSoftware = domestic * 18 * 12;
+      const ripDevice = devices * 5 * 12;
+      const ripEor = eor * 399 * 12;
+      const ripContractor = contractors * 40 * 12;
+      const ripTotal = ripPlatform + ripSoftware + ripDevice + ripEor + ripContractor;
+
+      // Update Displays
+      document.getElementById('res-rip-base').innerText = '$' + ripPlatform.toLocaleString();
+      document.getElementById('res-rip-software').innerText = '$' + ripSoftware.toLocaleString();
+      document.getElementById('res-rip-device').innerText = '$' + ripDevice.toLocaleString();
+      document.getElementById('res-rip-eor').innerText = '$' + ripEor.toLocaleString();
+      document.getElementById('res-rip-contractor').innerText = '$' + ripContractor.toLocaleString();
+      document.getElementById('res-rip-total').innerText = '$' + ripTotal.toLocaleString();
+
+      // --- Deel Formulas ---
+      const deelSoftware = domestic * 33 * 12; // Free HRIS, $29 domestic payroll + $4 Zavvy talent
+      const deelEor = eor * 599 * 12;
+      const deelContractor = contractors * 49 * 12;
+      const deelTotal = deelSoftware + deelEor + deelContractor;
+
+      // Update Displays
+      document.getElementById('res-deel-payroll').innerText = '$' + deelSoftware.toLocaleString();
+      document.getElementById('res-deel-eor').innerText = '$' + deelEor.toLocaleString();
+      document.getElementById('res-deel-contractor').innerText = '$' + deelContractor.toLocaleString();
+      document.getElementById('res-deel-total').innerText = '$' + deelTotal.toLocaleString();
+
+      // --- Recommendation Engine ---
+      const box = document.getElementById('recommendation-box');
+      const text = document.getElementById('recommendation-text');
+      
+      const difference = Math.abs(ripTotal - deelTotal);
+      
+      if (ripTotal < deelTotal) {
+        box.style.border = "1px solid rgba(2, 168, 124, 0.3)";
+        box.style.background = "rgba(2, 168, 124, 0.05)";
+        document.querySelector('.orchestration-title').style.color = "var(--rippling)";
+        text.innerHTML = `
+          <strong>Unified Architecture Recommendation:</strong> With your current workforce distribution, 
+          <strong>Rippling</strong> offers the most cost-efficient operational profile, saving you approximately 
+          <strong>$${difference.toLocaleString()}</strong> annually through software bundle consolidation and device MDM efficiencies.
+        `;
+      } else {
+        box.style.border = "1px solid rgba(255, 160, 0, 0.3)";
+        box.style.background = "rgba(255, 160, 0, 0.05)";
+        document.querySelector('.orchestration-title').style.color = "var(--gold)";
+        text.innerHTML = `
+          <strong>Global Wedge Recommendation:</strong> With a heavily international remote contractor/EOR footprint, 
+          <strong>Deel</strong> emerges as the more optimized solution. It cuts down overhead costs by 
+          <strong>$${difference.toLocaleString()}</strong> annually through the elimination of platform software SaaS subscriptions.
+        `;
+      }
+    }
+
+    // Initialize Sandbox on Load
+    window.onload = () => {
+      runSandboxCalculations();
+    };
+  </script>
+</body>
+</html>
