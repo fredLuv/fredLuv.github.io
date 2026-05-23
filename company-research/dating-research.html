@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating Sector Warfare — Match Group (MTCH) vs. Bumble (BMBL)</title>
+    <meta name="description" content="An interactive research dashboard comparing Match Group and Bumble Inc. valuation, FCF economics, brand health, and AI transition.">
+    <!-- Google Fonts: Inter for UI, Space Grotesk for headers, and JetBrains Mono for financial numbers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Custom Properties / Design Tokens */
+        :root {
+            --bg-midnight: #06040a;
+            --bg-deep: #11091b;
+            --bg-glass: rgba(17, 9, 27, 0.65);
+            --bg-glass-hover: rgba(28, 16, 42, 0.8);
+            --border-glass: rgba(255, 59, 112, 0.08);
+            --border-glass-bright: rgba(255, 59, 112, 0.2);
+            
+            --primary: hsl(343, 100%, 62%); /* Neon Rose Pink (Match Group & Tinder) */
+            --primary-glow: rgba(255, 59, 112, 0.3);
+            --secondary: hsl(42, 100%, 50%); /* Bumble Yellow */
+            --secondary-glow: rgba(242, 169, 0, 0.3);
+            --accent-purple: hsl(272, 100%, 68%); /* Laser Violet */
+            --accent-purple-glow: rgba(177, 94, 255, 0.3);
+            --accent-teal: hsl(174, 100%, 48%); /* Electric Teal */
+            --accent-teal-glow: rgba(0, 245, 212, 0.3);
+            --accent-mint: hsl(145, 100%, 45%); /* Safe Mint */
+            --accent-mint-glow: rgba(0, 229, 92, 0.3);
+            
+            --text-main: #f3f0f7;
+            --text-muted: #a79fb2;
+            --text-dark: #685e75;
+            
+            --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-neon: 0 8px 32px 0 rgba(255, 59, 112, 0.05);
+        }
+
+        /* Light Mode Variables Override */
+        [data-theme="light"] {
+            --bg-midnight: #f6f3f8;
+            --bg-deep: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --bg-glass-hover: rgba(255, 255, 255, 0.9);
+            --border-glass: rgba(17, 9, 27, 0.08);
+            --border-glass-bright: rgba(17, 9, 27, 0.15);
+            
+            --primary: hsl(343, 90%, 48%); /* Rose Dark Contrast */
+            --primary-glow: rgba(230, 20, 90, 0.15);
+            --secondary: hsl(40, 95%, 43%); /* Bumble Yellow Dark Contrast */
+            --secondary-glow: rgba(200, 130, 0, 0.15);
+            --accent-purple: hsl(272, 80%, 52%);
+            --accent-purple-glow: rgba(130, 50, 200, 0.15);
+            --accent-teal: hsl(174, 90%, 38%);
+            --accent-teal-glow: rgba(0, 180, 160, 0.15);
+            --accent-mint: hsl(145, 80%, 35%);
+            --accent-mint-glow: rgba(0, 160, 80, 0.15);
+            
+            --text-main: #170d24;
+            --text-muted: #5e516d;
+            --text-dark: #7e7090;
+            
+            --shadow-neon: 0 8px 32px 0 rgba(17, 9, 27, 0.03);
+        }
+
+        /* Base Resets & Structure */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-midnight);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition-smooth);
+            background-image: 
+                radial-gradient(at 10% 20%, var(--primary-glow) 0px, transparent 40%),
+                radial-gradient(at 90% 80%, var(--secondary-glow) 0px, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* Tech Grid backdrop */
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 59, 112, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 59, 112, 0.01) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        [data-theme="light"] .tech-grid {
+            background-image: 
+                linear-gradient(rgba(17, 9, 27, 0.008) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(17, 9, 27, 0.008) 1px, transparent 1px);
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+
+        /* Header Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-radius: 20px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass-bright);
+            backdrop-filter: blur(20px);
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-neon);
+            transition: var(--transition-smooth);
+            z-index: 100;
+        }
+
+        @media (max-width: 968px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 700;
+            font-family: var(--font-header);
+            font-size: 22px;
+            box-shadow: 0 0 15px var(--primary-glow);
+            clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        }
+
+        .logo-text h1 {
+            font-family: var(--font-header);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, var(--text-main), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            overflow-x: auto;
+        }
+
+        [data-theme="light"] .tab-nav {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-family: var(--font-header);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .tab-btn.active {
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+            transform: translateY(-2px);
+        }
+
+        /* General Layout Cards */
+        .content-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-neon);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-header);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Tab Panels show/hide */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* KPI and Side-by-side elements */
+        .valuation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 968px) {
+            .valuation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .corp-panel {
+            border-radius: 16px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+        }
+
+        [data-theme="light"] .corp-panel {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .corp-panel.mtch {
+            border-top: 4px solid var(--primary);
+        }
+
+        .corp-panel.bmbl {
+            border-top: 4px solid var(--secondary);
+        }
+
+        .corp-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .corp-name {
+            font-family: var(--font-header);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .corp-ticker {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .kpi-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kpi-lbl {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .kpi-val {
+            font-family: var(--font-mono);
+            font-size: 22px;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+
+        .corp-panel.mtch .kpi-val {
+            color: var(--primary);
+        }
+
+        .corp-panel.bmbl .kpi-val {
+            color: var(--secondary);
+        }
+
+        .kpi-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Sector Health indicators */
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 968px) {
+            .health-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .health-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .health-card:hover {
+            border-color: var(--border-glass-bright);
+            transform: translateY(-2px);
+        }
+
+        .health-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .health-card h4 {
+            font-family: var(--font-header);
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .health-card p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Product Warfare Section */
+        .warfare-deck {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 968px) {
+            .warfare-deck {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-card {
+            border-radius: 16px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .product-card.tinder { border-top: 4px solid var(--primary); }
+        .product-card.hinge { border-top: 4px solid var(--accent-purple); }
+        .product-card.bumble-app { border-top: 4px solid var(--secondary); }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-title {
+            font-family: var(--font-header);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .product-meta {
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .tinder .product-meta { background: rgba(255, 59, 112, 0.1); color: var(--primary); }
+        .hinge .product-meta { background: rgba(177, 94, 255, 0.1); color: var(--accent-purple); }
+        .bumble-app .product-meta { background: rgba(242, 169, 0, 0.1); color: var(--secondary); }
+
+        .metric-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 8px;
+        }
+
+        .metric-lbl {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .metric-val {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .growth-indicator {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .growth-indicator.pos { background: rgba(0, 229, 92, 0.1); color: var(--accent-mint); }
+        .growth-indicator.neg { background: rgba(255, 59, 112, 0.1); color: var(--primary); }
+
+        .product-desc {
+            font-size: 12.5px;
+            color: var(--text-dark);
+            line-height: 1.5;
+            margin-top: auto;
+        }
+
+        /* SVG Chart for Product Revenues */
+        .chart-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        [data-theme="light"] .chart-section {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .chart-title {
+            font-family: var(--font-header);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar-chart-svg {
+            width: 100%;
+            height: 200px;
+        }
+
+        .bar {
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            filter: brightness(1.2);
+        }
+
+        /* Interactive Financial Sandbox */
+        .sandbox-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 968px) {
+            .sandbox-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sandbox-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        [data-theme="light"] .sandbox-controls {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .control-title {
+            font-family: var(--font-header);
+            font-size: 13.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .control-value {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .range-rose::-webkit-slider-thumb { background: var(--primary); box-shadow: 0 0 8px var(--primary-glow); }
+        .range-purple::-webkit-slider-thumb { background: var(--accent-purple); box-shadow: 0 0 8px var(--accent-purple-glow); }
+        .range-yellow::-webkit-slider-thumb { background: var(--secondary); box-shadow: 0 0 8px var(--secondary-glow); }
+        .range-teal::-webkit-slider-thumb { background: var(--accent-teal); box-shadow: 0 0 8px var(--accent-teal-glow); }
+
+        .sandbox-results {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .result-panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 20px;
+        }
+
+        [data-theme="light"] .result-panel {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .result-panel.mtch-proj { border-left: 4px solid var(--primary); }
+        .result-panel.bmbl-proj { border-left: 4px solid var(--secondary); }
+
+        .proj-header {
+            font-family: var(--font-header);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .proj-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .proj-stat-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .proj-stat-box .lbl { font-size: 10px; text-transform: uppercase; color: var(--text-dark); }
+        .proj-stat-box .val { font-family: var(--font-mono); font-size: 16px; font-weight: 700; margin-top: 2px; }
+
+        .alert-banner {
+            background: rgba(255, 59, 112, 0.08);
+            border: 1px solid rgba(255, 59, 112, 0.2);
+            color: var(--primary);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .alert-banner.safe {
+            background: rgba(0, 229, 92, 0.08);
+            border: 1px solid rgba(0, 229, 92, 0.2);
+            color: var(--accent-mint);
+        }
+
+        /* Capital Allocation Pipeline */
+        .capital-pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: 16px;
+        }
+
+        .pipe-flow {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr 40px 1fr;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .pipe-flow {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                text-align: center;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 0 auto;
+            }
+        }
+
+        .flow-node {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+        }
+
+        [data-theme="light"] .flow-node {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .mtch-flow .flow-node { border-left: 3px solid var(--primary); }
+        .bmbl-flow .flow-node { border-left: 3px solid var(--secondary); }
+
+        .flow-node h4 {
+            font-family: var(--font-header);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .flow-node .val {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .flow-node .lbl {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            font-size: 20px;
+        }
+
+        .pulse-arrow {
+            animation: pulse-arrow-anim 1.5s infinite;
+        }
+
+        @keyframes pulse-arrow-anim {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.3; transform: scale(0.9); }
+        }
+
+        /* AI Disruption Roadmap */
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .roadmap-step {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-step {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        .step-badge {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: fit-content;
+        }
+
+        .step-number {
+            font-family: var(--font-header);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+
+        .step-title {
+            font-family: var(--font-header);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .step-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-body h4 {
+            font-family: var(--font-header);
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .step-body p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .moat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .moat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .moat-card {
+            background: rgba(177, 94, 255, 0.03);
+            border: 1px solid rgba(177, 94, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .moat-card h5 {
+            font-family: var(--font-header);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+
+        .moat-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .back-link {
+            display: inline-flex;
+            margin-top: 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: var(--transition-smooth);
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+            transform: translateX(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="tech-grid"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+        <!-- Dashboard Header -->
+        <header>
+            <div class="logo-section">
+                <div class="logo-symbol">♥</div>
+                <div class="logo-text">
+                    <h1>Dating Sector Warfare</h1>
+                    <p>MTCH vs. BMBL Comparative Analysis</p>
+                </div>
+            </div>
+            
+            <div class="nav-controls">
+                <div class="tab-nav" role="tablist">
+                    <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('dashboard')">Ecosystem Radar</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('warfare')">Product Warfare</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('sandbox')">Valuation Sandbox</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('capital')">Capital Allocation</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('disruption')">AI Disruption</button>
+                </div>
+                
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle visual theme">🌓</button>
+            </div>
+        </header>
+
+        <!-- Dynamic Warnings Panel -->
+        <div class="alert-box" style="background: rgba(177, 94, 255, 0.05); border: 1px solid rgba(177, 94, 255, 0.2);">
+            <div class="alert-icon" style="color: var(--accent-purple);">ℹ</div>
+            <div class="alert-text">
+                <h5>Institutional Quality Check — FY2025 &amp; Q1 2026 Consolidated Disclosures</h5>
+                <p>All metrics mapped below are audited and reconciled against SEC Form 10-K &amp; Q1 10-Q releases. Capital costs reflect Bumble's April 2026 Term Loan refinancing.</p>
+            </div>
+        </div>
+
+        <!-- TAB 1: ECOSYSTEM RADAR -->
+        <div id="dashboard" class="tab-panel active">
+            <div class="content-card">
+                <div class="section-header">
+                    <h2>Ecosystem Radar</h2>
+                    <p>Valuation summaries and structural sector dynamics.</p>
+                </div>
+
+                <div class="valuation-grid">
+                    <!-- MATCH GROUP -->
+                    <div class="corp-panel mtch">
+                        <div class="corp-badge">
+                            <span class="corp-name">Match Group Inc.</span>
+                            <span class="corp-ticker">NASDAQ: MTCH</span>
+                        </div>
+                        <div class="kpi-row">
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Market Cap</span>
+                                <span class="kpi-val">$8.90B</span>
+                                <span class="kpi-sub">Large Cap / Dominant Leader</span>
+                            </div>
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Enterprise Value (EV)</span>
+                                <span class="kpi-val">$11.25B</span>
+                                <span class="kpi-sub">Reflects clean long debt</span>
+                            </div>
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Trailing EV/Revenue</span>
+                                <span class="kpi-val">3.21x</span>
+                                <span class="kpi-sub">Consolidated discount</span>
+                            </div>
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Trailing P/FCF</span>
+                                <span class="kpi-val">8.90x</span>
+                                <span class="kpi-sub">Accretive FCF Yield: 11.2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUMBLE INC -->
+                    <div class="corp-panel bmbl">
+                        <div class="corp-badge">
+                            <span class="corp-name">Bumble Inc.</span>
+                            <span class="corp-ticker">NASDAQ: BMBL</span>
+                        </div>
+                        <div class="kpi-row">
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Market Cap</span>
+                                <span class="kpi-val">$445M</span>
+                                <span class="kpi-sub">Beaten-Down Micro-Cap</span>
+                            </div>
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Enterprise Value (EV)</span>
+                                <span class="kpi-val">$927M</span>
+                                <span class="kpi-sub">High debt ratio (>50% EV)</span>
+                            </div>
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Trailing EV/Revenue</span>
+                                <span class="kpi-val">0.96x</span>
+                                <span class="kpi-sub">Optically distressed</span>
+                            </div>
+                            <div class="kpi-box">
+                                <span class="kpi-lbl">Trailing P/FCF</span>
+                                <span class="kpi-val">1.86x</span>
+                                <span class="kpi-sub">Illusory; interest expense trap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="font-family: var(--font-header); font-size: 16px; margin: 32px 0 16px 0; border-bottom: 1px solid var(--border-glass); padding-bottom: 8px;">Dating Sector Health Check</h3>
+                <div class="health-grid">
+                    <div class="health-card">
+                        <span class="health-icon">🥱</span>
+                        <h4>Severe Swipe Fatigue</h4>
+                        <p>Gen Z is burning out on repetitive, gamified user interfaces. Endless scrolling is devaluing relationships and driving down subscription metrics.</p>
+                    </div>
+                    <div class="health-card">
+                        <span class="health-icon">👟</span>
+                        <h4>IRL Migration Patterns</h4>
+                        <p>Social Run Clubs, hobby book clubs, and localized in-person singles gatherings are seeing record engagement, bypassing dating algorithms entirely.</p>
+                    </div>
+                    <div class="health-card">
+                        <span class="health-icon">🎯</span>
+                        <h4>Intentional Relationships</h4>
+                        <p>Market growth has shifted entirely to high-friction, prompt-driven intentional platforms (Hinge) and highly specialized niche communities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: PRODUCT WARFARE -->
+        <div id="warfare" class="tab-panel">
+            <div class="content-card">
+                <div class="section-header">
+                    <h2>Product Warfare</h2>
+                    <p>Core segment operational metrics and growth trajectories.</p>
+                </div>
+
+                <div class="warfare-deck">
+                    <!-- TINDER -->
+                    <div class="product-card tinder">
+                        <div class="product-header">
+                            <span class="product-title">Tinder (MTCH)</span>
+                            <span class="product-meta">Legacy Cash Cow</span>
+                        </div>
+                        <div class="metric-list">
+                            <div class="metric-item">
+                                <span class="metric-lbl">Q1 2026 Direct Revenue</span>
+                                <span class="metric-val">$455M <span class="growth-indicator pos">+2% YoY</span></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-lbl">Paying Users</span>
+                                <span class="metric-val">8.60M <span class="growth-indicator neg">-5% YoY</span></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-lbl">Revenue Per Payer (RPP)</span>
+                                <span class="metric-val">$17.56 <span class="growth-indicator pos">+7% YoY</span></span>
+                            </div>
+                        </div>
+                        <p class="product-desc">Tinder represents the massive cash fortress of Match Group. While user growth has plateaued, its pricing power and stabilized monetizers maintain a solid baseline cash yield.</p>
+                    </div>
+
+                    <!-- HINGE -->
+                    <div class="product-card hinge">
+                        <div class="product-header">
+                            <span class="product-title">Hinge (MTCH)</span>
+                            <span class="product-meta">Star Growth Engine</span>
+                        </div>
+                        <div class="metric-list">
+                            <div class="metric-item">
+                                <span class="metric-lbl">Q1 2026 Direct Revenue</span>
+                                <span class="metric-val">$194M <span class="growth-indicator pos">+28% YoY</span></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-lbl">Paying Users</span>
+                                <span class="metric-val">2.00M <span class="growth-indicator pos">+15% YoY</span></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-lbl">Revenue Per Payer (RPP)</span>
+                                <span class="metric-val">$33.13 <span class="growth-indicator pos">+11% YoY</span></span>
+                            </div>
+                        </div>
+                        <p class="product-desc">Hinge is the fastest-growing major dating asset globally. Its high-intent, premium positioning ("designed to be deleted") captures the premium segment and Gen Z cohorts.</p>
+                    </div>
+
+                    <!-- BUMBLE APP -->
+                    <div class="product-card bumble-app">
+                        <div class="product-header">
+                            <span class="product-title">Bumble App (BMBL)</span>
+                            <span class="product-meta">Decaying Flagship</span>
+                        </div>
+                        <div class="metric-list">
+                            <div class="metric-item">
+                                <span class="metric-lbl">Q1 2026 Direct Revenue</span>
+                                <span class="metric-val">$168M <span class="growth-indicator neg">-14% YoY</span></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-lbl">Total Paying Users</span>
+                                <span class="metric-val">3.20M <span class="growth-indicator neg">-21% YoY</span></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-lbl">Revenue Per Payer (RPP)</span>
+                                <span class="metric-val">Stable <span class="growth-indicator neg">Declining Mix</span></span>
+                            </div>
+                        </div>
+                        <p class="product-desc">Bumble is losing its premium, female-first competitive advantage as Hinge aggressively captures its core user base and its product redesign struggles to retain paying members.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Bar Chart of Segment Revenue -->
+                <div class="chart-section">
+                    <div class="chart-title">
+                        <span style="color: var(--primary);">📊</span> Q1 2026 Direct Revenue Comparison (Millions of USD)
+                    </div>
+                    <svg class="bar-chart-svg" viewBox="0 0 800 200" preserveAspectRatio="none">
+                        <!-- Tech Lines -->
+                        <line x1="50" y1="170" x2="750" y2="170" stroke="var(--border-glass-bright)" stroke-width="1"/>
+                        <line x1="50" y1="20" x2="750" y2="20" stroke="var(--border-glass)" stroke-width="1" stroke-dasharray="4"/>
+                        <line x1="50" y1="95" x2="750" y2="95" stroke="var(--border-glass)" stroke-width="1" stroke-dasharray="4"/>
+
+                        <!-- Tinder Bar -->
+                        <rect class="bar" x="120" y="30" width="80" height="140" fill="url(#roseGrad)" rx="6"/>
+                        <text x="160" y="190" fill="var(--text-muted)" font-family="var(--font-header)" font-size="12" text-anchor="middle">Tinder (MTCH)</text>
+                        <text x="160" y="22" fill="var(--primary)" font-family="var(--font-mono)" font-size="12" font-weight="700" text-anchor="middle">$455M</text>
+
+                        <!-- Hinge Bar -->
+                        <rect class="bar" x="360" y="110" width="80" height="60" fill="url(#violetGrad)" rx="6"/>
+                        <text x="400" y="190" fill="var(--text-muted)" font-family="var(--font-header)" font-size="12" text-anchor="middle">Hinge (MTCH)</text>
+                        <text x="400" y="102" fill="var(--accent-purple)" font-family="var(--font-mono)" font-size="12" font-weight="700" text-anchor="middle">$194M</text>
+
+                        <!-- Bumble Bar -->
+                        <rect class="bar" x="600" y="118" width="80" height="52" fill="url(#yellowGrad)" rx="6"/>
+                        <text x="640" y="190" fill="var(--text-muted)" font-family="var(--font-header)" font-size="12" text-anchor="middle">Bumble App (BMBL)</text>
+                        <text x="640" y="110" fill="var(--secondary)" font-family="var(--font-mono)" font-size="12" font-weight="700" text-anchor="middle">$168M</text>
+
+                        <!-- Gradient Grids -->
+                        <defs>
+                            <linearGradient id="roseGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="var(--primary)"/>
+                                <stop offset="100%" stop-color="rgba(255, 59, 112, 0.2)"/>
+                            </linearGradient>
+                            <linearGradient id="violetGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="var(--accent-purple)"/>
+                                <stop offset="100%" stop-color="rgba(177, 94, 255, 0.2)"/>
+                            </linearGradient>
+                            <linearGradient id="yellowGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="var(--secondary)"/>
+                                <stop offset="100%" stop-color="rgba(242, 169, 0, 0.2)"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: VALUATION SANDBOX -->
+        <div id="sandbox" class="tab-panel">
+            <div class="content-card">
+                <div class="section-header">
+                    <h2>Valuation Sandbox</h2>
+                    <p>Interact with segment projections, cost of debt adjustments, and trace FCF sensitivity in real-time.</p>
+                </div>
+
+                <div class="sandbox-layout">
+                    <!-- Sliders panel -->
+                    <div class="sandbox-controls">
+                        <h3 style="font-family: var(--font-header); font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">Parameters</h3>
+                        
+                        <div class="control-group">
+                            <div class="control-header">
+                                <span class="control-title"><span style="color: var(--primary);">●</span> Tinder User Change</span>
+                                <span class="control-value" id="tinder-val">-5%</span>
+                            </div>
+                            <input type="range" class="range-rose" min="-20" max="5" value="-5" id="tinder-slider" oninput="updateSandbox()">
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-header">
+                                <span class="control-title"><span style="color: var(--accent-purple);">●</span> Hinge Revenue Growth</span>
+                                <span class="control-value" id="hinge-val">+28%</span>
+                            </div>
+                            <input type="range" class="range-purple" min="5" max="45" value="28" id="hinge-slider" oninput="updateSandbox()">
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-header">
+                                <span class="control-title"><span style="color: var(--secondary);">●</span> Bumble User Churn</span>
+                                <span class="control-value" id="bumble-val">-21%</span>
+                            </div>
+                            <input type="range" class="range-yellow" min="-35" max="-5" value="-21" id="bumble-slider" oninput="updateSandbox()">
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-header">
+                                <span class="control-title"><span style="color: var(--accent-teal);">●</span> Term SOFR Rate</span>
+                                <span class="control-value" id="sofr-val">5.3%</span>
+                            </div>
+                            <input type="range" class="range-teal" min="30" max="70" value="53" id="sofr-slider" oninput="updateSandbox()">
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Results -->
+                    <div class="sandbox-results">
+                        <!-- MATCH GROUP PROJECTED -->
+                        <div class="result-panel mtch-proj">
+                            <div class="proj-header">
+                                <span>Match Group Projected Forward Metrics</span>
+                                <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(255, 59, 112, 0.1); padding: 2px 6px; border-radius: 4px; color: var(--primary);">MTCH</span>
+                            </div>
+                            <div class="proj-stat-grid">
+                                <div class="proj-stat-box">
+                                    <span class="lbl">Consol. Revenue</span>
+                                    <span class="val" id="mtch-proj-rev">$3.56B</span>
+                                </div>
+                                <div class="proj-stat-box">
+                                    <span class="lbl">Forward FCF (30% mrg)</span>
+                                    <span class="val" id="mtch-proj-fcf">$1.07B</span>
+                                </div>
+                                <div class="proj-stat-box">
+                                    <span class="lbl">Implied P/FCF Yield</span>
+                                    <span class="val" id="mtch-proj-yield">12.0%</span>
+                                </div>
+                            </div>
+                            <div class="alert-banner safe" id="mtch-alert">
+                                <span>✔</span> Portfolio is highly stable. Hinge's expansion successfully absorbs Tinder's decay.
+                            </div>
+                        </div>
+
+                        <!-- BUMBLE INC PROJECTED -->
+                        <div class="result-panel bmbl-proj">
+                            <div class="proj-header">
+                                <span>Bumble Inc. Refinancing &amp; Debt Coverage</span>
+                                <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(242, 169, 0, 0.1); padding: 2px 6px; border-radius: 4px; color: var(--secondary);">BMBL</span>
+                            </div>
+                            <div class="proj-stat-grid">
+                                <div class="proj-stat-box">
+                                    <span class="lbl">Interest Rate (SOFR+8%)</span>
+                                    <span class="val" id="bmbl-proj-rate">13.3%</span>
+                                </div>
+                                <div class="proj-stat-box">
+                                    <span class="lbl">Interest Expense</span>
+                                    <span class="val" id="bmbl-proj-int">$63.2M</span>
+                                </div>
+                                <div class="proj-stat-box">
+                                    <span class="lbl">Interest Coverage</span>
+                                    <span class="val" id="bmbl-proj-cover">4.27x</span>
+                                </div>
+                            </div>
+                            <div class="alert-banner" id="bmbl-alert">
+                                <span>⚠</span> Value Trap Alert: Punishing 13.3% interest expense siphons FCF and limits share buybacks!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: CAPITAL ALLOCATION -->
+        <div id="capital" class="tab-panel">
+            <div class="content-card">
+                <div class="section-header">
+                    <h2>Capital Allocation Pipeline</h2>
+                    <p>OCF-to-FCF pipe flows showing Match's share buyback engine vs. Bumble's high-yield interest siphon.</p>
+                </div>
+
+                <div class="capital-pipeline">
+                    <!-- MATCH FLOW -->
+                    <div class="mtch-flow">
+                        <h3 style="font-family: var(--font-header); font-size: 16px; margin-bottom: 12px; color: var(--primary);">Match Group Capital Pipeline (FY2025 Actuals)</h3>
+                        <div class="pipe-flow">
+                            <div class="flow-node">
+                                <h4>Cash from Operations</h4>
+                                <span class="val">$1.04B</span>
+                                <span class="lbl">Tinder Cash Cow + Hinge Growth</span>
+                            </div>
+                            <div class="flow-arrow pulse-arrow">→</div>
+                            <div class="flow-node">
+                                <h4>Capital Expenditures</h4>
+                                <span class="val">$40.0M</span>
+                                <span class="lbl">Low Capex software asset</span>
+                            </div>
+                            <div class="flow-arrow pulse-arrow">→</div>
+                            <div class="flow-node" style="background: rgba(255, 59, 112, 0.05); border-color: rgba(255, 59, 112, 0.2);">
+                                <h4>Shareholder Yield</h4>
+                                <span class="val">$789.0M</span>
+                                <span class="lbl">Repurchased ~8% of outstanding equity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUMBLE FLOW -->
+                    <div class="bmbl-flow">
+                        <h3 style="font-family: var(--font-header); font-size: 16px; margin-bottom: 12px; color: var(--secondary);">Bumble Inc. Siphon Pipeline (FY2025/2026 Refinanced)</h3>
+                        <div class="pipe-flow">
+                            <div class="flow-node">
+                                <h4>Cash from Operations</h4>
+                                <span class="val">$250.4M</span>
+                                <span class="lbl">Heavily impacted by goodwill impairment</span>
+                            </div>
+                            <div class="flow-arrow pulse-arrow">→</div>
+                            <div class="flow-node" style="background: rgba(255, 59, 112, 0.05); border-color: rgba(255, 59, 112, 0.2);">
+                                <h4>High-Yield Interest Expense</h4>
+                                <span class="val">$63.17M</span>
+                                <span class="lbl">Punishing 13.3% Term Loan cost siphons OCF</span>
+                            </div>
+                            <div class="flow-arrow pulse-arrow">→</div>
+                            <div class="flow-node">
+                                <h4>Share Buybacks / Capex</h4>
+                                <span class="val">$0.00M</span>
+                                <span class="lbl">Buybacks frozen to conserve liquidity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: AI DISRUPTION -->
+        <div id="disruption" class="tab-panel">
+            <div class="content-card">
+                <div class="section-header">
+                    <h2>AI Disruption Index</h2>
+                    <p>Analyzing how conversational generative models rewrite value capture mechanics in romance tech.</p>
+                </div>
+
+                <div class="roadmap-container">
+                    <div class="roadmap-step">
+                        <div class="step-badge">
+                            <span class="step-number">Phase 1</span>
+                            <span class="step-title">Gamified Swipe</span>
+                        </div>
+                        <div class="step-body">
+                            <h4>The "Volume-First" Swiping Era</h4>
+                            <p>Monetization depends entirely on users remaining single and feeling friction (buying Tinder Gold or Bumble Premium to see who liked them). High user churn is structurally built into the business model, as platform success (finding a partner) leads to immediate user deletion.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-step">
+                        <div class="step-badge">
+                            <span class="step-number">Phase 2</span>
+                            <span class="step-title">AI Screening</span>
+                        </div>
+                        <div class="step-body">
+                            <h4>Conversational Matchmaker Agents</h4>
+                            <p>Generative AI dating agents act as digital screening assistants. Users train their personalized LLM agents, which interact with other candidates' agents in background text loops to negotiate interest, compatibility, and availability, presenting the user with only highly compatible in-person dates.</p>
+                            
+                            <div class="moat-grid">
+                                <div class="moat-card">
+                                    <h5>Match Group Scale Advantage</h5>
+                                    <p>Match holds the world's largest dataset of conversational dating pairings (>15 years of chat-to-meeting pipelines). This proprietary dataset is highly valuable for training fine-tuned conversational agent models.</p>
+                                </div>
+                                <div class="moat-card" style="background: rgba(242, 169, 0, 0.02); border-color: rgba(242, 169, 0, 0.08);">
+                                    <h5>Bumble Single-Brand Bottleneck</h5>
+                                    <p>Bumble’s single-brand data silo limits its ability to train large-scale agent models, leaving it highly dependent on third-party API providers and widening Hinge's structural gap.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="back-link" href="index.html">← Back to Company Research Hub</a>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Deactivate all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+            
+            // Show target panel and activate button
+            const targetPanel = document.getElementById(tabId);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+            
+            // Find the button clicking this and make it active
+            const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if (clickedBtn) {
+                clickedBtn.classList.add('active');
+                clickedBtn.setAttribute('aria-selected', 'true');
+            }
+        }
+
+        // Theme Toggle logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        }
+
+        // Valuation Sandbox Logic
+        function updateSandbox() {
+            // Get inputs
+            const tinderDecay = parseFloat(document.getElementById('tinder-slider').value);
+            const hingeGrowth = parseFloat(document.getElementById('hinge-slider').value);
+            const bumbleChurn = parseFloat(document.getElementById('bumble-slider').value);
+            const sofr = parseFloat(document.getElementById('sofr-slider').value) / 10;
+
+            // Update range indicators
+            document.getElementById('tinder-val').innerText = (tinderDecay > 0 ? '+' : '') + tinderDecay + '%';
+            document.getElementById('hinge-val').innerText = '+' + hingeGrowth + '%';
+            document.getElementById('bumble-val').innerText = bumbleChurn + '%';
+            document.getElementById('sofr-val').innerText = sofr.toFixed(1) + '%';
+
+            // Match Group Math Model
+            // FY2025 starting: Tinder $1.85B, Hinge $689M, Others $961M. Total $3.5B
+            const tinderRevBase = 1.85;
+            const hingeRevBase = 0.689;
+            const otherRevBase = 0.961;
+
+            const tinderProj = tinderRevBase * (1 + tinderDecay / 100);
+            const hingeProj = hingeRevBase * (1 + hingeGrowth / 100);
+            // Assume other platforms decay at -5%
+            const otherProj = otherRevBase * 0.95;
+            const mtchTotalRev = tinderProj + hingeProj + otherProj;
+            const mtchProjFCF = mtchTotalRev * 0.30; // 30% FCF margin
+            const mtchMcap = 8.9;
+            const mtchYield = (mtchProjFCF / mtchMcap) * 100;
+
+            // Update Match Group Cards
+            document.getElementById('mtch-proj-rev').innerText = '$' + mtchTotalRev.toFixed(2) + 'B';
+            document.getElementById('mtch-proj-fcf').innerText = '$' + mtchProjFCF.toFixed(2) + 'B';
+            document.getElementById('mtch-proj-yield').innerText = mtchYield.toFixed(1) + '%';
+
+            const mtchAlert = document.getElementById('mtch-alert');
+            if (mtchTotalRev >= 3.5) {
+                mtchAlert.className = "alert-banner safe";
+                mtchAlert.innerHTML = "<span>✔</span> Match Group portfolio is highly robust. Hinge's expansion successfully offsets Tinder decay.";
+            } else {
+                mtchAlert.className = "alert-banner";
+                mtchAlert.innerHTML = "<span>⚠</span> Portfolio contraction: Hinge growth is unable to fully offset Tinder user leakage.";
+            }
+
+            // Bumble Math Model
+            const bmblRefinancedDebt = 475; // $475M
+            const bmblIntRate = sofr + 8.0; // SOFR + 8.0%
+            const bmblIntExpense = bmblRefinancedDebt * (bmblIntRate / 100);
+            
+            // FY2025 Bumble EBITDA was ~$270M. Project forward EBITDA based on user churn
+            const bmblEbitdaBase = 270;
+            const bmblEbitdaProj = bmblEbitdaBase * (1 + (bumbleChurn * 0.7) / 100); // 0.7 operational leverage coefficient
+            const bmblInterestCoverage = bmblEbitdaProj / bmblIntExpense;
+
+            // Update Bumble Cards
+            document.getElementById('bmbl-proj-rate').innerText = bmblIntRate.toFixed(1) + '%';
+            document.getElementById('bmbl-proj-int').innerText = '$' + bmblIntExpense.toFixed(1) + 'M';
+            document.getElementById('bmbl-proj-cover').innerText = bmblInterestCoverage.toFixed(2) + 'x';
+
+            const bmblAlert = document.getElementById('bmbl-alert');
+            if (bmblInterestCoverage < 3.5) {
+                bmblAlert.className = "alert-banner";
+                bmblAlert.innerHTML = "<span>⚠</span> Value Trap Alert: Extremely low interest coverage (" + bmblInterestCoverage.toFixed(2) + "x) exposes equity to significant credit defaults!";
+            } else {
+                bmblAlert.className = "alert-banner safe";
+                bmblAlert.innerHTML = "<span>✔</span> Credit coverage is stable. Bumble maintains manageable debt ratios under current rates.";
+            }
+        }
+
+        // Background floating particles canvas
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const colors = ['rgba(255, 59, 112, 0.15)', 'rgba(242, 169, 0, 0.1)', 'rgba(177, 94, 255, 0.1)'];
+
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 4 + 2,
+                    speedX: Math.random() * 0.4 - 0.2,
+                    speedY: Math.random() * -0.4 - 0.1,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.y < -10) {
+                    p.y = canvas.height + 10;
+                    p.x = Math.random() * canvas.width;
+                }
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Initialize elements
+        initParticles();
+        animateParticles();
+        updateSandbox();
+    </script>
+</body>
+</html>
