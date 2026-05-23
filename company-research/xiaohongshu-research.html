@@ -879,79 +879,95 @@
           <div class="card-header">
             <span class="trend-badge">UGC Content Lifecycle</span>
             <h3 class="card-title">The UGC Content Lifecycle &amp; Engagement Loop</h3>
-            <p class="card-subtitle">Click on any stage in the SVG ellipse loop below to audit the platform's compounding feedback mechanisms.</p>
+            <p class="card-subtitle">Click on any stage in the flow chart below to audit the platform's compounding feedback mechanisms.</p>
           </div>
 
           <div class="ces-container" style="grid-template-columns: 1.2fr 0.8fr;">
             <!-- SVG Loop -->
             <div class="blueprint-panel" style="border-left: 4px solid var(--gold);">
               <h4 class="text-gold">Operational Flywheel Blueprint</h4>
-              <p style="font-size: 0.88rem; color: var(--muted);">Visualize how interaction metrics feed directly back into permanent search queries and user recommendations.</p>
+              <p style="font-size: 0.88rem; color: var(--muted);">Trace the flow from initial injection and seed pools to the active Explore Feed and search indexing loops.</p>
               
-              <div class="blueprint-svg-wrapper" style="height: 340px;">
-                <svg width="100%" height="100%" viewBox="0 0 600 320" style="background: radial-gradient(circle at center, #0f1224 0%, #030408 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; font-family: 'Space Grotesk', sans-serif;">
+              <div class="blueprint-svg-wrapper" style="height: 490px;">
+                <svg width="100%" height="100%" viewBox="0 0 450 490" style="background: radial-gradient(circle at center, #0f1224 0%, #030408 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; font-family: 'Space Grotesk', sans-serif;">
                   
-                  <!-- Background circular orbital flow -->
-                  <path id="loop-path" d="M 300,60 A 200,100 0 1,1 299.9,60 Z" fill="none" stroke="rgba(212, 63, 81, 0.12)" stroke-width="2" class="pulse-path" />
+                  <defs>
+                    <marker id="arrow-coral" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#d43f51" />
+                    </marker>
+                    <marker id="arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="#ffd700" />
+                    </marker>
+                    <marker id="arrow-white" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 1.5 L 7 5 L 0 8.5 z" fill="rgba(255,255,255,0.3)" />
+                    </marker>
+                  </defs>
 
-                  <!-- Central Hub Shield -->
-                  <g transform="translate(300, 160)">
-                    <circle cx="0" cy="0" r="36" fill="rgba(10, 14, 26, 0.95)" stroke="rgba(212, 63, 81, 0.2)" stroke-width="1" />
-                    <circle cx="0" cy="0" r="30" fill="none" stroke="rgba(255, 215, 0, 0.1)" stroke-width="1.5" stroke-dasharray="4,2" class="rotate-hub" />
-                    <text x="0" y="-3" fill="#ffd700" font-size="7" font-weight="700" text-anchor="middle" letter-spacing="0.05em">ORGANIC</text>
-                    <text x="0" y="7" fill="#fff" font-size="7" font-weight="700" text-anchor="middle" letter-spacing="0.05em">FLYWHEEL</text>
-                  </g>
+                  <!-- Flow paths between stages (downward) -->
+                  <line x1="225" y1="66" x2="225" y2="92" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" marker-end="url(#arrow-white)" />
+                  <line x1="225" y1="146" x2="225" y2="172" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" marker-end="url(#arrow-white)" />
+                  <line x1="225" y1="226" x2="225" y2="252" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" marker-end="url(#arrow-white)" />
+                  <line x1="225" y1="306" x2="225" y2="332" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" marker-end="url(#arrow-white)" />
+                  <line x1="225" y1="386" x2="225" y2="412" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" marker-end="url(#arrow-white)" />
 
-                  <!-- Stage 1: Upload (Top) -->
+                  <!-- Left Feedback Loop Path: Stage 6 -> Stage 3 (Flywheel recommendation) -->
+                  <path d="M 125,443 H 60 A 10,10 0 0,1 50,433 V 212.5 A 10,10 0 0,1 60,202.5 H 117" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="4,4" class="pulse-path" marker-end="url(#arrow-coral)" />
+                  <text x="35" y="320" fill="var(--red)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" transform="rotate(-90 35 320)" letter-spacing="0.05em">RECOMMENDATION FLYWHEEL</text>
+
+                  <!-- Right Feedback Loop Path: Stage 5 -> Stage 3 (Search discovery index) -->
+                  <path d="M 325,363 H 390 A 10,10 0 0,0 400,353 V 212.5 A 10,10 0 0,0 390,202.5 H 333" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4,4" class="pulse-path" marker-end="url(#arrow-gold)" style="animation-duration: 4s;" />
+                  <text x="415" y="280" fill="var(--gold)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" transform="rotate(90 415 280)" letter-spacing="0.05em">SEARCH INTENT DISCOVERY</text>
+
+                  <!-- Stage 1: Upload -->
                   <g class="svg-node" onclick="showLoopStage('stage-upload')" id="node-upload" style="cursor:pointer;">
-                    <circle cx="300" cy="60" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
-                    <text x="300" y="63" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">UP</text>
+                    <rect x="125" y="20" width="200" height="46" rx="8" ry="8" fill="#0d0f19" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                    <text x="225" y="35" fill="rgba(255,255,255,0.4)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.05em">STAGE 1</text>
+                    <text x="225" y="50" fill="rgba(255,255,255,0.85)" font-size="10.5" font-weight="700" text-anchor="middle">UGC Note Injection</text>
                   </g>
-                  <text id="label-upload" x="300" y="98" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">1. NLP Upload</text>
 
-                  <!-- Stage 2: Seed (Top-Right) -->
+                  <!-- Stage 2: Seed Sandbox -->
                   <g class="svg-node" onclick="showLoopStage('stage-seed')" id="node-seed" style="cursor:pointer;">
-                    <circle cx="473" cy="110" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
-                    <text x="473" y="113" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">SD</text>
+                    <rect x="125" y="100" width="200" height="46" rx="8" ry="8" fill="#0d0f19" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                    <text x="225" y="115" fill="rgba(255,255,255,0.4)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.05em">STAGE 2</text>
+                    <text x="225" y="130" fill="rgba(255,255,255,0.85)" font-size="10.5" font-weight="700" text-anchor="middle">Seed Pool Sandbox</text>
                   </g>
-                  <text id="label-seed" x="473" y="148" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">2. Seed Pool</text>
 
-                  <!-- Stage 3: CES (Bottom-Right) -->
+                  <!-- Stage 3: CES Audit -->
                   <g class="svg-node" onclick="showLoopStage('stage-ces')" id="node-ces" style="cursor:pointer;">
-                    <circle cx="473" cy="210" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
-                    <text x="473" y="213" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">CES</text>
+                    <rect x="125" y="180" width="200" height="46" rx="8" ry="8" fill="#0d0f19" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                    <text x="225" y="195" fill="rgba(255,255,255,0.4)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.05em">STAGE 3</text>
+                    <text x="225" y="210" fill="rgba(255,255,255,0.85)" font-size="10.5" font-weight="700" text-anchor="middle">CES Weight Audit</text>
                   </g>
-                  <text id="label-ces" x="473" y="248" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">3. CES Audit</text>
 
-                  <!-- Stage 4: Gates (Bottom) -->
+                  <!-- Stage 4: Traffic Gates -->
                   <g class="svg-node" onclick="showLoopStage('stage-gates')" id="node-gates" style="cursor:pointer;">
-                    <circle cx="300" cy="260" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
-                    <text x="300" y="263" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">GT</text>
+                    <rect x="125" y="260" width="200" height="46" rx="8" ry="8" fill="#0d0f19" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                    <text x="225" y="275" fill="rgba(255,255,255,0.4)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.05em">STAGE 4</text>
+                    <text x="225" y="290" fill="rgba(255,255,255,0.85)" font-size="10.5" font-weight="700" text-anchor="middle">Multi-Tier Gates</text>
                   </g>
-                  <text id="label-gates" x="300" y="298" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">4. Traffic Gates</text>
 
-                  <!-- Stage 5: Route (Bottom-Left) -->
+                  <!-- Stage 5: Multi-Route -->
                   <g class="svg-node" onclick="showLoopStage('stage-route')" id="node-route" style="cursor:pointer;">
-                    <circle cx="127" cy="210" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
-                    <text x="127" y="213" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">RT</text>
+                    <rect x="125" y="340" width="200" height="46" rx="8" ry="8" fill="#0d0f19" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                    <text x="225" y="355" fill="rgba(255,255,255,0.4)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.05em">STAGE 5</text>
+                    <text x="225" y="370" fill="rgba(255,255,255,0.85)" font-size="10.5" font-weight="700" text-anchor="middle">Double-Engine Route</text>
                   </g>
-                  <text id="label-route" x="127" y="248" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">5. Multi-Route</text>
 
-                  <!-- Stage 6: Loop (Top-Left) -->
+                  <!-- Stage 6: Flywheel Loop -->
                   <g class="svg-node" onclick="showLoopStage('stage-loop')" id="node-loop" style="cursor:pointer;">
-                    <circle cx="127" cy="110" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
-                    <text x="127" y="113" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">LP</text>
+                    <rect x="125" y="420" width="200" height="46" rx="8" ry="8" fill="#0d0f19" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                    <text x="225" y="435" fill="rgba(255,255,255,0.4)" font-size="8" font-family="'Azeret Mono', monospace" font-weight="600" text-anchor="middle" letter-spacing="0.05em">STAGE 6</text>
+                    <text x="225" y="450" fill="rgba(255,255,255,0.85)" font-size="10.5" font-weight="700" text-anchor="middle">Compounding Flywheel</text>
                   </g>
-                  <text id="label-loop" x="127" y="148" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">6. Flywheel Loop</text>
 
                 </svg>
               </div>
             </div>
 
             <!-- Details Panel -->
-            <div class="ces-results" id="loop-details-display" style="gap: 12px; justify-content: flex-start; min-height: 340px; background: rgba(10, 14, 26, 0.8); border: 1px solid rgba(212, 63, 81, 0.16); box-shadow: inset 0 0 20px rgba(212, 63, 81, 0.03);">
+            <div class="ces-results" id="loop-details-display" style="gap: 12px; justify-content: flex-start; min-height: 490px; background: rgba(10, 14, 26, 0.8); border: 1px solid rgba(212, 63, 81, 0.16); box-shadow: inset 0 0 20px rgba(212, 63, 81, 0.03);">
               <div class="blueprint-active-title" style="color: var(--gold); font-size: 1.15rem; font-family: 'Space Grotesk', sans-serif;">UGC Pipeline Inspector</div>
-              <div style="font-size: 0.88rem; line-height: 1.5; color: var(--muted);">Click on any stage in the SVG pipeline to trace the content lifecycle—from note injection and initial seed pool tests to CES scores, threshold gates, and viral explore feed breakthroughs.</div>
+              <div style="font-size: 0.88rem; line-height: 1.5; color: var(--muted);">Click on any stage in the flow chart to trace the content lifecycle—from note injection and initial seed pool tests to CES scores, threshold gates, and viral explore feed breakthroughs.</div>
             </div>
           </div>
         </div>
@@ -1276,37 +1292,31 @@
       const stage = loopStages[stageKey];
       const box = document.getElementById('loop-details-display');
       if (stage) {
-        // Highlight active node in SVG by updating all circles' borders
+        // Highlight active node in SVG by updating all rects' borders
         const stageIds = ['stage-upload', 'stage-seed', 'stage-ces', 'stage-gates', 'stage-route', 'stage-loop'];
         const nodeIds = ['node-upload', 'node-seed', 'node-ces', 'node-gates', 'node-route', 'node-loop'];
         
         nodeIds.forEach((id, idx) => {
           const g = document.getElementById(id);
           if (g) {
-            const circle = g.querySelector('circle');
+            const rect = g.querySelector('rect');
+            const texts = g.querySelectorAll('text');
             if (stageIds[idx] === stageKey) {
-              circle.setAttribute('stroke', '#d43f51');
-              circle.setAttribute('stroke-width', '2.5');
-              circle.setAttribute('fill', 'rgba(212, 63, 81, 0.15)');
-              circle.style.filter = "drop-shadow(0 0 8px var(--red-glow))";
+              rect.setAttribute('stroke', '#d43f51');
+              rect.setAttribute('stroke-width', '2.5');
+              rect.setAttribute('fill', 'rgba(212, 63, 81, 0.12)');
+              rect.style.filter = "drop-shadow(0 0 8px var(--red-glow))";
               
-              // Find the text label to highlight
-              const label = document.getElementById('label-' + stageIds[idx].replace('stage-', ''));
-              if (label) {
-                label.setAttribute('fill', 'var(--gold)');
-                label.setAttribute('font-weight', '700');
-              }
+              if (texts[0]) texts[0].setAttribute('fill', 'var(--gold)');
+              if (texts[1]) texts[1].setAttribute('fill', '#fff');
             } else {
-              circle.setAttribute('stroke', 'rgba(255, 255, 255, 0.3)');
-              circle.setAttribute('stroke-width', '1.5');
-              circle.setAttribute('fill', '#0d0f19');
-              circle.style.filter = "none";
+              rect.setAttribute('stroke', 'rgba(255, 255, 255, 0.15)');
+              rect.setAttribute('stroke-width', '1.5');
+              rect.setAttribute('fill', '#0d0f19');
+              rect.style.filter = "none";
               
-              const label = document.getElementById('label-' + stageIds[idx].replace('stage-', ''));
-              if (label) {
-                label.setAttribute('fill', 'var(--muted)');
-                label.setAttribute('font-weight', '600');
-              }
+              if (texts[0]) texts[0].setAttribute('fill', 'rgba(255, 255, 255, 0.4)');
+              if (texts[1]) texts[1].setAttribute('fill', 'rgba(255, 255, 255, 0.85)');
             }
           }
         });
