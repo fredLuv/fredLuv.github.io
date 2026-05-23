@@ -545,6 +545,15 @@
       color: var(--blue-2);
       transform: translateX(-2px);
     }
+
+    .trend-bar {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .trend-bar:hover {
+      transform: scaleY(1.03);
+      filter: brightness(1.2) drop-shadow(0 0 12px rgba(255,255,255,0.08));
+    }
   </style>
 </head>
 <body>
@@ -735,6 +744,99 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <!-- Historical Revenue Trend (2022 - 2025) -->
+        <h3 style="font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; margin: 40px 0 16px 0; border-bottom: 1px solid var(--line); padding-bottom: 8px; color: var(--soft);">Post-COVID Horizon: Realigned Revenue Growth (2022 – 2025)</h3>
+        <p style="color: var(--muted); font-size: 14.5px; line-height: 1.6; margin-bottom: 24px;">
+          Stripping out the wild COVID recovery anomalies of 2020–2021 reveals the structural, long-term organic growth vectors. Booking Holdings has captured international markets rapidly, expanding at a **16.35% CAGR** from 2022 to 2025. Expedia Group, distracted by its multi-year migration of three legacy tech backends (Expedia, Hotels.com, Vrbo) onto a single consolidated platform, lagged behind at an **8.07% CAGR**.
+        </p>
+
+        <div class="revenue-trend-container" style="background: rgba(6, 10, 15, .82); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; box-shadow: var(--shadow);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 12px; flex-wrap: wrap; gap: 12px;">
+            <strong style="font-family: 'Azeret Mono', monospace; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase;">Consolidated Revenue Trend Horizon ($ Billions)</strong>
+            <div style="display: flex; gap: 18px; font-family: 'Azeret Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em;">
+              <span style="display: inline-flex; align-items: center; gap: 6px; color: var(--blue-2);"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--blue-2);"></span> Expedia Group (8.07% CAGR)</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; color: var(--gold);"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold);"></span> Booking Holdings (16.35% CAGR)</span>
+            </div>
+          </div>
+
+          <!-- Chart Area -->
+          <div style="position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; height: 260px; padding-top: 20px; align-items: end; border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+            <!-- Background Grid lines -->
+            <div style="position: absolute; inset: 0 auto 0 0; width: 100%; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; z-index: 0; height: 240px;">
+              <div style="border-top: 1px dashed rgba(255,255,255,0.03); width: 100%; height: 0;"></div>
+              <div style="border-top: 1px dashed rgba(255,255,255,0.03); width: 100%; height: 0;"></div>
+              <div style="border-top: 1px dashed rgba(255,255,255,0.03); width: 100%; height: 0;"></div>
+              <div style="border-top: 1px dashed rgba(255,255,255,0.03); width: 100%; height: 0;"></div>
+            </div>
+
+            <!-- 2022 Column -->
+            <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 8px;">
+              <div style="display: flex; align-items: end; gap: 8px; width: 100%; justify-content: center; height: calc(100% - 24px);">
+                <!-- Expedia Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--blue-2) 0%, rgba(45, 121, 255, 0.2) 100%); height: 43.2%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(106, 176, 255, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Expedia 2022 Revenue: $11.67B">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--blue-2);">$11.67B</span>
+                </div>
+                <!-- Booking Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--gold) 0%, rgba(240, 207, 103, 0.2) 100%); height: 63.3%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(240, 207, 103, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Booking 2022 Revenue: $17.09B">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--gold);">$17.09B</span>
+                </div>
+              </div>
+              <span style="font-family: 'Azeret Mono', monospace; font-size: 11px; font-weight: 700; color: var(--soft);">FY2022</span>
+            </div>
+
+            <!-- 2023 Column -->
+            <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 8px;">
+              <div style="display: flex; align-items: end; gap: 8px; width: 100%; justify-content: center; height: calc(100% - 24px);">
+                <!-- Expedia Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--blue-2) 0%, rgba(45, 121, 255, 0.2) 100%); height: 47.6%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(106, 176, 255, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Expedia 2023 Revenue: $12.84B (+10.0% YoY)">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--blue-2);">$12.84B</span>
+                  <span style="position: absolute; bottom: 8px; font-family: 'Azeret Mono', monospace; font-size: 8px; color: var(--lime); font-weight: 700;">+10.0%</span>
+                </div>
+                <!-- Booking Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--gold) 0%, rgba(240, 207, 103, 0.2) 100%); height: 79.1%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(240, 207, 103, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Booking 2023 Revenue: $21.37B (+25.0% YoY)">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--gold);">$21.37B</span>
+                  <span style="position: absolute; bottom: 8px; font-family: 'Azeret Mono', monospace; font-size: 8px; color: var(--lime); font-weight: 700;">+25.0%</span>
+                </div>
+              </div>
+              <span style="font-family: 'Azeret Mono', monospace; font-size: 11px; font-weight: 700; color: var(--soft);">FY2023</span>
+            </div>
+
+            <!-- 2024 Column -->
+            <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 8px;">
+              <div style="display: flex; align-items: end; gap: 8px; width: 100%; justify-content: center; height: calc(100% - 24px);">
+                <!-- Expedia Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--blue-2) 0%, rgba(45, 121, 255, 0.2) 100%); height: 50.7%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(106, 176, 255, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Expedia 2024 Revenue: $13.69B (+6.6% YoY)">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--blue-2);">$13.69B</span>
+                  <span style="position: absolute; bottom: 8px; font-family: 'Azeret Mono', monospace; font-size: 8px; color: var(--lime); font-weight: 700;">+6.6%</span>
+                </div>
+                <!-- Booking Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--gold) 0%, rgba(240, 207, 103, 0.2) 100%); height: 87.9%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(240, 207, 103, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Booking 2024 Revenue: $23.74B (+11.1% YoY)">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--gold);">$23.74B</span>
+                  <span style="position: absolute; bottom: 8px; font-family: 'Azeret Mono', monospace; font-size: 8px; color: var(--lime); font-weight: 700;">+11.1%</span>
+                </div>
+              </div>
+              <span style="font-family: 'Azeret Mono', monospace; font-size: 11px; font-weight: 700; color: var(--soft);">FY2024</span>
+            </div>
+
+            <!-- 2025 Column -->
+            <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 8px;">
+              <div style="display: flex; align-items: end; gap: 8px; width: 100%; justify-content: center; height: calc(100% - 24px);">
+                <!-- Expedia Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--blue-2) 0%, rgba(45, 121, 255, 0.2) 100%); height: 54.6%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(106, 176, 255, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Expedia 2025 Revenue: $14.73B (+7.6% YoY)">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--blue-2);">$14.73B</span>
+                  <span style="position: absolute; bottom: 8px; font-family: 'Azeret Mono', monospace; font-size: 8px; color: var(--lime); font-weight: 700;">+7.6%</span>
+                </div>
+                <!-- Booking Bar -->
+                <div class="trend-bar" style="width: 25%; background: linear-gradient(180deg, var(--gold) 0%, rgba(240, 207, 103, 0.2) 100%); height: 99.7%; border-radius: 4px 4px 0 0; position: relative; border: 1px solid rgba(240, 207, 103, 0.4); display: flex; align-items: flex-start; justify-content: center;" title="Booking 2025 Revenue: $26.92B (+13.4% YoY)">
+                  <span style="position: absolute; top: -20px; font-family: 'Azeret Mono', monospace; font-size: 9px; font-weight: 700; color: var(--gold);">$26.92B</span>
+                  <span style="position: absolute; bottom: 8px; font-family: 'Azeret Mono', monospace; font-size: 8px; color: var(--lime); font-weight: 700;">+13.4%</span>
+                </div>
+              </div>
+              <span style="font-family: 'Azeret Mono', monospace; font-size: 11px; font-weight: 700; color: var(--soft);">FY2025</span>
+            </div>
           </div>
         </div>
       </div>
