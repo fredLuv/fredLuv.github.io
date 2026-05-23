@@ -750,7 +750,7 @@
     <div class="tab-controller" role="tablist">
       <button class="tab-trigger active" role="tab" aria-selected="true" aria-controls="panel-thesis" id="tab-thesis">1. Pre-IPO Thesis &amp; Moats</button>
       <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-architecture" id="tab-architecture">2. Architectural Showdown</button>
-      <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-sandbox" id="tab-sandbox">3. Financial &amp; TAM Sandbox</button>
+      <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-sandbox" id="tab-sandbox">3. Pre-IPO Financial Matrix</button>
     </div>
 
     <!-- Tab 1: Pre-IPO Thesis -->
@@ -1031,122 +1031,173 @@
         </div>
 
         <!-- Sandbox Cost Calculator -->
+        <!-- Pre-IPO Revenue Showdown -->
         <div class="content-card span-12">
           <div class="card-header">
-            <span class="trend-badge">Interactive Model</span>
-            <h3 class="card-title">Digital Globalization Cost &amp; TAM Sandbox</h3>
-            <p class="card-subtitle">Adjust sliding variables to simulate the corporate spend of scaling a globalized remote-first workforce.</p>
+            <span class="trend-badge" style="background: rgba(2,168,124,0.1); color: var(--rippling); border: 1px solid rgba(2,168,124,0.2);">Revenue Splits</span>
+            <h3 class="card-title">Pre-IPO Revenue &amp; Monetization Showdown</h3>
+            <p class="card-subtitle">Contrasting Rippling's multi-module software subscriptions against Deel's high-ticket global EOR and treasury fee capture rails.</p>
           </div>
-
-          <div class="sandbox-container">
-            <!-- Inputs -->
-            <div class="sandbox-inputs">
-              <!-- Domestic Users -->
-              <div class="input-group">
-                <div class="input-label-row">
-                  <label for="slide-domestic">Domestic Employees (HRIS/Payroll)</label>
-                  <span class="input-value" id="val-domestic">150</span>
-                </div>
-                <input type="range" id="slide-domestic" min="10" max="1000" step="10" value="150" oninput="runSandboxCalculations()" />
+          
+          <div class="moats-grid" style="margin-top: 12px;">
+            <!-- Rippling Column -->
+            <div class="moat-column" style="border-left: 2px solid var(--rippling); padding-left: 20px;">
+              <h4 class="text-rippling">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Rippling ARR: ~$1.0B Run-Rate
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Multi-Module SaaS Licensing Model</div>
+                <div class="moat-bullet-desc">Pricing scales via flat seat-based monthly subscriptions. Customers pay a base platform fee ($35/mo) + add-ons for individual modules (HRIS/Payroll at $8, IT Cloud at $5, Device MDM at $5, Card Spend at $5, and global contractors at $40).</div>
               </div>
               
-              <!-- EOR Hires -->
-              <div class="input-group">
-                <div class="input-label-row">
-                  <label for="slide-eor">Global EOR Employees</label>
-                  <span class="input-value" id="val-eor">15</span>
-                </div>
-                <input type="range" id="slide-eor" min="0" max="100" step="1" value="15" oninput="runSandboxCalculations()" />
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">SaaS-Dominant Revenue Mix</div>
+                <div class="moat-bullet-desc">Revenue is highly diversified and software-centric: <strong>65% Core HR &amp; Payroll</strong> (payroll ledgers), <strong>20% IT &amp; Device MDM Cloud</strong> (hardware management), <strong>10% Spend &amp; Corporate Cards</strong> (transaction volumes), and <strong>5% International EOR</strong> (selective cross-border upselling).</div>
               </div>
 
-              <!-- Contractors -->
-              <div class="input-group">
-                <div class="input-label-row">
-                  <label for="slide-contractors">Global Contractors</label>
-                  <span class="input-value" id="val-contractors">30</span>
-                </div>
-                <input type="range" id="slide-contractors" min="0" max="200" step="5" value="30" oninput="runSandboxCalculations()" />
-              </div>
-
-              <!-- Devices -->
-              <div class="input-group">
-                <div class="input-label-row">
-                  <label for="slide-devices">Managed IT Laptops/Devices</label>
-                  <span class="input-value" id="val-devices">150</span>
-                </div>
-                <input type="range" id="slide-devices" min="10" max="1000" step="10" value="150" oninput="runSandboxCalculations()" />
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">High Net Revenue Retention (NRR)</div>
+                <div class="moat-bullet-desc">Maintains a premium <strong>~130% - 140% NRR</strong>. Because Rippling acts as a compound startup, as client headcount scales, they organically expand contract values by upselling additional IT, security, and card spend modules.</div>
               </div>
             </div>
 
-            <!-- Results -->
-            <div class="sandbox-results">
-              <div class="sandbox-header">
-                <h4>Simulated Annual Platform Spend</h4>
+            <!-- Deel Column -->
+            <div class="moat-column" style="border-left: 2px solid var(--gold); padding-left: 20px;">
+              <h4 class="text-deel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Deel ARR: ~$1.4B Run-Rate
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">High-Ticket Global EOR &amp; Contractor Fees</div>
+                <div class="moat-bullet-desc">Monetizes through transactional cross-border fees. EOR (Employer of Record) payroll services start at a high-ticket <strong>$599/mo per employee</strong>. Contractor compliance contracts are billed at <strong>$49/mo</strong>. Domestic payroll is charged at $33/mo, while domestic basic HRIS (Deel HR) is $0/mo.</div>
               </div>
               
-              <div class="cost-grid">
-                <!-- Rippling Cost -->
-                <div class="cost-block rip-block">
-                  <span class="cost-block-label">Rippling Annual Total</span>
-                  <span class="cost-block-value" id="res-rip-total">$128,040</span>
-                  
-                  <div class="cost-item">
-                    <span>Platform Base</span>
-                    <span id="res-rip-base">$420</span>
-                  </div>
-                  <div class="cost-item">
-                    <span>Software Modules</span>
-                    <span id="res-rip-software">$32,400</span>
-                  </div>
-                  <div class="cost-item">
-                    <span>Device MDM</span>
-                    <span id="res-rip-device">$9,000</span>
-                  </div>
-                  <div class="cost-item">
-                    <span>EOR (Global)</span>
-                    <span id="res-rip-eor">$71,820</span>
-                  </div>
-                  <div class="cost-item">
-                    <span>Contractors</span>
-                    <span id="res-rip-contractor">$14,400</span>
-                  </div>
-                </div>
-
-                <!-- Deel Cost -->
-                <div class="cost-block del-block">
-                  <span class="cost-block-label">Deel Annual Total</span>
-                  <span class="cost-block-value" id="res-deel-total">$184,860</span>
-                  
-                  <div class="cost-item">
-                    <span>HRIS Base</span>
-                    <span>$0</span>
-                  </div>
-                  <div class="cost-item">
-                    <span>Payroll + Zavvy</span>
-                    <span id="res-deel-payroll">$59,400</span>
-                  </div>
-                  <div class="cost-item">
-                    <span>EOR (Global)</span>
-                    <span id="res-deel-eor">$107,820</span>
-                  </div>
-                  <div class="cost-item">
-                    <span>Contractors</span>
-                    <span id="res-deel-contractor">$17,640</span>
-                  </div>
-                </div>
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Transactional &amp; EOR-Heavy Mix</div>
+                <div class="moat-bullet-desc">Revenue is heavily skewed toward international employment rails: <strong>75% International EOR fees</strong>, <strong>15% Global Contractor Management</strong>, <strong>8% FX Treasury Routing</strong> (0.5%–1.5% exchange spreads captured on client payouts), and <strong>2% Domestic SaaS</strong>.</div>
               </div>
 
-              <!-- Recommendation Engine -->
-              <div class="orchestration-recommendation" id="recommendation-box">
-                <div class="orchestration-title">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                  System Recommendations
-                </div>
-                <div class="orchestration-desc" id="recommendation-text">
-                  With a domestic-heavy workforce and multiple managed IT devices, Rippling offers structural software consolidation, saving you an estimated $56,820 annually.
-                </div>
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">High ACV but Higher Cyclicality</div>
+                <div class="moat-bullet-desc">Maintains exceptionally high Average Contract Values (ACVs) due to the $599/mo EOR clip. However, revenue is structurally linked to global remote hiring volumes, making its growth trajectory more cyclical and exposed to tech sector hiring freezes.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Margin Profiles and Capital Efficiency -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge" style="background: rgba(255,160,0,0.1); color: var(--gold); border: 1px solid rgba(255,160,0,0.2);">Capital Efficiency</span>
+            <h3 class="card-title">Operating Efficiencies &amp; Profit Margins</h3>
+            <p class="card-subtitle">Analyzing how the "Compound Startup" R&amp;D burn compares to Deel's asset-light, fully-owned legal regulatory network.</p>
+          </div>
+          
+          <div class="moats-grid" style="margin-top: 12px;">
+            <!-- Rippling Column -->
+            <div class="moat-column" style="border-left: 2px solid var(--rippling); padding-left: 20px;">
+              <h4 class="text-rippling">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Rippling: The High-Burn Compound Moat
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Software Gross Margins (~78% - 80%)</div>
+                <div class="moat-bullet-desc">Maintains classic enterprise SaaS margins. Moderately siphoned by high-touch hardware logistics (laptop imaging, physical warehouse processing hubs) and credit card transactional authorization costs.</div>
+              </div>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Operating Losses (-15% to -25%)</div>
+                <div class="moat-bullet-desc">Remains operating margin negative as a strategic choice. Building a compound startup requires engineering multiple complex product clouds (HR, IAM, MDM, Cards) simultaneously, commanding massive, capital-intensive engineering payrolls.</div>
               </div>
 
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">External Capital Reliance ($1.85B Raised)</div>
+                <div class="moat-bullet-desc">Relies on continuous private capital backing to finance long-term R&amp;D. Secured a $16.8B Series G valuation in May 2025 (raising $450M), prioritizing market-share capture and code lock-in over short-term GAAP profitability.</div>
+              </div>
+            </div>
+
+            <!-- Deel Column -->
+            <div class="moat-column" style="border-left: 2px solid var(--gold); padding-left: 20px;">
+              <h4 class="text-deel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Deel: The Asset-Light Cash Generator
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Superior Gross Margins (~84% - 86%)</div>
+                <div class="moat-bullet-desc">Achieves highly attractive gross margins by operating **100+ fully-owned local legal entities** globally. By serving directly as the legal employer, Deel bypasses expensive local EOR partner brokers who would otherwise siphon 30%-40% of margins.</div>
+              </div>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Highly Profitable (+15% to +20% Operating Margin)</div>
+                <div class="moat-bullet-desc">Already highly profitable and Free Cash Flow positive since 2022. Because EOR contracts require very low software engineering complexity compared to Rippling's SSO/IAM and card networks, Deel enjoys massive operational leverage.</div>
+              </div>
+
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Organic M&amp;A Balance Sheet ($950M Raised)</div>
+                <div class="moat-bullet-desc">Financially self-sustaining. Deel generates hundreds of millions in organic cash reserves, allowing it to acquire international competitors (PayGroup, Zavvy, Hofy) entirely from its own balance sheet rather than diluting equity. Secured a $17.3B Series E in October 2025.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Growth Vectors and Strategic Horizon -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge" style="background: rgba(2,168,124,0.1); color: var(--rippling); border: 1px solid rgba(2,168,124,0.2);">Growth Horizons</span>
+            <h3 class="card-title">Strategic Growth Vectors &amp; Horizon Audit</h3>
+            <p class="card-subtitle">Auditing the expansion initiatives driving both firms to displace legacy HCM giants and build fintech ecosystems.</p>
+          </div>
+          
+          <div class="moats-grid" style="margin-top: 12px;">
+            <!-- Rippling Column -->
+            <div class="moat-column" style="border-left: 2px solid var(--rippling); padding-left: 20px;">
+              <h4 class="text-rippling">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                Rippling: The Mid-Market Software Takeover
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Upmarket Enterprise Displacement</div>
+                <div class="moat-bullet-desc">Moving aggressively into the mid-market and lower enterprise segments (100–2,000 employees), seeking to displace legacy vendors like ADP and Workday by proving that the unified Workforce Graph eliminates administrative integration costs.</div>
+              </div>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Global Expense &amp; Card Network Expansion</div>
+                <div class="moat-bullet-desc">Building out their native corporate Visa card authorization ledger to compete directly with Ramp and Brex, routing all company travel expenses, card sweeps, and vendor payables through the central employee graph.</div>
+              </div>
+
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Developer API Platform Lock-in</div>
+                <div class="moat-bullet-desc">Opening the logical Workforce Graph via secure API integrations to third-party developers, creating a powerful software App Store ecosystem that acts as a structural network effect moat.</div>
+              </div>
+            </div>
+
+            <!-- Deel Column -->
+            <div class="moat-column" style="border-left: 2px solid var(--gold); padding-left: 20px;">
+              <h4 class="text-deel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                Deel: The Full-Suite HRIS &amp; Worker FinTech
+              </h4>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">HCM &amp; Domestic HRIS Consolidation</div>
+                <div class="moat-bullet-desc">Evolving from a remote-hiring compliance tool into a comprehensive global HR system. Using the free domestic HRIS (Deel HR) as a wedge to acquire clients, Deel is upselling paid domestic payroll and Zavvy performance talent modules to consolidate the workforce stack.</div>
+              </div>
+              
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Contractor FinTech, Payouts &amp; Stablecoins</div>
+                <div class="moat-bullet-desc">Monetizing global workers directly via a dedicated crypto/stablecoin payroll division launched in May 2026. Offering contractor advance payouts, early invoice factoring, and remote health benefits, converting Deel into a primary financial ledger.</div>
+              </div>
+
+              <div class="moat-bullet-card">
+                <div class="moat-bullet-title" style="color: #fff;">Immigration &amp; Relocation-as-a-Service</div>
+                <div class="moat-bullet-desc">Scaling local entity visa sponsorships and automated government mobility API pipelines, turning complex cross-border relocations, visa applications, and global equipment logistics into an automated SaaS workflow.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1176,44 +1227,44 @@
     // Blueprint Node Details Object
     const blueprintDetails = {
       'rip-core': {
-        title: "Rippling Core Identity & Employee Graph",
-        desc: "Rippling's database architecture maps every node (roles, departments, locations, access rights) directly onto a central employee record. If an employee is promoted, Rippling automatically cascades adjustments across payroll brackets, device security restrictions, IAM login credentials, and corporate card limits instantly in one transaction."
+        title: "Rippling Core Identity & Workforce Graph (Logical Model)",
+        desc: "Rippling treats employee identity as a live, interconnected network. Instead of siloed databases, its Workforce Graph logically maps employee attributes (roles, departments, locations, permissions) onto a shared database layer. OLTP workloads reside in **MongoDB** for document schema flexibility, while multi-tenant custom metadata is stored in **Amazon Aurora PostgreSQL**. A unified event-driven **Directed Acyclic Graph (DAG)** workflow engine topologically sorts and executes multi-module tasks in atomic transactions, ensuring that any HR edit propagates instantly across IAM profiles, laptop MDM states, and spend accounts."
       },
       'rip-hris': {
-        title: "HRIS & Payroll Module Engine",
-        desc: "Rippling runs deep native tax calculation pipelines supporting multi-state US compliance and local regional payroll brackets in key foreign subsidiaries. All software elements scale automatically at flat rates (e.g. $8/user/mo)."
+        title: "Unified HRIS & Global Payroll Engine",
+        desc: "Runs local tax engines natively across multi-state U.S. jurisdictions and global subsidiaries. Payroll records are structurally coupled to the core Workforce Graph. Any salary modification, time-tracking input, or regional transfer instantly triggers downstream ledger calculations and prorations, feeding directly into the accounting integrations and treasury pool without manual batch file syncs."
       },
       'rip-it': {
-        title: "IT App Provisioning & IAM Layer",
-        desc: "A built-in single sign-on (SSO) and application credential router. When an engineer is hired, Rippling automatically spins up AWS sandboxes, Slack channels, and GitHub repo access using granular role variables defined in the Employee Graph."
+        title: "IT Provisioning & SCIM Identity Layer",
+        desc: "A native Identity and Access Management (IAM) engine. When a role change or new hire transaction commits to the Workforce Graph, Rippling’s IAM engine uses **REST APIs and SCIM (System for Cross-domain Identity Management)** to orchestrate account creations, group memberships, and access revocations in third-party SaaS tools (GitHub, AWS, Slack, Okta) in real time based on active graph credentials."
       },
       'rip-devices': {
-        title: "Device Logistics & MDM Profiles",
-        desc: "Direct integration with Apple Business Manager and Windows Autopilot. Rippling orders, pre-configs, ships, and monitors company laptops. Outgoing assets automatically apply security profiles via MDM agents, tracking serial hashes on the Employee Graph."
+        title: "Device Logistics & MDM Apple/Windows Profiles",
+        desc: "A physical-hardware-coupled Mobile Device Management (MDM) infrastructure. Serial hashes are logged directly in the central employee database. Rippling pre-configures and ships laptops from centralized hardware warehouses. When booted, devices register automatically with Apple Business Manager or Windows Autopilot, pulling profile payloads containing custom Wi-Fi certificates, VPN endpoints, and security agents via APNs/WNS push channels."
       },
       'rip-spend': {
-        title: "Finance Spend Cloud & Corporate Cards",
-        desc: "Rippling issues Visa business cards where transaction spending rules are tied directly to role graphs. A sales manager's travel card automatically locks or opens based on current CRM data or active company travel status."
+        title: "Finance Spend Cloud & Corporate Visa Ledger",
+        desc: "Direct integrations with corporate credit card networks. Rippling issues corporate Visa cards where transaction authorization limits are dynamically bound to active database role credentials. When a card is swiped, the network sends a real-time authorization request to Rippling's ledger, which queries the Workforce Graph to audit the employee’s department budget and travel status, deciding to approve or decline the swipe in <50ms."
       },
       'del-core': {
-        title: "Deel Global Hub compliance Ledger",
-        desc: "A centralized legal and FX treasury database focused on resolving local tax compliance across international labor boundaries. The engine coordinates contractor payment contracts, EOR agreements, and treasury currency routing."
+        title: "Deel Global Hub Compliance Ledger",
+        desc: "A centralized legal compliance ledger and multi-currency treasury engine designed to consolidate fragmented international employment processes. Deel functions as a unified system of record, coordinating localized contractor legal agreements, tax forms, statutory benefit filings, and cross-border currency allocations across international borders."
       },
       'del-eor': {
-        title: "Employer of Record (EOR) Entity Infrastructure",
-        desc: "Deel employs your distributed talent legally through its 100+ owned international entities. Deel assumes complete local statutory employment liability, processing local benefits, pension filings, and local tax declarations automatically (standard pricing starts at $599/mo per employee)."
+        title: "Employer of Record (EOR) Statutory Entity Infrastructure",
+        desc: "Deel legally employs distributed international talent on behalf of companies by operating **100+ fully-owned local legal entities** (e.g., Deel UK Ltd). Contracts are bound to Deel's local entities, assuming 100% of the local statutory employment liability—handling pension enrollments, local healthcare regulations, local severance reserves, and labor code compliance directly, maintaining high gross margins by bypassing third-party EOR brokers."
       },
       'del-treasury': {
-        title: "Treasury routing & FX Engine",
-        desc: "High-speed multi-currency treasury engine. Clients fund one consolidated invoice in primary currencies (USD, EUR), and Deel routes payments locally to contractors in 120+ legal currencies, optimizing mid-market conversion fees."
+        title: "Multi-Currency Routing & FX Treasury Engine",
+        desc: "A high-speed global fund allocation and disbursement engine. Clients fund a single aggregated invoice in primary currencies (USD, EUR) via SEPA, ACH, or wires. Deel routes local funds to distributed workers in 120+ currencies using localized payment rails. The treasury engine utilizes locked **forward rates** to protect budgets from currency volatility and supports direct stablecoin/crypto settlement from corporate treasuries in minutes."
       },
       'del-visas': {
-        title: "Global Immigration & Visa Coordination",
-        desc: "Interactive visa tracking module. Deel acts as a corporate visa sponsor inside countries where it owns entities, processing immigration workflows, background checks, and mobility documentation in real-time."
+        title: "Immigration Case Management & Visa Sponsorship",
+        desc: "Automated governmental mobility pipeline. Deel leverages its owned legal entities to act as corporate visa sponsors inside local jurisdictions. The database manages document uploads, background check processes, and status tracking, connecting to local immigration portals to streamline international worker relocations."
       },
       'del-hr': {
         title: "Deel HR: Free Domestic HRIS Wedge",
-        desc: "Deel's domestic HRIS platform, launched completely free of software cost. This serves as a land-and-expand wedge to upsell cross-border contractor management, Zavvy performance add-ons, or EOR global hiring."
+        desc: "A lightweight, database-level Workforce HRIS offered completely free of software licensing cost ($0/user/mo). Deel HR stores basic employee attributes and org charts, serving as a highly effective database 'Trojan horse' to capture client records, laying the foundation to upsell highly lucrative EOR hires, international contractors, global hardware shipping (Hofy integration), and Zavvy performance talent modules."
       }
     };
 
@@ -1221,86 +1272,14 @@
       const detail = blueprintDetails[nodeKey];
       const box = document.getElementById('blueprint-details-display');
       if (detail) {
+        const isRippling = nodeKey.startsWith('rip-');
+        const titleColor = isRippling ? 'var(--rippling)' : 'var(--gold)';
         box.innerHTML = `
-          <div class="blueprint-active-title" style="color: var(--rippling);">${detail.title}</div>
-          <div>${detail.desc}</div>
+          <div class="blueprint-active-title" style="color: ${titleColor};">${detail.title}</div>
+          <div style="line-height: 1.6; font-size: 0.92rem; color: var(--muted);">${detail.desc}</div>
         `;
       }
     }
-
-    // Cost Calculator JavaScript Sandbox
-    function runSandboxCalculations() {
-      // Inputs
-      const domestic = parseInt(document.getElementById('slide-domestic').value);
-      const eor = parseInt(document.getElementById('slide-eor').value);
-      const contractors = parseInt(document.getElementById('slide-contractors').value);
-      const devices = parseInt(document.getElementById('slide-devices').value);
-
-      // Display inputs
-      document.getElementById('val-domestic').innerText = domestic.toLocaleString();
-      document.getElementById('val-eor').innerText = eor.toLocaleString();
-      document.getElementById('val-contractors').innerText = contractors.toLocaleString();
-      document.getElementById('val-devices').innerText = devices.toLocaleString();
-
-      // --- Rippling Formulas ---
-      const ripPlatform = 35 * 12;
-      const ripSoftware = domestic * 18 * 12;
-      const ripDevice = devices * 5 * 12;
-      const ripEor = eor * 399 * 12;
-      const ripContractor = contractors * 40 * 12;
-      const ripTotal = ripPlatform + ripSoftware + ripDevice + ripEor + ripContractor;
-
-      // Update Displays
-      document.getElementById('res-rip-base').innerText = '$' + ripPlatform.toLocaleString();
-      document.getElementById('res-rip-software').innerText = '$' + ripSoftware.toLocaleString();
-      document.getElementById('res-rip-device').innerText = '$' + ripDevice.toLocaleString();
-      document.getElementById('res-rip-eor').innerText = '$' + ripEor.toLocaleString();
-      document.getElementById('res-rip-contractor').innerText = '$' + ripContractor.toLocaleString();
-      document.getElementById('res-rip-total').innerText = '$' + ripTotal.toLocaleString();
-
-      // --- Deel Formulas ---
-      const deelSoftware = domestic * 33 * 12; // Free HRIS, $29 domestic payroll + $4 Zavvy talent
-      const deelEor = eor * 599 * 12;
-      const deelContractor = contractors * 49 * 12;
-      const deelTotal = deelSoftware + deelEor + deelContractor;
-
-      // Update Displays
-      document.getElementById('res-deel-payroll').innerText = '$' + deelSoftware.toLocaleString();
-      document.getElementById('res-deel-eor').innerText = '$' + deelEor.toLocaleString();
-      document.getElementById('res-deel-contractor').innerText = '$' + deelContractor.toLocaleString();
-      document.getElementById('res-deel-total').innerText = '$' + deelTotal.toLocaleString();
-
-      // --- Recommendation Engine ---
-      const box = document.getElementById('recommendation-box');
-      const text = document.getElementById('recommendation-text');
-      
-      const difference = Math.abs(ripTotal - deelTotal);
-      
-      if (ripTotal < deelTotal) {
-        box.style.border = "1px solid rgba(2, 168, 124, 0.3)";
-        box.style.background = "rgba(2, 168, 124, 0.05)";
-        document.querySelector('.orchestration-title').style.color = "var(--rippling)";
-        text.innerHTML = `
-          <strong>Unified Architecture Recommendation:</strong> With your current workforce distribution, 
-          <strong>Rippling</strong> offers the most cost-efficient operational profile, saving you approximately 
-          <strong>$${difference.toLocaleString()}</strong> annually through software bundle consolidation and device MDM efficiencies.
-        `;
-      } else {
-        box.style.border = "1px solid rgba(255, 160, 0, 0.3)";
-        box.style.background = "rgba(255, 160, 0, 0.05)";
-        document.querySelector('.orchestration-title').style.color = "var(--gold)";
-        text.innerHTML = `
-          <strong>Global Wedge Recommendation:</strong> With a heavily international remote contractor/EOR footprint, 
-          <strong>Deel</strong> emerges as the more optimized solution. It cuts down overhead costs by 
-          <strong>$${difference.toLocaleString()}</strong> annually through the elimination of platform software SaaS subscriptions.
-        `;
-      }
-    }
-
-    // Initialize Sandbox on Load
-    window.onload = () => {
-      runSandboxCalculations();
-    };
   </script>
 </body>
 </html>
