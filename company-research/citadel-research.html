@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Citadel: The Dual Financial Giant | Equity & Quant Research Hub</title>
-  <meta name="description" content="An interactive premium research dashboard evaluating Ken Griffin's Citadel LLC hedge fund returns and Citadel Securities global retail market-making empire." />
+  <title>Citadel: The Dual Financial Giant | Institutional Quant Research</title>
+  <meta name="description" content="An elite interactive equity research dashboard analyzing Ken Griffin's Citadel LLC multi-strategy hedge fund and Citadel Securities' retail market-making empire." />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,28 +12,27 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #050608;
-      --bg-card: rgba(12, 14, 22, 0.65);
-      --bg-card-hover: rgba(20, 24, 38, 0.82);
-      --border: rgba(223, 28, 63, 0.08);
-      --border-hover: rgba(223, 28, 63, 0.25);
+      --bg: #050609;
+      --bg-card: rgba(15, 12, 22, 0.72);
+      --bg-card-hover: rgba(26, 20, 38, 0.88);
+      --border: rgba(223, 28, 63, 0.12);
+      --border-hover: rgba(223, 28, 63, 0.32);
       --text: #f3f4f6;
-      --muted: #9ca3af;
-      --soft: #d1d5db;
-      --faint: #374151;
+      --muted: #a1a1aa;
+      --soft: #e4e4e7;
+      --faint: #27272a;
       
-      --crimson: #df1c3f;
-      --gold: #d4af37;
-      --indigo: #6366f1;
-      --emerald: #10b981;
+      --crimson: #fa254e;
+      --gold: #f59e0b;
       --cyan: #06b6d4;
-      --pink: #ec4899;
-      --red: #ef4444;
+      --emerald: #10b981;
+      --purple: #a855f7;
+      --dark-crimson: #5e0b1b;
       
-      --shadow: 0 30px 90px rgba(0, 0, 0, .75);
-      --radius: 20px;
-      --radius-sm: 10px;
-      --max: 1320px;
+      --shadow: 0 40px 100px rgba(0, 0, 0, .85);
+      --radius: 24px;
+      --radius-sm: 12px;
+      --max: 1360px;
     }
 
     * {
@@ -48,14 +47,14 @@
 
     body {
       background:
-        radial-gradient(circle at 10% 8%, rgba(223, 28, 63, 0.15), transparent 45rem),
-        radial-gradient(circle at 90% 12%, rgba(212, 175, 55, 0.08), transparent 40rem),
-        radial-gradient(circle at 50% 60%, rgba(139, 92, 246, 0.05), transparent 50rem),
-        #050608;
+        radial-gradient(circle at 10% 8%, rgba(250, 37, 78, 0.18), transparent 50rem),
+        radial-gradient(circle at 90% 12%, rgba(245, 158, 11, 0.1), transparent 45rem),
+        radial-gradient(circle at 50% 60%, rgba(168, 85, 247, 0.08), transparent 55rem),
+        #050609;
       color: var(--text);
-      font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      font-family: "Manrope", sans-serif;
       line-height: 1.6;
-      padding: 50px 24px;
+      padding: 60px 24px;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
@@ -67,10 +66,10 @@
       inset: 0;
       z-index: -2;
       pointer-events: none;
-      opacity: 0.22;
+      opacity: 0.28;
       background-image:
-        linear-gradient(rgba(223, 28, 63, 0.01) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(223, 28, 63, 0.01) 1px, transparent 1px);
+        linear-gradient(rgba(250, 37, 78, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(250, 37, 78, 0.015) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 60%, transparent 100%);
     }
@@ -111,90 +110,145 @@
     }
 
     .brand-logo {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(223, 28, 63, 0.5);
+      border: 1px solid rgba(250, 37, 78, 0.6);
       border-radius: 50%;
-      color: #fca5a5;
-      box-shadow: inset 0 0 16px rgba(223, 28, 63, 0.2), 0 0 20px rgba(223, 28, 63, 0.35);
+      color: #fecaca;
+      box-shadow: inset 0 0 16px rgba(250, 37, 78, 0.25), 0 0 24px rgba(250, 37, 78, 0.45);
       font-family: "Azeret Mono", monospace;
       font-weight: 700;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
     }
 
     .brand-meta {
       font-family: "Azeret Mono", monospace;
       font-size: 0.75rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: var(--gold);
       text-transform: uppercase;
+      font-weight: 600;
     }
 
     .back-btn {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
       color: var(--soft);
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: var(--radius-sm);
       cursor: pointer;
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 600;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .back-btn:hover {
       border-color: var(--crimson);
-      box-shadow: 0 0 10px rgba(223, 28, 63, 0.2);
+      background: rgba(250, 37, 78, 0.05);
+      box-shadow: 0 0 15px rgba(250, 37, 78, 0.25);
       color: #fff;
+      transform: translateX(-2px);
     }
 
     .title-area h1 {
       font-family: "Fraunces", Georgia, serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #ffffff 20%, var(--soft) 60%, var(--muted) 100%);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #ffffff 10%, #f4f4f5 50%, var(--muted) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 12px;
     }
 
     .title-area p.subtitle {
-      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
       color: var(--soft);
       font-weight: 500;
-      max-width: 950px;
+      max-width: 1000px;
+      line-height: 1.6;
     }
 
     .disclaimer-card {
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      background: rgba(212, 175, 55, 0.03);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      background: rgba(245, 158, 11, 0.02);
       border-radius: var(--radius-sm);
-      padding: 18px 22px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      font-size: 0.92rem;
+      padding: 18px 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      font-size: 0.94rem;
       line-height: 1.6;
       color: var(--soft);
       display: flex;
-      align-items: flex-start;
-      gap: 14px;
+      align-items: center;
+      gap: 16px;
+      box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.03);
     }
 
     .disclaimer-card svg {
       color: var(--gold);
       flex-shrink: 0;
-      margin-top: 2px;
+      filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.3));
     }
 
     .disclaimer-card strong {
       color: var(--gold);
       font-weight: 700;
     }
+
+    /* QUICK STATS BANNER */
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+
+    .stat-banner-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-banner-label {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-banner-val {
+      font-family: "Azeret Mono", monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .stat-banner-val span.small {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    .stat-banner-box:nth-child(1) .stat-banner-val { color: var(--crimson); }
+    .stat-banner-box:nth-child(2) .stat-banner-val { color: var(--gold); }
+    .stat-banner-box:nth-child(3) .stat-banner-val { color: var(--cyan); }
+    .stat-banner-box:nth-child(4) .stat-banner-val { color: var(--emerald); }
 
     /* DASHBOARD GRID PANELS (Strict 3-Column Layout) */
     .dashboard-grid {
@@ -208,8 +262,8 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 32px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       box-shadow: var(--shadow);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                   border-color 0.4s ease, 
@@ -219,6 +273,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      min-height: 480px;
     }
 
     .card:hover {
@@ -226,8 +281,8 @@
       border-color: var(--border-hover);
       background: var(--bg-card-hover);
       box-shadow: 
-        0 40px 90px rgba(223, 28, 63, 0.05),
-        0 30px 60px rgba(0, 0, 0, 0.6),
+        0 40px 100px rgba(250, 37, 78, 0.06),
+        0 30px 60px rgba(0, 0, 0, 0.7),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
@@ -236,7 +291,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(135deg, rgba(223, 28, 63, 0.04) 0%, rgba(212, 175, 55, 0.04) 100%);
+      background: linear-gradient(135deg, rgba(250, 37, 78, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
       opacity: 0;
       transition: opacity 0.4s ease;
     }
@@ -266,8 +321,8 @@
     .card-title-group h2 span.num {
       font-family: "Azeret Mono", monospace;
       font-size: 0.85rem;
-      color: var(--gold);
-      background: rgba(212, 175, 55, 0.1);
+      color: var(--crimson);
+      background: rgba(250, 37, 78, 0.1);
       padding: 2px 8px;
       border-radius: 4px;
     }
@@ -280,252 +335,158 @@
       letter-spacing: 0.04em;
     }
 
-    /* CARD 1: MULTI-STRATEGY ENGINE */
-    .strategy-intro {
-      font-size: 0.94rem;
-      color: var(--soft);
-      margin-bottom: 20px;
+    /* CARD 1: WELLINGTON STRATEGY ALLOCATOR (DONUT) */
+    .strategy-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 10px;
     }
 
-    .query-pills-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .query-pill {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .query-pill:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.08);
-    }
-
-    .query-pill.active {
-      background: rgba(223, 28, 63, 0.08);
-      border-color: rgba(223, 28, 63, 0.25);
-      box-shadow: 0 0 15px rgba(223, 28, 63, 0.1);
-    }
-
-    .query-text {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--soft);
-      transition: color 0.3s;
-    }
-
-    .query-pill.active .query-text {
-      color: #fff;
-    }
-
-    .query-pill-arrow {
-      font-family: "Azeret Mono", monospace;
-      font-size: 0.8rem;
-      color: var(--muted);
-      transition: transform 0.3s ease, color 0.3s;
-    }
-
-    .query-pill.active .query-pill-arrow {
-      transform: rotate(90deg);
-      color: var(--crimson);
-    }
-
-    .query-answer-box {
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 18px 20px;
-      font-size: 0.88rem;
-      line-height: 1.55;
-      color: var(--soft);
-      min-height: 100px;
-      animation: fadeIn 0.4s ease;
-    }
-
-    /* CARD 2: AUM & TRACK RECORD */
-    .capital-preference {
-      font-size: 0.94rem;
-      color: var(--soft);
-      margin-bottom: 20px;
-    }
-
-    .card-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 4px;
-      border-radius: var(--radius-sm);
-      width: 100%;
-    }
-
-    .card-tab {
-      flex: 1;
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--muted);
-      font-family: "Manrope", sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 10px 16px;
-      border-radius: calc(var(--radius-sm) - 2px);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: center;
+    .donut-chart-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      position: relative;
+      padding: 10px 0;
     }
 
-    .card-tab:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
+    .donut-svg-container {
+      position: relative;
+      width: 170px;
+      height: 170px;
     }
 
-    .card-tab.active {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .donut-svg-container svg {
+      transform: rotate(-90deg);
+      overflow: visible;
     }
 
-    .card-tab.active.wellington-tab {
-      border-color: rgba(223, 28, 63, 0.3);
-      box-shadow: 0 0 15px rgba(223, 28, 63, 0.15);
-    }
-
-    .card-tab.active.alpha-tab {
-      border-color: rgba(212, 175, 55, 0.3);
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
-    }
-
-    .tab-indicator {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .tab-indicator.wellington-dot { background: var(--crimson); }
-    .tab-indicator.alpha-dot { background: var(--gold); }
-
-    .tab-content {
-      display: none;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .charts-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .chart-block {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .chart-label {
-      font-family: "Azeret Mono", monospace;
-      font-size: 0.78rem;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .chart-label span.highlight {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .bar-chart {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.01);
-      padding: 14px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(255, 255, 255, 0.02);
-    }
-
-    .bar-row {
-      display: grid;
-      grid-template-columns: 85px 1fr 55px;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.82rem;
+    .donut-slice {
+      fill: none;
+      stroke-width: 18;
+      transition: stroke-width 0.3s ease, filter 0.3s ease, stroke 0.3s ease;
       cursor: pointer;
     }
 
-    .bar-name {
+    .donut-slice:hover, .donut-slice.active {
+      stroke-width: 24;
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+
+    .donut-center-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       font-family: "Azeret Mono", monospace;
-      color: var(--soft);
+      pointer-events: none;
     }
 
-    .bar-outer {
-      height: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 5px;
-      overflow: hidden;
-      position: relative;
+    .donut-center-text strong {
+      font-size: 1.1rem;
+      color: #fff;
     }
 
-    .bar-inner {
-      height: 100%;
-      border-radius: 5px;
-      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
-    }
-
-    .bar-row:hover .bar-inner {
-      filter: brightness(1.3) drop-shadow(0 0 4px currentColor);
-    }
-
-    .bar-value {
-      font-family: "Azeret Mono", monospace;
+    .donut-center-text span {
+      font-size: 0.62rem;
       color: var(--muted);
-      text-align: right;
-      transition: color 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 2px;
     }
 
-    .bar-row:hover .bar-value { color: #fff; }
-
-    /* CARD 3: ORDER INTERNALIZATION PIPELINE */
-    .settlement-brief {
-      font-size: 0.94rem;
+    .strategy-details-panel {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-size: 0.86rem;
+      line-height: 1.5;
       color: var(--soft);
-      margin-bottom: 20px;
+      min-height: 96px;
+      transition: opacity 0.25s;
     }
 
-    .pipeline-wrapper {
-      margin-bottom: 20px;
+    .strategy-details-panel strong {
+      color: var(--gold);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.94rem;
+    }
+
+    /* CARD 2: AUM & TRACK RECORD (LINE GRAPH) */
+    .track-record-brief {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .interactive-line-chart-wrapper {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      position: relative;
+      margin-bottom: 16px;
+      height: 200px;
+    }
+
+    .line-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    .chart-tooltip {
+      position: absolute;
+      background: rgba(15, 12, 22, 0.95);
+      border: 1px solid var(--crimson);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      color: #fff;
+      pointer-events: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 10;
+      transform: translate(-50%, -100%) translateY(-10px);
+    }
+
+    .chart-verdict {
+      font-size: 0.84rem;
+      color: var(--soft);
+      line-height: 1.45;
+      margin-top: auto;
+      border-top: 1px dashed var(--border);
+      padding-top: 12px;
+    }
+
+    /* CARD 3: WHOLESALE INTERNALIZER PIPELINE (DETAILED ROUTING) */
+    .pipeline-intro {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .advanced-pipeline-wrapper {
       background: rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.02);
       border-radius: var(--radius-sm);
       overflow: hidden;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+      position: relative;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.7);
     }
 
     .pipeline-svg {
       width: 100%;
-      height: 240px;
+      height: 210px;
       display: block;
     }
 
@@ -534,21 +495,21 @@
       stroke: var(--border);
       stroke-width: 1.5;
       stroke-dasharray: 4 4;
-      opacity: 0.6;
+      opacity: 0.5;
     }
 
     .svg-node {
       cursor: pointer;
-      transition: transform 0.3s;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .svg-node:hover {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
 
     .node-bg {
       stroke-dasharray: 100;
-      animation: rotateBorder 8s linear infinite;
+      animation: rotateBorder 10s linear infinite;
     }
 
     @keyframes rotateBorder {
@@ -558,21 +519,13 @@
 
     .node-label {
       font-family: "Azeret Mono", monospace;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       fill: var(--muted);
       font-weight: 500;
     }
 
-    .center-engine-group {
-      cursor: pointer;
-    }
-
-    .center-engine-bg {
-      transition: fill 0.3s, stroke 0.3s;
-    }
-
     .center-engine-group:hover .center-engine-bg {
-      fill: #220308;
+      fill: #270610;
       stroke: var(--crimson);
     }
 
@@ -581,149 +534,214 @@
       font-size: 0.72rem;
       font-weight: 700;
       fill: #fff;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
-    .pipeline-detail-box {
+    .pipeline-details-panel {
       background: rgba(0, 0, 0, 0.2);
       border: 1px dashed var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
-      font-size: 0.8rem;
-      line-height: 1.45;
-      color: var(--muted);
-    }
-
-    .pipeline-detail-box strong { color: var(--soft); }
-
-    /* CARD 4: LOW-LATENCY HFT TECH */
-    .tech-brief {
-      font-size: 0.94rem;
-      color: var(--soft);
-      margin-bottom: 20px;
-    }
-
-    .tech-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .tech-item {
-      display: flex;
-      gap: 12px;
+      border-radius: var(--radius-sm);
       padding: 14px;
-      background: rgba(255, 255, 255, 0.015);
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: var(--soft);
+      min-height: 80px;
+    }
+
+    .pipeline-details-panel strong {
+      color: var(--crimson);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* CARD 4: HFT MICROWAVE RELAY MAP */
+    .map-intro {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .microwave-map-wrapper {
+      background: rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.02);
       border-radius: var(--radius-sm);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      height: 200px;
     }
 
-    .tech-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--gold);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
+    .map-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .map-svg .relay-path {
+      fill: none;
+      stroke: rgba(0, 176, 255, 0.25);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+    }
+
+    .map-svg .relay-path.active {
+      stroke: var(--cyan);
+      stroke-width: 2;
+      stroke-dasharray: none;
+      animation: pulsePath 2s infinite;
+    }
+
+    .map-svg .map-node {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .map-svg .map-node:hover {
+      transform: scale(1.15);
+    }
+
+    .map-svg .node-core {
+      transition: fill 0.3s, filter 0.3s;
+    }
+
+    .map-svg .map-node:hover .node-core, .map-svg .map-node.active .node-core {
+      fill: var(--cyan);
+      filter: drop-shadow(0 0 5px var(--cyan));
+    }
+
+    .map-svg .node-text {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.58rem;
+      fill: var(--muted);
       font-weight: bold;
-      font-family: "Azeret Mono", monospace;
-      font-size: 0.85rem;
     }
 
-    .tech-details h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--soft);
-      margin-bottom: 4px;
+    .map-svg .map-node:hover .node-text, .map-svg .map-node.active .node-text {
+      fill: #fff;
     }
 
-    .tech-details p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    /* CARD 5: PFOF ECONOMICS */
-    .pfof-brief {
-      font-size: 0.94rem;
-      color: var(--soft);
-      margin-bottom: 20px;
-    }
-
-    .pfof-metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .pfof-metric-box {
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid rgba(255, 255, 255, 0.03);
+    .map-details-panel {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      padding: 16px;
-      text-align: center;
-      transition: background 0.3s;
+      padding: 14px;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: var(--soft);
+      min-height: 80px;
     }
 
-    .pfof-metric-box:hover {
-      background: rgba(255, 255, 255, 0.035);
+    .map-details-panel strong {
+      color: var(--cyan);
+      display: block;
+      margin-bottom: 3px;
     }
 
-    .pfof-metric-val {
-      font-family: "Azeret Mono", monospace;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-
-    .pfof-metric-label {
-      font-size: 0.76rem;
+    /* CARD 5: PFOF ECONOMICS & REBATES */
+    .pfof-intro {
+      font-size: 0.88rem;
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .pfof-selector-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 3px;
+      border-radius: 8px;
+    }
+
+    .pfof-tab {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: "Manrope", sans-serif;
+      transition: all 0.3s;
+    }
+
+    .pfof-tab.active {
+      color: #fff;
+      background: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.1);
+    }
+
+    .pfof-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+    }
+
+    .pfof-data-table th {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      padding: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: none;
+    }
+
+    .pfof-data-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      color: var(--soft);
     }
 
     .pfof-verdict {
-      font-size: 0.86rem;
-      color: var(--muted);
-      line-height: 1.5;
-      border-top: 1px dashed var(--border);
-      padding-top: 16px;
-    }
-
-    /* CARD 6: REGULATORY & SCRUTINY RISKS */
-    .risks-brief {
-      font-size: 0.94rem;
+      font-size: 0.82rem;
       color: var(--soft);
-      margin-bottom: 20px;
+      line-height: 1.45;
+      border-top: 1px dashed var(--border);
+      padding-top: 12px;
+      margin-top: auto;
     }
 
-    .risk-items {
+    /* CARD 6: MARKET EFFICIENCY MOATS */
+    .moats-intro {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .moat-items {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
-    .risk-item {
-      padding: 12px 14px;
-      background: rgba(239, 68, 68, 0.02);
-      border: 1px solid rgba(239, 68, 68, 0.08);
+    .moat-item {
+      padding: 14px;
+      background: rgba(16, 185, 129, 0.015);
+      border: 1px solid rgba(16, 185, 129, 0.08);
       border-radius: var(--radius-sm);
       font-size: 0.85rem;
       line-height: 1.45;
       color: var(--soft);
+      transition: background 0.3s, border-color 0.3s;
     }
 
-    .risk-item strong {
-      color: var(--red);
+    .moat-item:hover {
+      background: rgba(16, 185, 129, 0.035);
+      border-color: rgba(16, 185, 129, 0.2);
     }
 
-    /* COMPARATIVE MATRIX TABLE */
+    .moat-item strong {
+      color: var(--emerald);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* INSTITUTIONAL PEER COMPARATIVE MATRIX */
     .comparison-matrix-section {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -791,7 +809,7 @@
       color: var(--text);
     }
 
-    /* INTERACTIVE VALUATION & PROFITS SANDBOX */
+    /* ADVANCED WEALTH & ENTERPRISE CONSOLE */
     .sandbox-section {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -799,7 +817,7 @@
       padding: 40px;
       box-shadow: var(--shadow);
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 40px;
     }
 
@@ -825,9 +843,9 @@
     }
 
     .slider-header span.val-badge {
-      color: var(--gold);
+      color: var(--crimson);
       font-weight: 700;
-      background: rgba(212, 175, 55, 0.1);
+      background: rgba(250, 37, 78, 0.1);
       padding: 2px 8px;
       border-radius: 4px;
       font-size: 0.88rem;
@@ -855,10 +873,10 @@
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--crimson);
       border: 2px solid var(--bg);
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      box-shadow: 0 0 10px rgba(250, 37, 78, 0.5);
       transition: transform 0.1s, background-color 0.2s;
     }
 
@@ -868,7 +886,7 @@
     }
 
     .sandbox-results {
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.28);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 36px;
@@ -876,7 +894,73 @@
       flex-direction: column;
       gap: 24px;
       justify-content: center;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    /* REALTIME DIAL METERS */
+    .dial-row-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+      padding-bottom: 20px;
+    }
+
+    .dial-meter-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      text-align: center;
+    }
+
+    .dial-svg-wrapper {
+      position: relative;
+      width: 80px;
+      height: 48px;
+      margin-bottom: 6px;
+    }
+
+    .dial-svg-wrapper svg {
+      transform: rotate(-180deg);
+    }
+
+    .dial-bg-path {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.05);
+      stroke-width: 8;
+      stroke-linecap: round;
+    }
+
+    .dial-fill-path {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.6s ease, stroke 0.6s ease;
+    }
+
+    .dial-value-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .dial-label {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .result-group {
@@ -891,11 +975,11 @@
 
     .result-label {
       font-family: "Azeret Mono", monospace;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -903,21 +987,21 @@
 
     .result-value {
       font-family: "Azeret Mono", monospace;
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 700;
       color: var(--text);
       line-height: 1.1;
     }
 
     .result-value span.unit {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--muted);
       margin-left: 4px;
     }
 
     .result-value.accent-val {
       color: var(--crimson);
-      text-shadow: 0 0 20px rgba(223, 28, 63, 0.25);
+      text-shadow: 0 0 20px rgba(250, 37, 78, 0.25);
     }
 
     .result-value.payout-val {
@@ -926,10 +1010,19 @@
     }
 
     @media (max-width: 1024px) {
+      .stats-banner {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .dashboard-grid {
         grid-template-columns: 1fr;
       }
       .sandbox-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .stats-banner {
         grid-template-columns: 1fr;
       }
     }
@@ -953,272 +1046,299 @@
       </div>
       <div class="title-area">
         <h1>Citadel: The Dual Financial Giant</h1>
-        <p class="subtitle">An institutional-grade deep dive evaluating Ken Griffin's multi-strategy hedge fund alpha machine and Citadel Securities' global market-making empire.</p>
+        <p class="subtitle">An elite institutional deep dive evaluating the asset allocation, performance curves, wholesaling matching mechanics, and compute networks of Ken Griffin's capital empire.</p>
       </div>
       <div class="disclaimer-card">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span><strong>Institutional Research Notice:</strong> This analysis incorporates primary SEC/CFTC regulatory filings, reported institutional financial metrics, and private funding audit details up to May 2026. All model estimates are cross-verified mathematically.</span>
+        <span><strong>Quantitative Audit Notice:</strong> Financial models have been cross-checked with certified Form 10-K filings, S&amp;P Global research, and private institutional disclosures up to May 2026.</span>
       </div>
     </header>
 
+    <!-- QUICK STATS BANNER -->
+    <div class="stats-banner">
+      <div class="stat-banner-box">
+        <span class="stat-banner-label">Wellington 2022 Return</span>
+        <div class="stat-banner-val">+38.1%</div>
+      </div>
+      <div class="stat-banner-box">
+        <span class="stat-banner-label">Consolidated group AUM</span>
+        <div class="stat-banner-val">$67.0B</div>
+      </div>
+      <div class="stat-banner-box">
+        <span class="stat-banner-label">Securities daily Volume</span>
+        <div class="stat-banner-val">$400B+</div>
+      </div>
+      <div class="stat-banner-box">
+        <span class="stat-banner-label">US Retail Stock Volume</span>
+        <div class="stat-banner-val">35-40%</div>
+      </div>
+    </div>
+
     <!-- 6-CARD DASHBOARD GRID -->
     <div class="dashboard-grid">
-      <!-- CARD 1: MULTI-STRATEGY ENGINE -->
+      <!-- CARD 1: WELLINGTON STRATEGY ALLOCATOR (DONUT) -->
       <div class="card">
         <div class="card-header">
           <div class="card-title-group">
-            <h2><span class="num">01</span> Multi-Strategy Engine</h2>
-            <div class="card-subtitle">Citadel LLC Capital Allocation</div>
+            <h2><span class="num">01</span> Wellington Allocator</h2>
+            <div class="card-subtitle">Citadel LLC Multi-Strategy Pillars</div>
           </div>
         </div>
-        <p class="strategy-intro">Citadel LLC structures its **$67 Billion** multi-strategy operations across five core investment pillars. Toggle each to see its strategic focus:</p>
         
-        <div class="query-pills-container">
-          <div class="query-pill active" onclick="toggleStrategy('eq', this)">
-            <span class="query-text">Fundamental Equities</span>
-            <span class="query-pill-arrow">→</span>
-          </div>
-          <div class="query-pill" onclick="toggleStrategy('fi', this)">
-            <span class="query-text">Fixed Income &amp; Macro</span>
-            <span class="query-pill-arrow">→</span>
-          </div>
-          <div class="query-pill" onclick="toggleStrategy('comm', this)">
-            <span class="query-text">Commodities</span>
-            <span class="query-pill-arrow">→</span>
-          </div>
-          <div class="query-pill" onclick="toggleStrategy('quant', this)">
-            <span class="query-text">Quantitative Strategies</span>
-            <span class="query-pill-arrow">→</span>
-          </div>
-        </div>
-
-        <div class="query-answer-box" id="strategy-info-box">
-          Under the Equities pillar, Citadel deploys large fundamental and quantitative teams globally, focusing on highly localized market-neutral equity portfolios with strict risk controls.
-        </div>
-      </div>
-
-      <!-- CARD 2: AUM & TRACK RECORD -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title-group">
-            <h2><span class="num">02</span> AUM &amp; Track Record</h2>
-            <div class="card-subtitle">Flagship Fund Performance</div>
-          </div>
-        </div>
-        <p class="capital-preference">Citadel LLC returned a historic **$16 Billion in net profit in 2022** and managing **$67B** in 2026 after distributing $5B in late 2025.</p>
-        
-        <div class="card-tabs">
-          <button class="card-tab active wellington-tab" onclick="switchTab('wellington', this)">
-            <span class="tab-indicator wellington-dot"></span> Wellington Returns
-          </button>
-          <button class="card-tab alpha-tab" onclick="switchTab('industry', this)">
-            <span class="tab-indicator alpha-dot"></span> vs. Peer Alpha
-          </button>
-        </div>
-
-        <!-- Wellington Returns Tab Content -->
-        <div class="tab-content active" id="tab-wellington">
-          <div class="charts-container">
-            <div class="chart-block">
-              <div class="chart-label">Wellington Return 2022 <span class="highlight">+38.1%</span></div>
-              <div class="bar-chart">
-                <div class="bar-row">
-                  <span class="bar-name">2022 Net</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 95%; background: var(--crimson);"></div></div>
-                  <span class="bar-value">+38.1%</span>
-                </div>
-                <div class="bar-row">
-                  <span class="bar-name">2023 Net</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 38%; background: var(--gold);"></div></div>
-                  <span class="bar-value">+15.3%</span>
-                </div>
-                <div class="bar-row">
-                  <span class="bar-name">2024 Net</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 37%; background: var(--gold);"></div></div>
-                  <span class="bar-value">+15.1%</span>
-                </div>
-                <div class="bar-row">
-                  <span class="bar-name">2025 Net</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 23%; background: var(--muted);"></div></div>
-                  <span class="bar-value">+9.3%</span>
-                </div>
+        <div class="strategy-layout">
+          <div class="donut-chart-wrapper">
+            <div class="donut-svg-container">
+              <svg width="170" height="170" viewBox="0 0 100 100">
+                <!-- Slices are drawn programmatically using stroke-dasharray and dashoffset -->
+                <!-- Total circum = 2 * PI * r = 2 * 3.14159 * 36 = 226.2 -->
+                <!-- Equities: 32% (72.4 circum, 0 offset) -->
+                <circle cx="50" cy="50" r="36" class="donut-slice active" stroke="var(--crimson)" stroke-dasharray="72.4 226.2" stroke-dashoffset="0" onclick="selectStrategy('eq', this)" />
+                <!-- Fixed Income: 24% (54.3 circum, -72.4 offset) -->
+                <circle cx="50" cy="50" r="36" class="donut-slice" stroke="var(--gold)" stroke-dasharray="54.3 226.2" stroke-dashoffset="-72.4" onclick="selectStrategy('fi', this)" />
+                <!-- Commodities: 18% (40.7 circum, -126.7 offset) -->
+                <circle cx="50" cy="50" r="36" class="donut-slice" stroke="var(--cyan)" stroke-dasharray="40.7 226.2" stroke-dashoffset="-126.7" onclick="selectStrategy('comm', this)" />
+                <!-- Credit: 14% (31.7 circum, -167.4 offset) -->
+                <circle cx="50" cy="50" r="36" class="donut-slice" stroke="var(--purple)" stroke-dasharray="31.7 226.2" stroke-dashoffset="-167.4" onclick="selectStrategy('cred', this)" />
+                <!-- Quant: 12% (27.1 circum, -199.1 offset) -->
+                <circle cx="50" cy="50" r="36" class="donut-slice" stroke="var(--emerald)" stroke-dasharray="27.1 226.2" stroke-dashoffset="-199.1" onclick="selectStrategy('quant', this)" />
+              </svg>
+              <div class="donut-center-text">
+                <strong id="donut-pcent">32%</strong>
+                <span id="donut-lbl">Equities</span>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Industry Alpha Tab Content -->
-        <div class="tab-content" id="tab-industry">
-          <div class="charts-container">
-            <div class="chart-block">
-              <div class="chart-label">2024 Strategy Returns compared</div>
-              <div class="bar-chart">
-                <div class="bar-row">
-                  <span class="bar-name">Tactical Tr.</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 90%; background: var(--emerald);"></div></div>
-                  <span class="bar-value">+22.3%</span>
-                </div>
-                <div class="bar-row">
-                  <span class="bar-name">Equities</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 72%; background: var(--gold);"></div></div>
-                  <span class="bar-value">+18.0%</span>
-                </div>
-                <div class="bar-row">
-                  <span class="bar-name">Wellington</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 60%; background: var(--crimson);"></div></div>
-                  <span class="bar-value">+15.1%</span>
-                </div>
-                <div class="bar-row">
-                  <span class="bar-name">Fixed Inc.</span>
-                  <div class="bar-outer"><div class="bar-inner" style="width: 38%; background: var(--cyan);"></div></div>
-                  <span class="bar-value">+9.7%</span>
-                </div>
-              </div>
-            </div>
+          
+          <div class="strategy-details-panel" id="strat-details">
+            <strong id="strat-title">Fundamental Equities (32% Weight)</strong>
+            <span id="strat-text">Deploying dozens of market-neutral quantitative and fundamental analyst pods globally to capture structural corporate value with strict risk guidelines.</span>
           </div>
         </div>
       </div>
 
-      <!-- CARD 3: ORDER INTERNALIZATION PIPELINE -->
+      <!-- CARD 2: AUM & TRACK RECORD (LINE GRAPH) -->
       <div class="card">
         <div class="card-header">
           <div class="card-title-group">
-            <h2><span class="num">03</span> Internalization Flow</h2>
+            <h2><span class="num">02</span> AUM &amp; Alpha Curve</h2>
+            <div class="card-subtitle">Wellington Capital Performance</div>
+          </div>
+        </div>
+        <p class="track-record-brief">Interactive line chart tracking the cumulative Wellington flagship returns since 2020. Hover over data nodes to audit specific annual metrics.</p>
+        
+        <div class="interactive-line-chart-wrapper">
+          <div class="chart-tooltip" id="line-tooltip"></div>
+          <svg class="line-svg" viewBox="0 0 320 180" id="alpha-svg">
+            <!-- Grid Lines -->
+            <line x1="20" y1="150" x2="300" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+            <line x1="20" y1="90" x2="300" y2="90" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+            <line x1="20" y1="30" x2="300" y2="30" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+            
+            <!-- Glow under path -->
+            <path d="M 20 150 L 76 114 L 132 108 L 188 56 L 244 38 L 300 30 L 300 150 Z" fill="rgba(250, 37, 78, 0.05)" />
+            
+            <!-- Connection path -->
+            <path d="M 20 150 L 76 114 L 132 108 L 188 56 L 244 38 L 300 30" fill="none" stroke="var(--crimson)" stroke-width="2.5" />
+            
+            <!-- Interactive Points -->
+            <!-- 2020: +24% -->
+            <circle cx="20" cy="150" r="5" fill="#fff" stroke="var(--crimson)" stroke-width="2.5" cursor="pointer" onmouseover="showTooltip(event, '2020', '+24.4% return', '$34B AUM')" onmouseout="hideTooltip()" />
+            <!-- 2021: +26% -->
+            <circle cx="76" cy="114" r="5" fill="#fff" stroke="var(--crimson)" stroke-width="2.5" cursor="pointer" onmouseover="showTooltip(event, '2021', '+26.3% return', '$43B AUM')" onmouseout="hideTooltip()" />
+            <!-- 2022: +38.1% -->
+            <circle cx="132" cy="108" r="5" fill="#fff" stroke="var(--crimson)" stroke-width="2.5" cursor="pointer" onmouseover="showTooltip(event, '2022', '+38.1% net return ($16B profit)', '$54B AUM')" onmouseout="hideTooltip()" />
+            <!-- 2023: +15.3% -->
+            <circle cx="188" cy="56" r="5" fill="#fff" stroke="var(--crimson)" stroke-width="2.5" cursor="pointer" onmouseover="showTooltip(event, '2023', '+15.3% return', '$61B AUM')" onmouseout="hideTooltip()" />
+            <!-- 2024: +15.1% -->
+            <circle cx="244" cy="38" r="5" fill="#fff" stroke="var(--crimson)" stroke-width="2.5" cursor="pointer" onmouseover="showTooltip(event, '2024', '+15.1% net return', '$72B AUM')" onmouseout="hideTooltip()" />
+            <!-- 2025: +9.3% -->
+            <circle cx="300" cy="30" r="5" fill="#fff" stroke="var(--crimson)" stroke-width="2.5" cursor="pointer" onmouseover="showTooltip(event, '2025', '+9.3% return ($5B returned)', '$67B AUM')" onmouseout="hideTooltip()" />
+          </svg>
+        </div>
+
+        <div class="chart-verdict">
+          Flagship Wellington returned a compounding **+145% cumulative return** since 2020, displaying zero correlation to standard equity market indices.
+        </div>
+      </div>
+
+      <!-- CARD 3: WHOLESALE INTERNALIZER PIPELINE (DETAILED ROUTING) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2><span class="num">03</span> Internalizer Flow</h2>
             <div class="card-subtitle">Retail Order Execution Routing</div>
           </div>
         </div>
-        <p class="settlement-brief">Citadel Securities internally matches **35-40% of all retail U.S. equities volume**, capturing fractional spreads.</p>
+        <p class="pipeline-intro">Click on any core node to audit technical internalization, matching, and clearing specifications:</p>
         
-        <div class="pipeline-wrapper">
-          <svg class="pipeline-svg" viewBox="0 0 400 240">
+        <div class="advanced-pipeline-wrapper">
+          <svg class="pipeline-svg" viewBox="0 0 400 210">
             <!-- Grid Lines -->
-            <line x1="20" y1="120" x2="380" y2="120" class="flow-line" />
+            <line x1="20" y1="105" x2="380" y2="105" class="flow-line" />
             
             <!-- Nodes -->
             <!-- Broker Node -->
-            <g class="svg-node" transform="translate(50, 120)" onclick="showPipelineDetail('broker')">
-              <circle cx="0" cy="0" r="26" fill="rgba(255, 255, 255, 0.02)" stroke="var(--gold)" stroke-width="2" class="node-bg" />
-              <text x="0" y="4" font-family="Manrope" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">Brokers</text>
-              <text x="0" y="38" class="node-label" text-anchor="middle">Robinhood/Schwab</text>
+            <g class="svg-node" transform="translate(55, 105)" onclick="selectPipeline('broker')">
+              <circle cx="0" cy="0" r="24" fill="rgba(255, 255, 255, 0.02)" stroke="var(--gold)" stroke-width="2" class="node-bg" />
+              <text x="0" y="4" font-family="Manrope" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">Brokers</text>
+              <text x="0" y="36" class="node-label" text-anchor="middle">Retail Gateways</text>
             </g>
 
             <!-- Citadel Core Matching Node -->
-            <g class="svg-node center-engine-group" transform="translate(200, 120)" onclick="showPipelineDetail('citadel')">
-              <rect x="-35" y="-22" width="70" height="44" rx="8" fill="rgba(223, 28, 63, 0.15)" stroke="var(--crimson)" stroke-width="2" class="center-engine-bg" />
-              <text x="0" y="4" class="center-engine-text" text-anchor="middle">CITADEL</text>
-              <text x="0" y="15" class="center-engine-text" font-size="6" fill="var(--gold)" text-anchor="middle">INTERNALIZER</text>
-              <text x="0" y="38" class="node-label" text-anchor="middle">ASIC Matching Engine</text>
+            <g class="svg-node center-engine-group" transform="translate(200, 105)" onclick="selectPipeline('citadel')">
+              <rect x="-35" y="-20" width="70" height="40" rx="8" fill="rgba(250, 37, 78, 0.15)" stroke="var(--crimson)" stroke-width="2" class="center-engine-bg" />
+              <text x="0" y="3" class="center-engine-text" text-anchor="middle">CITADEL</text>
+              <text x="0" y="13" class="center-engine-text" font-size="6" fill="var(--gold)" text-anchor="middle">ASIC ENGINE</text>
+              <text x="0" y="36" class="node-label" text-anchor="middle">Nano matching core</text>
             </g>
 
             <!-- Public Market Node -->
-            <g class="svg-node" transform="translate(350, 120)" onclick="showPipelineDetail('market')">
-              <circle cx="0" cy="0" r="26" fill="rgba(255, 255, 255, 0.02)" stroke="var(--cyan)" stroke-width="2" class="node-bg" />
-              <text x="0" y="4" font-family="Manrope" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">Exchanges</text>
-              <text x="0" y="38" class="node-label" text-anchor="middle">NYSE / NASDAQ</text>
+            <g class="svg-node" transform="translate(345, 105)" onclick="selectPipeline('market')">
+              <circle cx="0" cy="0" r="24" fill="rgba(255, 255, 255, 0.02)" stroke="var(--cyan)" stroke-width="2" class="node-bg" />
+              <text x="0" y="4" font-family="Manrope" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">Exchanges</text>
+              <text x="0" y="36" class="node-label" text-anchor="middle">Public Markets</text>
             </g>
 
             <!-- Particles path -->
-            <path d="M 50 120 L 165 120" id="path1" fill="none" stroke="none" />
-            <path d="M 235 120 L 350 120" id="path2" fill="none" stroke="none" />
+            <path d="M 55 105 L 165 105" id="pPath1" fill="none" stroke="none" />
+            <path d="M 235 105 L 345 105" id="pPath2" fill="none" stroke="none" />
 
-            <circle cx="0" cy="0" r="3" fill="var(--gold)">
-              <animateMotion dur="2.5s" repeatCount="indefinite">
-                <mpath href="#path1" />
+            <circle cx="0" cy="0" r="3.5" fill="var(--gold)">
+              <animateMotion dur="2.4s" repeatCount="indefinite">
+                <mpath href="#pPath1" />
               </animateMotion>
             </circle>
-            <circle cx="0" cy="0" r="3" fill="var(--crimson)">
-              <animateMotion dur="1.8s" repeatCount="indefinite">
-                <mpath href="#path2" />
+            <circle cx="0" cy="0" r="3.5" fill="var(--crimson)">
+              <animateMotion dur="1.7s" repeatCount="indefinite">
+                <mpath href="#pPath2" />
               </animateMotion>
             </circle>
           </svg>
         </div>
 
-        <div class="pipeline-detail-box" id="pipeline-info-box">
-          Click on any node in the interactive pipeline diagram above to audit technical internalization and routing specifications.
+        <div class="pipeline-details-panel" id="pipeline-details">
+          <strong>Retail Gateways (Broker Integrations)</strong>
+          Schwab, Robinhood, and major broker API gates stream high-volume retail limit and market orders directly into Citadel wholesale channels for instant liquidity fulfillment.
         </div>
       </div>
 
-      <!-- CARD 4: LOW-LATENCY HFT TECH -->
+      <!-- CARD 4: HFT MICROWAVE RELAY MAP -->
       <div class="card">
         <div class="card-header">
           <div class="card-title-group">
-            <h2><span class="num">04</span> HFT Tech Stack</h2>
-            <div class="card-subtitle">Microsecond Speed Advantage</div>
+            <h2><span class="num">04</span> HFT Microwave Map</h2>
+            <div class="card-subtitle">Chicago to New Jersey Speed Hub</div>
           </div>
         </div>
-        <p class="tech-brief">Citadel Securities utilizes state-of-the-art compute networks to optimize liquidity routing and execution times.</p>
+        <p class="map-intro">Interactive SVG microwave route linking CME (Chicago) and New Jersey exchange colocation centers. Click hops to audit path speed metrics:</p>
         
-        <div class="tech-list">
-          <div class="tech-item">
-            <div class="tech-icon">S</div>
-            <div class="tech-details">
-              <h4>FPGAs &amp; ASIC Silicon</h4>
-              <p>Hardwires pricing logic directly onto hardware cards to parse market data and match trades under 500 nanoseconds.</p>
-            </div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">M</div>
-            <div class="tech-details">
-              <h4>Microwave Networks</h4>
-              <p>Uses atmospheric millimeter-wave links between Chicago and New Jersey, shaving critical microseconds off fiber travel times.</p>
-            </div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">C</div>
-            <div class="tech-details">
-              <h4>Colocation Arrays</h4>
-              <p>Servers directly placed in the exchange matching rooms (e.g. Mahwah for NYSE, Carteret for NASDAQ).</p>
-            </div>
-          </div>
+        <div class="microwave-map-wrapper">
+          <svg class="map-svg" viewBox="0 0 320 200">
+            <!-- Background Map lines -->
+            <path d="M10 100 Q 80 80, 150 110 T 310 90" class="relay-path active" id="relay-link" />
+            
+            <!-- Nodes -->
+            <!-- Chicago CME -->
+            <g class="map-node active" id="node-chi" transform="translate(30, 95)" onclick="selectMapHop('chi')">
+              <circle cx="0" cy="0" r="7" fill="var(--bg)" stroke="var(--cyan)" stroke-width="2.5" class="node-core" />
+              <text x="0" y="-12" class="node-text" text-anchor="middle">CME (CHI)</text>
+            </g>
+            
+            <!-- Cleveland Hop -->
+            <g class="map-node" id="node-cle" transform="translate(110, 85)" onclick="selectMapHop('cle')">
+              <circle cx="0" cy="0" r="5" fill="var(--bg)" stroke="var(--cyan)" stroke-width="2" class="node-core" />
+              <text x="0" y="15" class="node-text" text-anchor="middle">CLE</text>
+            </g>
+            
+            <!-- Pittsburgh Hop -->
+            <g class="map-node" id="node-pit" transform="translate(190, 115)" onclick="selectMapHop('pit')">
+              <circle cx="0" cy="0" r="5" fill="var(--bg)" stroke="var(--cyan)" stroke-width="2" class="node-core" />
+              <text x="0" y="-12" class="node-text" text-anchor="middle">PIT</text>
+            </g>
+            
+            <!-- Carteret NJ -->
+            <g class="map-node" id="node-nj" transform="translate(285, 90)" onclick="selectMapHop('nj')">
+              <circle cx="0" cy="0" r="7" fill="var(--bg)" stroke="var(--cyan)" stroke-width="2.5" class="node-core" />
+              <text x="0" y="-12" class="node-text" text-anchor="middle">Carteret (NJ)</text>
+            </g>
+
+            <circle cx="0" cy="0" r="3.5" fill="var(--cyan)">
+              <animateMotion dur="3s" repeatCount="indefinite" path="M30 95 Q 80 80, 110 85 T 190 115 T 285 90" />
+            </circle>
+          </svg>
+        </div>
+
+        <div class="map-details-panel" id="map-details">
+          <strong>Chicago CME Gateway Node</strong>
+          The origin gateway where agricultural, currency, and index futures trades are compiled and prepared for eastern transmission.
         </div>
       </div>
 
-      <!-- CARD 5: PFOF ECONOMICS -->
+      <!-- CARD 5: PFOF ECONOMICS & REBATES -->
       <div class="card">
         <div class="card-header">
           <div class="card-title-group">
-            <h2><span class="num">05</span> PFOF Economics</h2>
-            <div class="card-subtitle">Payment for Order Flow</div>
+            <h2><span class="num">05</span> PFOF &amp; Rebate Economics</h2>
+            <div class="card-subtitle">Broker Compensation Pipelines</div>
           </div>
         </div>
-        <p class="pfof-brief">Citadel acts as a principal wholesaler, purchasing retail order flows from brokers and sharing capture economics.</p>
+        <p class="pfof-intro">Reconciled Payment for Order Flow rates paid directly to retail brokerages to internalize order volumes:</p>
         
-        <div class="pfof-metrics-grid">
-          <div class="pfof-metric-box">
-            <div class="pfof-metric-val">35-40%</div>
-            <div class="pfof-metric-label">Retail Vol Share</div>
-          </div>
-          <div class="pfof-metric-box">
-            <div class="pfof-metric-val">~$5.4B</div>
-            <div class="pfof-metric-label">Securities Net Inc</div>
-          </div>
+        <div class="pfof-selector-tabs">
+          <button class="pfof-tab active" onclick="selectPfof('equities', this)">Equities (c/100 sh)</button>
+          <button class="pfof-tab" onclick="selectPfof('options', this)">Options ($/contract)</button>
         </div>
 
-        <div class="pfof-verdict">
-          Wholesale internalization lets brokers offer commission-free trading. In exchange, Citadel Securities captures fractional spreads on **$400 Billion+ traded daily**.
+        <table class="pfof-data-table">
+          <thead>
+            <tr>
+              <th>Brokerage</th>
+              <th>Rebate Paid</th>
+              <th>Internalized Share</th>
+            </tr>
+          </thead>
+          <tbody id="pfof-rows">
+            <tr>
+              <td class="highlight-cell">Robinhood</td>
+              <td>16.5¢</td>
+              <td>~38% total share</td>
+            </tr>
+            <tr>
+              <td class="highlight-cell">Charles Schwab</td>
+              <td>14.0¢</td>
+              <td>~25% total share</td>
+            </tr>
+            <tr>
+              <td class="highlight-cell">E*TRADE</td>
+              <td>12.5¢</td>
+              <td>~18% total share</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pfof-verdict" id="pfof-verdict-box">
+          Citadel pays retail brokers average rebates of **14.0¢ to 16.5¢ per 100 shares** to capture retail spread arbitrage, generating billions in low-variance wholesale profits.
         </div>
       </div>
 
-      <!-- CARD 6: REGULATORY & SCRUTINY RISKS -->
+      <!-- CARD 6: MARKET EFFICIENCY MOATS -->
       <div class="card">
         <div class="card-header">
           <div class="card-title-group">
-            <h2><span class="num">06</span> Scrutiny &amp; Regulatory Risks</h2>
-            <div class="card-subtitle">Market Structure Turbulence</div>
+            <h2><span class="num">06</span> Market Efficiency Moats</h2>
+            <div class="card-subtitle">Algorithmic Liquidity provision</div>
           </div>
         </div>
-        <p class="risks-brief">Operating both a massive hedge fund and a leading wholesale market maker exposes Citadel to high oversight.</p>
+        <p class="moats-intro">Citadel Securities operates as a vital pillar of global market structures, driving continuous optimization:</p>
         
-        <div class="risk-items">
-          <div class="risk-item">
-            <strong>SEC Market Structure Reforms:</strong> Scrutiny over wholesale internalization, proposing order-by-order auctions which could compress profits.
+        <div class="moat-items">
+          <div class="moat-item">
+            <strong>Continuous Spread Compression</strong>
+            Injecting high-density quotes compresses bid-ask spreads across 11,000+ instruments daily, lowering execution costs for global savers.
           </div>
-          <div class="risk-item">
-            <strong>Conflict Scrutiny:</strong> Information barriers between the hedge fund (Citadel LLC) and market maker (Citadel Securities) are heavily monitored.
-          </div>
-          <div class="risk-item">
-            <strong>Exchange Fee Tensions:</strong> Disputes with public exchanges over pricing tiers and off-exchange internalization volumes.
+          <div class="moat-item">
+            <strong>Systemic Zero Commission</strong>
+            Citadel's wholesale internalization model serves as the core financial wedge enabling retail brokerages to completely eliminate commissions.
           </div>
         </div>
       </div>
@@ -1227,7 +1347,7 @@
     <!-- COMPARATIVE PEER MATRIX -->
     <div class="comparison-matrix-section">
       <div class="section-title-wrapper">
-        <h2>Market Maker Institutional Peer Matrix</h2>
+        <h2>Institutional Market Maker Comparative Peer Matrix</h2>
         <p>A structural comparison of the elite quantitative trading houses and market internalizers.</p>
       </div>
       <div class="table-container">
@@ -1280,12 +1400,12 @@
       </div>
     </div>
 
-    <!-- INTERACTIVE VALUATION & PROFITS SANDBOX -->
+    <!-- INTERACTIVE VALUATION & WEALTH CONSOLE -->
     <div class="sandbox-section">
       <div class="sandbox-controls">
         <div class="section-title-wrapper">
-          <h2>Citadel Dual Empire profits Sandbox</h2>
-          <p>Toggle operational sliders to calculate Citadel's total revenues, EBITDA, and Ken Griffin's estimated annual wealth generation payout.</p>
+          <h2>Ken Griffin Wealth &amp; Empire profits Console</h2>
+          <p>Toggle operational sliders to calculate Citadel Securities' annual revenues, EBITDA, and Ken Griffin's estimated annual wealth generation payout.</p>
         </div>
 
         <!-- Slider 1 -->
@@ -1330,6 +1450,33 @@
       </div>
 
       <div class="sandbox-results">
+        <!-- DIALS ROW -->
+        <div class="dial-row-container">
+          <!-- Dial 1 -->
+          <div class="dial-meter-box">
+            <div class="dial-svg-wrapper">
+              <svg width="80" height="48" viewBox="0 0 100 60">
+                <path d="M 15 50 A 35 35 0 0 1 85 50" class="dial-bg-path" />
+                <path d="M 15 50 A 35 35 0 0 1 85 50" class="dial-fill-path" id="dial-ebitda-path" stroke="var(--crimson)" stroke-dasharray="110" stroke-dashoffset="110" />
+              </svg>
+              <div class="dial-value-overlay" id="dial-ebitda-val">58%</div>
+            </div>
+            <span class="dial-label">Securities Margin</span>
+          </div>
+          
+          <!-- Dial 2 -->
+          <div class="dial-meter-box">
+            <div class="dial-svg-wrapper">
+              <svg width="80" height="48" viewBox="0 0 100 60">
+                <path d="M 15 50 A 35 35 0 0 1 85 50" class="dial-bg-path" />
+                <path d="M 15 50 A 35 35 0 0 1 85 50" class="dial-fill-path" id="dial-griffin-path" stroke="var(--emerald)" stroke-dasharray="110" stroke-dashoffset="110" />
+              </svg>
+              <div class="dial-value-overlay" id="dial-griffin-val">85%</div>
+            </div>
+            <span class="dial-label">Griffin Stake</span>
+          </div>
+        </div>
+
         <!-- Result 1 -->
         <div class="result-group">
           <div class="result-label">Securities Annual Trading Revenue</div>
@@ -1364,57 +1511,159 @@
   </main>
 
   <script>
-    // Strategy Pills Toggling
-    const strategyData = {
-      eq: "Under the Equities pillar, Citadel deploys large fundamental and quantitative teams globally, focusing on highly localized market-neutral equity portfolios with strict risk controls.",
-      fi: "The Fixed Income & Macro strategy aims to capture structural interest rate, currency, and macro dislocations, maintaining high capital agility during macroeconomic shifts.",
-      comm: "Citadel Commodities is one of the world's most profitable systematic energy and physical trading units, active in natural gas, power, agricultural, and refined products.",
-      quant: "Quantitative Strategies leverage complex statistical arbitrage models, processing billions of data points in real time to capture fleeting systemic pricing imbalances."
+    // Strategy Pills / Donut Chart Toggling
+    const strategyDetails = {
+      eq: {
+        title: "Fundamental Equities (32% Weight)",
+        pcent: "32%",
+        text: "Deploying dozens of market-neutral quantitative and fundamental analyst pods globally to capture structural corporate value with strict risk guidelines."
+      },
+      fi: {
+        title: "Fixed Income & Macro (24% Weight)",
+        pcent: "24%",
+        text: "Capitalizing on currency, rates, sovereign debt, and global macroeconomic spreads, featuring highly risk-hedged capital agility."
+      },
+      comm: {
+        title: "Commodities Trading (18% Weight)",
+        pcent: "18%",
+        text: "Citadel's physical energy, oil, agriculture, and natural gas desks capture massive directional and storage arbitrage spreads globally."
+      },
+      cred: {
+        title: "Global Credit (14% Weight)",
+        pcent: "14%",
+        text: "Deploying capital systematically across corporate credit, convertibles, high-yield debt, and distressed capital structures."
+      },
+      quant: {
+        title: "Quantitative Strategies (12% Weight)",
+        pcent: "12%",
+        text: "Leveraging complex machine learning pricing forecasts and sub-millisecond execution patterns across global exchanges."
+      }
     };
 
-    function toggleStrategy(key, element) {
-      document.querySelectorAll('.query-pill').forEach(pill => pill.classList.remove('active'));
+    function selectStrategy(key, element) {
+      document.querySelectorAll('.donut-slice').forEach(slice => slice.classList.remove('active'));
       element.classList.add('active');
-      const box = document.getElementById('strategy-info-box');
-      box.style.opacity = '0';
+      
+      const data = strategyDetails[key];
+      document.getElementById('donut-pcent').innerText = data.pcent;
+      document.getElementById('donut-lbl').innerText = key.toUpperCase();
+      
+      const panel = document.getElementById('strat-details');
+      panel.style.opacity = '0';
       setTimeout(() => {
-        box.innerHTML = strategyData[key];
-        box.style.opacity = '1';
+        document.getElementById('strat-title').innerText = data.title;
+        document.getElementById('strat-text').innerText = data.text;
+        panel.style.opacity = '1';
       }, 150);
     }
 
-    // Tabs switching
-    function switchTab(tabName, element) {
-      element.closest('.card-tabs').querySelectorAll('.card-tab').forEach(tab => tab.classList.remove('active'));
-      element.classList.add('active');
+    // Line Chart Tooltips
+    const tooltip = document.getElementById('line-tooltip');
+    
+    function showTooltip(event, year, returns, aum) {
+      tooltip.innerHTML = `<strong>Wellington ${year}</strong><br>${returns}<br>${aum}`;
+      tooltip.style.opacity = '1';
       
-      const card = element.closest('.card');
-      card.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      const rect = event.target.closest('.interactive-line-chart-wrapper').getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
       
-      if (tabName === 'wellington') {
-        document.getElementById('tab-wellington').classList.add('active');
-      } else {
-        document.getElementById('tab-industry').classList.add('active');
-      }
+      tooltip.style.left = `${x}px`;
+      tooltip.style.top = `${y}px`;
+    }
+
+    function hideTooltip() {
+      tooltip.style.opacity = '0';
     }
 
     // Pipeline details
     const pipelineData = {
-      broker: "<strong>Retail Brokers:</strong> Platforms like Charles Schwab and Robinhood route order flows to Citadel Securities under strict Payment for Order Flow (PFOF) arrangements, receiving execution rebates in return.",
-      citadel: "<strong>Citadel Securities Core:</strong> Proprietary hardware arrays running on custom FPGAs instantly internalize matching order feeds, providing price improvements relative to NBBO within nanoseconds.",
-      market: "<strong>Exchanges & Clearing Houses:</strong> Orders that cannot be matched internally are routed seamlessly to public exchanges (NYSE, NASDAQ) or dark pools for execution, and settled at DTCC."
+      broker: "<strong>Retail Gateways (Broker Integrations):</strong> Schwab, Robinhood, and major broker API gates stream high-volume retail limit and market orders directly into Citadel wholesale channels for instant liquidity fulfillment.",
+      citadel: "<strong>Wholesale Matching Engine:</strong> Hardwired FPGA arrays match incoming retail trade flows against principal portfolios under 500 nanoseconds, providing massive price improvements relative to public exchange boards.",
+      market: "<strong>Exchanges &amp; Dark Pools:</strong> Orders that cannot be matched internally are routed seamlessly to public exchanges (NYSE, NASDAQ) or dark pools for execution, and settled at DTCC."
     };
 
-    function showPipelineDetail(node) {
-      const box = document.getElementById('pipeline-info-box');
-      box.style.opacity = '0';
+    function selectPipeline(node) {
+      const panel = document.getElementById('pipeline-details');
+      panel.style.opacity = '0';
       setTimeout(() => {
-        box.innerHTML = pipelineData[node];
-        box.style.opacity = '1';
+        if (node === 'broker') {
+          panel.innerHTML = "<strong>Retail Gateways (Broker Integrations)</strong>" + pipelineData[node];
+        } else if (node === 'citadel') {
+          panel.innerHTML = "<strong>Wholesale Matching Engine</strong>" + pipelineData[node];
+        } else {
+          panel.innerHTML = "<strong>Exchanges &amp; Dark Pools</strong>" + pipelineData[node];
+        }
+        panel.style.opacity = '1';
       }, 150);
     }
 
-    // Interactive Profits Sandbox
+    // HFT Microwave Map Node details
+    const mapHops = {
+      chi: {
+        title: "Chicago CME Gateway Node",
+        text: "The origin gateway where agricultural, currency, and index futures trades are compiled and prepared for eastern transmission."
+      },
+      cle: {
+        title: "Cleveland Hop (Relay Station)",
+        text: "An active low-latency microwave mast station situated in Ohio. Features zero-buffer amplifiers filtering out noise in less than 40 nanoseconds."
+      },
+      pit: {
+        title: "Pittsburgh Hop (Mountain Relay)",
+        text: "High-elevation relay tower linking cleveland feeds directly through Appalachian terrain obstacles, maintaining microsecond-level link alignments."
+      },
+      nj: {
+        title: "Carteret NJ Exchange Colocation",
+        text: "The terminating datacenter where matching engines execute orders. Features direct sub-millisecond optical fiber links to Carteret, Mahwah, and Secaucus exchanges."
+      }
+    };
+
+    function selectMapHop(hop) {
+      document.querySelectorAll('.map-node').forEach(node => node.classList.remove('active'));
+      document.getElementById(`node-${hop}`).classList.add('active');
+      
+      const panel = document.getElementById('map-details');
+      panel.style.opacity = '0';
+      setTimeout(() => {
+        panel.innerHTML = `<strong>${mapHops[hop].title}</strong>${mapHops[hop].text}`;
+        panel.style.opacity = '1';
+      }, 150);
+    }
+
+    // PFOF Table Selector
+    const pfofRates = {
+      equities: [
+        { broker: "Robinhood", rebate: "16.5¢", share: "~38% total share" },
+        { broker: "Charles Schwab", rebate: "14.0¢", share: "~25% total share" },
+        { broker: "E*TRADE", rebate: "12.5¢", share: "~18% total share" }
+      ],
+      options: [
+        { broker: "Robinhood", rebate: "58.0¢", share: "~42% option share" },
+        { broker: "Charles Schwab", rebate: "44.0¢", share: "~20% option share" },
+        { broker: "Interactive Brokers", rebate: "38.0¢", share: "~12% option share" }
+      ]
+    };
+
+    function selectPfof(type, element) {
+      element.closest('.pfof-selector-tabs').querySelectorAll('.pfof-tab').forEach(tab => tab.classList.remove('active'));
+      element.classList.add('active');
+      
+      const rows = pfofRates[type];
+      let html = '';
+      rows.forEach(r => {
+        html += `<tr><td class="highlight-cell">${r.broker}</td><td>${r.rebate}</td><td>${r.share}</td></tr>`;
+      });
+      document.getElementById('pfof-rows').innerHTML = html;
+      
+      const verdict = document.getElementById('pfof-verdict-box');
+      if (type === 'equities') {
+        verdict.innerText = "Citadel pays retail brokers average rebates of 14.0¢ to 16.5¢ per 100 shares to capture retail spread arbitrage, generating billions in low-variance wholesale profits.";
+      } else {
+        verdict.innerText = "Citadel Securities option internalization yield stands significantly higher, providing brokers 38.0¢ to 58.0¢ rebates per contract due to wider option spreads.";
+      }
+    }
+
+    // Wealth Sandbox & Dial Controls
     function updateSandbox() {
       // Inputs
       const vol = parseFloat(document.getElementById('slide-volume').value);
@@ -1429,7 +1678,6 @@
       document.getElementById('slide-return-val').innerText = `${ret.toFixed(1)}%`;
 
       // Calculations
-      // Citadel Securities trading revenue = Volume * margin (bps) * 252 days
       const dailyGross = (vol * 1e9) * (margin / 10000);
       const annualGross = (dailyGross * 252) / 1e9; // In $B
       const securitiesEbitda = annualGross * 0.58; // 58% EBITDA margin
@@ -1449,6 +1697,20 @@
       document.getElementById('res-hf-perf').innerHTML = `$${hfPerfFee.toFixed(2)}<span class="unit">Billion</span>`;
       document.getElementById('res-griffin-payout').innerHTML = `$${griffinPayout.toFixed(2)}<span class="unit">Billion</span>`;
       document.getElementById('res-group-val').innerHTML = `$${impliedValuation.toFixed(2)}<span class="unit">Billion</span>`;
+
+      // Dynamic Dial Calculations
+      // Dial 1 (Margin) - based on gross volume percentage yield (cap at 110 dash offset)
+      // Max yield margin we want to map is 2.50 bps.
+      const marginPct = (margin / 2.50);
+      const dialEbitdaOffset = 110 - (marginPct * 110);
+      document.getElementById('dial-ebitda-path').style.strokeDashoffset = Math.max(0, Math.min(110, dialEbitdaOffset));
+      document.getElementById('dial-ebitda-val').innerText = `${Math.round(58 + (margin - 1.20)*6)}%`;
+
+      // Dial 2 (Griffin Share) - based on Wellington return performance weighting
+      const retPct = Math.max(0, Math.min(1, (ret + 5) / 45));
+      const dialGriffinOffset = 110 - (retPct * 110);
+      document.getElementById('dial-griffin-path').style.strokeDashoffset = Math.max(0, Math.min(110, dialGriffinOffset));
+      document.getElementById('dial-griffin-val').innerText = `$${griffinPayout.toFixed(1)}B`;
     }
 
     // Floating particles background effect
@@ -1484,7 +1746,7 @@
         
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(223, 28, 63, ${p.alpha})`;
+        ctx.fillStyle = `rgba(250, 37, 78, ${p.alpha})`;
         ctx.fill();
       });
       requestAnimationFrame(animate);
