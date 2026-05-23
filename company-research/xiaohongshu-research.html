@@ -1111,91 +1111,108 @@
           </div>
         </div>
 
-        <!-- Valuation Sandbox -->
+        <!-- Future Growth Areas & Execution Risks -->
         <div class="content-card span-12">
           <div class="card-header">
-            <span class="trend-badge">Interactive Valuation Sandbox</span>
-            <h3 class="card-title">Social Commerce Revenue &amp; Valuation Simulator</h3>
-            <p class="card-subtitle">Adjust sliding variable parameters to calculate projected earnings and implied valuation under different target multiples.</p>
+            <span class="trend-badge" style="border-color: rgba(6, 182, 212, 0.3); background: rgba(6, 182, 212, 0.08); color: var(--cyan);">Strategic Horizon Audit</span>
+            <h3 class="card-title">Future Growth Areas &amp; Systemic Execution Risks</h3>
+            <p class="card-subtitle">An institutional-grade risk-reward matrix evaluating Xiaohongshu's pre-IPO scaling vectors and structural bottlenecks.</p>
           </div>
 
           <div class="sandbox-container">
-            <!-- Inputs -->
-            <div class="sandbox-inputs">
-              <!-- Monthly Active Users -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="sb-mau">Monthly Active Users (MAU)</label>
-                  <span class="ces-slider-value" id="sb-val-mau">350M</span>
-                </div>
-                <input type="range" id="sb-mau" min="200" max="600" step="10" value="350" oninput="runSandboxValuation()" />
-              </div>
-              
-              <!-- Search query penetration -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="sb-search-pen">Search Penetration Density</label>
-                  <span class="ces-slider-value" id="sb-val-search-pen">65%</span>
-                </div>
-                <input type="range" id="sb-search-pen" min="40" max="90" step="5" value="65" oninput="runSandboxValuation()" />
+            <!-- Growth Verticals -->
+            <div class="sandbox-inputs" style="border-top: 3px solid var(--emerald); background: rgba(16, 185, 129, 0.02); gap: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; margin-bottom: 8px;">
+                <h4 style="color: var(--emerald); font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700;">Core Future Growth Verticals</h4>
+                <span class="trend-badge" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.08); color: var(--emerald);">Potential: Strong</span>
               </div>
 
-              <!-- Brand Ad CPM Rate -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="sb-cpm">Average Ad CPM Rate (USD)</label>
-                  <span class="ces-slider-value" id="sb-val-cpm">$4.50</span>
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <!-- Vector 1 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); display: grid; place-items: center; flex-shrink: 0; color: var(--emerald); font-weight: 700; font-size: 0.85rem;">01</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">"Quiet Selling" (慢直播) Closed-Loop Livestreaming</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">Moving away from high-pressure discount screaming (like Douyin) to elegant, highly curated lifestyle reviews with high Average Order Values (AOV), expanding e-commerce take-rates and marketplace margins.</div>
+                  </div>
                 </div>
-                <input type="range" id="sb-cpm" min="2.00" max="8.00" step="0.25" value="4.50" oninput="runSandboxValuation()" />
-              </div>
 
-              <!-- E-commerce Take-Rate commission -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="sb-take-rate">E-commerce Commission Take-Rate</label>
-                  <span class="ces-slider-value" id="sb-val-take-rate">2.5%</span>
+                <!-- Vector 2 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); display: grid; place-items: center; flex-shrink: 0; color: var(--emerald); font-weight: 700; font-size: 0.85rem;">02</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">KOS Localized Search Monetization</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">Commercializing the search bar (over 60% of RED's sessions start with query intent) by enabling bidding on high-intent search keywords and local storefront directories.</div>
+                  </div>
                 </div>
-                <input type="range" id="sb-take-rate" min="1.0" max="6.0" step="0.5" value="2.5" oninput="runSandboxValuation()" />
-              </div>
 
-              <!-- Valuation Multiple -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="sb-multiple">Target Net Profit Multiple (P/E)</label>
-                  <span class="ces-slider-value" id="sb-val-multiple">15.0x</span>
+                <!-- Vector 3 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); display: grid; place-items: center; flex-shrink: 0; color: var(--emerald); font-weight: 700; font-size: 0.85rem;">03</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">Diaspora-Focused APAC Globalization</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">Scaling RED's international footprint (Japan, Southeast Asia, North America) by targeting the massive global Chinese diaspora first, leveraging search utility before broad localization.</div>
+                  </div>
                 </div>
-                <input type="range" id="sb-multiple" min="10" max="25" step="1" value="15" oninput="runSandboxValuation()" />
+
+                <!-- Vector 4 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); display: grid; place-items: center; flex-shrink: 0; color: var(--emerald); font-weight: 700; font-size: 0.85rem;">04</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">AI-Driven Conversational Search Assistants</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">Harnessing RED's massive, authentic lifestyle UGC review database to train specialized AI recommendation agents, turning search entry bars into conversational consultation flywheels.</div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            <!-- Results -->
-            <div class="sandbox-results">
-              <div class="val-block">
-                <span class="val-label">Implied Private Market Valuation</span>
-                <div class="val-value" id="sb-res-val">$45.0B</div>
+            <!-- Execution Risks -->
+            <div class="sandbox-inputs" style="border-top: 3px solid var(--red); background: rgba(212, 63, 81, 0.015); gap: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; margin-bottom: 8px;">
+                <h4 style="color: var(--red); font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700;">Core Systemic Execution Risks</h4>
+                <span class="trend-badge" style="border-color: rgba(212, 63, 81, 0.3); background: rgba(212, 63, 81, 0.08); color: var(--red);">Risk Horizon: Medium</span>
               </div>
-              
-              <div class="sandbox-metrics">
-                <div class="metric-row">
-                  <span>Simulated Total Revenue</span>
-                  <span id="sb-res-revenue">$5.80B</span>
+
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <!-- Risk 1 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(212, 63, 81, 0.08); border: 1px solid rgba(212, 63, 81, 0.15); display: grid; place-items: center; flex-shrink: 0; color: var(--red); font-weight: 700; font-size: 0.85rem;">01</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">The Ad-Clog vs. Organic Community Trust Dilemma</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">Organic trust ('planted grass' reviews) is RED's main moat. An aggressive push in ad load or too many paid sponsored posts degrades user credibility, triggering churn.</div>
+                  </div>
                 </div>
-                <div class="metric-row">
-                  <span>Simulated Net Profit (51.7%)</span>
-                  <span id="sb-res-profit">$3.00B</span>
+
+                <!-- Risk 2 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(212, 63, 81, 0.08); border: 1px solid rgba(212, 63, 81, 0.15); display: grid; place-items: center; flex-shrink: 0; color: var(--red); font-weight: 700; font-size: 0.85rem;">02</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">Regulatory Compliance &amp; Content Censorship</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">Operating a massive domestic UGC database requires enormous content safety overhead. Strict algorithmic recommendation laws and domestic censorship require constant vigilance.</div>
+                  </div>
                 </div>
-                <div class="metric-row">
-                  <span>Projected Ad Revenue</span>
-                  <span id="sb-res-ad-rev">$4.06B</span>
+
+                <!-- Risk 3 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(212, 63, 81, 0.08); border: 1px solid rgba(212, 63, 81, 0.15); display: grid; place-items: center; flex-shrink: 0; color: var(--red); font-weight: 700; font-size: 0.85rem;">03</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">Marketplace Logistics &amp; Fulfillment Deficit</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">Unlike Alibaba or JD.com, RED has no physical fulfillment infrastructure or proprietary logistics nodes, exposing it to transactional checkout friction and lowering e-commerce margins.</div>
+                  </div>
                 </div>
-                <div class="metric-row">
-                  <span>Projected E-commerce Revenue</span>
-                  <span id="sb-res-ecom-rev">$1.28B</span>
+
+                <!-- Risk 4 -->
+                <div style="display: flex; gap: 16px; align-items: flex-start;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(212, 63, 81, 0.08); border: 1px solid rgba(212, 63, 81, 0.15); display: grid; place-items: center; flex-shrink: 0; color: var(--red); font-weight: 700; font-size: 0.85rem;">04</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 1.05rem;">Fierce UGC Mindshare Copycat Encroachment</div>
+                    <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5;">ByteDance (Douyin lifestyle note feeds) and Tencent (WeChat Channels) are aggressively copycatting RED's search layout, increasing creator retention pressures and user acquisition costs.</div>
+                  </div>
                 </div>
-                <div class="metric-row">
-                  <span>Implied Revenue Multiple</span>
-                  <span id="sb-res-rev-multiple">7.8x</span>
-                </div>
+
               </div>
             </div>
           </div>
@@ -1331,45 +1348,9 @@
       }
     }
 
-    // Valuation Sandbox Simulator Logic
-    function runSandboxValuation() {
-      // Inputs
-      const mau = parseInt(document.getElementById('sb-mau').value);
-      const searchPen = parseInt(document.getElementById('sb-search-pen').value) / 100;
-      const cpm = parseFloat(document.getElementById('sb-cpm').value);
-      const takeRate = parseFloat(document.getElementById('sb-take-rate').value) / 100;
-      const multiple = parseInt(document.getElementById('sb-multiple').value);
-
-      // Display inputs
-      document.getElementById('sb-val-mau').innerText = mau + 'M';
-      document.getElementById('sb-val-search-pen').innerText = (searchPen * 100).toFixed(0) + '%';
-      document.getElementById('sb-val-cpm').innerText = '$' + cpm.toFixed(2);
-      document.getElementById('sb-val-take-rate').innerText = (takeRate * 100).toFixed(1) + '%';
-      document.getElementById('sb-val-multiple').innerText = multiple.toFixed(1) + 'x';
-
-      // --- Revenue Math ---
-      const adRevenues = (mau * 12 * 30 * searchPen * cpm) / 1000 * 5.8;
-      const ecomGMV = mau * 12 * 12;
-      const ecomRevenues = ecomGMV * takeRate * 1.5;
-      const partnerRevenues = (adRevenues + ecomRevenues) * 0.087;
-
-      const totalRevenue = adRevenues + ecomRevenues + partnerRevenues;
-      const netProfit = totalRevenue * 0.5172;
-      const valuation = netProfit * multiple;
-
-      // Update Displays
-      document.getElementById('sb-res-ad-rev').innerText = '$' + (adRevenues / 100).toFixed(2) + 'B';
-      document.getElementById('sb-res-ecom-rev').innerText = '$' + (ecomRevenues / 100).toFixed(2) + 'B';
-      document.getElementById('sb-res-revenue').innerText = '$' + (totalRevenue / 100).toFixed(2) + 'B';
-      document.getElementById('sb-res-profit').innerText = '$' + (netProfit / 100).toFixed(2) + 'B';
-      document.getElementById('sb-res-val').innerText = '$' + (valuation / 100).toFixed(1) + 'B';
-      document.getElementById('sb-res-rev-multiple').innerText = (valuation / totalRevenue).toFixed(1) + 'x';
-    }
-
     // Initialize Widget on Load
     window.onload = () => {
       showLoopStage('stage-upload');
-      runSandboxValuation();
     };
   </script>
 </body>
