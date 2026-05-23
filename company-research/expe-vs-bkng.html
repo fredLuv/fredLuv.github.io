@@ -475,7 +475,11 @@
     #slider-expe-b2b::-webkit-slider-thumb { background: var(--lime); box-shadow: 0 0 8px rgba(184, 242, 57, 0.4); }
     #slider-expe-b2c::-webkit-slider-thumb { background: var(--blue-2); box-shadow: 0 0 8px rgba(45, 121, 255, 0.4); }
     #slider-expe-fcf::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px rgba(104, 240, 255, 0.4); }
-    #slider-bkng-grow::-webkit-slider-thumb { background: var(--gold); box-shadow: 0 0 8px rgba(240, 207, 103, 0.4); }
+    #slider-expe-mult::-webkit-slider-thumb { background: var(--rose); box-shadow: 0 0 8px rgba(255, 141, 160, 0.4); }
+    #slider-bkng-merch::-webkit-slider-thumb { background: var(--gold); box-shadow: 0 0 8px rgba(240, 207, 103, 0.4); }
+    #slider-bkng-agency::-webkit-slider-thumb { background: var(--blue-2); box-shadow: 0 0 8px rgba(45, 121, 255, 0.4); }
+    #slider-bkng-fcf::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px rgba(104, 240, 255, 0.4); }
+    #slider-bkng-mult::-webkit-slider-thumb { background: var(--gold); box-shadow: 0 0 8px rgba(240, 207, 103, 0.4); }
 
     .output-panel {
       display: flex;
@@ -1006,94 +1010,162 @@
     <div id="sandbox" class="tab-panel">
       <div class="content-card">
         <div class="section-head">
-          <h2>Valuation Sandbox</h2>
-          <p>Project room bookings, take rates, and trace Expedia's forward valuation rerate.</p>
+          <h2>Valuation Rerate &amp; Projections Sandbox</h2>
+          <p>Toggle segment-level growth, FCF margins, and target multiples to calculate implied share price and investment rerate upside side-by-side.</p>
         </div>
 
-        <div class="sandbox-split">
-          <!-- Sliders -->
-          <div class="sliders-panel">
-            <h3 style="font-family: var(--font-header); font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">Inputs</h3>
-            
-            <div class="slider-group">
-              <div class="slider-lbl-row">
-                <span class="slider-title"><span style="color: var(--lime);">●</span> Expedia B2B Growth</span>
-                <span class="slider-val" id="expe-b2b-val">25%</span>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+          
+          <!-- EXPEDIA PROJECTIONS & VALUATION -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="sliders-panel">
+              <h3 style="font-family: var(--font-header); font-size: 14px; border-bottom: 1px solid rgba(45, 121, 255, 0.2); padding-bottom: 8px; color: var(--blue-2);">Expedia Group (EXPE) Inputs</h3>
+              
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--lime);">●</span> B2B Revenue Growth</span>
+                  <span class="slider-val" id="expe-b2b-val" style="color: var(--lime);">25%</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-expe-b2b" min="5" max="40" value="25" oninput="runSandbox()">
               </div>
-              <input type="range" class="val-slider" id="slider-expe-b2b" min="5" max="40" value="25" oninput="runSandbox()">
+
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--blue-2);">●</span> B2C Revenue Growth</span>
+                  <span class="slider-val" id="expe-b2c-val" style="color: var(--blue-2);">3%</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-expe-b2c" min="-15" max="15" value="3" oninput="runSandbox()">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--cyan);">●</span> FCF Margin</span>
+                  <span class="slider-val" id="expe-fcf-val" style="color: var(--cyan);">21.1%</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-expe-fcf" min="15" max="30" value="21" oninput="runSandbox()">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--rose);">●</span> Target EV/FCF Multiple</span>
+                  <span class="slider-val" id="expe-mult-val" style="color: var(--rose);">6.1x</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-expe-mult" min="4" max="15" value="6.1" step="0.1" oninput="runSandbox()">
+              </div>
             </div>
 
-            <div class="slider-group">
-              <div class="slider-lbl-row">
-                <span class="slider-title"><span style="color: var(--blue-2);">●</span> Expedia B2C Growth</span>
-                <span class="slider-val" id="expe-b2c-val">3%</span>
-              </div>
-              <input type="range" class="val-slider" id="slider-expe-b2c" min="-15" max="10" value="3" oninput="runSandbox()">
-            </div>
-
-            <div class="slider-group">
-              <div class="slider-lbl-row">
-                <span class="slider-title"><span style="color: var(--cyan);">●</span> Expedia FCF Margin</span>
-                <span class="slider-val" id="expe-fcf-val">21%</span>
-              </div>
-              <input type="range" class="val-slider" id="slider-expe-fcf" min="15" max="30" value="21" oninput="runSandbox()">
-            </div>
-
-            <div class="slider-group">
-              <div class="slider-lbl-row">
-                <span class="slider-title"><span style="color: var(--gold);">●</span> Booking EBITDA Growth</span>
-                <span class="slider-val" id="bkng-grow-val">8%</span>
-              </div>
-              <input type="range" class="val-slider" id="slider-bkng-grow" min="-10" max="20" value="8" oninput="runSandbox()">
-            </div>
-          </div>
-
-          <!-- Outputs -->
-          <div class="sandbox-results" style="display: flex; flex-direction: column; gap: 16px;">
-            <!-- EXPEDIA OUT -->
-            <div class="output-panel expe-out">
-              <div class="out-header">Expedia Forward Valuation Estimates</div>
+            <!-- Expedia Output Panel -->
+            <div class="output-panel expe-out" style="border-left: 4px solid var(--blue);">
+              <div class="out-header" style="color: var(--blue-2);">Expedia Target Valuation Output</div>
               <div class="out-grid">
                 <div class="out-box">
                   <span class="lbl">Consol. Revenue</span>
-                  <span class="val" id="expe-out-rev">$16.20B</span>
+                  <span class="val" id="expe-out-rev">$15.79B</span>
                 </div>
                 <div class="out-box">
                   <span class="lbl">Forward FCF</span>
-                  <span class="val" id="expe-out-fcf">$3.40B</span>
+                  <span class="val" id="expe-out-fcf">$3.33B</span>
                 </div>
                 <div class="out-box">
-                  <span class="lbl">P/FCF | EV/FCF</span>
-                  <span class="val" id="expe-out-mult">8.4x | 6.1x</span>
+                  <span class="lbl">Target EV</span>
+                  <span class="val" id="expe-out-ev">$20.3B</span>
+                </div>
+              </div>
+              <div class="out-grid" style="margin-top: 8px;">
+                <div class="out-box">
+                  <span class="lbl">Target Mcap</span>
+                  <span class="val" id="expe-out-mcap">$27.5B</span>
+                </div>
+                <div class="out-box" style="border: 1px solid rgba(104, 240, 255, 0.2); background: rgba(104, 240, 255, 0.02);">
+                  <span class="lbl" style="color: var(--cyan);">Target Stock Price</span>
+                  <span class="val" id="expe-out-share" style="color: var(--cyan); font-weight: 800;">$224.23</span>
+                </div>
+                <div class="out-box" id="expe-out-return-box" style="border: 1px solid rgba(184, 242, 57, 0.2); background: rgba(184, 242, 57, 0.02);">
+                  <span class="lbl" style="color: var(--lime);">Implied Return</span>
+                  <span class="val" id="expe-out-upside" style="color: var(--lime); font-weight: 800;">+4.5%</span>
                 </div>
               </div>
               <div class="alert-strip" id="expe-alert">
                 ✔ Expedia B2B segment powers solid growth, driving consolidated cash accretion.
               </div>
             </div>
+          </div>
 
-            <!-- BOOKING OUT -->
-            <div class="output-panel bkng-out">
-              <div class="out-header">Booking EBITDA &amp; Cash Coverage</div>
+          <!-- BOOKING PROJECTIONS & VALUATION -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="sliders-panel">
+              <h3 style="font-family: var(--font-header); font-size: 14px; border-bottom: 1px solid rgba(240, 207, 103, 0.2); padding-bottom: 8px; color: var(--gold);">Booking Holdings (BKNG) Inputs</h3>
+              
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--gold);">●</span> Merchant Revenue Growth</span>
+                  <span class="slider-val" id="bkng-merch-val" style="color: var(--gold);">15%</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-bkng-merch" min="5" max="40" value="15" oninput="runSandbox()">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--blue-2);">●</span> Agency Revenue Growth</span>
+                  <span class="slider-val" id="bkng-agency-val" style="color: var(--blue-2);">-6%</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-bkng-agency" min="-15" max="15" value="-6" oninput="runSandbox()">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--cyan);">●</span> FCF Margin</span>
+                  <span class="slider-val" id="bkng-fcf-val" style="color: var(--cyan);">33.8%</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-bkng-fcf" min="20" max="40" value="34" oninput="runSandbox()">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-lbl-row">
+                  <span class="slider-title"><span style="color: var(--gold);">●</span> Target EV/FCF Multiple</span>
+                  <span class="slider-val" id="bkng-mult-val" style="color: var(--gold);">13.7x</span>
+                </div>
+                <input type="range" class="val-slider" id="slider-bkng-mult" min="8" max="25" value="13.7" step="0.1" oninput="runSandbox()">
+              </div>
+            </div>
+
+            <!-- Booking Output Panel -->
+            <div class="output-panel bkng-out" style="border-left: 4px solid var(--gold);">
+              <div class="out-header" style="color: var(--gold);">Booking Target Valuation Output</div>
               <div class="out-grid">
                 <div class="out-box">
-                  <span class="lbl">Forward Revenue</span>
-                  <span class="val" id="bkng-out-rev">$29.0B</span>
+                  <span class="lbl">Consol. Revenue</span>
+                  <span class="val" id="bkng-out-rev">$28.11B</span>
                 </div>
                 <div class="out-box">
-                  <span class="lbl">Adjusted EBITDA</span>
-                  <span class="val" id="bkng-out-ebitda">$10.6B</span>
+                  <span class="lbl">Forward FCF</span>
+                  <span class="val" id="bkng-out-fcf">$9.50B</span>
                 </div>
                 <div class="out-box">
-                  <span class="lbl">Implied EV/EBITDA</span>
-                  <span class="val" id="bkng-out-mult">11.5x</span>
+                  <span class="lbl">Target EV</span>
+                  <span class="val" id="bkng-out-ev">$130.2B</span>
+                </div>
+              </div>
+              <div class="out-grid" style="margin-top: 8px;">
+                <div class="out-box">
+                  <span class="lbl">Target Mcap</span>
+                  <span class="val" id="bkng-out-mcap">$127.2B</span>
+                </div>
+                <div class="out-box" style="border: 1px solid rgba(240, 207, 103, 0.2); background: rgba(240, 207, 103, 0.02);">
+                  <span class="lbl" style="color: var(--gold);">Target Stock Price</span>
+                  <span class="val" id="bkng-out-share" style="color: var(--gold); font-weight: 800;">$3,717.84</span>
+                </div>
+                <div class="out-box" id="bkng-out-return-box" style="border: 1px solid rgba(184, 242, 57, 0.2); background: rgba(184, 242, 57, 0.02);">
+                  <span class="lbl" style="color: var(--lime);">Implied Return</span>
+                  <span class="val" id="bkng-out-upside" style="color: var(--lime); font-weight: 800;">+4.4%</span>
                 </div>
               </div>
               <div class="alert-strip" id="bkng-alert" style="background: rgba(240, 207, 103, 0.08); border-color: rgba(240, 207, 103, 0.2); color: var(--gold);">
-                ✔ Booking Holdings retains highly resilient, stable double-digit margins.
+                ✔ Booking Holdings retains highly resilient, stable double-digit cash conversion.
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -1123,68 +1195,125 @@
 
     // Interactive Sandbox logic
     function runSandbox() {
-        // Inputs
+        // Expedia Inputs
         const expeB2bGrow = parseFloat(document.getElementById('slider-expe-b2b').value) / 100;
         const expeB2cGrow = parseFloat(document.getElementById('slider-expe-b2c').value) / 100;
         const expeFcfMargin = parseFloat(document.getElementById('slider-expe-fcf').value) / 100;
-        const bkngEbitdaGrow = parseFloat(document.getElementById('slider-bkng-grow').value) / 100;
+        const expeTargetMult = parseFloat(document.getElementById('slider-expe-mult').value);
+
+        // Booking Inputs
+        const bkngMerchGrow = parseFloat(document.getElementById('slider-bkng-merch').value) / 100;
+        const bkngAgencyGrow = parseFloat(document.getElementById('slider-bkng-agency').value) / 100;
+        const bkngFcfMargin = parseFloat(document.getElementById('slider-bkng-fcf').value) / 100;
+        const bkngTargetMult = parseFloat(document.getElementById('slider-bkng-mult').value);
 
         // Update range value labels
         document.getElementById('expe-b2b-val').innerText = (expeB2bGrow * 100).toFixed(0) + '%';
         document.getElementById('expe-b2c-val').innerText = (expeB2cGrow > 0 ? '+' : '') + (expeB2cGrow * 100).toFixed(0) + '%';
-        document.getElementById('expe-fcf-val').innerText = (expeFcfMargin * 100).toFixed(0) + '%';
-        document.getElementById('bkng-grow-val').innerText = (bkngEbitdaGrow > 0 ? '+' : '') + (bkngEbitdaGrow * 100).toFixed(0) + '%';
+        document.getElementById('expe-fcf-val').innerText = (expeFcfMargin * 100).toFixed(1) + '%';
+        document.getElementById('expe-mult-val').innerText = expeTargetMult.toFixed(1) + 'x';
 
-        // Expedia Math Projections
-        // FY2025 starting: B2B ~$5.0B (est), B2C ~$9.73B. Total = 14.73B
-        const expeB2bBase = 5.0;
-        const expeB2cBase = 9.73;
-        const expeMcap = 26.2; // $26.2B market cap
+        document.getElementById('bkng-merch-val').innerText = (bkngMerchGrow * 100).toFixed(0) + '%';
+        document.getElementById('bkng-agency-val').innerText = (bkngAgencyGrow > 0 ? '+' : '') + (bkngAgencyGrow * 100).toFixed(0) + '%';
+        document.getElementById('bkng-fcf-val').innerText = (bkngFcfMargin * 100).toFixed(1) + '%';
+        document.getElementById('bkng-mult-val').innerText = bkngTargetMult.toFixed(1) + 'x';
+
+        // Expedia Math Projections (starting 2025: B2B $4.75B, B2C $9.70B, trivago $0.28B. Total $14.73B)
+        const expeB2bBase = 4.75;
+        const expeB2cBase = 9.70;
+        const expeTrivagoBase = 0.28;
 
         const expeB2bProj = expeB2bBase * (1 + expeB2bGrow);
         const expeB2cProj = expeB2cBase * (1 + expeB2cGrow);
-        const expeTotalRev = expeB2bProj + expeB2cProj;
+        const expeTotalRev = expeB2bProj + expeB2cProj + expeTrivagoBase;
         const expeProjFCF = expeTotalRev * expeFcfMargin;
-        const expeMult = expeMcap / expeProjFCF; // P/FCF multiple
-        const expeEvMult = 19.0 / expeProjFCF;  // EV/FCF multiple
+
+        const expeTargetEV = expeProjFCF * expeTargetMult;
+        const expeTargetMcap = expeTargetEV + 7.2; // Mcap = EV + 7.2B based on Net Cash balance
+        const expeTargetShare = expeTargetMcap / 0.12274; // divided by 122.74M shares
+        const expeUpside = (expeTargetShare / 214.65 - 1) * 100;
 
         document.getElementById('expe-out-rev').innerText = '$' + expeTotalRev.toFixed(2) + 'B';
         document.getElementById('expe-out-fcf').innerText = '$' + expeProjFCF.toFixed(2) + 'B';
-        document.getElementById('expe-out-mult').innerText = expeMult.toFixed(1) + 'x | ' + expeEvMult.toFixed(1) + 'x';
-
-        const expeAlert = document.getElementById('expe-alert');
-        if (expeEvMult < 6.5) {
-            expeAlert.className = "alert-strip";
-            expeAlert.innerHTML = "✔ Rerate Signal: Distressed EV/FCF multiple (" + expeEvMult.toFixed(1) + "x) offers highly asymmetric upside!";
+        document.getElementById('expe-out-ev').innerText = '$' + expeTargetEV.toFixed(1) + 'B';
+        document.getElementById('expe-out-mcap').innerText = '$' + expeTargetMcap.toFixed(1) + 'B';
+        document.getElementById('expe-out-share').innerText = '$' + expeTargetShare.toFixed(2);
+        
+        const expeUpsideEl = document.getElementById('expe-out-upside');
+        expeUpsideEl.innerText = (expeUpside > 0 ? '+' : '') + expeUpside.toFixed(1) + '%';
+        const expeReturnBox = document.getElementById('expe-out-return-box');
+        if (expeUpside < 0) {
+            expeReturnBox.style.borderColor = "rgba(255, 95, 110, 0.2)";
+            expeReturnBox.style.background = "rgba(255, 95, 110, 0.02)";
+            expeUpsideEl.style.color = "var(--red)";
         } else {
-            expeAlert.className = "alert-strip";
-            expeAlert.innerHTML = "✔ Expedia FCF conversion is stable under consolidated software scaling.";
+            expeReturnBox.style.borderColor = "rgba(184, 242, 57, 0.2)";
+            expeReturnBox.style.background = "rgba(184, 242, 57, 0.02)";
+            expeUpsideEl.style.color = "var(--lime)";
         }
 
-        // Booking Math Projections
-        // FY2025 starting: Revenue 26.9B, EBITDA 9.9B, EV 122.0B
-        const bkngRevBase = 26.9;
-        const bkngEbitdaBase = 9.9;
-        const bkngEv = 122.0;
+        const expeAlert = document.getElementById('expe-alert');
+        if (expeTargetMult > 8.0) {
+            expeAlert.className = "alert-strip";
+            expeAlert.style.color = "var(--lime)";
+            expeAlert.style.borderColor = "rgba(184, 242, 57, 0.2)";
+            expeAlert.style.background = "rgba(184, 242, 57, 0.08)";
+            expeAlert.innerHTML = "✔ Multiple Rerate: Reaching " + expeTargetMult.toFixed(1) + "x EV/FCF generates substantial upside under B2B software scaling.";
+        } else {
+            expeAlert.className = "alert-strip";
+            expeAlert.style.color = "";
+            expeAlert.style.borderColor = "";
+            expeAlert.style.background = "";
+            expeAlert.innerHTML = "✔ Expedia B2B segment powers solid growth, driving consolidated cash accretion.";
+        }
 
-        const bkngRevProj = bkngRevBase * (1 + bkngEbitdaGrow * 0.85); // assume mild revenue elastic correlation
-        const bkngEbitdaProj = bkngEbitdaBase * (1 + bkngEbitdaGrow);
-        const bkngEvMultiple = bkngEv / bkngEbitdaProj;
+        // Booking Math Projections (starting 2025: Merchant $17.76B, Agency $7.97B, Ads $1.19B. Total $26.92B)
+        const bkngMerchBase = 17.76;
+        const bkngAgencyBase = 7.97;
+        const bkngAdsBase = 1.19;
 
-        document.getElementById('bkng-out-rev').innerText = '$' + bkngRevProj.toFixed(1) + 'B';
-        document.getElementById('bkng-out-ebitda').innerText = '$' + bkngEbitdaProj.toFixed(1) + 'B';
-        document.getElementById('bkng-out-mult').innerText = bkngEvMultiple.toFixed(1) + 'x';
+        const bkngMerchProj = bkngMerchBase * (1 + bkngMerchGrow);
+        const bkngAgencyProj = bkngAgencyBase * (1 + bkngAgencyGrow);
+        const bkngTotalRev = bkngMerchProj + bkngAgencyProj + bkngAdsBase;
+        const bkngProjFCF = bkngTotalRev * bkngFcfMargin;
+
+        const bkngTargetEV = bkngProjFCF * bkngTargetMult;
+        const bkngTargetMcap = bkngTargetEV - 3.0; // Mcap = EV - 3.0B based on net debt
+        const bkngTargetShare = bkngTargetMcap / 0.0342; // divided by 34.2M shares
+        const bkngUpside = (bkngTargetShare / 3560.0 - 1) * 100;
+
+        document.getElementById('bkng-out-rev').innerText = '$' + bkngTotalRev.toFixed(2) + 'B';
+        document.getElementById('bkng-out-fcf').innerText = '$' + bkngProjFCF.toFixed(2) + 'B';
+        document.getElementById('bkng-out-ev').innerText = '$' + bkngTargetEV.toFixed(1) + 'B';
+        document.getElementById('bkng-out-mcap').innerText = '$' + bkngTargetMcap.toFixed(1) + 'B';
+        document.getElementById('bkng-out-share').innerText = '$' + bkngTargetShare.toFixed(2);
+
+        const bkngUpsideEl = document.getElementById('bkng-out-upside');
+        bkngUpsideEl.innerText = (bkngUpside > 0 ? '+' : '') + bkngUpside.toFixed(1) + '%';
+        const bkngReturnBox = document.getElementById('bkng-out-return-box');
+        if (bkngUpside < 0) {
+            bkngReturnBox.style.borderColor = "rgba(255, 95, 110, 0.2)";
+            bkngReturnBox.style.background = "rgba(255, 95, 110, 0.02)";
+            bkngUpsideEl.style.color = "var(--red)";
+        } else {
+            bkngReturnBox.style.borderColor = "rgba(184, 242, 57, 0.2)";
+            bkngReturnBox.style.background = "rgba(184, 242, 57, 0.02)";
+            bkngUpsideEl.style.color = "var(--lime)";
+        }
 
         const bkngAlert = document.getElementById('bkng-alert');
-        if (bkngEbitdaGrow < 0) {
+        if (bkngTargetMult < 11.0) {
             bkngAlert.className = "alert-strip warn";
-            bkngAlert.innerHTML = "⚠ Margin Contraction: Negative growth projections expose BKNG's high multiple to severe multiple contraction.";
+            bkngAlert.style.color = "";
+            bkngAlert.style.borderColor = "";
+            bkngAlert.style.background = "";
+            bkngAlert.innerHTML = "⚠ Multiple Contraction: A contraction of target multiple to " + bkngTargetMult.toFixed(1) + "x triggers downside risk.";
         } else {
             bkngAlert.className = "alert-strip";
             bkngAlert.style.color = "var(--gold)";
             bkngAlert.style.borderColor = "rgba(240, 207, 103, 0.2)";
             bkngAlert.style.background = "rgba(240, 207, 103, 0.08)";
-            bkngAlert.innerHTML = "✔ Booking Holdings retains highly resilient, stable double-digit margins.";
+            bkngAlert.innerHTML = "✔ Booking Holdings retains highly resilient, stable double-digit cash conversion.";
         }
     }
 
