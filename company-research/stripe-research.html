@@ -1,0 +1,2000 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Underworld Monetization Engine: Stripe Equity Research Dashboard</title>
+  <meta name="description" content="An interactive premium research dashboard evaluating Stripe's core global processing scale, stablecoin orchestration, and AI Machine Payments protocol." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #030408;
+      --bg-card: rgba(8, 10, 18, 0.6);
+      --bg-card-hover: rgba(14, 18, 30, 0.78);
+      --border: rgba(139, 92, 246, 0.08);
+      --border-hover: rgba(139, 92, 246, 0.22);
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --soft: #d1d5db;
+      --faint: #374151;
+      
+      --cyan: #06b6d4;
+      --purple: #a855f7;
+      --indigo: #6366f1;
+      --emerald: #10b981;
+      --gold: #f59e0b;
+      --pink: #ec4899;
+      --red: #ef4444;
+      
+      --shadow: 0 30px 90px rgba(0, 0, 0, .75);
+      --radius: 20px;
+      --radius-sm: 10px;
+      --max: 1320px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 8%, rgba(99, 102, 241, 0.14), transparent 45rem),
+        radial-gradient(circle at 90% 12%, rgba(236, 72, 153, 0.1), transparent 40rem),
+        radial-gradient(circle at 50% 60%, rgba(168, 85, 247, 0.06), transparent 50rem),
+        #030408;
+      color: var(--text);
+      font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 50px 24px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Grid layout matching grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.01) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.01) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 60%, transparent 100%);
+    }
+
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    main {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* HEADER BLOCK */
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 36px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-meta-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      border-radius: 50%;
+      color: #c084fc;
+      box-shadow: inset 0 0 16px rgba(139, 92, 246, 0.2), 0 0 20px rgba(139, 92, 246, 0.35);
+      font-family: "Azeret Mono", monospace;
+      font-weight: 700;
+      font-size: 1.35rem;
+    }
+
+    .brand-meta {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      text-transform: uppercase;
+    }
+
+    .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+    }
+
+    .title-area h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 20%, var(--soft) 60%, var(--muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .title-area p.subtitle {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      color: var(--soft);
+      font-weight: 500;
+      max-width: 950px;
+    }
+
+    .disclaimer-card {
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      background: rgba(245, 158, 11, 0.03);
+      border-radius: var(--radius-sm);
+      padding: 18px 22px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .disclaimer-card svg {
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .disclaimer-card strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* DASHBOARD GRID PANELS (Strict 3-Column Layout) */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.4s ease, 
+                  background 0.4s ease,
+                  box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      box-shadow: 
+        0 40px 90px rgba(139, 92, 246, 0.05),
+        0 30px 60px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.04) 0%, rgba(6, 182, 212, 0.04) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding-bottom: 14px;
+    }
+
+    .card-title-group h2 {
+      font-size: 1.28rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title-group h2 span.num {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.85rem;
+      color: var(--cyan);
+      background: rgba(6, 182, 212, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: "Azeret Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* CARD 1: GLOBAL PROCESSING */
+    .roles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .role-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .role-item:hover {
+      background: rgba(255, 255, 255, 0.035);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .role-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--indigo);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .role-item:nth-child(2) .role-icon { background: rgba(168, 85, 247, 0.12); color: var(--purple); }
+    .role-item:nth-child(3) .role-icon { background: rgba(16, 185, 129, 0.12); color: var(--emerald); }
+    .role-item:nth-child(4) .role-icon { background: rgba(6, 182, 212, 0.12); color: var(--cyan); }
+
+    .role-details h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--soft);
+      margin-bottom: 3px;
+    }
+
+    .role-details p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .thesis-verdict {
+      margin-top: auto;
+      border-top: 1px dashed var(--border);
+      padding-top: 16px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--soft);
+      line-height: 1.5;
+    }
+
+    /* CARD 2: TPV & COHORT SPLITS */
+    .capital-preference {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .card-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+    }
+
+    .card-tab {
+      flex: 1;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-family: "Manrope", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: calc(var(--radius-sm) - 2px);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .card-tab:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .card-tab.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-tab.active.stablecoin-tab {
+      border-color: rgba(236, 72, 153, 0.3);
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.15);
+    }
+
+    .card-tab.active.tvl-tab {
+      border-color: rgba(6, 182, 212, 0.3);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+    }
+
+    .tab-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .charts-container {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .chart-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chart-label {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chart-label span.highlight {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .donut-chart-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.01);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .donut-svg-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .donut-svg-container svg {
+      transform: rotate(-90deg);
+      overflow: visible;
+    }
+
+    .donut-slice {
+      fill: none;
+      stroke-width: 7;
+      transition: stroke-width 0.3s, filter 0.3s;
+      cursor: pointer;
+    }
+
+    .donut-slice:hover {
+      stroke-width: 9;
+      filter: drop-shadow(0 0 6px currentColor);
+    }
+
+    .donut-center-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Azeret Mono", monospace;
+      pointer-events: none;
+    }
+
+    .donut-center-text strong {
+      font-size: 1.05rem;
+      color: var(--pink);
+    }
+
+    .donut-center-text span {
+      font-size: 0.58rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-family: "Azeret Mono", monospace;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .legend-item:hover { color: #fff; }
+    .legend-color { width: 11px; height: 11px; border-radius: 3px; }
+    .legend-item strong { color: var(--soft); }
+    .legend-item:hover strong { color: #fff; }
+
+    /* TVL Bar Chart */
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.01);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 85px 1fr 55px;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .bar-name {
+      font-family: "Azeret Mono", monospace;
+      color: var(--soft);
+    }
+
+    .bar-outer {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-inner {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
+    }
+
+    .bar-row:hover .bar-inner {
+      filter: brightness(1.3) drop-shadow(0 0 4px currentColor);
+    }
+
+    .bar-value {
+      font-family: "Azeret Mono", monospace;
+      color: var(--muted);
+      text-align: right;
+      transition: color 0.3s;
+    }
+
+    .bar-row:hover .bar-value { color: #fff; }
+
+    .dominance-verdict {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .dominance-verdict strong { color: var(--soft); }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CARD 3: THE DEVELOPER PILLS */
+    .moat-intro {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .query-pills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .query-pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .query-pill:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .query-pill.active {
+      background: rgba(168, 85, 247, 0.08);
+      border-color: rgba(168, 85, 247, 0.25);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+    }
+
+    .query-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--soft);
+      transition: color 0.3s;
+    }
+
+    .query-pill:hover .query-text,
+    .query-pill.active .query-text {
+      color: #fff;
+    }
+
+    .query-pill-arrow {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.3s ease, color 0.3s;
+    }
+
+    .query-pill.active .query-pill-arrow {
+      transform: rotate(90deg);
+      color: var(--purple);
+    }
+
+    .query-answer-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--soft);
+      min-height: 90px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    /* CARD 4: STABLECOIN PIPELINE */
+    .settlement-brief {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .pipeline-wrapper {
+      margin-bottom: 20px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .pipeline-svg {
+      width: 100%;
+      height: 240px;
+      display: block;
+    }
+
+    .flow-line {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+      opacity: 0.6;
+    }
+
+    .svg-node {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .svg-node:hover {
+      transform: scale(1.1);
+    }
+
+    .node-bg {
+      stroke-dasharray: 100;
+      animation: rotateBorder 8s linear infinite;
+    }
+
+    @keyframes rotateBorder {
+      from { stroke-dashoffset: 100; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .node-label {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.68rem;
+      fill: var(--muted);
+      font-weight: 500;
+    }
+
+    .l1-base-group {
+      cursor: pointer;
+    }
+
+    .l1-base-bg {
+      transition: fill 0.3s, stroke 0.3s;
+    }
+
+    .l1-base-group:hover .l1-base-bg {
+      fill: #1a2542;
+      stroke: var(--pink);
+    }
+
+    .l1-base-text {
+      font-family: "Manrope", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      fill: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    .l2-detail-box {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .l2-detail-box strong { color: var(--soft); }
+
+    /* CARD 5: MACHINE PAYMENTS */
+    .capture-brief {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .flywheel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .flywheel-cell {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .flywheel-cell:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .flywheel-cell.active {
+      background: rgba(16, 185, 129, 0.05);
+      border-color: rgba(16, 185, 129, 0.2);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.08);
+    }
+
+    .flywheel-letter {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--emerald);
+      background: rgba(16, 185, 129, 0.1);
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+    }
+
+    .flywheel-cell h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--soft);
+    }
+
+    .flywheel-cell p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .flywheel-detail-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--soft);
+      min-height: 80px;
+    }
+
+    /* CARD 6: STRUCTURAL RISKS */
+    .risks-brief {
+      font-size: 0.94rem;
+      color: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    .risks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .risk-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px;
+      background: rgba(239, 68, 68, 0.015);
+      border: 1px solid rgba(239, 68, 68, 0.03);
+      border-radius: var(--radius-sm);
+    }
+
+    .risk-num {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--red);
+      background: rgba(239, 68, 68, 0.1);
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .risk-info h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--soft);
+      margin-bottom: 3px;
+    }
+
+    .risk-info p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* COMPARISON MATRIX SECTION */
+    .comparison-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .comparison-section h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, #ffffff, var(--soft));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    td.label-column {
+      font-family: "Manrope", sans-serif;
+      font-weight: 700;
+      color: var(--soft);
+      width: 180px;
+    }
+
+    td.peer-cell {
+      border-left: 1px solid var(--border);
+    }
+
+    td.stripe-cell {
+      border-left: 1px solid rgba(139, 92, 246, 0.2);
+      border-right: 1px solid rgba(139, 92, 246, 0.2);
+      background: rgba(139, 92, 246, 0.015);
+      position: relative;
+    }
+
+    tr:hover td.stripe-cell {
+      background: rgba(6, 182, 212, 0.035);
+    }
+
+    tr { transition: background 0.2s; }
+    tr:hover { background: rgba(255, 255, 255, 0.01); }
+
+    .cell-title {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .peer-cell .cell-title { color: var(--gold); }
+    .stripe-cell .cell-title { color: var(--cyan); }
+
+    .cell-value {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--soft);
+    }
+
+    .stripe-cell .cell-value {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* INTERACTIVE VALUE SANDBOX */
+    .valuation-card {
+      grid-column: span 3;
+    }
+
+    .val-split-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      margin-top: 12px;
+    }
+
+    .val-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.015);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .preset-btn {
+      flex: 1;
+      min-width: 80px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-family: "Manrope", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: calc(var(--radius-sm) - 2px);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .preset-btn:hover { color: var(--text); background: rgba(255, 255, 255, 0.02); }
+
+    .preset-btn.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .preset-btn.active.bear-btn { border-color: rgba(239, 68, 68, 0.25); color: var(--red); }
+    .preset-btn.active.base-btn { border-color: rgba(6, 182, 212, 0.25); color: var(--cyan); }
+    .preset-btn.active.bull-btn { border-color: rgba(168, 85, 247, 0.25); color: var(--purple); }
+
+    .sliders-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slider-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.78rem;
+    }
+
+    .slider-title { color: var(--soft); font-weight: 500; }
+    .slider-value { font-weight: 700; color: var(--cyan); }
+
+    .val-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+      outline: none;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .val-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .val-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      background: #fff;
+      box-shadow: 0 0 14px var(--cyan);
+    }
+
+    #slider-tpv::-webkit-slider-thumb { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    #slider-mix::-webkit-slider-thumb { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
+    #slider-margin::-webkit-slider-thumb { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
+    #slider-ai::-webkit-slider-thumb { background: var(--emerald); box-shadow: 0 0 8px var(--emerald); }
+
+    .output-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.008);
+      border: 1px solid rgba(255, 255, 255, 0.015);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      justify-content: space-between;
+    }
+
+    .breakdown-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .breakdown-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .breakdown-label strong { color: var(--soft); }
+
+    .breakdown-bar-outer {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .breakdown-bar-inner {
+      height: 100%;
+      border-radius: 5px;
+      width: 0%;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .methodology-box {
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .methodology-box strong { color: var(--soft); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px dashed var(--border);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      color: var(--faint);
+    }
+
+    .sources-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .sources-list span.title { font-weight: 600; color: var(--muted); }
+    .sources-list a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .sources-list a:hover { color: var(--cyan); }
+
+    .footer-mark { display: flex; align-items: center; gap: 8px; }
+    .star-icon { color: var(--cyan); filter: drop-shadow(0 0 4px var(--cyan)); animation: pulseStar 3s infinite ease-in-out; }
+
+    @keyframes pulseStar {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-top: 24px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+      transform: translateX(-2px);
+    }
+
+    @media (max-width: 1024px) {
+      .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card:nth-child(4) { grid-column: span 2; }
+      .valuation-card { grid-column: span 2; }
+      .val-split-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 30px 16px; }
+      .dashboard-grid { grid-template-columns: 1fr; gap: 20px; }
+      .card:nth-child(4) { grid-column: span 1; }
+      .valuation-card { grid-column: span 1; }
+      th, td { padding: 16px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body id="top">
+  <canvas id="particles-canvas"></canvas>
+
+  <main>
+    <!-- HEADER -->
+    <header>
+      <div class="brand-section">
+        <div class="brand-meta-wrapper">
+          <div class="brand-logo">S</div>
+          <div class="brand-meta">Institutional Tech &amp; Fintech Research</div>
+        </div>
+        <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle visual theme">🌓</button>
+      </div>
+      <div class="title-area">
+        <h1>Monetary Pipeline of the Digital Underworld: Stripe's Scale Advantage</h1>
+        <p class="subtitle">Stripe is consolidating its hold on the traditional internet economy ($1.9T volume) while quietly establishing the baseline rails for global stablecoin settlements and AI agent payments.</p>
+      </div>
+
+      <div class="disclaimer-card">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" x2="12" y1="8" y2="12"></line>
+          <line x1="12" x2="12.01" y1="16" y2="16"></line>
+        </svg>
+        <span>
+          <strong>Investment Disclaimer:</strong> While private, secondary liquidity valuations can be volatile ($159B in Feb 2026), Stripe's FCF power, high switching costs, and developer-first API integrations create the most robust technology moat in the global payments landscape.
+        </span>
+      </div>
+    </header>
+
+    <!-- DASHBOARD GRID -->
+    <div class="dashboard-grid">
+      <!-- CARD 1: GLOBAL SCALE ENGINE -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Scale & Acquirers</span>
+            <h2><span class="num">1</span> Global Processing Engine</h2>
+          </div>
+        </div>
+        <p class="capital-preference">
+          Traditional merchant processors are constrained by local banking monopolies. Stripe operates unified API layers overlaying global monetary networks.
+        </p>
+
+        <div class="roles-list">
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18H8A4 4 0 0 1 4 14V6"/><path d="M12 2v20"/><path d="m17 5 3 3-3 3"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>1. Unified Payment API</h3>
+              <p>Stripe's core API allows developers to accept cards, wallets, and local banking rails in seconds.</p>
+            </div>
+          </div>
+
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>2. Global Acquiring</h3>
+              <p>Optimized direct relationships with regional networks in 47+ countries bypass intermediary markups.</p>
+            </div>
+          </div>
+
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>3. Subscription Engine</h3>
+              <p>Stripe Billing handles multi-tier recurring SaaS models and complex tax calculations (Stripe Tax).</p>
+            </div>
+          </div>
+
+          <div class="role-item">
+            <div class="role-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" x2="12" y1="22.08" y2="12"/></svg>
+            </div>
+            <div class="role-details">
+              <h3>4. Capital & Treasury</h3>
+              <p>Allows businesses to issue debit cards and create custom financial accounts via Stripe Treasury APIs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="thesis-verdict">
+          Verdict: Stripe operates as a software-defined monetary network overlaying the traditional global financial system.
+        </div>
+      </article>
+
+      <!-- CARD 2: MONETARY VOLUME & COHORTS -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Volume Distribution</span>
+            <h2><span class="num">2</span> Processing Scale Moat</h2>
+          </div>
+        </div>
+        <p class="capital-preference">
+          Real institutional scaling requires high-throughput reliability. Stripe's $1.9 Trillion volume represents unmatched internet merchant density.
+        </p>
+
+        <!-- Dynamic Card Tabs -->
+        <div class="card-tabs">
+          <button id="tab-btn-stablecoin" class="card-tab active stablecoin-tab" onclick="switchCardTab('stablecoin')">
+            <span class="tab-indicator" style="background: var(--pink);"></span>
+            Stablecoins ($400B)
+          </button>
+          <button id="tab-btn-tvl" class="card-tab tvl-tab" onclick="switchCardTab('tvl')">
+            <span class="tab-indicator" style="background: var(--cyan);"></span>
+            Total Volumes (TPV)
+          </button>
+        </div>
+
+        <div class="charts-container">
+          <!-- Tab 1 Content: Stablecoins -->
+          <div id="stablecoin-content" class="tab-content active">
+            <div class="chart-block">
+              <div class="chart-label">
+                <span>Stablecoin Payment Share</span>
+                <span id="stablecoin-highlight" class="highlight" style="color: var(--pink);">Mainnet: ~$400B (21.1% TPV)</span>
+              </div>
+              <div class="donut-chart-wrapper">
+                <div class="donut-svg-container">
+                  <svg width="100" height="100" viewBox="0 0 36 36">
+                    <circle cx="18" cy="18" r="15.91549" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="4.5"></circle>
+                    <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--faint)" stroke-width="4.5" stroke-dasharray="78.9 21.1" stroke-dashoffset="0" onclick="selectStablecoin('Others')"></circle>
+                    <circle class="donut-slice" cx="18" cy="18" r="15.91549" fill="none" stroke="var(--pink)" stroke-width="4.5" stroke-dasharray="21.1 78.9" stroke-dashoffset="-78.9" onclick="selectStablecoin('Stablecoins')"></circle>
+                  </svg>
+                  <div class="donut-center-text">
+                    <strong id="donut-percentage">21.1%</strong>
+                    <span id="donut-sub">Stablecoins</span>
+                  </div>
+                </div>
+                <div class="donut-legend">
+                  <div class="legend-item" onclick="selectStablecoin('Stablecoins')">
+                    <div class="legend-color" style="background: var(--pink);"></div>
+                    <span>Stablecoins: <strong style="color: var(--pink); font-weight: 700;">$400B</strong></span>
+                  </div>
+                  <div class="legend-item" onclick="selectStablecoin('Others')">
+                    <div class="legend-color" style="background: var(--faint);"></div>
+                    <span>Fiat &amp; Cards: <strong>$1.50T</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2 Content: Competitor TPV -->
+          <div id="tvl-content" class="tab-content">
+            <div class="chart-block">
+              <div class="chart-label">
+                <span>TPV Peer Comparison</span>
+                <span id="tvl-highlight" class="highlight">Stripe TPV: $1.90T</span>
+              </div>
+              <div class="bar-chart" aria-label="TPV Bar Chart">
+                <div class="bar-row" onclick="highlightChain('Stripe', 1.90)">
+                  <span class="bar-name">Stripe</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 100%; background: linear-gradient(90deg, var(--cyan), var(--indigo)); color: var(--cyan);"></div>
+                  </div>
+                  <span class="bar-value">$1.90T</span>
+                </div>
+                <div class="bar-row" onclick="highlightChain('PayPal', 1.62)">
+                  <span class="bar-name">PayPal</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 85.2%; background: var(--pink); color: var(--pink);"></div>
+                  </div>
+                  <span class="bar-value">$1.62T</span>
+                </div>
+                <div class="bar-row" onclick="highlightChain('Adyen', 1.15)">
+                  <span class="bar-name">Adyen</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 60.5%; background: var(--purple); color: var(--purple);"></div>
+                  </div>
+                  <span class="bar-value">$1.15T</span>
+                </div>
+                <div class="bar-row" onclick="highlightChain('Block/Sq', 0.23)">
+                  <span class="bar-name">Block/Square</span>
+                  <div class="bar-outer">
+                    <div class="bar-inner" style="width: 12.1%; background: var(--faint); color: var(--muted);"></div>
+                  </div>
+                  <span class="bar-value">$230B</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="dominance-verdict">
+          <strong>Underworld Momentum:</strong> Stripe's stablecoin volume ($400B) has rapidly expanded, siphoning off high-friction cross-border wires and settling natively on-chain.
+        </p>
+      </article>
+
+      <!-- CARD 3: THE DEVELOPER PILLS -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Developer Lock-in</span>
+            <h2><span class="num">3</span> The API Ecosystem Moat</h2>
+          </div>
+        </div>
+        <p class="moat-intro">
+          Developer friction and integration adhesive dynamics act as the most robust switching costs in SaaS technology.
+        </p>
+
+        <div class="query-pills-container">
+          <div class="query-pill active" onclick="showAnswer(0)">
+            <span class="query-text">Why is the developer lock-in so sticky?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+          <div class="query-pill" onclick="showAnswer(1)">
+            <span class="query-text">What is Stripe Atlas?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+          <div class="query-pill" onclick="showAnswer(2)">
+            <span class="query-text">What about subscription complexity?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+          <div class="query-pill" onclick="showAnswer(3)">
+            <span class="query-text">How does Stripe Tax capture value?</span>
+            <span class="query-pill-arrow">></span>
+          </div>
+        </div>
+
+        <div class="query-answer-box" id="answer-box">
+          <p><strong>Strict Switching Friction:</strong> Stripe's developer SDKs and payment portals are embedded directly within core client codebases. Swapping to a rival processor involves immense codebase restructuring, security audting, and database migration risks.</p>
+        </div>
+      </article>
+
+      <!-- CARD 4: STABLECOIN ORCHESTRATION PIPELINE -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Underworld Rails</span>
+            <h2><span class="num">4</span> Bridge Stablecoin Pipeline</h2>
+          </div>
+        </div>
+        <p class="settlement-brief">
+          Stripe's payment architecture leverages the newly acquired Bridge orchestration network to route traditional cash assets into digital dollar settlement rails.
+        </p>
+
+        <div class="pipeline-wrapper">
+          <svg viewBox="0 0 500 240" class="pipeline-svg">
+            <defs>
+              <linearGradient id="grad-stripe-base" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0a0a1a" />
+                <stop offset="50%" stop-color="#121835" />
+                <stop offset="100%" stop-color="#0b1b36" />
+              </linearGradient>
+            </defs>
+
+            <!-- Connecting Paths -->
+            <path id="path-fiat" class="flow-line" d="M50,70 Q50,165 250,200" />
+            <path id="path-usdc" class="flow-line" d="M150,70 Q150,175 250,200" />
+            <path id="path-usdt" class="flow-line" d="M250,70 L250,200" />
+            <path id="path-sol" class="flow-line" d="M350,70 Q350,175 250,200" />
+            <path id="path-base-l2" class="flow-line" d="M450,70 Q450,165 250,200" />
+
+            <!-- Flowing Active Particles -->
+            <circle r="4.5" fill="var(--cyan)">
+              <animateMotion path="M50,70 Q50,165 250,200" dur="2.8s" repeatCount="indefinite" begin="0s" />
+            </circle>
+            <circle r="4.5" fill="var(--purple)">
+              <animateMotion path="M150,70 Q150,175 250,200" dur="2.4s" repeatCount="indefinite" begin="0.5s" />
+            </circle>
+            <circle r="4.5" fill="var(--pink)">
+              <animateMotion path="M250,70 L250,200" dur="2.0s" repeatCount="indefinite" begin="0.2s" />
+            </circle>
+            <circle r="4.5" fill="var(--indigo)">
+              <animateMotion path="M350,70 Q350,175 250,200" dur="2.6s" repeatCount="indefinite" begin="0.8s" />
+            </circle>
+            <circle r="4.5" fill="var(--gold)">
+              <animateMotion path="M450,70 Q450,165 250,200" dur="3.0s" repeatCount="indefinite" begin="0.4s" />
+            </circle>
+
+            <!-- L2 Interactive Nodes -->
+            <g class="svg-node" transform="translate(50, 40)" onclick="selectL2('fiat')" style="color: var(--cyan);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <circle r="8" fill="var(--cyan)" />
+            </g>
+            <g class="svg-node" transform="translate(150, 40)" onclick="selectL2('usdc')" style="color: var(--purple);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <path d="M-8,6 L0,-10 L8,6 Z" fill="none" stroke="var(--purple)" stroke-width="2.5" stroke-linejoin="round" />
+            </g>
+            <g class="svg-node" transform="translate(250, 40)" onclick="selectL2('usdt')" style="color: var(--pink);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <circle r="9" fill="none" stroke="var(--pink)" stroke-width="2.5" />
+              <path d="M-5,0 L5,0" stroke="var(--pink)" stroke-width="2.5" stroke-linecap="round" />
+            </g>
+            <g class="svg-node" transform="translate(350, 40)" onclick="selectL2('solana')" style="color: var(--indigo);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <path d="M-6,-6 L6,-6 L-6,6 L6,6" fill="none" stroke="var(--indigo)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <g class="svg-node" transform="translate(450, 40)" onclick="selectL2('tempo')" style="color: var(--gold);">
+              <circle r="22" fill="#0c0e17" stroke="currentColor" stroke-width="2" class="node-bg" />
+              <rect x="-6" y="-6" width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="2" rx="2" />
+              <line x1="-3" y1="0" x2="3" y2="0" stroke="var(--gold)" stroke-width="2" />
+            </g>
+
+            <!-- Node Labels -->
+            <text x="50" y="78" text-anchor="middle" class="node-label">Fiat Cash</text>
+            <text x="150" y="78" text-anchor="middle" class="node-label">USDC API</text>
+            <text x="250" y="78" text-anchor="middle" class="node-label">USDT Rails</text>
+            <text x="350" y="78" text-anchor="middle" class="node-label">Solana L1</text>
+            <text x="450" y="78" text-anchor="middle" class="node-label">Tempo L1</text>
+
+            <!-- L1 Base -->
+            <g class="l1-base-group" transform="translate(250, 205)">
+              <ellipse cx="0" cy="0" rx="190" ry="18" fill="url(#grad-stripe-base)" stroke="var(--cyan)" stroke-width="2" class="l1-base-bg" />
+              <text x="0" y="5" text-anchor="middle" class="l1-base-text">Bridge Stablecoin Orchestration Layer</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="l2-detail-box" id="l2-details-box">
+          <p><strong>Interactive Routing Pipeline:</strong> Click on any pipeline node above to see how Stripe routes monetary volumes seamlessly from traditional checking accounts into multi-chain stablecoin settlement networks.</p>
+        </div>
+      </article>
+
+      <!-- CARD 5: MACHINE PAYMENTS PROTOCOL -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">AI & Micropayments</span>
+            <h2><span class="num">5</span> AI Machine Payments Flywheel</h2>
+          </div>
+        </div>
+        <p class="capture-brief">
+          Four distinct structural pillars form the Machine Payments Protocol (Tempo L1), clearing friction for autonomous agents.
+        </p>
+
+        <div class="flywheel-grid">
+          <div class="flywheel-cell active" onclick="showFlywheel(0)">
+            <div class="flywheel-letter">A</div>
+            <h3>Autonomous Wallets</h3>
+            <p>AI agents hold native stablecoin balances via Stripe API layers.</p>
+          </div>
+
+          <div class="flywheel-cell" onclick="showFlywheel(1)">
+            <div class="flywheel-letter">B</div>
+            <h3>Compute Micropayments</h3>
+            <p>Instant L1 settlement allows AI agents to purchase GPU capacity per second.</p>
+          </div>
+
+          <div class="flywheel-cell" onclick="showFlywheel(2)">
+            <div class="flywheel-letter">C</div>
+            <h3>Auto-Refills</h3>
+            <p>SaaS endpoints trigger instant automated balance top-ups without human steps.</p>
+          </div>
+
+          <div class="flywheel-cell" onclick="showFlywheel(3)">
+            <div class="flywheel-letter">D</div>
+            <h3>USDC Native</h3>
+            <p>Tempo L1 runs entirely on USD stablecoins, avoiding currency volatility.</p>
+          </div>
+        </div>
+
+        <div class="flywheel-detail-box" id="flywheel-box">
+          <p><strong>A. Autonomous Wallets:</strong> Stripe provides programmatically managed wallets with embedded security controls, allowing AI agents to hold and spend limits without central authority holds.</p>
+        </div>
+      </article>
+
+      <!-- CARD 6: STRUCTURAL RISKS -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-subtitle">Headwind Warnings</span>
+            <h2><span class="num">6</span> Structural Risks</h2>
+          </div>
+        </div>
+        <p class="risks-brief">
+          Five key risk parameters that represent headwinds to Stripe's premium private valuation and payment volumes.
+        </p>
+
+        <div class="risks-list">
+          <div class="risk-item">
+            <span class="risk-num">1</span>
+            <div class="risk-info">
+              <h3>Adyen Regional Competition</h3>
+              <p>Adyen dominates direct enterprise connections in Europe, driving margin compression.</p>
+            </div>
+          </div>
+
+          <div class="risk-item">
+            <span class="risk-num">2</span>
+            <div class="risk-info">
+              <h3>Card Interchange Compression</h3>
+              <p>Global regulatory bodies are enforcing hard limits on credit card interchange rates.</p>
+            </div>
+          </div>
+
+          <div class="risk-item">
+            <span class="risk-num">3</span>
+            <div class="risk-info">
+              <h3>Cross-Border Regs</h3>
+              <p>Stricter AML and digital passporting rules hamper stablecoin transfers in Europe and APAC.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- COMPARISON MATRIX SECTION -->
+      <section class="comparison-section valuation-card">
+        <h2>📊 Global Merchant Processing Infrastructure Matrix</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature / Metric</th>
+                <th class="peer-cell">Adyen (AMS: ADYEN)</th>
+                <th class="stripe-cell">Stripe (Private)</th>
+                <th>PayPal / Braintree</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label-column">Consolidated TPV</td>
+                <td class="peer-cell">
+                  <div class="cell-title">Adyen Scale</div>
+                  <div class="cell-value">$1.15 Trillion (FY2025)</div>
+                </td>
+                <td class="stripe-cell">
+                  <div class="cell-title">Stripe Scale</div>
+                  <div class="cell-value">$1.90 Trillion (FY2025)</div>
+                </td>
+                <td>
+                  <div class="cell-title">PayPal Scale</div>
+                  <div class="cell-value">$1.62 Trillion (FY2025)</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-column">Stablecoin Settlement</td>
+                <td class="peer-cell">
+                  <div class="cell-value">Indirect / Third-party gates</div>
+                </td>
+                <td class="stripe-cell">
+                  <div class="cell-value">Native / Direct Bridge API, Tempo L1 Blockspace</div>
+                </td>
+                <td>
+                  <div class="cell-value">PYUSD native within PayPal wallets</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-column">AI Micropayments</td>
+                <td class="peer-cell">
+                  <div class="cell-value">Not supported natively</div>
+                </td>
+                <td class="stripe-cell">
+                  <div class="cell-value">Tempo L1 Machine Payments Protocol (Compute per sec)</div>
+                </td>
+                <td>
+                  <div class="cell-value">High friction card authorization holds</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-column">Estimated Net Take Rate</td>
+                <td class="peer-cell">
+                  <div class="cell-value">~0.16% (Volume-heavy mix)</div>
+                </td>
+                <td class="stripe-cell">
+                  <div class="cell-value">~0.307% (SaaS / Premium API mix)</div>
+                </td>
+                <td>
+                  <div class="cell-value">~0.42% (Braintree + Retail PayPal wallets)</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE VALUATION SANDBOX -->
+      <section class="comparison-section valuation-card">
+        <h2>🛠 Stripe Valuation &amp; AI Agent Volume Projections</h2>
+        <p class="capital-preference" style="margin-bottom: 24px;">
+          Adjust the payment sliders below to simulate Stripe's future processing capacity, take-rate changes, and AI agent transaction volume under various market scenarios.
+        </p>
+
+        <div class="val-split-grid">
+          <!-- Sliders and Inputs -->
+          <div class="sliders-panel">
+            <div class="val-presets">
+              <button class="preset-btn bear-btn" onclick="applyPreset('bear')">Bear Case</button>
+              <button class="preset-btn base-btn active" onclick="applyPreset('base')">Base Case</button>
+              <button class="preset-btn bull-btn" onclick="applyPreset('bull')">Bull Case</button>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-info-row">
+                <span class="slider-title">TPV Growth Rate</span>
+                <span class="slider-value" id="val-tpv-growth">25%</span>
+              </div>
+              <input type="range" class="val-slider" id="slider-tpv" min="5" max="45" value="25" oninput="runSandbox()">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-info-row">
+                <span class="slider-title">Stablecoin Mix Shift (of TPV)</span>
+                <span class="slider-value" id="val-mix-shift">21%</span>
+              </div>
+              <input type="range" class="val-slider" id="slider-mix" min="5" max="40" value="21" oninput="runSandbox()">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-info-row">
+                <span class="slider-title">Average Net Take Rate</span>
+                <span class="slider-value" id="val-take-rate">0.31%</span>
+              </div>
+              <input type="range" class="val-slider" id="slider-margin" min="15" max="50" value="31" oninput="runSandbox()">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-info-row">
+                <span class="slider-title">AI Micropayment Volume</span>
+                <span class="slider-value" id="val-ai-volume">$15.0B</span>
+              </div>
+              <input type="range" class="val-slider" id="slider-ai" min="1" max="50" value="15" oninput="runSandbox()">
+            </div>
+          </div>
+
+          <!-- Sandbox Outputs -->
+          <div class="output-breakdown">
+            <div class="breakdown-row">
+              <div class="breakdown-label">
+                <span>Forward TPV</span>
+                <span id="label-forward-tpv">$2.38T</span>
+              </div>
+              <div class="breakdown-bar-outer">
+                <div class="breakdown-bar-inner" id="bar-forward-tpv" style="background: var(--cyan);"></div>
+              </div>
+            </div>
+
+            <div class="breakdown-row">
+              <div class="breakdown-label">
+                <span>Forward Net Revenue</span>
+                <span id="label-forward-net">$7.35B</span>
+              </div>
+              <div class="breakdown-bar-outer">
+                <div class="breakdown-bar-inner" id="bar-forward-net" style="background: var(--purple);"></div>
+              </div>
+            </div>
+
+            <div class="breakdown-row">
+              <div class="breakdown-label">
+                <span>Implied EV/Net Revenue Multiple</span>
+                <span id="label-forward-ev">21.6x</span>
+              </div>
+              <div class="breakdown-bar-outer">
+                <div class="breakdown-bar-inner" id="bar-forward-ev" style="background: var(--pink);"></div>
+              </div>
+            </div>
+
+            <div class="methodology-box">
+              <strong>Scenario Model:</strong> Net Revenue is calculated as `(TPV * Take Rate) + (AI Volume * 0.50% fee)`. Valuation remains locked at private valuation benchmark of **$159 Billion** in February 2026.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="sources-list">
+        <span class="title">Primary Sources:</span>
+        <a href="https://stripe.com" target="_blank" rel="noopener">Stripe Annual Letter</a>
+        <a href="https://sacra.com" target="_blank" rel="noopener">Sacra Research</a>
+        <a href="https://tipranks.com" target="_blank" rel="noopener">TipRanks Core Fin</a>
+        <a href="https://coinfomania.com" target="_blank" rel="noopener">Coinfomania stablecoin</a>
+      </div>
+      <div class="footer-mark">
+        <span>Sovereign Monetary Rails</span>
+        <span class="star-icon">✦</span>
+      </div>
+    </footer>
+
+    <a class="back-link" href="index.html">← Back to Company Research Hub</a>
+  </main>
+
+  <script>
+    // Tab toggling for Card 2 TPV vs Stablecoins
+    function switchCardTab(tab) {
+        document.getElementById('tab-btn-stablecoin').classList.remove('active');
+        document.getElementById('tab-btn-tvl').classList.remove('active');
+        document.getElementById('stablecoin-content').classList.remove('active');
+        document.getElementById('tvl-content').classList.remove('active');
+
+        if (tab === 'stablecoin') {
+            document.getElementById('tab-btn-stablecoin').classList.add('active');
+            document.getElementById('stablecoin-content').classList.add('active');
+        } else {
+            document.getElementById('tab-btn-tvl').classList.add('active');
+            document.getElementById('tvl-content').classList.add('active');
+        }
+    }
+
+    // Stablecoin selection text updates
+    function selectStablecoin(type) {
+        const percentage = document.getElementById('donut-percentage');
+        const sub = document.getElementById('donut-sub');
+        const highlight = document.getElementById('stablecoin-highlight');
+
+        if (type === 'Stablecoins') {
+            percentage.innerText = '21.1%';
+            sub.innerText = 'Stablecoins';
+            highlight.innerText = 'Stablecoins: ~$400B (21.1% TPV)';
+        } else {
+            percentage.innerText = '78.9%';
+            sub.innerText = 'Fiat & Cards';
+            highlight.innerText = 'Fiat & Cards: ~$1.50T (78.9% TPV)';
+        }
+    }
+
+    // Bar Chart highlights
+    function highlightChain(name, value) {
+        const highlight = document.getElementById('tvl-highlight');
+        highlight.innerText = name + ' TPV: $' + (value >= 1.0 ? value.toFixed(2) + 'T' : (value * 1000).toFixed(0) + 'B');
+    }
+
+    // Query Pills Card 3 Interactivity
+    const answers = [
+        "<strong>Strict Switching Friction:</strong> Stripe's developer SDKs and payment portals are embedded directly within core client codebases. Swapping to a rival processor involves immense codebase restructuring, security auditing, and database migration risks.",
+        "<strong>Stripe Atlas incorporation:</strong> Stripe Atlas allows global digital nomads to incorporate US entities from 140+ countries. Once incorporated, they are locked into Stripe's payment, banking (Treasury), and card issuance APIs natively.",
+        "<strong>Complex Billing Cycles:</strong> Stripe Billing automates SaaS recurring invoices, seat-based expansions, and multi-tier usage logs, resolving millions of micro-calculations that traditional processors cannot handle natively.",
+        "<strong>Unified Compliance Engine:</strong> Stripe Tax programmatically computes sales taxes for thousands of regional jurisdictions at checkout, saving global enterprises millions in legal audit costs."
+    ];
+
+    function showAnswer(index) {
+        const pills = document.querySelectorAll('.query-pill');
+        pills.forEach((p, idx) => {
+            if (idx === index) {
+                p.classList.add('active');
+            } else {
+                p.classList.remove('active');
+            }
+        });
+        document.getElementById('answer-box').innerHTML = "<p>" + answers[index] + "</p>";
+    }
+
+    // Card 4 L2 Interactive Node details
+    const l2Details = {
+        fiat: "<strong>Traditional Checking Accounts:</strong> Cleared via regional ACH/SEPA loops, routed into banking partners (Goldman Sachs, Evolve) to initiate stablecoin minting pools.",
+        usdc: "<strong>USDC Stablecoin API:</strong> Direct USDC treasury accounts deployed in 101 countries allow instant USD dollar payouts natively.",
+        usdt: "<strong>USDT Settlement:</strong> High-liquidity USDT rails facilitate friction-free payouts across Asia and emerging market corridors.",
+        solana: "<strong>Solana L1 Settlement:</strong> Low-cost monolithic chain utilized by Stripe to clear transaction micro-settlements under 1 cent in network fees.",
+        tempo: "<strong>Tempo L1 Blockchain (2026):</strong> Stripe's payments L1 blockchain designed specifically for tokenized RWA assets, AI micro-contracts, and autonomous agent payments."
+    };
+
+    function selectL2(key) {
+        document.getElementById('l2-details-box').innerHTML = "<p>" + l2Details[key] + "</p>";
+    }
+
+    // Card 5 Machine Payments Flywheel Details
+    const flywheelDetails = [
+        "<strong>A. Autonomous Wallets:</strong> Stripe provides programmatically managed wallets with embedded security controls, allowing AI agents to hold and spend limits without central authority holds.",
+        "<strong>B. Compute Micropayments:</strong> Deep integrations with GPU providers (Lambda Labs, CoreWeave) enable AI agents to rent and pay for compute capacity per million tokens on the fly.",
+        "<strong>C. Auto-Refills:</strong> Webhook listeners monitor AI agent resource usage, programmatically executing stablecoin treasury draws to prevent computational halts.",
+        "<strong>D. USDC Native:</strong> Running the protocol entirely on digital dollars reduces cross-border conversion fees and ensures dollar-pegged cash stability."
+    ];
+
+    function showFlywheel(index) {
+        const cells = document.querySelectorAll('.flywheel-cell');
+        cells.forEach((c, idx) => {
+            if (idx === index) {
+                c.classList.add('active');
+            } else {
+                c.classList.remove('active');
+            }
+        });
+        document.getElementById('flywheel-box').innerHTML = "<p>" + flywheelDetails[index] + "</p>";
+    }
+
+    // VALUATION SANDBOX CALCULATIONS
+    function runSandbox() {
+        const tpvGrowth = parseFloat(document.getElementById('slider-tpv').value) / 100;
+        const mixShift = parseFloat(document.getElementById('slider-mix').value) / 100;
+        const takeRate = parseFloat(document.getElementById('slider-margin').value) / 10000;
+        const aiVolume = parseFloat(document.getElementById('slider-ai').value) * 1e9;
+
+        // Label updates
+        document.getElementById('val-tpv-growth').innerText = (tpvGrowth * 100).toFixed(0) + '%';
+        document.getElementById('val-mix-shift').innerText = (mixShift * 100).toFixed(0) + '%';
+        document.getElementById('val-take-rate').innerText = (takeRate * 100).toFixed(2) + '%';
+        document.getElementById('val-ai-volume').innerText = '$' + (aiVolume / 1e9).toFixed(1) + 'B';
+
+        // Calculation: Starting FY2025 TPV = 1.9T
+        const startTpv = 1.9e12;
+        const forwardTpv = startTpv * (1 + tpvGrowth);
+        // Net Revenue formula: (TPV * Net Take Rate) + (AI Volume * 0.50% fee)
+        const forwardNet = (forwardTpv * takeRate) + (aiVolume * 0.005);
+        const privateVal = 159e9;
+        const impliedEvMultiple = privateVal / forwardNet;
+
+        // Output label updates
+        document.getElementById('label-forward-tpv').innerText = '$' + (forwardTpv / 1e12).toFixed(2) + 'T';
+        document.getElementById('label-forward-net').innerText = '$' + (forwardNet / 1e9).toFixed(2) + 'B';
+        document.getElementById('label-forward-ev').innerText = impliedEvMultiple.toFixed(1) + 'x';
+
+        // Progress bar fills
+        // Forward TPV max benchmark 3.0T
+        document.getElementById('bar-forward-tpv').style.width = Math.min((forwardTpv / 3e12) * 100, 100) + '%';
+        // Forward Net Revenue max benchmark 10.0B
+        document.getElementById('bar-forward-net').style.width = Math.min((forwardNet / 10e9) * 100, 100) + '%';
+        // Implied EV multiple max benchmark 50x
+        document.getElementById('bar-forward-ev').style.width = Math.min((impliedEvMultiple / 50) * 100, 100) + '%';
+    }
+
+    function applyPreset(caseType) {
+        const btnBear = document.querySelector('.bear-btn');
+        const btnBase = document.querySelector('.base-btn');
+        const btnBull = document.querySelector('.bull-btn');
+
+        btnBear.classList.remove('active');
+        btnBase.classList.remove('active');
+        btnBull.classList.remove('active');
+
+        if (caseType === 'bear') {
+            btnBear.classList.add('active');
+            document.getElementById('slider-tpv').value = 10;
+            document.getElementById('slider-mix').value = 12;
+            document.getElementById('slider-margin').value = 24;
+            document.getElementById('slider-ai').value = 5;
+        } else if (caseType === 'base') {
+            btnBase.classList.add('active');
+            document.getElementById('slider-tpv').value = 25;
+            document.getElementById('slider-mix').value = 21;
+            document.getElementById('slider-margin').value = 31;
+            document.getElementById('slider-ai').value = 15;
+        } else {
+            btnBull.classList.add('active');
+            document.getElementById('slider-tpv').value = 40;
+            document.getElementById('slider-mix').value = 35;
+            document.getElementById('slider-margin').value = 42;
+            document.getElementById('slider-ai').value = 45;
+        }
+        runSandbox();
+    }
+
+    // Canvas Background Particles
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const colors = ['rgba(139, 92, 246, 0.15)', 'rgba(6, 182, 212, 0.1)', 'rgba(236, 72, 153, 0.1)'];
+
+    function initParticles() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        for (let i = 0; i < 45; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3 + 1.5,
+                speedX: Math.random() * 0.3 - 0.15,
+                speedY: Math.random() * -0.3 - 0.05,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            });
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.x += p.speedX;
+            p.y += p.speedY;
+            if (p.y < -10) {
+                p.y = canvas.height + 10;
+                p.x = Math.random() * canvas.width;
+            }
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+
+    // Theme Toggle
+    function toggleTheme() {
+        const body = document.body;
+        const currentBg = getComputedStyle(body).backgroundColor;
+        // Simple visual toggle for demonstration
+        if (body.style.filter === 'invert(0.95)') {
+            body.style.filter = 'invert(0)';
+        } else {
+            body.style.filter = 'invert(0.95)';
+        }
+    }
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    initParticles();
+    animateParticles();
+    runSandbox();
+  </script>
+</body>
+</html>
