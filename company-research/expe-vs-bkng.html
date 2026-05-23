@@ -587,7 +587,7 @@
             <div class="kpi-row">
               <div class="kpi-box">
                 <span class="kpi-lbl">Market Cap</span>
-                <span class="kpi-val">$13.0B</span>
+                <span class="kpi-val">$26.2B</span>
                 <span class="kpi-sub">Undervalued Challenger</span>
               </div>
               <div class="kpi-box">
@@ -601,9 +601,9 @@
                 <span class="kpi-sub">Massive wholesale API engine</span>
               </div>
               <div class="kpi-box">
-                <span class="kpi-lbl">P/FCF Multiple</span>
-                <span class="kpi-val">4.18x</span>
-                <span class="kpi-sub">Extremely deep value discount</span>
+                <span class="kpi-lbl">P/FCF | EV/FCF</span>
+                <span class="kpi-val">8.4x | 6.1x</span>
+                <span class="kpi-sub">Reconciled valuation discount</span>
               </div>
             </div>
           </div>
@@ -631,8 +631,8 @@
                 <span class="kpi-sub">Unrivaled brand-direct loyalty</span>
               </div>
               <div class="kpi-box">
-                <span class="kpi-lbl">P/FCF Multiple</span>
-                <span class="kpi-val">13.41x</span>
+                <span class="kpi-lbl">P/FCF | EV/FCF</span>
+                <span class="kpi-val">13.4x | 13.7x</span>
                 <span class="kpi-sub">Premium, stable multiple</span>
               </div>
             </div>
@@ -724,14 +724,14 @@
                   <td class="note-cell">Expedia has successfully established itself as the default wholesale API provider.</td>
                 </tr>
                 <tr>
-                  <td class="label-column">Trailing P/FCF Multiple</td>
+                  <td class="label-column">P/FCF | EV/FCF Multiples</td>
                   <td class="stripe-cell">
-                    <span class="pos-metric">4.18x</span>
+                    <span class="pos-metric">8.42x | 6.11x</span>
                   </td>
                   <td class="gold-cell">
-                    <span>13.41x</span>
+                    <span>13.41x | 13.74x</span>
                   </td>
-                  <td class="note-cell">Expedia's massive valuation discount offers a asymmetric risk/reward play.</td>
+                  <td class="note-cell">Expedia's EV/FCF multiple (~6.1x) highlights its massive discount relative to Booking.</td>
                 </tr>
               </tbody>
             </table>
@@ -801,8 +801,8 @@
                   <span class="val" id="expe-out-fcf">$3.40B</span>
                 </div>
                 <div class="out-box">
-                  <span class="lbl">Forward P/FCF</span>
-                  <span class="val" id="expe-out-mult">3.82x</span>
+                  <span class="lbl">P/FCF | EV/FCF</span>
+                  <span class="val" id="expe-out-mult">8.4x | 6.1x</span>
                 </div>
               </div>
               <div class="alert-strip" id="expe-alert">
@@ -877,22 +877,23 @@
         // FY2025 starting: B2B ~$5.0B (est), B2C ~$9.73B. Total = 14.73B
         const expeB2bBase = 5.0;
         const expeB2cBase = 9.73;
-        const expeMcap = 13.0; // $13.0B
+        const expeMcap = 26.2; // $26.2B market cap
 
         const expeB2bProj = expeB2bBase * (1 + expeB2bGrow);
         const expeB2cProj = expeB2cBase * (1 + expeB2cGrow);
         const expeTotalRev = expeB2bProj + expeB2cProj;
         const expeProjFCF = expeTotalRev * expeFcfMargin;
-        const expeMult = expeMcap / expeProjFCF;
+        const expeMult = expeMcap / expeProjFCF; // P/FCF multiple
+        const expeEvMult = 19.0 / expeProjFCF;  // EV/FCF multiple
 
         document.getElementById('expe-out-rev').innerText = '$' + expeTotalRev.toFixed(2) + 'B';
         document.getElementById('expe-out-fcf').innerText = '$' + expeProjFCF.toFixed(2) + 'B';
-        document.getElementById('expe-out-mult').innerText = expeMult.toFixed(2) + 'x';
+        document.getElementById('expe-out-mult').innerText = expeMult.toFixed(1) + 'x | ' + expeEvMult.toFixed(1) + 'x';
 
         const expeAlert = document.getElementById('expe-alert');
-        if (expeMult < 4.0) {
+        if (expeEvMult < 6.5) {
             expeAlert.className = "alert-strip";
-            expeAlert.innerHTML = "✔ Rerate Signal: Extremely distressed P/FCF multiple (" + expeMult.toFixed(2) + "x) offers massive asymmetric upside!";
+            expeAlert.innerHTML = "✔ Rerate Signal: Distressed EV/FCF multiple (" + expeEvMult.toFixed(1) + "x) offers highly asymmetric upside!";
         } else {
             expeAlert.className = "alert-strip";
             expeAlert.innerHTML = "✔ Expedia FCF conversion is stable under consolidated software scaling.";
