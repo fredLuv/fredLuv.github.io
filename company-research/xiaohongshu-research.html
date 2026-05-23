@@ -107,10 +107,10 @@
       height: 48px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(255, 36, 66, 0.6);
+      border: 1px solid rgba(212, 63, 81, 0.4);
       border-radius: 50%;
       color: var(--red);
-      box-shadow: inset 0 0 16px rgba(255, 36, 66, 0.25), 0 0 24px rgba(255, 36, 66, 0.45);
+      box-shadow: inset 0 0 16px rgba(212, 63, 81, 0.12), 0 0 24px rgba(212, 63, 81, 0.24);
       font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
       font-size: 1.4rem;
@@ -191,7 +191,7 @@
     .kpi-card:hover {
       transform: translateY(-2px);
       border-color: var(--border-hover);
-      box-shadow: 0 15px 30px rgba(255, 36, 66, 0.05);
+      box-shadow: 0 15px 30px rgba(212, 63, 81, 0.04);
     }
 
     .kpi-label {
@@ -222,9 +222,9 @@
       border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 700;
-      background: rgba(255, 36, 66, 0.15);
+      background: rgba(212, 63, 81, 0.08);
       color: var(--red);
-      border: 1px solid rgba(255, 36, 66, 0.3);
+      border: 1px solid rgba(212, 63, 81, 0.2);
       width: fit-content;
     }
 
@@ -581,7 +581,7 @@
       font-weight: 700;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       border-bottom: 2px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 36, 66, 0.02);
+      background: rgba(212, 63, 81, 0.015);
     }
 
     /* Sandbox Interactive CSS */
@@ -661,6 +661,26 @@
       font-family: "Azeret Mono", monospace;
       color: #fff;
       font-weight: 600;
+    }
+
+    /* SVG Loop Keyframes & Animations */
+    @keyframes pulseFlow {
+      to {
+        stroke-dashoffset: -40;
+      }
+    }
+    .pulse-path {
+      stroke-dasharray: 8, 12;
+      animation: pulseFlow 6s linear infinite;
+    }
+
+    @keyframes rotateHub {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .rotate-hub {
+      transform-origin: 300px 160px;
+      animation: rotateHub 24s linear infinite;
     }
   </style>
 </head>
@@ -821,14 +841,14 @@
               <div class="blueprint-svg-wrapper">
                 <svg width="100%" height="100%" viewBox="0 0 300 220" style="max-width: 320px;">
                   <!-- Connections -->
-                  <line x1="60" y1="110" x2="150" y2="50" stroke="#ff2442" stroke-width="2" opacity="0.6" />
+                  <line x1="60" y1="110" x2="150" y2="50" stroke="var(--red)" stroke-width="2" opacity="0.6" />
                   <line x1="240" y1="110" x2="150" y2="50" stroke="#ffa000" stroke-width="2" opacity="0.6" />
-                  <line x1="60" y1="110" x2="150" y2="170" stroke="#ff2442" stroke-width="2" opacity="0.6" />
+                  <line x1="60" y1="110" x2="150" y2="170" stroke="var(--red)" stroke-width="2" opacity="0.6" />
                   <line x1="240" y1="110" x2="150" y2="170" stroke="#ffa000" stroke-width="2" opacity="0.6" />
                   <line x1="150" y1="50" x2="150" y2="170" stroke="#fff" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.4" />
                   
                   <!-- Node 1: Search Query -->
-                  <circle cx="60" cy="110" r="24" fill="#180812" stroke="#ff2442" stroke-width="2" class="svg-node" onclick="showAlgDetails('search-query')" />
+                  <circle cx="60" cy="110" r="24" fill="#180812" stroke="var(--red)" stroke-width="2" class="svg-node" onclick="showAlgDetails('search-query')" />
                   <text x="60" y="113" fill="#fff" font-size="8" font-family="'Space Grotesk',sans-serif" font-weight="700" text-anchor="middle" pointer-events="none">Search</text>
                   
                   <!-- Node 2: Content NLP Tagging -->
@@ -854,76 +874,84 @@
           </div>
         </div>
 
-        <!-- Community Engagement Score (CES) Calculator -->
+        <!-- UGC Content Lifecycle & Engagement Loop -->
         <div class="content-card span-12">
           <div class="card-header">
-            <span class="trend-badge">Algorithmic Test Sandbox</span>
-            <h3 class="card-title">The CES (Community Engagement Score) Distribution Engine</h3>
-            <p class="card-subtitle">Simulate how a newly published UGC note is routed from its initial 100-user seed pool to larger traffic tiers based on early engagement levels.</p>
+            <span class="trend-badge">UGC Content Lifecycle</span>
+            <h3 class="card-title">The UGC Content Lifecycle &amp; Engagement Loop</h3>
+            <p class="card-subtitle">Click on any stage in the SVG ellipse loop below to audit the platform's compounding feedback mechanisms.</p>
           </div>
 
-          <div class="ces-container">
-            <!-- Inputs -->
-            <div class="ces-inputs">
-              <!-- Likes -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="ces-likes">Likes (Weight: 1x)</label>
-                  <span class="ces-slider-value" id="ces-val-likes">50</span>
-                </div>
-                <input type="range" id="ces-likes" min="0" max="500" step="5" value="50" oninput="calculateCES()" />
-              </div>
+          <div class="ces-container" style="grid-template-columns: 1.2fr 0.8fr;">
+            <!-- SVG Loop -->
+            <div class="blueprint-panel" style="border-left: 4px solid var(--gold);">
+              <h4 class="text-gold">Operational Flywheel Blueprint</h4>
+              <p style="font-size: 0.88rem; color: var(--muted);">Visualize how interaction metrics feed directly back into permanent search queries and user recommendations.</p>
               
-              <!-- Saves -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="ces-saves">Saves (Weight: 2x)</label>
-                  <span class="ces-slider-value" id="ces-val-saves">20</span>
-                </div>
-                <input type="range" id="ces-saves" min="0" max="200" step="2" value="20" oninput="calculateCES()" />
-              </div>
+              <div class="blueprint-svg-wrapper" style="height: 340px;">
+                <svg width="100%" height="100%" viewBox="0 0 600 320" style="background: radial-gradient(circle at center, #0f1224 0%, #030408 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; font-family: 'Space Grotesk', sans-serif;">
+                  
+                  <!-- Background circular orbital flow -->
+                  <path id="loop-path" d="M 300,60 A 200,100 0 1,1 299.9,60 Z" fill="none" stroke="rgba(212, 63, 81, 0.12)" stroke-width="2" class="pulse-path" />
 
-              <!-- Comments -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="ces-comments">Comments (Weight: 4x)</label>
-                  <span class="ces-slider-value" id="ces-val-comments">10</span>
-                </div>
-                <input type="range" id="ces-comments" min="0" max="100" step="1" value="10" oninput="calculateCES()" />
-              </div>
+                  <!-- Central Hub Shield -->
+                  <g transform="translate(300, 160)">
+                    <circle cx="0" cy="0" r="36" fill="rgba(10, 14, 26, 0.95)" stroke="rgba(212, 63, 81, 0.2)" stroke-width="1" />
+                    <circle cx="0" cy="0" r="30" fill="none" stroke="rgba(255, 215, 0, 0.1)" stroke-width="1.5" stroke-dasharray="4,2" class="rotate-hub" />
+                    <text x="0" y="-3" fill="#ffd700" font-size="7" font-weight="700" text-anchor="middle" letter-spacing="0.05em">ORGANIC</text>
+                    <text x="0" y="7" fill="#fff" font-size="7" font-weight="700" text-anchor="middle" letter-spacing="0.05em">FLYWHEEL</text>
+                  </g>
 
-              <!-- Shares -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="ces-shares">Shares (Weight: 4x)</label>
-                  <span class="ces-slider-value" id="ces-val-shares">5</span>
-                </div>
-                <input type="range" id="ces-shares" min="0" max="100" step="1" value="5" oninput="calculateCES()" />
-              </div>
+                  <!-- Stage 1: Upload (Top) -->
+                  <g class="svg-node" onclick="showLoopStage('stage-upload')" id="node-upload" style="cursor:pointer;">
+                    <circle cx="300" cy="60" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
+                    <text x="300" y="63" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">UP</text>
+                  </g>
+                  <text id="label-upload" x="300" y="98" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">1. NLP Upload</text>
 
-              <!-- Follows -->
-              <div class="ces-slider-group">
-                <div class="ces-slider-header">
-                  <label for="ces-follows">Follows (Weight: 8x)</label>
-                  <span class="ces-slider-value" id="ces-val-follows">2</span>
-                </div>
-                <input type="range" id="ces-follows" min="0" max="50" step="1" value="2" oninput="calculateCES()" />
+                  <!-- Stage 2: Seed (Top-Right) -->
+                  <g class="svg-node" onclick="showLoopStage('stage-seed')" id="node-seed" style="cursor:pointer;">
+                    <circle cx="473" cy="110" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
+                    <text x="473" y="113" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">SD</text>
+                  </g>
+                  <text id="label-seed" x="473" y="148" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">2. Seed Pool</text>
+
+                  <!-- Stage 3: CES (Bottom-Right) -->
+                  <g class="svg-node" onclick="showLoopStage('stage-ces')" id="node-ces" style="cursor:pointer;">
+                    <circle cx="473" cy="210" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
+                    <text x="473" y="213" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">CES</text>
+                  </g>
+                  <text id="label-ces" x="473" y="248" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">3. CES Audit</text>
+
+                  <!-- Stage 4: Gates (Bottom) -->
+                  <g class="svg-node" onclick="showLoopStage('stage-gates')" id="node-gates" style="cursor:pointer;">
+                    <circle cx="300" cy="260" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
+                    <text x="300" y="263" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">GT</text>
+                  </g>
+                  <text id="label-gates" x="300" y="298" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">4. Traffic Gates</text>
+
+                  <!-- Stage 5: Route (Bottom-Left) -->
+                  <g class="svg-node" onclick="showLoopStage('stage-route')" id="node-route" style="cursor:pointer;">
+                    <circle cx="127" cy="210" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
+                    <text x="127" y="213" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">RT</text>
+                  </g>
+                  <text id="label-route" x="127" y="248" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">5. Multi-Route</text>
+
+                  <!-- Stage 6: Loop (Top-Left) -->
+                  <g class="svg-node" onclick="showLoopStage('stage-loop')" id="node-loop" style="cursor:pointer;">
+                    <circle cx="127" cy="110" r="22" fill="#0d0f19" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
+                    <text x="127" y="113" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" pointer-events="none">LP</text>
+                  </g>
+                  <text id="label-loop" x="127" y="148" fill="var(--muted)" font-size="8.5" text-anchor="middle" font-weight="600" pointer-events="none">6. Flywheel Loop</text>
+
+                </svg>
               </div>
             </div>
 
-            <!-- Results -->
-            <div class="ces-results">
-              <div class="ces-score-box">
-                <div class="ces-score-value" id="ces-score-result">166</div>
-                <div class="ces-score-label">Consolidated CES Score</div>
-              </div>
-              
-              <div class="ces-pool-box">
-                <div class="ces-pool-title" id="ces-pool-level">Seed Pool 2 (Tier 2 Reach)</div>
-                <div class="ces-pool-desc" id="ces-pool-description">
-                  With a consolidated Community Engagement Score of 166, the post has cleared the first threshold. The algorithm will now automatically push it to a larger interest pool of 1,000 to 5,000 highly targeted users.
-                </div>
-              </div>
+            <!-- Details Panel -->
+            <div class="ces-results" id="loop-details-display" style="gap: 12px; justify-content: flex-start; min-height: 340px; background: rgba(10, 14, 26, 0.8); border: 1px solid rgba(212, 63, 81, 0.16); box-shadow: inset 0 0 20px rgba(212, 63, 81, 0.03);">
+              <div class="blueprint-active-title" style="color: var(--gold); font-size: 1.15rem; font-family: 'Space Grotesk', sans-serif;">UGC Pipeline Inspector</div>
+              <div style="font-size: 0.88rem; line-height: 1.5; color: var(--muted);">Click on any stage in the SVG pipeline to trace the content lifecycle—from note injection and initial seed pool tests to CES scores, threshold gates, and viral explore feed breakthroughs.</div>
             </div>
           </div>
         </div>
@@ -1210,41 +1238,86 @@
       }
     }
 
-    // Community Engagement Score (CES) Calculator Logic
-    function calculateCES() {
-      const likes = parseInt(document.getElementById('ces-likes').value);
-      const saves = parseInt(document.getElementById('ces-saves').value);
-      const comments = parseInt(document.getElementById('ces-comments').value);
-      const shares = parseInt(document.getElementById('ces-shares').value);
-      const follows = parseInt(document.getElementById('ces-follows').value);
+    // Loop Stages Details Mapping
+    const loopStages = {
+      'stage-upload': {
+        title: "Stage 1: UGC Upload & NLP Parsing",
+        subtitle: "Note Upload and Metadata Extraction",
+        desc: "A creator publishes a lifestyle, product review, or travel note containing text, hashtags, and images. Xiaohongshu's Natural Language Processing (NLP) immediately tokenizes the text, parses keyword relevance, filters commercial 'hard-sell' copy, and extracts visual tokens (such as fashion styles or cosmetic colors) to index the content into specific interest buckets."
+      },
+      'stage-seed': {
+        title: "Stage 2: Decentralized Seed Pool Distribution",
+        subtitle: "Democratic Seed Pool Testing (100–300 users)",
+        desc: "To bypass historical follower accounts, newly published notes are routed to a targeted seed sandbox of 100–300 users matching the note's NLP interest tags. This ensures high-quality notes from new creators get an equal chance to spread, making organic merit the main visibility driver."
+      },
+      'stage-ces': {
+        title: "Stage 3: Behavioral Signal & CES Score Audit",
+        subtitle: "Community Engagement Score Weight Matrix",
+        desc: "The system tracks real-time interactions over the first 4 hours to compute the platform's core rating: <strong>CES = Likes (1x) + Saves (2x) + Comments (4x) + Shares (4x) + Follows (8x)</strong>. Saves (Collection bookmarks) are weighted heavily, representing high long-term intent utility and search relevance."
+      },
+      'stage-gates': {
+        title: "Stage 4: Multi-Tier Traffic Gates",
+        subtitle: "Audit Assessment & Incremental Cohort Scaling",
+        desc: "The note's early performance is audited against hard thresholds to determine traffic tier routing:<br>• <strong>Low CES (<50)</strong>: Explore feed exposure stops; content relies purely on long-tail search keywords.<br>• <strong>Mid CES (50-150)</strong>: Escalates to Pool 2 (1,000–5,000 users).<br>• <strong>High CES (150-500)</strong>: Routes to Pool 3 (20,000–100,000 users).<br>• <strong>Viral CES (>500)</strong>: Enters Pool 4 (500,000+ home streams)."
+      },
+      'stage-route': {
+        title: "Stage 5: Double-Engine Routing (Explore & Search)",
+        subtitle: "Dynamic Stream Feed vs. High-Intent Search Index",
+        desc: "High-engagement content is routed into RED's dual-distribution engines:<br>• <strong>Explore Feed</strong>: Provides passive browsing recommendations based on dynamic in-app user interests.<br>• <strong>Search Engine</strong>: Indexes notes for high-intent queries (over 60% of RED's traffic starts here), driving continuous organic views months after upload."
+      },
+      'stage-loop': {
+        title: "Stage 6: The Long-Tail Compounding Loop",
+        subtitle: "Feedback Loop & Organic compounding Flywheel",
+        desc: "When users search for queries and discover the indexed note, their saves, comments, and follows trigger a <strong>re-evaluation cycle</strong>. This pumps the note's CES score back up and re-injects it into recommendations, forming a self-sustaining organic growth engine that builds the ultimate platform moat."
+      }
+    };
 
-      // Display inputs
-      document.getElementById('ces-val-likes').innerText = likes.toLocaleString();
-      document.getElementById('ces-val-saves').innerText = saves.toLocaleString();
-      document.getElementById('ces-val-comments').innerText = comments.toLocaleString();
-      document.getElementById('ces-val-shares').innerText = shares.toLocaleString();
-      document.getElementById('ces-val-follows').innerText = follows.toLocaleString();
+    function showLoopStage(stageKey) {
+      const stage = loopStages[stageKey];
+      const box = document.getElementById('loop-details-display');
+      if (stage) {
+        // Highlight active node in SVG by updating all circles' borders
+        const stageIds = ['stage-upload', 'stage-seed', 'stage-ces', 'stage-gates', 'stage-route', 'stage-loop'];
+        const nodeIds = ['node-upload', 'node-seed', 'node-ces', 'node-gates', 'node-route', 'node-loop'];
+        
+        nodeIds.forEach((id, idx) => {
+          const g = document.getElementById(id);
+          if (g) {
+            const circle = g.querySelector('circle');
+            if (stageIds[idx] === stageKey) {
+              circle.setAttribute('stroke', '#d43f51');
+              circle.setAttribute('stroke-width', '2.5');
+              circle.setAttribute('fill', 'rgba(212, 63, 81, 0.15)');
+              circle.style.filter = "drop-shadow(0 0 8px var(--red-glow))";
+              
+              // Find the text label to highlight
+              const label = document.getElementById('label-' + stageIds[idx].replace('stage-', ''));
+              if (label) {
+                label.setAttribute('fill', 'var(--gold)');
+                label.setAttribute('font-weight', '700');
+              }
+            } else {
+              circle.setAttribute('stroke', 'rgba(255, 255, 255, 0.3)');
+              circle.setAttribute('stroke-width', '1.5');
+              circle.setAttribute('fill', '#0d0f19');
+              circle.style.filter = "none";
+              
+              const label = document.getElementById('label-' + stageIds[idx].replace('stage-', ''));
+              if (label) {
+                label.setAttribute('fill', 'var(--muted)');
+                label.setAttribute('font-weight', '600');
+              }
+            }
+          }
+        });
 
-      // CES Equation: Likes*1 + Saves*2 + Comments*4 + Shares*4 + Follows*8
-      const cesScore = likes * 1 + saves * 2 + comments * 4 + shares * 4 + follows * 8;
-      document.getElementById('ces-score-result').innerText = cesScore.toLocaleString();
-
-      // Pool and distribution logic
-      const poolTitle = document.getElementById('ces-pool-level');
-      const poolDesc = document.getElementById('ces-pool-description');
-
-      if (cesScore < 50) {
-        poolTitle.innerText = "Seed Pool 1 (Low Reach)";
-        poolDesc.innerHTML = `With a CES of <strong>${cesScore}</strong>, the content has failed to meet the initial engagement threshold. It will remain distributed in the low-priority pool of ~100 seed users, relying on long-term SEO query search loops for organic discovery.`;
-      } else if (cesScore < 150) {
-        poolTitle.innerText = "Seed Pool 2 (Tier 2 Reach)";
-        poolDesc.innerHTML = `With a CES of <strong>${cesScore}</strong>, the post has cleared the first threshold. The algorithm will now distribute it to an interest pool of <strong>1,000 to 5,000</strong> active targeted users.`;
-      } else if (cesScore < 500) {
-        poolTitle.innerText = "Mid-Traffic Tier (Pool 3 Reach)";
-        poolDesc.innerHTML = `Excellent initial engagement! A CES of <strong>${cesScore}</strong> unlocks Tier 3 distribution, routing the content to <strong>20,000 to 100,000</strong> user feed streams.`;
-      } else {
-        poolTitle.innerText = "Viral Core Tier (Pool 4 Breakthrough)";
-        poolDesc.innerHTML = `Exceptional engagement velocity! A CES of <strong>${cesScore}</strong> has broken the viral threshold. The algorithm will push the post to the top-tier interest pool, reaching <strong>500,000+</strong> home Explore streams dynamically.`;
+        box.innerHTML = `
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <span class="trend-badge" style="margin-bottom:4px; border-color: rgba(255, 215, 0, 0.3); background: rgba(255, 215, 0, 0.08); color: var(--gold);">${stage.subtitle}</span>
+            <div class="blueprint-active-title" style="color: var(--soft); font-size:1.15rem; font-family:'Space Grotesk',sans-serif;">${stage.title}</div>
+          </div>
+          <div style="font-size: 0.88rem; line-height:1.55; color: var(--muted); margin-top:8px;">${stage.desc}</div>
+        `;
       }
     }
 
@@ -1265,19 +1338,13 @@
       document.getElementById('sb-val-multiple').innerText = multiple.toFixed(1) + 'x';
 
       // --- Revenue Math ---
-      // 1. Ad Revenue: MAU * 12 months * ad impressions per user * search penetration factor * CPM / 1000
-      // Assuming a base of 30 ad impressions/user/month * search penetration factor
-      const adRevenues = (mau * 12 * 30 * searchPen * cpm) / 1000 * 5.8; // scaled factor for standard revenue
-      
-      // 2. E-commerce: MAU * 12 months * average GMV per active user ($12) * takeRate
+      const adRevenues = (mau * 12 * 30 * searchPen * cpm) / 1000 * 5.8;
       const ecomGMV = mau * 12 * 12;
-      const ecomRevenues = ecomGMV * takeRate * 1.5; // scaled factor for standard revenue
-      
-      // 3. Partnerships / Live Commissions (Strategic base)
+      const ecomRevenues = ecomGMV * takeRate * 1.5;
       const partnerRevenues = (adRevenues + ecomRevenues) * 0.087;
 
       const totalRevenue = adRevenues + ecomRevenues + partnerRevenues;
-      const netProfit = totalRevenue * 0.5172; // Reconciled 51.72% net profit margin
+      const netProfit = totalRevenue * 0.5172;
       const valuation = netProfit * multiple;
 
       // Update Displays
@@ -1291,7 +1358,7 @@
 
     // Initialize Widget on Load
     window.onload = () => {
-      calculateCES();
+      showLoopStage('stage-upload');
       runSandboxValuation();
     };
   </script>
