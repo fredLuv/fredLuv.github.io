@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Xiaohongshu (RED): The Social Search &amp; E-Commerce Engine | Institutional Deep Dive</title>
+  <meta name="description" content="An interactive premium research dashboard analyzing Xiaohongshu's (Little Red Book) search-recommendation algorithms, user engagement metrics, and P&amp;L reconciliation." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050205;
+      --bg-card: rgba(18, 8, 18, 0.72);
+      --bg-card-hover: rgba(28, 12, 28, 0.88);
+      --border: rgba(255, 36, 66, 0.12);
+      --border-hover: rgba(255, 36, 66, 0.32);
+      --text: #f3f4f6;
+      --muted: #a1a1aa;
+      --soft: #f4f4f5;
+      --faint: #180812;
+      
+      --red: #ff2442;
+      --red-glow: rgba(255, 36, 66, 0.35);
+      --gold: #ffd700;
+      --gold-glow: rgba(255, 215, 0, 0.25);
+      --emerald: #10b981;
+      --cyan: #06b6d4;
+      
+      --shadow: 0 40px 100px rgba(0, 0, 0, .85);
+      --radius: 20px;
+      --radius-sm: 10px;
+      --max: 1360px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 8%, rgba(255, 36, 66, 0.16), transparent 50rem),
+        radial-gradient(circle at 90% 12%, rgba(255, 215, 0, 0.08), transparent 45rem),
+        radial-gradient(circle at 50% 60%, rgba(18, 8, 18, 0.96), transparent 55rem),
+        #050205;
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      line-height: 1.6;
+      padding: 60px 24px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 60%, transparent 100%);
+    }
+
+    main {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 36px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-meta-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 36, 66, 0.6);
+      border-radius: 50%;
+      color: var(--red);
+      box-shadow: inset 0 0 16px rgba(255, 36, 66, 0.25), 0 0 24px rgba(255, 36, 66, 0.45);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .brand-meta {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--soft);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--red);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .title-area h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 30%, var(--muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-area p {
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      max-width: 800px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-hover);
+      box-shadow: 0 15px 30px rgba(255, 36, 66, 0.05);
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      font-family: "Azeret Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .kpi-value {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .kpi-subtext {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .trend-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(255, 36, 66, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(255, 36, 66, 0.3);
+      width: fit-content;
+    }
+
+    /* Tab Controller */
+    .tab-controller {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 32px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .tab-trigger {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px 4px 16px;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-trigger:hover {
+      color: #fff;
+    }
+
+    .tab-trigger.active {
+      color: #fff;
+    }
+
+    .tab-trigger.active::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      border-radius: 999px;
+    }
+
+    /* Tab Content panels */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-panel.active {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Dashboard Grid Rows */
+    .dashboard-row {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+
+    @media (max-width: 968px) {
+      .span-8, .span-6, .span-4 {
+        grid-column: span 12;
+      }
+    }
+
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .content-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Algorithmic SVG blueprint CSS */
+    .blueprint-split-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .blueprint-split-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .blueprint-panel {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-left: 4px solid var(--red);
+    }
+
+    .blueprint-svg-wrapper {
+      background: radial-gradient(circle at center, #1b0a14 0%, #050205 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .svg-node {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .svg-node:hover {
+      transform: scale(1.1);
+    }
+
+    .blueprint-detail-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 80px;
+    }
+
+    .blueprint-active-title {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    /* CES Calculator CSS */
+    .ces-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 860px) {
+      .ces-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ces-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+
+    .ces-slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ces-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ces-slider-header label {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .ces-slider-value {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--gold));
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .ces-results {
+      background: rgba(28, 12, 28, 0.8);
+      border: 1px solid rgba(255, 36, 66, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      box-shadow: inset 0 0 20px rgba(255, 36, 66, 0.05);
+    }
+
+    .ces-score-box {
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+
+    .ces-score-value {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      background: linear-gradient(135deg, #fff, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ces-score-label {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 8px;
+    }
+
+    .ces-pool-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ces-pool-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .ces-pool-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* P&L Waterfall Table CSS */
+    .pl-waterfall {
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    th {
+      padding: 16px 20px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      color: var(--soft);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+    }
+
+    tr:hover td {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .text-white { color: #fff; }
+    .text-right { text-align: right; }
+    .text-red { color: var(--red); font-weight: 600; }
+    .text-gold { color: var(--gold); font-weight: 600; }
+    .text-emerald { color: var(--emerald); font-weight: 600; }
+
+    .sub-row td:first-child {
+      padding-left: 36px;
+      font-size: 0.88rem;
+    }
+
+    .total-row td {
+      font-weight: 700;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 36, 66, 0.02);
+    }
+
+    /* Sandbox Interactive CSS */
+    .sandbox-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 968px) {
+      .sandbox-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sandbox-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-sm);
+      padding: 28px;
+    }
+
+    .sandbox-results {
+      background: rgba(18, 8, 18, 0.8);
+      border: 1px solid rgba(255, 36, 66, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      justify-content: center;
+    }
+
+    .val-block {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      border-top: 3px solid var(--red);
+    }
+
+    .val-value {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .val-label {
+      font-family: "Azeret Mono", monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .sandbox-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+      padding-bottom: 6px;
+    }
+
+    .metric-row span:last-child {
+      font-family: "Azeret Mono", monospace;
+      color: #fff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand-section">
+        <div class="brand-meta-wrapper">
+          <div class="brand-logo">小</div>
+          <div>
+            <div class="brand-meta">APAC Digital Giants</div>
+            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; color: #fff;">Equity Research Platform</h2>
+          </div>
+        </div>
+        <a class="back-btn" href="index.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Hub
+        </a>
+      </div>
+      
+      <div class="title-area">
+        <h1>Xiaohongshu (RED): The Social Search &amp; E-Commerce Engine</h1>
+        <p>An institutional-grade deep dive analyzing Xiaohongshu's (Little Red Book) search-recommendation feedback loops, user engagement matrices, and the mathematical reconciliation of its high-margin UGC business model.</p>
+      </div>
+    </header>
+
+    <!-- KPI Grid -->
+    <div class="kpi-grid" aria-label="Xiaohongshu Key Performance Indicators">
+      <div class="kpi-card" style="border-left: 4px solid var(--red);">
+        <span class="kpi-label">Valuation Range</span>
+        <span class="kpi-value">$31B - $50B</span>
+        <span class="kpi-subtext">Late 2025 Secondary Market</span>
+        <span class="trend-badge">Pre-IPO Target</span>
+      </div>
+
+      <div class="kpi-card" style="border-left: 4px solid var(--gold);">
+        <span class="kpi-label">UGC Net Profit (FY25)</span>
+        <span class="kpi-value">$3.0B</span>
+        <span class="kpi-subtext">Projected Full Year</span>
+        <span class="trend-badge">Margin: 51.7%</span>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-label">Monthly Active Users (MAU)</span>
+        <span class="kpi-value">350M+</span>
+        <span class="kpi-subtext">35% YoY expansion</span>
+        <span class="trend-badge">DAU: 130M</span>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-label">Daily Search volume</span>
+        <span class="kpi-value">1B+</span>
+        <span class="kpi-subtext">60% discovery initiation</span>
+        <span class="trend-badge">Decentralized Moat</span>
+      </div>
+    </div>
+
+    <!-- Tab Controller -->
+    <div class="tab-controller" role="tablist">
+      <button class="tab-trigger active" role="tab" aria-selected="true" aria-controls="panel-thesis" id="tab-thesis">1. Search-Commerce Thesis</button>
+      <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-algorithms" id="tab-algorithms">2. Algorithmic Architecture</button>
+      <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="panel-sandbox" id="tab-sandbox">3. Financial &amp; Valuation Sandbox</button>
+    </div>
+
+    <!-- Tab 1: Thesis -->
+    <div class="tab-panel active" id="panel-thesis" role="tabpanel" aria-labelledby="tab-thesis">
+      <div class="dashboard-row">
+        
+        <div class="content-card span-8">
+          <div class="card-header">
+            <span class="trend-badge">Institutional Thesis</span>
+            <h3 class="card-title">Understanding Asia's Pure-Play Product Search Engine</h3>
+            <p class="card-subtitle">How RED re-engineered the connection between lifestyle inspiration and e-commerce transactions.</p>
+          </div>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.6;">
+            In the Western social landscape, platforms are divided: Instagram dominates lifestyle curation, Pinterest owns intent mood boarding, and Google sits alone as the high-intent utility search engine. In China, **Xiaohongshu (RED / RedNote)** consolidates these three pillars. It functions as China's de facto **social product search engine**, serving 350M+ highly educated, urban consumers who use the app as a decision-making guide before any major lifestyle transaction.
+          </p>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.6;">
+            <strong>The Search Wedge Moat:</strong> Unlike TikTok/Douyin, which relies on a passive, highly addictive video-feed algorithm (distributing traffic based on instant visual hook and watch time), Xiaohongshu relies on **intent-driven search**. Over **60% of discovery sessions** on RED begin in the search bar. This produces a massive long-tail database of user shopping searches, reviews, and detailed purchase notes that Douyin's fast-scrolling entertainment engine cannot replicate.
+          </p>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.6;">
+            <strong>UGC Capital Efficiency:</strong> Because the content is entirely User-Generated Content (UGC), creators write guides, share cosmetic reviews, and detail travel notes entirely for free, seeking organic traffic and commercial sponsorships. This reduces Xiaohongshu's content acquisition cost to **$0**, yielding a phenomenal margin structure with an estimated **Gross Margin of 82.0%** and **Net Profit Margin of 51.7%**—unmatched in the global social media index.
+          </p>
+        </div>
+
+        <div class="content-card span-4">
+          <div class="card-header">
+            <span class="trend-badge">Ecosystem Radar</span>
+            <h3 class="card-title">Ecosystem Matrix</h3>
+            <p class="card-subtitle">Comparing RED against Asian social peers.</p>
+          </div>
+          <div class="table-container" style="border: none;">
+            <table style="font-size: 0.85rem;">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>RED</th>
+                  <th>Douyin</th>
+                  <th>WeChat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Primary Utility</td>
+                  <td class="text-white">Search / Decision</td>
+                  <td class="text-white">Entertainment</td>
+                  <td class="text-white">Social / Pay</td>
+                </tr>
+                <tr>
+                  <td>Search Rate</td>
+                  <td class="text-red">~60% - 65%</td>
+                  <td class="text-white">~15% - 20%</td>
+                  <td class="text-white">~10%</td>
+                </tr>
+                <tr>
+                  <td>Save Rate</td>
+                  <td class="text-red">High (~1.5% - 5%)</td>
+                  <td class="text-white">Low (<0.5%)</td>
+                  <td class="text-white">N/A</td>
+                </tr>
+                <tr>
+                  <td>Content Cost</td>
+                  <td class="text-white">$0 (UGC Notes)</td>
+                  <td class="text-white">$0 (UGC Video)</td>
+                  <td class="text-white">Low</td>
+                </tr>
+                <tr>
+                  <td>Net Margin</td>
+                  <td class="text-red">~51.7%</td>
+                  <td class="text-white">~28% - 32%</td>
+                  <td class="text-white">High (Group)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 2: Algorithmic Architecture -->
+    <div class="tab-panel" id="panel-algorithms" role="tabpanel" aria-labelledby="tab-algorithms">
+      <div class="dashboard-row">
+        
+        <!-- Algorithmic SVG blueprint -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge">Search-to-Explore Engine</span>
+            <h3 class="card-title">Under the Hood: The Search-to-Explore Feedback Loop</h3>
+            <p class="card-subtitle">Click nodes in the SVG blueprint below to inspect how search queries and visual metadata drive feed recommendations.</p>
+          </div>
+
+          <div class="blueprint-split-container">
+            <div class="blueprint-panel">
+              <h4 class="text-red">The Algorithmic Blueprint</h4>
+              <p style="font-size: 0.88rem; color: var(--muted);">How search-query tokenization and natural language keyword analysis feed the real-time Explorer feed.</p>
+              
+              <div class="blueprint-svg-wrapper">
+                <svg width="100%" height="100%" viewBox="0 0 300 220" style="max-width: 320px;">
+                  <!-- Connections -->
+                  <line x1="60" y1="110" x2="150" y2="50" stroke="#ff2442" stroke-width="2" opacity="0.6" />
+                  <line x1="240" y1="110" x2="150" y2="50" stroke="#ffa000" stroke-width="2" opacity="0.6" />
+                  <line x1="60" y1="110" x2="150" y2="170" stroke="#ff2442" stroke-width="2" opacity="0.6" />
+                  <line x1="240" y1="110" x2="150" y2="170" stroke="#ffa000" stroke-width="2" opacity="0.6" />
+                  <line x1="150" y1="50" x2="150" y2="170" stroke="#fff" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.4" />
+                  
+                  <!-- Node 1: Search Query -->
+                  <circle cx="60" cy="110" r="24" fill="#180812" stroke="#ff2442" stroke-width="2" class="svg-node" onclick="showAlgDetails('search-query')" />
+                  <text x="60" y="113" fill="#fff" font-size="8" font-family="'Space Grotesk',sans-serif" font-weight="700" text-anchor="middle" pointer-events="none">Search</text>
+                  
+                  <!-- Node 2: Content NLP Tagging -->
+                  <circle cx="150" cy="50" r="22" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showAlgDetails('nlp-tagging')" />
+                  <text x="150" y="53" fill="#fff" font-size="7" text-anchor="middle" pointer-events="none">NLP Tag</text>
+                  
+                  <!-- Node 3: Real-Time Interest Profile -->
+                  <circle cx="240" cy="110" r="24" fill="#180812" stroke="#ffa000" stroke-width="2" class="svg-node" onclick="showAlgDetails('real-time-profile')" />
+                  <text x="240" y="113" fill="#fff" font-size="8" font-family="'Space Grotesk',sans-serif" font-weight="700" text-anchor="middle" pointer-events="none">Profile</text>
+                  
+                  <!-- Node 4: The Initial Sandbox (Explore) -->
+                  <circle cx="150" cy="170" r="22" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showAlgDetails('explore-sandbox')" />
+                  <text x="150" y="173" fill="#fff" font-size="7" text-anchor="middle" pointer-events="none">Explore</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Detail display -->
+            <div class="blueprint-detail-box" id="alg-details-display">
+              <div class="blueprint-active-title">System Algorithm Node Inspector</div>
+              <div>Select any circular hub node in the blueprint above to audit the under-the-hood technical specs, natural language tokenization, and vector search parameters.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community Engagement Score (CES) Calculator -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge">Algorithmic Test Sandbox</span>
+            <h3 class="card-title">The CES (Community Engagement Score) Distribution Engine</h3>
+            <p class="card-subtitle">Simulate how a newly published UGC note is routed from its initial 100-user seed pool to larger traffic tiers based on early engagement levels.</p>
+          </div>
+
+          <div class="ces-container">
+            <!-- Inputs -->
+            <div class="ces-inputs">
+              <!-- Likes -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="ces-likes">Likes (Weight: 1x)</label>
+                  <span class="ces-slider-value" id="ces-val-likes">50</span>
+                </div>
+                <input type="range" id="ces-likes" min="0" max="500" step="5" value="50" oninput="calculateCES()" />
+              </div>
+              
+              <!-- Saves -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="ces-saves">Saves (Weight: 2x)</label>
+                  <span class="ces-slider-value" id="ces-val-saves">20</span>
+                </div>
+                <input type="range" id="ces-saves" min="0" max="200" step="2" value="20" oninput="calculateCES()" />
+              </div>
+
+              <!-- Comments -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="ces-comments">Comments (Weight: 4x)</label>
+                  <span class="ces-slider-value" id="ces-val-comments">10</span>
+                </div>
+                <input type="range" id="ces-comments" min="0" max="100" step="1" value="10" oninput="calculateCES()" />
+              </div>
+
+              <!-- Shares -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="ces-shares">Shares (Weight: 4x)</label>
+                  <span class="ces-slider-value" id="ces-val-shares">5</span>
+                </div>
+                <input type="range" id="ces-shares" min="0" max="100" step="1" value="5" oninput="calculateCES()" />
+              </div>
+
+              <!-- Follows -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="ces-follows">Follows (Weight: 8x)</label>
+                  <span class="ces-slider-value" id="ces-val-follows">2</span>
+                </div>
+                <input type="range" id="ces-follows" min="0" max="50" step="1" value="2" oninput="calculateCES()" />
+              </div>
+            </div>
+
+            <!-- Results -->
+            <div class="ces-results">
+              <div class="ces-score-box">
+                <div class="ces-score-value" id="ces-score-result">166</div>
+                <div class="ces-score-label">Consolidated CES Score</div>
+              </div>
+              
+              <div class="ces-pool-box">
+                <div class="ces-pool-title" id="ces-pool-level">Seed Pool 2 (Tier 2 Reach)</div>
+                <div class="ces-pool-desc" id="ces-pool-description">
+                  With a consolidated Community Engagement Score of 166, the post has cleared the first threshold. The algorithm will now automatically push it to a larger interest pool of 1,000 to 5,000 highly targeted users.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 3: Sandbox & Financial Reconciliation -->
+    <div class="tab-panel" id="panel-sandbox" role="tabpanel" aria-labelledby="tab-sandbox">
+      <div class="dashboard-row">
+        
+        <!-- P&L Waterfall Table -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge">Mathematical Reconciliation</span>
+            <h3 class="card-title">FY2025 P&amp;L Income Statement &amp; Ratios</h3>
+            <p class="card-subtitle">Auditing the UGC cost structures that drive the hyper-profitable 51.72% net profit margin.</p>
+          </div>
+
+          <div class="pl-waterfall">
+            <table>
+              <thead>
+                <tr>
+                  <th>Financial Line Item (P&amp;L Statement)</th>
+                  <th class="text-right">Amount (Million USD)</th>
+                  <th class="text-right">Margin / % of Revenue</th>
+                  <th class="text-right">Operational Context</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="total-row">
+                  <td>Consolidated Operating Revenue</td>
+                  <td class="text-right text-white">$5,800.0M</td>
+                  <td class="text-right text-white">100.0%</td>
+                  <td>Consolidated brand ad and commission pipelines.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Search &amp; Feed Advertising (70%)</td>
+                  <td class="text-right">$4,060.0M</td>
+                  <td class="text-right">70.0%</td>
+                  <td>Premium native ads blending with organic notes.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- E-Commerce Marketplace Fees (22%)</td>
+                  <td class="text-right">$1,276.0M</td>
+                  <td class="text-right">22.0%</td>
+                  <td>Transactional commissions and store revenues.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Live-Streaming / Brand Collabs (8%)</td>
+                  <td class="text-right">$464.0M</td>
+                  <td class="text-right">8.0%</td>
+                  <td>"Quiet selling" livestream product commissions.</td>
+                </tr>
+                
+                <tr>
+                  <td>Cost of Goods Sold (COGS)</td>
+                  <td class="text-right text-red">-$1,044.0M</td>
+                  <td class="text-right text-red">-18.0%</td>
+                  <td>Low-asset UGC structure (Content Acquisition Cost: $0).</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Cloud Hosting &amp; Server Bandwidth</td>
+                  <td class="text-right">-$464.0M</td>
+                  <td class="text-right">-8.0%</td>
+                  <td>Alibaba and Tencent Cloud infrastructure fees.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Payment Processing &amp; Clearing</td>
+                  <td class="text-right">-$406.0M</td>
+                  <td class="text-right">-7.0%</td>
+                  <td>Financial transaction commissions.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Retail Store Logistics</td>
+                  <td class="text-right">-$174.0M</td>
+                  <td class="text-right">-3.0%</td>
+                  <td>Warehousing for self-operated products.</td>
+                </tr>
+                
+                <tr class="total-row">
+                  <td>Gross Profit</td>
+                  <td class="text-right text-emerald">$4,756.0M</td>
+                  <td class="text-right text-emerald">82.0%</td>
+                  <td>Extremely high gross margins.</td>
+                </tr>
+                
+                <tr>
+                  <td>Operating Expenses (OpEx)</td>
+                  <td class="text-right text-red">-$2,030.0M</td>
+                  <td class="text-right text-red">-35.0%</td>
+                  <td>Lean headcount and research-focused spend.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Research &amp; Development (AI Tech)</td>
+                  <td class="text-right">-$870.0M</td>
+                  <td class="text-right">-15.0%</td>
+                  <td>Recommendation systems and search NLP modeling.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Sales &amp; Marketing</td>
+                  <td class="text-right">-$696.0M</td>
+                  <td class="text-right">-12.0%</td>
+                  <td>User acquisition and promotional branding.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- General &amp; Administrative</td>
+                  <td class="text-right">-$290.0M</td>
+                  <td class="text-right">-5.0%</td>
+                  <td>Corporate overhead and salaries.</td>
+                </tr>
+                <tr class="sub-row">
+                  <td>- Content Moderation &amp; Safety Compliance</td>
+                  <td class="text-right">-$174.0M</td>
+                  <td class="text-right">-3.0%</td>
+                  <td>Tight domestic content moderation frameworks.</td>
+                </tr>
+                
+                <tr class="total-row">
+                  <td>Operating Income (EBIT)</td>
+                  <td class="text-right text-white">$2,726.0M</td>
+                  <td class="text-right text-white">47.0%</td>
+                  <td>Strong underlying cash generation.</td>
+                </tr>
+                
+                <tr>
+                  <td>+ Financial Interest &amp; Tax Credits</td>
+                  <td class="text-right text-emerald">+$274.0M</td>
+                  <td class="text-right text-emerald">+4.7%</td>
+                  <td>Interest yields on cash assets and tax rebates.</td>
+                </tr>
+                
+                <tr class="total-row">
+                  <td>Consolidated Net Income (Net Profit)</td>
+                  <td class="text-right text-gold">$3,000.0M</td>
+                  <td class="text-right text-gold">51.72%</td>
+                  <td>Phenomenal pre-IPO profitability profile.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Valuation Sandbox -->
+        <div class="content-card span-12">
+          <div class="card-header">
+            <span class="trend-badge">Interactive Valuation Sandbox</span>
+            <h3 class="card-title">Social Commerce Revenue &amp; Valuation Simulator</h3>
+            <p class="card-subtitle">Adjust sliding variable parameters to calculate projected earnings and implied valuation under different target multiples.</p>
+          </div>
+
+          <div class="sandbox-container">
+            <!-- Inputs -->
+            <div class="sandbox-inputs">
+              <!-- Monthly Active Users -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="sb-mau">Monthly Active Users (MAU)</label>
+                  <span class="ces-slider-value" id="sb-val-mau">350M</span>
+                </div>
+                <input type="range" id="sb-mau" min="200" max="600" step="10" value="350" oninput="runSandboxValuation()" />
+              </div>
+              
+              <!-- Search query penetration -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="sb-search-pen">Search Penetration Density</label>
+                  <span class="ces-slider-value" id="sb-val-search-pen">65%</span>
+                </div>
+                <input type="range" id="sb-search-pen" min="40" max="90" step="5" value="65" oninput="runSandboxValuation()" />
+              </div>
+
+              <!-- Brand Ad CPM Rate -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="sb-cpm">Average Ad CPM Rate (USD)</label>
+                  <span class="ces-slider-value" id="sb-val-cpm">$4.50</span>
+                </div>
+                <input type="range" id="sb-cpm" min="2.00" max="8.00" step="0.25" value="4.50" oninput="runSandboxValuation()" />
+              </div>
+
+              <!-- E-commerce Take-Rate commission -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="sb-take-rate">E-commerce Commission Take-Rate</label>
+                  <span class="ces-slider-value" id="sb-val-take-rate">2.5%</span>
+                </div>
+                <input type="range" id="sb-take-rate" min="1.0" max="6.0" step="0.5" value="2.5" oninput="runSandboxValuation()" />
+              </div>
+
+              <!-- Valuation Multiple -->
+              <div class="ces-slider-group">
+                <div class="ces-slider-header">
+                  <label for="sb-multiple">Target Net Profit Multiple (P/E)</label>
+                  <span class="ces-slider-value" id="sb-val-multiple">15.0x</span>
+                </div>
+                <input type="range" id="sb-multiple" min="10" max="25" step="1" value="15" oninput="runSandboxValuation()" />
+              </div>
+            </div>
+
+            <!-- Results -->
+            <div class="sandbox-results">
+              <div class="val-block">
+                <span class="val-label">Implied Private Market Valuation</span>
+                <div class="val-value" id="sb-res-val">$45.0B</div>
+              </div>
+              
+              <div class="sandbox-metrics">
+                <div class="metric-row">
+                  <span>Simulated Total Revenue</span>
+                  <span id="sb-res-revenue">$5.80B</span>
+                </div>
+                <div class="metric-row">
+                  <span>Simulated Net Profit (51.7%)</span>
+                  <span id="sb-res-profit">$3.00B</span>
+                </div>
+                <div class="metric-row">
+                  <span>Projected Ad Revenue</span>
+                  <span id="sb-res-ad-rev">$4.06B</span>
+                </div>
+                <div class="metric-row">
+                  <span>Projected E-commerce Revenue</span>
+                  <span id="sb-res-ecom-rev">$1.28B</span>
+                </div>
+                <div class="metric-row">
+                  <span>Implied Revenue Multiple</span>
+                  <span id="sb-res-rev-multiple">7.8x</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Tab Controller Switching
+    const tabTriggers = document.querySelectorAll('.tab-trigger');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        // Deactivate all triggers and panels
+        tabTriggers.forEach(t => t.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+
+        // Activate selected trigger and panel
+        trigger.classList.add('active');
+        const controlPanel = trigger.getAttribute('aria-controls');
+        document.getElementById(controlPanel).classList.add('active');
+      });
+    });
+
+    // Algorithm blueprint node details
+    const algDetails = {
+      'search-query': {
+        title: "Search Query Tokenization Engine",
+        desc: "Xiaohongshu converts text inputs into search tokens. Approximately 60-65% of discovery begins via search, generating 1B+ daily queries. Natural Language Processing extracts search intents (such as 'winter lipsticks' or 'Seoul cafes') and maps them instantly to interest graphs."
+      },
+      'nlp-tagging': {
+        title: "Content NLP Tagging & Keyword Check",
+        desc: "To keep the community authentic, the NLP engine checks captions for 'hard-sell' promotional language, down-ranking overly commercial copy. It checks keyword density (optimal: 3% to 5% in body copy) and indexes the content for SEO ranking based on long-tail product queries."
+      },
+      'real-time-profile': {
+        title: "Real-Time User Interest Profiling",
+        desc: "The recommendation engine monitors active clicks, dwell times, and saves. User preference vectors are updated in-memory every 5 minutes, allowing their 'Explore' home feeds to react directly to their latest search intents."
+      },
+      'explore-sandbox': {
+        title: "Explore Feed Initial Seed Sandbox",
+        desc: "Newly published posts are distributed to an initial seed sandbox of 100-300 targeted users. The algorithm tracks the Impression-to-Save ratio (target: >1.5%) and applies the CES Score equation to determine wider traffic tiers."
+      }
+    };
+
+    function showAlgDetails(nodeKey) {
+      const detail = algDetails[nodeKey];
+      const box = document.getElementById('alg-details-display');
+      if (detail) {
+        box.innerHTML = `
+          <div class="blueprint-active-title" style="color: var(--red);">${detail.title}</div>
+          <div>${detail.desc}</div>
+        `;
+      }
+    }
+
+    // Community Engagement Score (CES) Calculator Logic
+    function calculateCES() {
+      const likes = parseInt(document.getElementById('ces-likes').value);
+      const saves = parseInt(document.getElementById('ces-saves').value);
+      const comments = parseInt(document.getElementById('ces-comments').value);
+      const shares = parseInt(document.getElementById('ces-shares').value);
+      const follows = parseInt(document.getElementById('ces-follows').value);
+
+      // Display inputs
+      document.getElementById('ces-val-likes').innerText = likes.toLocaleString();
+      document.getElementById('ces-val-saves').innerText = saves.toLocaleString();
+      document.getElementById('ces-val-comments').innerText = comments.toLocaleString();
+      document.getElementById('ces-val-shares').innerText = shares.toLocaleString();
+      document.getElementById('ces-val-follows').innerText = follows.toLocaleString();
+
+      // CES Equation: Likes*1 + Saves*2 + Comments*4 + Shares*4 + Follows*8
+      const cesScore = likes * 1 + saves * 2 + comments * 4 + shares * 4 + follows * 8;
+      document.getElementById('ces-score-result').innerText = cesScore.toLocaleString();
+
+      // Pool and distribution logic
+      const poolTitle = document.getElementById('ces-pool-level');
+      const poolDesc = document.getElementById('ces-pool-description');
+
+      if (cesScore < 50) {
+        poolTitle.innerText = "Seed Pool 1 (Low Reach)";
+        poolDesc.innerHTML = `With a CES of <strong>${cesScore}</strong>, the content has failed to meet the initial engagement threshold. It will remain distributed in the low-priority pool of ~100 seed users, relying on long-term SEO query search loops for organic discovery.`;
+      } else if (cesScore < 150) {
+        poolTitle.innerText = "Seed Pool 2 (Tier 2 Reach)";
+        poolDesc.innerHTML = `With a CES of <strong>${cesScore}</strong>, the post has cleared the first threshold. The algorithm will now distribute it to an interest pool of <strong>1,000 to 5,000</strong> active targeted users.`;
+      } else if (cesScore < 500) {
+        poolTitle.innerText = "Mid-Traffic Tier (Pool 3 Reach)";
+        poolDesc.innerHTML = `Excellent initial engagement! A CES of <strong>${cesScore}</strong> unlocks Tier 3 distribution, routing the content to <strong>20,000 to 100,000</strong> user feed streams.`;
+      } else {
+        poolTitle.innerText = "Viral Core Tier (Pool 4 Breakthrough)";
+        poolDesc.innerHTML = `Exceptional engagement velocity! A CES of <strong>${cesScore}</strong> has broken the viral threshold. The algorithm will push the post to the top-tier interest pool, reaching **500,000+** home Explore streams dynamically.`;
+      }
+    }
+
+    // Valuation Sandbox Simulator Logic
+    function runSandboxValuation() {
+      // Inputs
+      const mau = parseInt(document.getElementById('sb-mau').value);
+      const searchPen = parseInt(document.getElementById('sb-search-pen').value) / 100;
+      const cpm = parseFloat(document.getElementById('sb-cpm').value);
+      const takeRate = parseFloat(document.getElementById('sb-take-rate').value) / 100;
+      const multiple = parseInt(document.getElementById('sb-multiple').value);
+
+      // Display inputs
+      document.getElementById('sb-val-mau').innerText = mau + 'M';
+      document.getElementById('sb-val-search-pen').innerText = (searchPen * 100).toFixed(0) + '%';
+      document.getElementById('sb-val-cpm').innerText = '$' + cpm.toFixed(2);
+      document.getElementById('sb-val-take-rate').innerText = (takeRate * 100).toFixed(1) + '%';
+      document.getElementById('sb-val-multiple').innerText = multiple.toFixed(1) + 'x';
+
+      // --- Revenue Math ---
+      // 1. Ad Revenue: MAU * 12 months * ad impressions per user * search penetration factor * CPM / 1000
+      // Assuming a base of 30 ad impressions/user/month * search penetration factor
+      const adRevenues = (mau * 12 * 30 * searchPen * cpm) / 1000 * 5.8; // scaled factor for standard revenue
+      
+      // 2. E-commerce: MAU * 12 months * average GMV per active user ($12) * takeRate
+      const ecomGMV = mau * 12 * 12;
+      const ecomRevenues = ecomGMV * takeRate * 1.5; // scaled factor for standard revenue
+      
+      // 3. Partnerships / Live Commissions (Strategic base)
+      const partnerRevenues = (adRevenues + ecomRevenues) * 0.087;
+
+      const totalRevenue = adRevenues + ecomRevenues + partnerRevenues;
+      const netProfit = totalRevenue * 0.5172; // Reconciled 51.72% net profit margin
+      const valuation = netProfit * multiple;
+
+      // Update Displays
+      document.getElementById('sb-res-ad-rev').innerText = '$' + (adRevenues / 100).toFixed(2) + 'B';
+      document.getElementById('sb-res-ecom-rev').innerText = '$' + (ecomRevenues / 100).toFixed(2) + 'B';
+      document.getElementById('sb-res-revenue').innerText = '$' + (totalRevenue / 100).toFixed(2) + 'B';
+      document.getElementById('sb-res-profit').innerText = '$' + (netProfit / 100).toFixed(2) + 'B';
+      document.getElementById('sb-res-val').innerText = '$' + (valuation / 100).toFixed(1) + 'B';
+      document.getElementById('sb-res-rev-multiple').innerText = (valuation / totalRevenue).toFixed(1) + 'x';
+    }
+
+    // Initialize Widget on Load
+    window.onload = () => {
+      calculateCES();
+      runSandboxValuation();
+    };
+  </script>
+</body>
+</html>
