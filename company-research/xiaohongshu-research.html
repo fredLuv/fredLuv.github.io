@@ -380,11 +380,24 @@
 
     .svg-node {
       cursor: pointer;
-      transition: transform 0.2s ease;
     }
 
-    .svg-node:hover {
-      transform: scale(1.1);
+    .svg-node rect, .svg-node circle {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .svg-node:hover rect {
+      stroke: var(--red);
+      stroke-width: 2px;
+      fill: rgba(212, 63, 81, 0.12);
+      filter: drop-shadow(0 0 8px var(--red-glow));
+    }
+
+    .svg-node:hover circle {
+      stroke: var(--red);
+      stroke-width: 2.5px;
+      fill: rgba(212, 63, 81, 0.18);
+      filter: drop-shadow(0 0 8px var(--red-glow));
     }
 
     .blueprint-detail-box {
