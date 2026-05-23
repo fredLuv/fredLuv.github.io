@@ -350,65 +350,172 @@
       color: var(--muted);
     }
 
-    /* Platform Architecture Split CSS */
-    .arch-split-container {
+    /* Comparative Transaction Tracer Styles */
+    .tracer-container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2.2fr 3.8fr;
       gap: 32px;
       margin-top: 12px;
     }
 
-    @media (max-width: 860px) {
-      .arch-split-container {
+    @media (max-width: 968px) {
+      .tracer-container {
         grid-template-columns: 1fr;
       }
     }
 
-    .arch-panel {
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: var(--radius-sm);
-      padding: 24px;
+    .tracer-steps-list {
       display: flex;
       flex-direction: column;
       gap: 16px;
-      transition: all 0.3s ease;
     }
 
-    .arch-panel.rippling-panel {
-      border-left: 4px solid var(--rippling);
-    }
-
-    .arch-panel.deel-panel {
-      border-left: 4px solid var(--gold);
-    }
-
-    .arch-panel h4 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
-
-    /* SVG Blueprint Graphics */
-    .arch-svg-wrapper {
-      background: radial-gradient(circle at center, #070c1d 0%, #03050c 100%);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+    .tracer-step-item {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 12px;
-      height: 250px;
-      position: relative;
-      overflow: hidden;
+      padding: 16px 20px;
       display: flex;
-      justify-content: center;
       align-items: center;
-    }
-
-    .svg-node {
+      gap: 20px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .svg-node:hover {
-      transform: scale(1.1);
+    .tracer-step-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+      transform: translateX(4px);
+    }
+
+    .tracer-step-item.active {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02);
+    }
+
+    .step-num {
+      font-family: "Azeret Mono", monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: color 0.25s ease;
+    }
+
+    .tracer-step-item.active .step-num {
+      color: #fff;
+    }
+
+    .step-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .step-title-text {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--soft);
+      transition: color 0.25s ease;
+    }
+
+    .tracer-step-item.active .step-title-text {
+      color: #fff;
+    }
+
+    .step-subtitle-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .tracer-comparison-console {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 400px;
+    }
+
+    .console-comparison-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      animation: fadeInTracer 0.3s ease forwards;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    @media (max-width: 640px) {
+      .console-comparison-split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @keyframes fadeInTracer {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tracer-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tracer-pane-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .tracer-pane-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tracer-pane-block {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tracer-pane-block.rip-accent {
+      border-left: 3px solid var(--rippling);
+    }
+
+    .tracer-pane-block.del-accent {
+      border-left: 3px solid var(--gold);
+    }
+
+    .tracer-pane-label {
+      font-size: 0.72rem;
+      font-family: "Azeret Mono", monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .tracer-pane-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--soft);
+    }
+
+    .tracer-pane-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
     /* Table Styles */
@@ -674,22 +781,6 @@
     }
 
     /* Interactive elements for Blueprint details */
-    .blueprint-detail-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 16px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      min-height: 80px;
-    }
-
-    .blueprint-active-title {
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 4px;
-    }
   </style>
 </head>
 <body>
@@ -869,89 +960,57 @@
       <div class="dashboard-row">
         <div class="content-card span-12">
           <div class="card-header">
-            <span class="trend-badge">Architectural Showdown</span>
-            <h3 class="card-title">How the Engines Work Under the Hood</h3>
-            <p class="card-subtitle">Click nodes in the blueprints below to inspect the database pipelines driving operational superiority.</p>
+            <span class="trend-badge">Comparative Architecture</span>
+            <h3 class="card-title">The Engines Under the Hood: Global Onboarding Transaction Flow</h3>
+            <p class="card-subtitle">Trace a complete cross-border employee onboarding event step-by-step to contrast Rippling's logical Workforce Graph against Deel's distributed compliance networks.</p>
           </div>
 
-          <div class="arch-split-container">
-            <!-- Rippling Panel -->
-            <div class="arch-panel rippling-panel">
-              <h4 class="text-rippling">Rippling's "Employee Graph" Model</h4>
-              <p style="font-size: 0.88rem; color: var(--muted);">Centralized unified relational system where HR, IT, and Finance sit on top of a single record.</p>
-              
-              <div class="arch-svg-wrapper">
-                <svg width="100%" height="100%" viewBox="0 0 300 220" style="max-width: 320px;">
-                  <!-- Connectors -->
-                  <line x1="150" y1="110" x2="70" y2="60" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
-                  <line x1="150" y1="110" x2="230" y2="60" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
-                  <line x1="150" y1="110" x2="70" y2="160" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
-                  <line x1="150" y1="110" x2="230" y2="160" stroke="#02a87c" stroke-width="2.5" opacity="0.6" stroke-dasharray="3,3" />
-                  
-                  <!-- Center Core -->
-                  <circle cx="150" cy="110" r="30" fill="rgba(2,168,124,0.15)" stroke="#02a87c" stroke-width="2" class="svg-node" onclick="showBlueprintDetail('rip-core')" />
-                  <text x="150" y="114" fill="#fff" font-size="10" font-family="'Space Grotesk',sans-serif" font-weight="700" text-anchor="middle" pointer-events="none">Identity</text>
-                  
-                  <!-- Node 1: HRIS & Payroll -->
-                  <circle cx="70" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-hris')" />
-                  <text x="70" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Payroll</text>
-                  
-                  <!-- Node 2: IT Provisioning -->
-                  <circle cx="230" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-it')" />
-                  <text x="230" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">IT/Apps</text>
-                  
-                  <!-- Node 3: Device MDM -->
-                  <circle cx="70" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-devices')" />
-                  <text x="70" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Devices</text>
-                  
-                  <!-- Node 4: Finance Expense -->
-                  <circle cx="230" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('rip-spend')" />
-                  <text x="230" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Cards</text>
-                </svg>
+          <div class="tracer-container">
+            <!-- Left Side: Step Selector List -->
+            <div class="tracer-steps-list">
+              <div class="tracer-step-item active" onclick="showTracerStep(1)">
+                <div class="step-num">01</div>
+                <div class="step-meta">
+                  <div class="step-title-text">Database &amp; Contract Commit</div>
+                  <div class="step-subtitle-text">Logical DB graph vs. localized PDF contracts</div>
+                </div>
+              </div>
+              <div class="tracer-step-item" onclick="showTracerStep(2)">
+                <div class="step-num">02</div>
+                <div class="step-meta">
+                  <div class="step-title-text">Statutory Employment Liability</div>
+                  <div class="step-subtitle-text">Foreign partners vs. owned legal entities</div>
+                </div>
+              </div>
+              <div class="tracer-step-item" onclick="showTracerStep(3)">
+                <div class="step-num">03</div>
+                <div class="step-meta">
+                  <div class="step-title-text">Identity &amp; SaaS Provisioning (IAM)</div>
+                  <div class="step-subtitle-text">Event-driven SCIM vs. Zavvy modular tasks</div>
+                </div>
+              </div>
+              <div class="tracer-step-item" onclick="showTracerStep(4)">
+                <div class="step-num">04</div>
+                <div class="step-meta">
+                  <div class="step-title-text">Laptop MDM &amp; Hardware Dispatch</div>
+                  <div class="step-subtitle-text">Native warehouse APNs vs. Hofy outsourcing</div>
+                </div>
+              </div>
+              <div class="tracer-step-item" onclick="showTracerStep(5)">
+                <div class="step-num">05</div>
+                <div class="step-meta">
+                  <div class="step-title-text">Treasury, FX &amp; Pay Routing</div>
+                  <div class="step-subtitle-text">Domestic ACH ledgers vs. locked forward rates</div>
+                </div>
               </div>
             </div>
 
-            <!-- Deel Panel -->
-            <div class="arch-panel deel-panel">
-              <h4 class="text-deel">Deel's "Global Entity Compliance Network"</h4>
-              <p style="font-size: 0.88rem; color: var(--muted);">Distributed global compliance ledger connected to local operational legal infrastructure.</p>
-              
-              <div class="arch-svg-wrapper">
-                <svg width="100%" height="100%" viewBox="0 0 300 220" style="max-width: 320px;">
-                  <!-- Connectors -->
-                  <line x1="150" y1="110" x2="70" y2="60" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
-                  <line x1="150" y1="110" x2="230" y2="60" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
-                  <line x1="150" y1="110" x2="70" y2="160" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
-                  <line x1="150" y1="110" x2="230" y2="160" stroke="#ffa000" stroke-width="2.5" opacity="0.6" />
-                  
-                  <!-- Center Core -->
-                  <circle cx="150" cy="110" r="30" fill="rgba(255,160,0,0.15)" stroke="#ffa000" stroke-width="2" class="svg-node" onclick="showBlueprintDetail('del-core')" />
-                  <text x="150" y="114" fill="#fff" font-size="10" font-family="'Space Grotesk',sans-serif" font-weight="700" text-anchor="middle" pointer-events="none">Deel Hub</text>
-                  
-                  <!-- Node 1: EOR Compliance -->
-                  <circle cx="70" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-eor')" />
-                  <text x="70" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">EOR</text>
-                  
-                  <!-- Node 2: Treasury Route -->
-                  <circle cx="230" cy="60" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-treasury')" />
-                  <text x="230" y="63" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">FX/Pay</text>
-                  
-                  <!-- Node 3: Legal & Visas -->
-                  <circle cx="70" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-visas')" />
-                  <text x="70" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Immigr.</text>
-                  
-                  <!-- Node 4: Domestic Free Wedge -->
-                  <circle cx="230" cy="160" r="20" fill="#0f172a" stroke="#fff" stroke-width="1.5" class="svg-node" onclick="showBlueprintDetail('del-hr')" />
-                  <text x="230" y="163" fill="#fff" font-size="8" text-anchor="middle" pointer-events="none">Deel HR</text>
-                </svg>
+            <!-- Right Side: Splitted Comparison Console -->
+            <div class="tracer-comparison-console">
+              <div class="console-comparison-split" id="tracer-console-split">
+                <!-- Dynamic content injected on load -->
               </div>
             </div>
-          </div>
-
-          <!-- Blueprint Details Display -->
-          <div class="blueprint-detail-box" id="blueprint-details-display">
-            <div class="blueprint-active-title">System Architecture Node Inspector</div>
-            <div>Select any circular hub node in the blueprints above to audit the under-the-hood technical specs, database schemas, and API configurations.</div>
           </div>
         </div>
       </div>
@@ -1224,62 +1283,144 @@
       });
     });
 
-    // Blueprint Node Details Object
-    const blueprintDetails = {
-      'rip-core': {
-        title: "Rippling Core Identity & Workforce Graph (Logical Model)",
-        desc: "Rippling treats employee identity as a live, interconnected network. Instead of siloed databases, its Workforce Graph logically maps employee attributes (roles, departments, locations, permissions) onto a shared database layer. OLTP workloads reside in **MongoDB** for document schema flexibility, while multi-tenant custom metadata is stored in **Amazon Aurora PostgreSQL**. A unified event-driven **Directed Acyclic Graph (DAG)** workflow engine topologically sorts and executes multi-module tasks in atomic transactions, ensuring that any HR edit propagates instantly across IAM profiles, laptop MDM states, and spend accounts."
+    const tracerStepsData = {
+      1: {
+        rippling: {
+          action: "Workforce Graph Database Transaction",
+          stack: "Aurora PostgreSQL / MongoDB OLTP",
+          desc: "Employee onboarding triggers an atomic database transaction. The profile is committed into MongoDB (primary document store for employee attributes flexibility) and mapped to relational schemas in Amazon Aurora PostgreSQL (for multi-tenant metadata custom fields). The central 'Workforce Graph' record automatically links locations, roles, and departments, ensuring all other system modules have a single reactive source of truth instantly."
+        },
+        deel: {
+          action: "Compliance Contract Document Ingestion",
+          stack: "Node.js Compliance / Document Store",
+          desc: "Global onboarding generates a highly localized employment contract dynamically compiled for specific local labor statutes. PDFs are generated and stored in a distributed document DB. The system runs an automated compliance audit to ensure mandatory tax forms and local labor declarations are gathered from the candidate before payroll ingestion."
+        }
       },
-      'rip-hris': {
-        title: "Unified HRIS & Global Payroll Engine",
-        desc: "Runs local tax engines natively across multi-state U.S. jurisdictions and global subsidiaries. Payroll records are structurally coupled to the core Workforce Graph. Any salary modification, time-tracking input, or regional transfer instantly triggers downstream ledger calculations and prorations, feeding directly into the accounting integrations and treasury pool without manual batch file syncs."
+      2: {
+        rippling: {
+          action: "Subsidiary Payroll Ledger Binding",
+          stack: "Payroll Ledger DB / REST Partner APIs",
+          desc: "The employee profile is bound to Rippling's payroll ledger, linking active bank accounts and salary schedules to domestic tax brackets. For international workers, the profile registers on partner foreign payroll ledgers or domestic payroll modules, calculating proration in real-time on payroll day."
+        },
+        deel: {
+          action: "EOR Statutory Legal Entity Mapping",
+          stack: "100+ Owned Local Legal Entities",
+          desc: "Deel maps the contract directly to its local operational legal entity (e.g., Deel UK Ltd). Complete statutory employment liability is legally assumed by Deel. Deel's legal ledger allocates regional healthcare filings, pension plans, local payroll taxes, and statutory severance reserves to its owned corporate entity."
+        }
       },
-      'rip-it': {
-        title: "IT Provisioning & SCIM Identity Layer",
-        desc: "A native Identity and Access Management (IAM) engine. When a role change or new hire transaction commits to the Workforce Graph, Rippling’s IAM engine uses **REST APIs and SCIM (System for Cross-domain Identity Management)** to orchestrate account creations, group memberships, and access revocations in third-party SaaS tools (GitHub, AWS, Slack, Okta) in real time based on active graph credentials."
+      3: {
+        rippling: {
+          action: "Native Event-Driven SCIM Provisioning",
+          stack: "SCIM APIs / OAuth2 SSO Gateway",
+          desc: "An event bus detects the new Workforce Graph entry, triggering the native IAM layer. The system issues automated REST SCIM commands to active SaaS directories (GitHub, Slack, AWS, Okta) based on the employee's role. It provisions accounts and assigns security groups dynamically without manual IT intervention."
+        },
+        deel: {
+          action: "Modular Zavvy Workflows & Checklists",
+          stack: "Zavvy API / Webhook Notifications",
+          desc: "Deel HR logs the profile. If Zavvy talent module is active, it triggers webhooks to assign customized onboarding courses. For external app logins, the system generates automated IT admin tasks and checklist workflows, guiding managers to provision seats manually or via standard modular integrations."
+        }
       },
-      'rip-devices': {
-        title: "Device Logistics & MDM Apple/Windows Profiles",
-        desc: "A physical-hardware-coupled Mobile Device Management (MDM) infrastructure. Serial hashes are logged directly in the central employee database. Rippling pre-configures and ships laptops from centralized hardware warehouses. When booted, devices register automatically with Apple Business Manager or Windows Autopilot, pulling profile payloads containing custom Wi-Fi certificates, VPN endpoints, and security agents via APNs/WNS push channels."
+      4: {
+        rippling: {
+          action: "Laptop Warehouse Dispatch & APNs/WNS MDM",
+          stack: "Logistics API / APNs & WNS Push",
+          desc: "Rippling's hardware warehousing API dispatches a pre-configured laptop. Serials are logged directly in the core database record. On boot, the hardware registers with Apple Business Manager or Windows Autopilot, pushing security payloads (VPN, Wi-Fi certs, Crowdstrike agent) via native push notification daemons."
+        },
+        deel: {
+          action: "Hofy Integration & Shipping Log Hooks",
+          stack: "Hofy Logistics API / Webhook Trackers",
+          desc: "Deel outsources device logistics via its Hofy API partnership. EOR onboarding dispatches a laptop order to Hofy's database. Hofy handles preparation and global shipping, returning delivery tracking IDs and inventory tags via webhook, which are logged inside the Deel dashboard interface."
+        }
       },
-      'rip-spend': {
-        title: "Finance Spend Cloud & Corporate Visa Ledger",
-        desc: "Direct integrations with corporate credit card networks. Rippling issues corporate Visa cards where transaction authorization limits are dynamically bound to active database role credentials. When a card is swiped, the network sends a real-time authorization request to Rippling's ledger, which queries the Workforce Graph to audit the employee’s department budget and travel status, deciding to approve or decline the swipe in <50ms."
-      },
-      'del-core': {
-        title: "Deel Global Hub Compliance Ledger",
-        desc: "A centralized legal compliance ledger and multi-currency treasury engine designed to consolidate fragmented international employment processes. Deel functions as a unified system of record, coordinating localized contractor legal agreements, tax forms, statutory benefit filings, and cross-border currency allocations across international borders."
-      },
-      'del-eor': {
-        title: "Employer of Record (EOR) Statutory Entity Infrastructure",
-        desc: "Deel legally employs distributed international talent on behalf of companies by operating **100+ fully-owned local legal entities** (e.g., Deel UK Ltd). Contracts are bound to Deel's local entities, assuming 100% of the local statutory employment liability—handling pension enrollments, local healthcare regulations, local severance reserves, and labor code compliance directly, maintaining high gross margins by bypassing third-party EOR brokers."
-      },
-      'del-treasury': {
-        title: "Multi-Currency Routing & FX Treasury Engine",
-        desc: "A high-speed global fund allocation and disbursement engine. Clients fund a single aggregated invoice in primary currencies (USD, EUR) via SEPA, ACH, or wires. Deel routes local funds to distributed workers in 120+ currencies using localized payment rails. The treasury engine utilizes locked **forward rates** to protect budgets from currency volatility and supports direct stablecoin/crypto settlement from corporate treasuries in minutes."
-      },
-      'del-visas': {
-        title: "Immigration Case Management & Visa Sponsorship",
-        desc: "Automated governmental mobility pipeline. Deel leverages its owned legal entities to act as corporate visa sponsors inside local jurisdictions. The database manages document uploads, background check processes, and status tracking, connecting to local immigration portals to streamline international worker relocations."
-      },
-      'del-hr': {
-        title: "Deel HR: Free Domestic HRIS Wedge",
-        desc: "A lightweight, database-level Workforce HRIS offered completely free of software licensing cost ($0/user/mo). Deel HR stores basic employee attributes and org charts, serving as a highly effective database 'Trojan horse' to capture client records, laying the foundation to upsell highly lucrative EOR hires, international contractors, global hardware shipping (Hofy integration), and Zavvy performance talent modules."
+      5: {
+        rippling: {
+          action: "Domestic ACH & Local FX Settlement",
+          stack: "FedACH / Wire APIs / Partner FX Ledger",
+          desc: "Rippling siphons client funds via ACH/wires, executing domestic payroll directly. For international payroll or EOR contractors, the transaction commits to partner FX networks, converting funds on payroll day to local regional currencies."
+        },
+        deel: {
+          action: "Multi-Currency Treasury & Stablecoin Settlement",
+          stack: "Forward Rates / Local Clearing / Crypto",
+          desc: "Client funds one aggregate invoice in USD/EUR. Deel's FX ledger routes funds globally using locked **forward rates** to protect budgets from currency swings, clearing payments locally (SEPA, ACH, Pix) to EOR/contractors, or settling instantly via Deel's stablecoin payroll treasury in minutes."
+        }
       }
     };
 
-    function showBlueprintDetail(nodeKey) {
-      const detail = blueprintDetails[nodeKey];
-      const box = document.getElementById('blueprint-details-display');
-      if (detail) {
-        const isRippling = nodeKey.startsWith('rip-');
-        const titleColor = isRippling ? 'var(--rippling)' : 'var(--gold)';
-        box.innerHTML = `
-          <div class="blueprint-active-title" style="color: ${titleColor};">${detail.title}</div>
-          <div style="line-height: 1.6; font-size: 0.92rem; color: var(--muted);">${detail.desc}</div>
+    function showTracerStep(stepId) {
+      // Toggle active classes on steps
+      const steps = document.querySelectorAll('.tracer-step-item');
+      steps.forEach((step, idx) => {
+        if (idx === (stepId - 1)) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+
+      const data = tracerStepsData[stepId];
+      const consoleContainer = document.getElementById('tracer-console-split');
+      
+      // Dynamic fade out / fade in
+      consoleContainer.style.opacity = '0';
+      
+      setTimeout(() => {
+        consoleContainer.innerHTML = `
+          <!-- Rippling Column -->
+          <div class="tracer-pane">
+            <div class="tracer-pane-header text-rippling">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Rippling Flow
+            </div>
+            
+            <div class="tracer-pane-body">
+              <div class="tracer-pane-block rip-accent">
+                <div class="tracer-pane-label">Action Target</div>
+                <div class="tracer-pane-title">${data.rippling.action}</div>
+              </div>
+              
+              <div class="tracer-pane-block rip-accent">
+                <div class="tracer-pane-label">Database &amp; Tech Stack</div>
+                <div class="tracer-pane-title" style="color: #fff; font-family: 'Azeret Mono', monospace; font-size: 0.8rem;">${data.rippling.stack}</div>
+              </div>
+              
+              <div class="tracer-pane-block rip-accent">
+                <div class="tracer-pane-label">Execution Mechanism</div>
+                <div class="tracer-pane-desc">${data.rippling.desc}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deel Column -->
+          <div class="tracer-pane">
+            <div class="tracer-pane-header text-deel">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Deel Flow
+            </div>
+            
+            <div class="tracer-pane-body">
+              <div class="tracer-pane-block del-accent">
+                <div class="tracer-pane-label">Action Target</div>
+                <div class="tracer-pane-title">${data.deel.action}</div>
+              </div>
+              
+              <div class="tracer-pane-block del-accent">
+                <div class="tracer-pane-label">Database &amp; Tech Stack</div>
+                <div class="tracer-pane-title" style="color: #fff; font-family: 'Azeret Mono', monospace; font-size: 0.8rem;">${data.deel.stack}</div>
+              </div>
+              
+              <div class="tracer-pane-block del-accent">
+                <div class="tracer-pane-label">Execution Mechanism</div>
+                <div class="tracer-pane-desc">${data.deel.desc}</div>
+              </div>
+            </div>
+          </div>
         `;
-      }
+        consoleContainer.style.opacity = '1';
+      }, 150);
     }
+
+    // Initialize first step of tracer on load
+    showTracerStep(1);
   </script>
 </body>
 </html>
