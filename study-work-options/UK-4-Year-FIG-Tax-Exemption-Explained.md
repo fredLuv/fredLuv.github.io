@@ -8,7 +8,7 @@ This document explains the **4-Year Foreign Income and Gains (FIG) Regime** intr
 
 英国政府废除了旧有的“非英国本土居民（Non-Dom）”制度，从 **2025 年 4 月起** 正式实施全新的 **“4 年 FIG 免税新政”（4-Year Foreign Income and Gains Regime）**。
 
-这是英国近几十年来对高净值技术人才与买方精英最有利的税收政策之一：
+这是英国近几十年来对高净值技术人才与买方精英最有利的税收优惠政策之一：
 
 ---
 
@@ -40,7 +40,7 @@ This document explains the **4-Year Foreign Income and Gains (FIG) Regime** intr
 
 ---
 
-### 💡 对 Ethan 的实操套利价值（Tax Arbitrage）
+### 💡 对跨国资深工程师的实操套利价值（Tax Arbitrage）
 
 若你从美国移居伦敦，在前 4 年内：
 1. **美股/美债变现**：你的美股持仓、科技股 Option 或美债收益，在前 4 年内随时变现并汇入英国，**无需向英国政府缴纳一分钱税**。

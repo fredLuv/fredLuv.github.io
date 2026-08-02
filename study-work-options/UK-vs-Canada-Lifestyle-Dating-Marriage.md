@@ -6,7 +6,7 @@ This document provides a deep-dive comparative analysis of **The United Kingdom 
 
 ## 📊 Summary Comparison: UK (London) vs. Canada (Toronto/Vancouver)
 
-| Dimension | 🇬🇧 London, UK | 🇨🇦 Toronto / Vancouver, Canada | Winner for Ethan |
+| Dimension | 🇬🇧 London, UK | 🇨🇦 Toronto / Vancouver, Canada | Winner for Senior SDE |
 | :--- | :--- | :--- | :--- |
 | **Quality of Life & Vibe** | **Hyper-Cosmopolitan & Historic** (West End, pubs, art, 1-2 hr flights to Europe) | **Wholesome & Outdoor-Focused** (Nature, lake/mountains, safer, quiet) | 🏆 **UK (For Energy & Culture)** |
 | **Winter Weather** | **Mild & Overcast** (Rarely drops below 0°C / 32°F) | **Brutal Freezing** (Toronto: -15°C snow) or **Constant Rain** (Vancouver) | 🏆 **UK (London)** |
@@ -32,12 +32,12 @@ This document provides a deep-dive comparative analysis of **The United Kingdom 
 
 ---
 
-## 2. Dating Market Dynamics (For a 32-Year-Old Single Male)
+## 2. Dating Market Dynamics (For Single Tech & Finance Professionals)
 
 ### 🇬🇧 London: High Energy, Cosmopolitan & Ambitious
 * **The Dating Pool**: London attracts ambitious, highly educated women from across Europe, North America, and Asia working in finance, corporate law, tech, fashion, art, and consulting.
 * **Social Openness**: Pub and cocktail culture makes meeting people natural. People in London are socially dynamic, witty, and open to conversation.
-* **The "Campaigner" Fit**: For a 32-year-old single male with **High Status-Seeking (78%)** and **High Inspiration/Engagement (76%)**, London’s dating scene provides endless intellectual spark, style, and energy.
+* **The High-Performer Fit**: For a single male with high ambition and engagement, London’s dating scene provides endless intellectual spark, style, and energy.
 * **Drawback**: Can feel fast-paced or transient if expats move after 2-3 years (though GTV/ILR holders stay long-term).
 
 ### 🇨🇦 Canada: Grounded, Family-Oriented, but Cliquey
@@ -60,18 +60,18 @@ This document provides a deep-dive comparative analysis of **The United Kingdom 
 
 ---
 
-## 🎯 Final Verdict for Ethan
+## 🎯 Final Verdict
 
 ```
-                          [ What is your priority at age 32? ]
-                                   /                \
-                                  /                  \
-   [ Dynamic Dating, High Net Salary, ]            [ Quiet Family Life, Free Public ]
-   [ European Culture & Fast-Paced Vibe ]          [ Schools & Outdoor Nature ]
-                  |                                        |
-                  v                                        v
-        🇬🇧 Choose UK (London)                    🇨🇦 Choose Canada
-   (High-voltage dating & lifestyle)           (Wholesome, safe settling down)
+                          [ What is your priority? ]
+                                   /        \
+                                  /          \
+   [ Dynamic Dating, High Net Salary, ]      [ Quiet Family Life, Free Public ]
+   [ European Culture & Fast-Paced Vibe ]    [ Schools & Outdoor Nature ]
+                  |                                  |
+                  v                                  v
+        🇬🇧 Choose UK (London)              🇨🇦 Choose Canada
+   (High-voltage dating & lifestyle)     (Wholesome, safe settling down)
 ```
 
 ---

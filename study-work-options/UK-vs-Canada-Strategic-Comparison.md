@@ -1,6 +1,6 @@
 # UK vs. Canada: Strategic Comparison for Senior Tech & Quant Talent
 
-This document records the strategic comparison between relocating to the **United Kingdom (London)** versus **Canada (Toronto/Waterloo/Vancouver)** for a Senior Software Engineer / Quant Developer with 9 years of tier-1 experience (ExodusPoint, Goldman Sachs, AWS).
+This document records the strategic comparison between relocating to the **United Kingdom (London)** versus **Canada (Toronto/Waterloo/Vancouver)** for a Senior Software Engineer / Quant Developer with 9 years of tier-1 experience.
 
 ---
 
@@ -44,7 +44,7 @@ This document records the strategic comparison between relocating to the **Unite
 
 ---
 
-## 🎯 Strategic Decision Matrix for Ethan
+## 🎯 Strategic Decision Matrix
 
 ```
                               [ What is your primary objective? ]

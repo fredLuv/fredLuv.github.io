@@ -40,7 +40,7 @@ Hong Kong offers one of the fastest immigration systems for top-tier tech talent
    * **Category A**: Annual income > HK$2.5M (~$320k USD) in the preceding year ➔ **2-Year Unsponsored Open Work Visa**.
    * **Category B**: Bachelor's degree from a Top 100 global university + 3 years of work experience ➔ **2-Year Unsponsored Open Work Visa**.
 3. **QMAS (Quality Migrant Admission Scheme / 优才新政)**:
-   * Ethan scores **8/12** under the 12-criteria assessment (Age, Degree, Language, 9 yrs MNC Tech/Fintech experience, Income > HK$1M).
+   * Senior candidates with 9+ years MNC experience score highly under the 12-criteria assessment framework.
 
 ---
 

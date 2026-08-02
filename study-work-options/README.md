@@ -13,4 +13,4 @@ This folder contains research notes, Master's program evaluations, and general c
 * [UK 4-Year FIG Tax Exemption Scheme Explained](UK-4-Year-FIG-Tax-Exemption-Explained.md)
 
 ---
-*Maintained by Feiyu (Ethan) Lu*
+*Global Career Strategy Research*
