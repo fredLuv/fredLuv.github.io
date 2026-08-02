@@ -7,6 +7,7 @@ This folder contains research notes, immigration strategic analyses, Master's pr
 * [UK Global Talent Visa & ILR vs. US Green Card Analysis](UK-Global-Talent-Visa-and-ILR-vs-US-GreenCard.md)
 * [UK vs. Canada Strategic Comparison (Career & Pay)](UK-vs-Canada-Strategic-Comparison.md)
 * [UK vs. Canada Analysis (Lifestyle, Dating & Marriage)](UK-vs-Canada-Lifestyle-Dating-Marriage.md)
+* [UK Hedge Fund Hiring for US-Based Engineers (59-Day Emergency Plan)](UK-Hedge-Fund-Hiring-US-Engineers-Timeline.md)
 
 ---
 *Maintained by Feiyu (Ethan) Lu*
