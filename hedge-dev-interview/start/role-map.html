@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="The supplied QRT posting describes a developer who builds and enhances core components, works across electronic and algorithmic trading, backtesting, and d">
+  <title>Role-to-Competency Map | Hedge Dev Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+</head>
+<body class="docs">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <a class="wordmark" href="../index.html"><span>EL/</span> FIELD GUIDE</a>
+    <div class="topbar-meta"><span>QRT · HK</span><span>PYTHON TRACK</span></div>
+    <a class="portfolio-link" href="../../index.html">Portfolio ↗</a>
+  </header>
+  <aside class="sidebar" aria-label="Book navigation">
+    <div class="sidebar-head">
+      <p>Quant Developer Interview</p>
+      <h1>Three-Day<br>Field Manual</h1>
+      <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
+    </div>
+    <nav class="chapter-nav"><section class="nav-section"><h2>Guide</h2><div class="nav-items"><a class="nav-link" href="../index.html" data-search="guide home"><span>Home</span></a></div></section><section class="nav-section"><h2>Start Here</h2><div class="nav-items"><a class="nav-link is-active" href="role-map.html" data-search="start here role-to-competency map"><span>Role-to-Competency Map</span></a><a class="nav-link" href="three-day-plan.html" data-search="start here three-day schedule"><span>Three-Day Schedule</span></a><a class="nav-link" href="diagnostic.html" data-search="start here 20-minute diagnostic"><span>20-Minute Diagnostic</span></a></div></section><section class="nav-section"><h2>Core Python for Java Engineers</h2><div class="nav-items"><a class="nav-link" href="../core-python/01-java-to-python.html" data-search="core python for java engineers 1. mental model and syntax"><span>1. Mental Model and Syntax</span></a><a class="nav-link" href="../core-python/02-data-model.html" data-search="core python for java engineers 2. objects, mutability, equality, and hashing"><span>2. Objects, Mutability, Equality, and Hashing</span></a><a class="nav-link" href="../core-python/03-functions-iteration.html" data-search="core python for java engineers 3. functions, iteration, and resource scope"><span>3. Functions, Iteration, and Resource Scope</span></a><a class="nav-link" href="../core-python/04-types-architecture.html" data-search="core python for java engineers 4. types and clean architecture"><span>4. Types and Clean Architecture</span></a><a class="nav-link" href="../core-python/05-correctness.html" data-search="core python for java engineers 5. errors, testing, and observability"><span>5. Errors, Testing, and Observability</span></a></div></section><section class="nav-section"><h2>Performance and Real-Time Systems</h2><div class="nav-items"><a class="nav-link" href="../systems/01-performance.html" data-search="performance and real-time systems 6. measure and optimize python"><span>6. Measure and Optimize Python</span></a><a class="nav-link" href="../systems/02-concurrency.html" data-search="performance and real-time systems 7. threads, processes, and asyncio"><span>7. Threads, Processes, and Asyncio</span></a><a class="nav-link" href="../systems/03-realtime.html" data-search="performance and real-time systems 8. real-time pipeline design"><span>8. Real-Time Pipeline Design</span></a></div></section><section class="nav-section"><h2>Quant Platform Foundations</h2><div class="nav-items"><a class="nav-link" href="../quant/01-market-lifecycle.html" data-search="quant platform foundations 9. market and order lifecycle"><span>9. Market and Order Lifecycle</span></a><a class="nav-link" href="../quant/02-backtesting.html" data-search="quant platform foundations 10. backtesting without self-deception"><span>10. Backtesting Without Self-Deception</span></a><a class="nav-link" href="../quant/03-data-engineering.html" data-search="quant platform foundations 11. time-series data engineering"><span>11. Time-Series Data Engineering</span></a></div></section><section class="nav-section"><h2>Production Engineering</h2><div class="nav-items"><a class="nav-link" href="../engineering/01-production.html" data-search="production engineering 12. architecture, ci/cd, and operations"><span>12. Architecture, CI/CD, and Operations</span></a></div></section><section class="nav-section"><h2>QRT Hong Kong Role Pack</h2><div class="nav-items"><a class="nav-link" href="../interview/qrt-role-pack.html" data-search="qrt hong kong role pack qrt interview strategy"><span>QRT Interview Strategy</span></a><a class="nav-link" href="../interview/python-question-bank.html" data-search="qrt hong kong role pack python question bank"><span>Python Question Bank</span></a><a class="nav-link" href="../interview/python-answer-guide.html" data-search="qrt hong kong role pack python answer guide"><span>Python Answer Guide</span></a><a class="nav-link" href="../interview/system-design.html" data-search="qrt hong kong role pack system-design drills"><span>System-Design Drills</span></a><a class="nav-link" href="../interview/behavioral.html" data-search="qrt hong kong role pack behavioral story bank"><span>Behavioral Story Bank</span></a><a class="nav-link" href="../interview/mock-loops.html" data-search="qrt hong kong role pack three mock interview loops"><span>Three Mock Interview Loops</span></a></div></section><section class="nav-section"><h2>Practice and Reuse</h2><div class="nav-items"><a class="nav-link" href="../labs/index.html" data-search="practice and reuse runnable capstone lab"><span>Runnable Capstone Lab</span></a><a class="nav-link" href="../cheatsheet.html" data-search="practice and reuse last-hour cheatsheet"><span>Last-Hour Cheatsheet</span></a><a class="nav-link" href="../extension-guide.html" data-search="practice and reuse how to add another role"><span>How to Add Another Role</span></a><a class="nav-link" href="../templates/role-pack-template.html" data-search="practice and reuse role-pack template"><span>Role-Pack Template</span></a><a class="nav-link" href="../references.html" data-search="practice and reuse references"><span>References</span></a></div></section></nav>
+    <div class="sidebar-foot"><a href="https://github.com/fredLuv/fredLuv.github.io/tree/main/hedge-dev-interview/source" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><span>v1 · Aug 2026</span></div>
+  </aside>
+  <button class="nav-scrim" type="button" aria-label="Close navigation"></button>
+  <main class="reading-pane">
+    <div class="content-shell">
+      <div class="page-coordinate"><span>Start Here</span><span>02/27</span></div>
+
+      <article class="prose"><h1 id="role-to-competency-map">Role-to-Competency Map</h1>
+<h2 id="what-the-posting-actually-asks-for">What the posting actually asks for</h2>
+<p>The supplied QRT posting describes a developer who builds and enhances core
+components, works across electronic and algorithmic trading, backtesting, and
+data management, partners with traders and quants, supports running strategies,
+and brings new technology into a mature engineering process.</p>
+<table>
+<thead>
+<tr>
+<th>Posting signal</th>
+<th>Interview evidence to prepare</th>
+<th>Book location</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strong Python</td>
+<td>Idioms, object model, typing, testing, concurrency, profiling</td>
+<td>Chapters 1–7</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>Backtesting</td>
+<td>Event ordering, fills, costs, bias, deterministic replay</td>
+<td>Chapter 10 + lab</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>Data management</td>
+<td>Temporal correctness, schemas, validation, lineage</td>
+<td>Chapter 11</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Real-time systems</td>
+<td>Bounded queues, backpressure, latency, recovery</td>
+<td>Chapters 7–8</td>
+<td>High</td>
+</tr>
+<tr>
+<td>High performance</td>
+<td>Measurement, allocation, vectorization, native boundaries</td>
+<td>Chapter 6</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Clean architecture</td>
+<td>Domain boundaries, protocols, dependency direction</td>
+<td>Chapters 4 and 12</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Run/support strategies</td>
+<td>Observability, safe deploys, incident reasoning</td>
+<td>Chapters 5 and 12</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Work with traders/quants</td>
+<td>Requirement discovery and explainable trade-offs</td>
+<td>Behavioral pack</td>
+<td>High</td>
+</tr>
+<tr>
+<td>CI/CD and DevOps</td>
+<td>Test pyramid, artifact promotion, rollback, controls</td>
+<td>Chapter 12</td>
+<td>Medium-high</td>
+</tr>
+<tr>
+<td>C++ or C# useful</td>
+<td>Know when Python should delegate to native code</td>
+<td>Chapter 6</td>
+<td>Bonus</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-likely-evaluation-surface">The likely evaluation surface</h2>
+<p>The job description does not publish an interview sequence. Prepare for the
+capabilities rather than guessing exact rounds:</p>
+<ol>
+<li><strong>Python coding:</strong> collections, iterators, object design, edge cases,
+   complexity, tests, and readable code.</li>
+<li><strong>Python depth:</strong> mutability, equality/hash contract, decorators, generators,
+   context managers, typing, GIL, async, multiprocessing, and profiling.</li>
+<li><strong>Systems design:</strong> a market-data pipeline, backtester, execution/risk service,
+   or research data platform.</li>
+<li><strong>Production judgment:</strong> incident handling, release safety, observability,
+   schema evolution, and stakeholder communication.</li>
+<li><strong>Experience:</strong> examples where you owned a component, improved quality or
+   latency, supported users, and changed your mind after evidence.</li>
+</ol>
+<h2 id="what-transfers-from-java">What transfers from Java</h2>
+<p>Your advantages are architecture, concurrency vocabulary, testing discipline,
+production operations, complexity reasoning, and the ability to make invariants
+explicit. The main risks are writing Java-shaped Python, assuming static types
+change runtime behavior, overusing classes, misunderstanding Python object
+identity and mutability, and making incorrect claims about the GIL.</p>
+<h2 id="evidence-ladder">Evidence ladder</h2>
+<p>A claim becomes credible in this order:</p>
+<pre><code class="language-text">&quot;I know X&quot; &lt; explanation &lt; working code &lt; measured result &lt; production story
+</code></pre>
+<p>For each critical row above, prepare at least one explanation and one concrete
+example. For Python, also prepare working code. For operations and collaboration,
+prepare a production story with a measurable result.</p>
+<h2 id="scope-boundaries">Scope boundaries</h2>
+<p>The role is quantitative development, not a pure quant-research role. Learn enough
+market mechanics and backtest correctness to engineer the platform. Do not spend
+your three days deriving stochastic calculus unless an interviewer or a newer
+role description explicitly asks for it.</p></article>
+      <nav class="page-turns" aria-label="Chapter navigation"><a class="page-turn previous" href="../index.html"><small>Previous</small><strong>Home</strong></a><a class="page-turn next" href="three-day-plan.html"><small>Next</small><strong>Three-Day Schedule</strong></a></nav>
+      <footer class="book-footer"><span>Built as an extensible interview system.</span><a href="../index.html">Return to index ↑</a></footer>
+    </div>
+  </main>
+</body>
+</html>

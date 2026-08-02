@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Use Python&#x27;s type system to express boundaries without turning the code into Java, and design components that are replaceable in tests and production.">
+  <title>4. Types and Clean Architecture | Hedge Dev Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+</head>
+<body class="docs">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <a class="wordmark" href="../index.html"><span>EL/</span> FIELD GUIDE</a>
+    <div class="topbar-meta"><span>QRT · HK</span><span>PYTHON TRACK</span></div>
+    <a class="portfolio-link" href="../../index.html">Portfolio ↗</a>
+  </header>
+  <aside class="sidebar" aria-label="Book navigation">
+    <div class="sidebar-head">
+      <p>Quant Developer Interview</p>
+      <h1>Three-Day<br>Field Manual</h1>
+      <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
+    </div>
+    <nav class="chapter-nav"><section class="nav-section"><h2>Guide</h2><div class="nav-items"><a class="nav-link" href="../index.html" data-search="guide home"><span>Home</span></a></div></section><section class="nav-section"><h2>Start Here</h2><div class="nav-items"><a class="nav-link" href="../start/role-map.html" data-search="start here role-to-competency map"><span>Role-to-Competency Map</span></a><a class="nav-link" href="../start/three-day-plan.html" data-search="start here three-day schedule"><span>Three-Day Schedule</span></a><a class="nav-link" href="../start/diagnostic.html" data-search="start here 20-minute diagnostic"><span>20-Minute Diagnostic</span></a></div></section><section class="nav-section"><h2>Core Python for Java Engineers</h2><div class="nav-items"><a class="nav-link" href="01-java-to-python.html" data-search="core python for java engineers 1. mental model and syntax"><span>1. Mental Model and Syntax</span></a><a class="nav-link" href="02-data-model.html" data-search="core python for java engineers 2. objects, mutability, equality, and hashing"><span>2. Objects, Mutability, Equality, and Hashing</span></a><a class="nav-link" href="03-functions-iteration.html" data-search="core python for java engineers 3. functions, iteration, and resource scope"><span>3. Functions, Iteration, and Resource Scope</span></a><a class="nav-link is-active" href="04-types-architecture.html" data-search="core python for java engineers 4. types and clean architecture"><span>4. Types and Clean Architecture</span></a><a class="nav-link" href="05-correctness.html" data-search="core python for java engineers 5. errors, testing, and observability"><span>5. Errors, Testing, and Observability</span></a></div></section><section class="nav-section"><h2>Performance and Real-Time Systems</h2><div class="nav-items"><a class="nav-link" href="../systems/01-performance.html" data-search="performance and real-time systems 6. measure and optimize python"><span>6. Measure and Optimize Python</span></a><a class="nav-link" href="../systems/02-concurrency.html" data-search="performance and real-time systems 7. threads, processes, and asyncio"><span>7. Threads, Processes, and Asyncio</span></a><a class="nav-link" href="../systems/03-realtime.html" data-search="performance and real-time systems 8. real-time pipeline design"><span>8. Real-Time Pipeline Design</span></a></div></section><section class="nav-section"><h2>Quant Platform Foundations</h2><div class="nav-items"><a class="nav-link" href="../quant/01-market-lifecycle.html" data-search="quant platform foundations 9. market and order lifecycle"><span>9. Market and Order Lifecycle</span></a><a class="nav-link" href="../quant/02-backtesting.html" data-search="quant platform foundations 10. backtesting without self-deception"><span>10. Backtesting Without Self-Deception</span></a><a class="nav-link" href="../quant/03-data-engineering.html" data-search="quant platform foundations 11. time-series data engineering"><span>11. Time-Series Data Engineering</span></a></div></section><section class="nav-section"><h2>Production Engineering</h2><div class="nav-items"><a class="nav-link" href="../engineering/01-production.html" data-search="production engineering 12. architecture, ci/cd, and operations"><span>12. Architecture, CI/CD, and Operations</span></a></div></section><section class="nav-section"><h2>QRT Hong Kong Role Pack</h2><div class="nav-items"><a class="nav-link" href="../interview/qrt-role-pack.html" data-search="qrt hong kong role pack qrt interview strategy"><span>QRT Interview Strategy</span></a><a class="nav-link" href="../interview/python-question-bank.html" data-search="qrt hong kong role pack python question bank"><span>Python Question Bank</span></a><a class="nav-link" href="../interview/python-answer-guide.html" data-search="qrt hong kong role pack python answer guide"><span>Python Answer Guide</span></a><a class="nav-link" href="../interview/system-design.html" data-search="qrt hong kong role pack system-design drills"><span>System-Design Drills</span></a><a class="nav-link" href="../interview/behavioral.html" data-search="qrt hong kong role pack behavioral story bank"><span>Behavioral Story Bank</span></a><a class="nav-link" href="../interview/mock-loops.html" data-search="qrt hong kong role pack three mock interview loops"><span>Three Mock Interview Loops</span></a></div></section><section class="nav-section"><h2>Practice and Reuse</h2><div class="nav-items"><a class="nav-link" href="../labs/index.html" data-search="practice and reuse runnable capstone lab"><span>Runnable Capstone Lab</span></a><a class="nav-link" href="../cheatsheet.html" data-search="practice and reuse last-hour cheatsheet"><span>Last-Hour Cheatsheet</span></a><a class="nav-link" href="../extension-guide.html" data-search="practice and reuse how to add another role"><span>How to Add Another Role</span></a><a class="nav-link" href="../templates/role-pack-template.html" data-search="practice and reuse role-pack template"><span>Role-Pack Template</span></a><a class="nav-link" href="../references.html" data-search="practice and reuse references"><span>References</span></a></div></section></nav>
+    <div class="sidebar-foot"><a href="https://github.com/fredLuv/fredLuv.github.io/tree/main/hedge-dev-interview/source" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><span>v1 · Aug 2026</span></div>
+  </aside>
+  <button class="nav-scrim" type="button" aria-label="Close navigation"></button>
+  <main class="reading-pane">
+    <div class="content-shell">
+      <div class="page-coordinate"><span>Core Python for Java Engineers</span><span>08/27</span></div>
+
+      <article class="prose"><h1 id="4-types-and-clean-architecture">4. Types and Clean Architecture</h1>
+<h2 id="interview-outcome">Interview outcome</h2>
+<p>Use Python's type system to express boundaries without turning the code into Java,
+and design components that are replaceable in tests and production.</p>
+<h2 id="gradual-typing-honestly-stated">Gradual typing, honestly stated</h2>
+<p>Type hints are metadata. Static checkers, IDEs, linters, and readers use them;
+CPython does not generally reject a wrong argument at runtime.</p>
+<p>Annotate public boundaries and non-obvious domain structures. Let obvious local
+variables infer. A type checker is strongest when <code>Any</code> is rare and untyped I/O
+is validated at the boundary.</p>
+<pre><code class="language-python">from typing import NewType
+
+OrderId = NewType(&quot;OrderId&quot;, str)
+StrategyId = NewType(&quot;StrategyId&quot;, str)
+</code></pre>
+<p><code>NewType</code> helps static tools distinguish values represented by the same runtime
+type. It does not create a runtime wrapper.</p>
+<h2 id="protocols-over-inheritance">Protocols over inheritance</h2>
+<pre><code class="language-python">from collections.abc import Iterable
+from typing import Protocol
+
+class PriceSource(Protocol):
+    def prices(self, symbol: str) -&gt; Iterable[float]: ...
+
+class SignalEngine:
+    def __init__(self, source: PriceSource) -&gt; None:
+        self._source = source
+</code></pre>
+<p>Any object with the required method satisfies the structural contract to a static
+checker. This enables small fakes without forcing a shared base class. Use an
+abstract base class when shared runtime identity, registration, or implementation
+is genuinely part of the contract.</p>
+<h2 id="model-states-so-invalid-transitions-stand-out">Model states so invalid transitions stand out</h2>
+<pre><code class="language-python">from dataclasses import dataclass
+from enum import Enum, auto
+
+class OrderStatus(Enum):
+    CREATED = auto()
+    SENT = auto()
+    ACKNOWLEDGED = auto()
+    PARTIALLY_FILLED = auto()
+    FILLED = auto()
+    CANCELLED = auto()
+    REJECTED = auto()
+
+TERMINAL = {OrderStatus.FILLED, OrderStatus.CANCELLED, OrderStatus.REJECTED}
+
+@dataclass(frozen=True, slots=True)
+class OrderUpdate:
+    order_id: str
+    status: OrderStatus
+    cumulative_quantity: int
+</code></pre>
+<p>Do not model a state machine as unrelated booleans (<code>is_sent</code>, <code>is_filled</code>,
+<code>is_cancelled</code>) that can represent impossible combinations.</p>
+<h2 id="dependency-direction">Dependency direction</h2>
+<p>Keep the domain independent from databases, brokers, and frameworks:</p>
+<pre><code class="language-text">entry point → application service → domain
+                 ↓
+             ports/protocols
+                 ↑
+      broker, database, file adapters
+</code></pre>
+<p>The domain defines what it needs. Adapters implement it. Tests supply in-memory
+implementations. This is dependency inversion without ceremony.</p>
+<h2 id="validation-belongs-at-boundaries">Validation belongs at boundaries</h2>
+<p>External dictionaries/JSON are untrusted. Parse once into domain values, reject
+unknown or invalid states, then let internal code operate on stronger invariants.
+Do not spread <code>dict[str, object]</code> through the system.</p>
+<p>Separate:</p>
+<ul>
+<li>transport schema (wire compatibility);</li>
+<li>validated domain event (business meaning);</li>
+<li>storage schema (query and retention concerns).</li>
+</ul>
+<p>One class rarely serves all three well.</p>
+<h2 id="composition-versus-inheritance">Composition versus inheritance</h2>
+<p>Prefer a strategy that receives a signal function and risk policy over a deep
+hierarchy of <code>AbstractBaseMeanRevertingEquityStrategy</code>. Inheritance is appropriate
+when substitutability is stable and tested. Composition keeps independent axes of
+change independent.</p>
+<h2 id="packaging-rules-for-an-interview-project">Packaging rules for an interview project</h2>
+<ul>
+<li><code>src/</code> layout prevents tests from accidentally importing the working directory.</li>
+<li>one package with cohesive modules beats many tiny deployment units;</li>
+<li>use absolute imports across packages and relative imports sparingly within one;</li>
+<li>public API is explicit; leading underscore marks implementation detail;</li>
+<li>configuration enters at the composition root, not through imports of globals.</li>
+</ul>
+<h2 id="drill">Drill</h2>
+<p>Define protocols for <code>Clock</code>, <code>EventStore</code>, and <code>ExecutionGateway</code>. Design a
+<code>TradingService</code> that validates an order, checks risk, persists intent, submits,
+and records the result. Explain what happens if the gateway times out after the
+venue accepted the order.</p>
+<p>The senior answer does not blindly retry. It uses a stable client order ID, marks
+the result unknown, queries/reconciles, and makes recovery repeatable.</p>
+<h2 id="answer-frame">Answer frame</h2>
+<blockquote>
+<p>I use typing to make boundaries and domain states visible, not to simulate Java.
+Protocols define the behavior a consumer needs. Domain logic depends on those
+ports, while I/O adapters depend inward. Runtime validation occurs once at
+untrusted boundaries.</p>
+</blockquote></article>
+      <nav class="page-turns" aria-label="Chapter navigation"><a class="page-turn previous" href="03-functions-iteration.html"><small>Previous</small><strong>3. Functions, Iteration, and Resource Scope</strong></a><a class="page-turn next" href="05-correctness.html"><small>Next</small><strong>5. Errors, Testing, and Observability</strong></a></nav>
+      <footer class="book-footer"><span>Built as an extensible interview system.</span><a href="../index.html">Return to index ↑</a></footer>
+    </div>
+  </main>
+</body>
+</html>

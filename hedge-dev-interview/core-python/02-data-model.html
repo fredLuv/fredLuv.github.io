@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Predict aliasing and collection behavior, design safe value objects, and explain the equality/hash contract.">
+  <title>2. Objects, Mutability, Equality, and Hashing | Hedge Dev Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+</head>
+<body class="docs">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <a class="wordmark" href="../index.html"><span>EL/</span> FIELD GUIDE</a>
+    <div class="topbar-meta"><span>QRT · HK</span><span>PYTHON TRACK</span></div>
+    <a class="portfolio-link" href="../../index.html">Portfolio ↗</a>
+  </header>
+  <aside class="sidebar" aria-label="Book navigation">
+    <div class="sidebar-head">
+      <p>Quant Developer Interview</p>
+      <h1>Three-Day<br>Field Manual</h1>
+      <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
+    </div>
+    <nav class="chapter-nav"><section class="nav-section"><h2>Guide</h2><div class="nav-items"><a class="nav-link" href="../index.html" data-search="guide home"><span>Home</span></a></div></section><section class="nav-section"><h2>Start Here</h2><div class="nav-items"><a class="nav-link" href="../start/role-map.html" data-search="start here role-to-competency map"><span>Role-to-Competency Map</span></a><a class="nav-link" href="../start/three-day-plan.html" data-search="start here three-day schedule"><span>Three-Day Schedule</span></a><a class="nav-link" href="../start/diagnostic.html" data-search="start here 20-minute diagnostic"><span>20-Minute Diagnostic</span></a></div></section><section class="nav-section"><h2>Core Python for Java Engineers</h2><div class="nav-items"><a class="nav-link" href="01-java-to-python.html" data-search="core python for java engineers 1. mental model and syntax"><span>1. Mental Model and Syntax</span></a><a class="nav-link is-active" href="02-data-model.html" data-search="core python for java engineers 2. objects, mutability, equality, and hashing"><span>2. Objects, Mutability, Equality, and Hashing</span></a><a class="nav-link" href="03-functions-iteration.html" data-search="core python for java engineers 3. functions, iteration, and resource scope"><span>3. Functions, Iteration, and Resource Scope</span></a><a class="nav-link" href="04-types-architecture.html" data-search="core python for java engineers 4. types and clean architecture"><span>4. Types and Clean Architecture</span></a><a class="nav-link" href="05-correctness.html" data-search="core python for java engineers 5. errors, testing, and observability"><span>5. Errors, Testing, and Observability</span></a></div></section><section class="nav-section"><h2>Performance and Real-Time Systems</h2><div class="nav-items"><a class="nav-link" href="../systems/01-performance.html" data-search="performance and real-time systems 6. measure and optimize python"><span>6. Measure and Optimize Python</span></a><a class="nav-link" href="../systems/02-concurrency.html" data-search="performance and real-time systems 7. threads, processes, and asyncio"><span>7. Threads, Processes, and Asyncio</span></a><a class="nav-link" href="../systems/03-realtime.html" data-search="performance and real-time systems 8. real-time pipeline design"><span>8. Real-Time Pipeline Design</span></a></div></section><section class="nav-section"><h2>Quant Platform Foundations</h2><div class="nav-items"><a class="nav-link" href="../quant/01-market-lifecycle.html" data-search="quant platform foundations 9. market and order lifecycle"><span>9. Market and Order Lifecycle</span></a><a class="nav-link" href="../quant/02-backtesting.html" data-search="quant platform foundations 10. backtesting without self-deception"><span>10. Backtesting Without Self-Deception</span></a><a class="nav-link" href="../quant/03-data-engineering.html" data-search="quant platform foundations 11. time-series data engineering"><span>11. Time-Series Data Engineering</span></a></div></section><section class="nav-section"><h2>Production Engineering</h2><div class="nav-items"><a class="nav-link" href="../engineering/01-production.html" data-search="production engineering 12. architecture, ci/cd, and operations"><span>12. Architecture, CI/CD, and Operations</span></a></div></section><section class="nav-section"><h2>QRT Hong Kong Role Pack</h2><div class="nav-items"><a class="nav-link" href="../interview/qrt-role-pack.html" data-search="qrt hong kong role pack qrt interview strategy"><span>QRT Interview Strategy</span></a><a class="nav-link" href="../interview/python-question-bank.html" data-search="qrt hong kong role pack python question bank"><span>Python Question Bank</span></a><a class="nav-link" href="../interview/python-answer-guide.html" data-search="qrt hong kong role pack python answer guide"><span>Python Answer Guide</span></a><a class="nav-link" href="../interview/system-design.html" data-search="qrt hong kong role pack system-design drills"><span>System-Design Drills</span></a><a class="nav-link" href="../interview/behavioral.html" data-search="qrt hong kong role pack behavioral story bank"><span>Behavioral Story Bank</span></a><a class="nav-link" href="../interview/mock-loops.html" data-search="qrt hong kong role pack three mock interview loops"><span>Three Mock Interview Loops</span></a></div></section><section class="nav-section"><h2>Practice and Reuse</h2><div class="nav-items"><a class="nav-link" href="../labs/index.html" data-search="practice and reuse runnable capstone lab"><span>Runnable Capstone Lab</span></a><a class="nav-link" href="../cheatsheet.html" data-search="practice and reuse last-hour cheatsheet"><span>Last-Hour Cheatsheet</span></a><a class="nav-link" href="../extension-guide.html" data-search="practice and reuse how to add another role"><span>How to Add Another Role</span></a><a class="nav-link" href="../templates/role-pack-template.html" data-search="practice and reuse role-pack template"><span>Role-Pack Template</span></a><a class="nav-link" href="../references.html" data-search="practice and reuse references"><span>References</span></a></div></section></nav>
+    <div class="sidebar-foot"><a href="https://github.com/fredLuv/fredLuv.github.io/tree/main/hedge-dev-interview/source" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><span>v1 · Aug 2026</span></div>
+  </aside>
+  <button class="nav-scrim" type="button" aria-label="Close navigation"></button>
+  <main class="reading-pane">
+    <div class="content-shell">
+      <div class="page-coordinate"><span>Core Python for Java Engineers</span><span>06/27</span></div>
+
+      <article class="prose"><h1 id="2-objects-mutability-equality-and-hashing">2. Objects, Mutability, Equality, and Hashing</h1>
+<h2 id="interview-outcome">Interview outcome</h2>
+<p>Predict aliasing and collection behavior, design safe value objects, and explain
+the equality/hash contract.</p>
+<h2 id="identity-equality-and-hash">Identity, equality, and hash</h2>
+<pre><code class="language-python">a = [1, 2]
+b = [1, 2]
+assert a == b       # equivalent values
+assert a is not b   # distinct objects
+</code></pre>
+<p>Use <code>is</code> for singletons such as <code>None</code> and occasionally sentinel objects. Use
+<code>==</code> for values. Small-integer and string interning are implementation details,
+not a reason to use <code>is</code> for numbers or text.</p>
+<p>Hash collections assume an object's hash is stable while stored and that equal
+objects have equal hashes:</p>
+<pre><code class="language-text">a == b  =&gt;  hash(a) == hash(b)
+</code></pre>
+<p>The reverse is not required; collisions are legal. Mutable containers are
+normally unhashable because changing data involved in a hash would make the
+object impossible to find in its bucket.</p>
+<h2 id="shallow-versus-deep-copy">Shallow versus deep copy</h2>
+<pre><code class="language-python">original = {&quot;AAPL&quot;: {&quot;qty&quot;: 10}}
+shallow = original.copy()
+shallow[&quot;AAPL&quot;][&quot;qty&quot;] = 20
+assert original[&quot;AAPL&quot;][&quot;qty&quot;] == 20
+</code></pre>
+<p>A shallow copy duplicates the outer container, not nested objects. Deep copy is
+not a universal fix: it can be expensive, copy objects that should remain shared,
+or fail on handles. Prefer immutable domain values and explicit reconstruction.</p>
+<h2 id="safe-domain-objects">Safe domain objects</h2>
+<pre><code class="language-python">from dataclasses import dataclass
+from decimal import Decimal
+
+@dataclass(frozen=True, slots=True)
+class Fill:
+    order_id: str
+    symbol: str
+    quantity: int
+    price: Decimal
+
+    @property
+    def notional(self) -&gt; Decimal:
+        return self.price * self.quantity
+</code></pre>
+<ul>
+<li><code>frozen=True</code> prevents normal attribute reassignment and communicates a value.</li>
+<li><code>slots=True</code> avoids a per-instance attribute dictionary and rejects accidental
+  attribute creation; measure before claiming a performance win.</li>
+<li>generated equality compares fields. A frozen dataclass can usually be hashed
+  if all fields are hashable.</li>
+<li><code>Decimal</code> can express exact base-10 rules, but only if precision, rounding, and
+  conversion policy are explicit. Never construct it from an inexact float when
+  exact decimal intent matters: use <code>Decimal("10.25")</code>.</li>
+</ul>
+<p>For timestamps, prefer timezone-aware <code>datetime</code> in the domain and an integer
+epoch representation at wire/storage boundaries when required. Never mix naive
+and aware timestamps.</p>
+<h2 id="mutable-default-trap">Mutable default trap</h2>
+<p>Defaults are evaluated when the function is defined, not per call.</p>
+<pre><code class="language-python">def collect(value: int, bucket: list[int] = []) -&gt; list[int]:  # wrong
+    bucket.append(value)
+    return bucket
+
+def collect_safe(value: int, bucket: list[int] | None = None) -&gt; list[int]:
+    result = [] if bucket is None else bucket
+    result.append(value)
+    return result
+</code></pre>
+<p>Dataclasses protect against obvious mutable field defaults; use a factory:</p>
+<pre><code class="language-python">from dataclasses import dataclass, field
+
+@dataclass
+class Book:
+    levels: dict[int, int] = field(default_factory=dict)
+</code></pre>
+<h2 id="special-methods-form-protocols">Special methods form protocols</h2>
+<p>Python syntax delegates to “dunder” methods:</p>
+<ul>
+<li><code>len(x)</code> → <code>x.__len__()</code></li>
+<li><code>x[y]</code> → <code>x.__getitem__(y)</code></li>
+<li><code>for v in x</code> → iteration protocol</li>
+<li><code>with x</code> → <code>__enter__</code> / <code>__exit__</code></li>
+<li><code>x + y</code> → <code>__add__</code> then reflected/fallback rules</li>
+</ul>
+<p>Call the public operation (<code>len(x)</code>), not the dunder directly. Implement a
+protocol only when the semantics are unsurprising. A portfolio is not a number
+merely because <code>+</code> can be implemented.</p>
+<h2 id="class-attributes-and-instance-attributes">Class attributes and instance attributes</h2>
+<pre><code class="language-python">class Counter:
+    total = 0              # shared class attribute
+
+    def __init__(self) -&gt; None:
+        self.local = 0     # per-instance attribute
+</code></pre>
+<p>Attribute lookup checks the instance and class hierarchy, with descriptor rules
+involved. Mutable class attributes are shared across instances and often cause
+the same bug as mutable function defaults.</p>
+<h2 id="numeric-traps-relevant-to-finance">Numeric traps relevant to finance</h2>
+<ul>
+<li>binary floats cannot exactly represent many decimal fractions;</li>
+<li><code>NaN != NaN</code>, and NaNs can silently contaminate calculations;</li>
+<li>boolean is a subclass of integer (<code>isinstance(True, int)</code> is true);</li>
+<li>negative indexing is valid and may hide boundary errors;</li>
+<li><code>round</code> follows banker-style ties and float representation can surprise;</li>
+<li>mixing units or currencies is a domain-model bug, not a precision bug.</li>
+</ul>
+<h2 id="drill">Drill</h2>
+<p>Design an immutable <code>Price</code> value with <code>currency</code>, <code>amount</code>, and a method to add
+another price. Reject currency mismatch. Decide whether it should be hashable,
+and write three tests: equality, mismatch, and dictionary-key use.</p>
+<h2 id="answer-frame">Answer frame</h2>
+<blockquote>
+<p>Identity says whether two names reference the same object; equality is a
+type-defined value relation. Hash keys must remain stable, and equality implies
+equal hashes. I prefer immutable value objects at system boundaries because
+they reduce aliasing and make replay, testing, and concurrency easier.</p>
+</blockquote></article>
+      <nav class="page-turns" aria-label="Chapter navigation"><a class="page-turn previous" href="01-java-to-python.html"><small>Previous</small><strong>1. Mental Model and Syntax</strong></a><a class="page-turn next" href="03-functions-iteration.html"><small>Next</small><strong>3. Functions, Iteration, and Resource Scope</strong></a></nav>
+      <footer class="book-footer"><span>Built as an extensible interview system.</span><a href="../index.html">Return to index ↑</a></footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Record yourself. Use a blank editor and no autocomplete for coding if the real format is unknown. Each loop has a scorecard; do not grade on vibes.">
+  <title>Three Mock Interview Loops | Hedge Dev Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+</head>
+<body class="docs">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <a class="wordmark" href="../index.html"><span>EL/</span> FIELD GUIDE</a>
+    <div class="topbar-meta"><span>QRT · HK</span><span>PYTHON TRACK</span></div>
+    <a class="portfolio-link" href="../../index.html">Portfolio ↗</a>
+  </header>
+  <aside class="sidebar" aria-label="Book navigation">
+    <div class="sidebar-head">
+      <p>Quant Developer Interview</p>
+      <h1>Three-Day<br>Field Manual</h1>
+      <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
+    </div>
+    <nav class="chapter-nav"><section class="nav-section"><h2>Guide</h2><div class="nav-items"><a class="nav-link" href="../index.html" data-search="guide home"><span>Home</span></a></div></section><section class="nav-section"><h2>Start Here</h2><div class="nav-items"><a class="nav-link" href="../start/role-map.html" data-search="start here role-to-competency map"><span>Role-to-Competency Map</span></a><a class="nav-link" href="../start/three-day-plan.html" data-search="start here three-day schedule"><span>Three-Day Schedule</span></a><a class="nav-link" href="../start/diagnostic.html" data-search="start here 20-minute diagnostic"><span>20-Minute Diagnostic</span></a></div></section><section class="nav-section"><h2>Core Python for Java Engineers</h2><div class="nav-items"><a class="nav-link" href="../core-python/01-java-to-python.html" data-search="core python for java engineers 1. mental model and syntax"><span>1. Mental Model and Syntax</span></a><a class="nav-link" href="../core-python/02-data-model.html" data-search="core python for java engineers 2. objects, mutability, equality, and hashing"><span>2. Objects, Mutability, Equality, and Hashing</span></a><a class="nav-link" href="../core-python/03-functions-iteration.html" data-search="core python for java engineers 3. functions, iteration, and resource scope"><span>3. Functions, Iteration, and Resource Scope</span></a><a class="nav-link" href="../core-python/04-types-architecture.html" data-search="core python for java engineers 4. types and clean architecture"><span>4. Types and Clean Architecture</span></a><a class="nav-link" href="../core-python/05-correctness.html" data-search="core python for java engineers 5. errors, testing, and observability"><span>5. Errors, Testing, and Observability</span></a></div></section><section class="nav-section"><h2>Performance and Real-Time Systems</h2><div class="nav-items"><a class="nav-link" href="../systems/01-performance.html" data-search="performance and real-time systems 6. measure and optimize python"><span>6. Measure and Optimize Python</span></a><a class="nav-link" href="../systems/02-concurrency.html" data-search="performance and real-time systems 7. threads, processes, and asyncio"><span>7. Threads, Processes, and Asyncio</span></a><a class="nav-link" href="../systems/03-realtime.html" data-search="performance and real-time systems 8. real-time pipeline design"><span>8. Real-Time Pipeline Design</span></a></div></section><section class="nav-section"><h2>Quant Platform Foundations</h2><div class="nav-items"><a class="nav-link" href="../quant/01-market-lifecycle.html" data-search="quant platform foundations 9. market and order lifecycle"><span>9. Market and Order Lifecycle</span></a><a class="nav-link" href="../quant/02-backtesting.html" data-search="quant platform foundations 10. backtesting without self-deception"><span>10. Backtesting Without Self-Deception</span></a><a class="nav-link" href="../quant/03-data-engineering.html" data-search="quant platform foundations 11. time-series data engineering"><span>11. Time-Series Data Engineering</span></a></div></section><section class="nav-section"><h2>Production Engineering</h2><div class="nav-items"><a class="nav-link" href="../engineering/01-production.html" data-search="production engineering 12. architecture, ci/cd, and operations"><span>12. Architecture, CI/CD, and Operations</span></a></div></section><section class="nav-section"><h2>QRT Hong Kong Role Pack</h2><div class="nav-items"><a class="nav-link" href="qrt-role-pack.html" data-search="qrt hong kong role pack qrt interview strategy"><span>QRT Interview Strategy</span></a><a class="nav-link" href="python-question-bank.html" data-search="qrt hong kong role pack python question bank"><span>Python Question Bank</span></a><a class="nav-link" href="python-answer-guide.html" data-search="qrt hong kong role pack python answer guide"><span>Python Answer Guide</span></a><a class="nav-link" href="system-design.html" data-search="qrt hong kong role pack system-design drills"><span>System-Design Drills</span></a><a class="nav-link" href="behavioral.html" data-search="qrt hong kong role pack behavioral story bank"><span>Behavioral Story Bank</span></a><a class="nav-link is-active" href="mock-loops.html" data-search="qrt hong kong role pack three mock interview loops"><span>Three Mock Interview Loops</span></a></div></section><section class="nav-section"><h2>Practice and Reuse</h2><div class="nav-items"><a class="nav-link" href="../labs/index.html" data-search="practice and reuse runnable capstone lab"><span>Runnable Capstone Lab</span></a><a class="nav-link" href="../cheatsheet.html" data-search="practice and reuse last-hour cheatsheet"><span>Last-Hour Cheatsheet</span></a><a class="nav-link" href="../extension-guide.html" data-search="practice and reuse how to add another role"><span>How to Add Another Role</span></a><a class="nav-link" href="../templates/role-pack-template.html" data-search="practice and reuse role-pack template"><span>Role-Pack Template</span></a><a class="nav-link" href="../references.html" data-search="practice and reuse references"><span>References</span></a></div></section></nav>
+    <div class="sidebar-foot"><a href="https://github.com/fredLuv/fredLuv.github.io/tree/main/hedge-dev-interview/source" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><span>v1 · Aug 2026</span></div>
+  </aside>
+  <button class="nav-scrim" type="button" aria-label="Close navigation"></button>
+  <main class="reading-pane">
+    <div class="content-shell">
+      <div class="page-coordinate"><span>QRT Hong Kong Role Pack</span><span>22/27</span></div>
+
+      <article class="prose"><h1 id="three-mock-interview-loops">Three Mock Interview Loops</h1>
+<p>Record yourself. Use a blank editor and no autocomplete for coding if the real
+format is unknown. Each loop has a scorecard; do not grade on vibes.</p>
+<h2 id="mock-1-python-depth-and-coding-60-minutes">Mock 1 — Python depth and coding (60 minutes)</h2>
+<ul>
+<li>0–5: 90-second introduction.</li>
+<li>5–15: <code>is</code>/<code>==</code>, hashability, mutable defaults, generator behavior.</li>
+<li>15–45: P2 merge event streams or P7 bounded async mapper.</li>
+<li>45–55: tests, complexity, memory, malformed/late input.</li>
+<li>55–60: one question for the interviewer.</li>
+</ul>
+<p>Score 0–2: clarification, correctness, idiomatic Python, tests/edge cases,
+complexity, explanation. Target 9/12.</p>
+<h2 id="mock-2-system-design-60-minutes">Mock 2 — System design (60 minutes)</h2>
+<ul>
+<li>0–5: requirements for Drill B or C.</li>
+<li>5–15: events, invariants, scale, success and failure semantics.</li>
+<li>15–35: architecture, state, partitioning, main flow.</li>
+<li>35–50: overload, ordering, recovery, idempotency, operations.</li>
+<li>50–55: alternatives and evolution.</li>
+<li>55–60: concise summary.</li>
+</ul>
+<p>Score the eight items in the system-design chapter. Target 12/16.</p>
+<h2 id="mock-3-hiring-manager-and-production-60-minutes">Mock 3 — Hiring manager and production (60 minutes)</h2>
+<ul>
+<li>0–10: introduction and role motivation.</li>
+<li>10–22: system ownership story.</li>
+<li>22–34: incident story with technical drill-down.</li>
+<li>34–44: disagreement/ambiguous stakeholder story.</li>
+<li>44–52: Python transition challenge and evidence.</li>
+<li>52–60: candidate questions.</li>
+</ul>
+<p>Score 0–2: concise structure, personal ownership, technical depth, quantified
+result, honest self-correction, role connection. Target 9/12.</p>
+<h2 id="repair-loop">Repair loop</h2>
+<p>For every lost point:</p>
+<ol>
+<li>write the exact weak moment;</li>
+<li>classify knowledge, retrieval, coding, structure, or communication;</li>
+<li>do the smallest targeted repair;</li>
+<li>repeat only that segment from a blank start;</li>
+<li>rerun the full loop later, not immediately.</li>
+</ol>
+<h2 id="interview-day-operating-rules">Interview-day operating rules</h2>
+<ul>
+<li>Clarify before coding/designing, but keep momentum.</li>
+<li>State invariants and choose one concrete path; mention alternatives afterward.</li>
+<li>Test with normal, boundary, empty, invalid, and duplicate/out-of-order cases.</li>
+<li>If you do not know, state what you know, what is uncertain, and how you would
+  verify. Do not improvise false internals.</li>
+<li>End with a summary that connects decisions to the role's reliability and
+  collaboration needs.</li>
+</ul></article>
+      <nav class="page-turns" aria-label="Chapter navigation"><a class="page-turn previous" href="behavioral.html"><small>Previous</small><strong>Behavioral Story Bank</strong></a><a class="page-turn next" href="../labs/index.html"><small>Next</small><strong>Runnable Capstone Lab</strong></a></nav>
+      <footer class="book-footer"><span>Built as an extensible interview system.</span><a href="../index.html">Return to index ↑</a></footer>
+    </div>
+  </main>
+</body>
+</html>

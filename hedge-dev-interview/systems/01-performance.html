@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Diagnose performance with evidence, choose the right level of optimization, and avoid false claims about “Python being slow.”">
+  <title>6. Measure and Optimize Python | Hedge Dev Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+</head>
+<body class="docs">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <a class="wordmark" href="../index.html"><span>EL/</span> FIELD GUIDE</a>
+    <div class="topbar-meta"><span>QRT · HK</span><span>PYTHON TRACK</span></div>
+    <a class="portfolio-link" href="../../index.html">Portfolio ↗</a>
+  </header>
+  <aside class="sidebar" aria-label="Book navigation">
+    <div class="sidebar-head">
+      <p>Quant Developer Interview</p>
+      <h1>Three-Day<br>Field Manual</h1>
+      <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
+    </div>
+    <nav class="chapter-nav"><section class="nav-section"><h2>Guide</h2><div class="nav-items"><a class="nav-link" href="../index.html" data-search="guide home"><span>Home</span></a></div></section><section class="nav-section"><h2>Start Here</h2><div class="nav-items"><a class="nav-link" href="../start/role-map.html" data-search="start here role-to-competency map"><span>Role-to-Competency Map</span></a><a class="nav-link" href="../start/three-day-plan.html" data-search="start here three-day schedule"><span>Three-Day Schedule</span></a><a class="nav-link" href="../start/diagnostic.html" data-search="start here 20-minute diagnostic"><span>20-Minute Diagnostic</span></a></div></section><section class="nav-section"><h2>Core Python for Java Engineers</h2><div class="nav-items"><a class="nav-link" href="../core-python/01-java-to-python.html" data-search="core python for java engineers 1. mental model and syntax"><span>1. Mental Model and Syntax</span></a><a class="nav-link" href="../core-python/02-data-model.html" data-search="core python for java engineers 2. objects, mutability, equality, and hashing"><span>2. Objects, Mutability, Equality, and Hashing</span></a><a class="nav-link" href="../core-python/03-functions-iteration.html" data-search="core python for java engineers 3. functions, iteration, and resource scope"><span>3. Functions, Iteration, and Resource Scope</span></a><a class="nav-link" href="../core-python/04-types-architecture.html" data-search="core python for java engineers 4. types and clean architecture"><span>4. Types and Clean Architecture</span></a><a class="nav-link" href="../core-python/05-correctness.html" data-search="core python for java engineers 5. errors, testing, and observability"><span>5. Errors, Testing, and Observability</span></a></div></section><section class="nav-section"><h2>Performance and Real-Time Systems</h2><div class="nav-items"><a class="nav-link is-active" href="01-performance.html" data-search="performance and real-time systems 6. measure and optimize python"><span>6. Measure and Optimize Python</span></a><a class="nav-link" href="02-concurrency.html" data-search="performance and real-time systems 7. threads, processes, and asyncio"><span>7. Threads, Processes, and Asyncio</span></a><a class="nav-link" href="03-realtime.html" data-search="performance and real-time systems 8. real-time pipeline design"><span>8. Real-Time Pipeline Design</span></a></div></section><section class="nav-section"><h2>Quant Platform Foundations</h2><div class="nav-items"><a class="nav-link" href="../quant/01-market-lifecycle.html" data-search="quant platform foundations 9. market and order lifecycle"><span>9. Market and Order Lifecycle</span></a><a class="nav-link" href="../quant/02-backtesting.html" data-search="quant platform foundations 10. backtesting without self-deception"><span>10. Backtesting Without Self-Deception</span></a><a class="nav-link" href="../quant/03-data-engineering.html" data-search="quant platform foundations 11. time-series data engineering"><span>11. Time-Series Data Engineering</span></a></div></section><section class="nav-section"><h2>Production Engineering</h2><div class="nav-items"><a class="nav-link" href="../engineering/01-production.html" data-search="production engineering 12. architecture, ci/cd, and operations"><span>12. Architecture, CI/CD, and Operations</span></a></div></section><section class="nav-section"><h2>QRT Hong Kong Role Pack</h2><div class="nav-items"><a class="nav-link" href="../interview/qrt-role-pack.html" data-search="qrt hong kong role pack qrt interview strategy"><span>QRT Interview Strategy</span></a><a class="nav-link" href="../interview/python-question-bank.html" data-search="qrt hong kong role pack python question bank"><span>Python Question Bank</span></a><a class="nav-link" href="../interview/python-answer-guide.html" data-search="qrt hong kong role pack python answer guide"><span>Python Answer Guide</span></a><a class="nav-link" href="../interview/system-design.html" data-search="qrt hong kong role pack system-design drills"><span>System-Design Drills</span></a><a class="nav-link" href="../interview/behavioral.html" data-search="qrt hong kong role pack behavioral story bank"><span>Behavioral Story Bank</span></a><a class="nav-link" href="../interview/mock-loops.html" data-search="qrt hong kong role pack three mock interview loops"><span>Three Mock Interview Loops</span></a></div></section><section class="nav-section"><h2>Practice and Reuse</h2><div class="nav-items"><a class="nav-link" href="../labs/index.html" data-search="practice and reuse runnable capstone lab"><span>Runnable Capstone Lab</span></a><a class="nav-link" href="../cheatsheet.html" data-search="practice and reuse last-hour cheatsheet"><span>Last-Hour Cheatsheet</span></a><a class="nav-link" href="../extension-guide.html" data-search="practice and reuse how to add another role"><span>How to Add Another Role</span></a><a class="nav-link" href="../templates/role-pack-template.html" data-search="practice and reuse role-pack template"><span>Role-Pack Template</span></a><a class="nav-link" href="../references.html" data-search="practice and reuse references"><span>References</span></a></div></section></nav>
+    <div class="sidebar-foot"><a href="https://github.com/fredLuv/fredLuv.github.io/tree/main/hedge-dev-interview/source" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><span>v1 · Aug 2026</span></div>
+  </aside>
+  <button class="nav-scrim" type="button" aria-label="Close navigation"></button>
+  <main class="reading-pane">
+    <div class="content-shell">
+      <div class="page-coordinate"><span>Performance and Real-Time Systems</span><span>10/27</span></div>
+
+      <article class="prose"><h1 id="6-measure-and-optimize-python">6. Measure and Optimize Python</h1>
+<h2 id="interview-outcome">Interview outcome</h2>
+<p>Diagnose performance with evidence, choose the right level of optimization, and
+avoid false claims about “Python being slow.”</p>
+<h2 id="start-with-a-performance-contract">Start with a performance contract</h2>
+<p>Ask before tuning:</p>
+<ul>
+<li>What workload and data distribution are representative?</li>
+<li>Is the target throughput, end-to-end latency, jitter, memory, startup, or cost?</li>
+<li>Which percentile and time window matter?</li>
+<li>What correctness and freshness constraints cannot change?</li>
+<li>Where is time actually spent: CPU, I/O, lock/queue wait, serialization, GC, or
+  downstream service?</li>
+</ul>
+<p>For real-time systems, record p50, p95, p99, maximum/sample count, queue depth,
+and drops. An average can conceal rare delays that dominate trading risk.</p>
+<h2 id="complexity-still-wins-first">Complexity still wins first</h2>
+<p>Changing O(n²) to O(n log n) beats syntax tricks. Choose the data structure that
+matches the operation: set/dict for membership, deque for FIFO, heap for top-k,
+bisect or indexed storage for ordered search.</p>
+<p>Then reduce work:</p>
+<ul>
+<li>compute once, not in an inner loop;</li>
+<li>batch calls across an expensive boundary;</li>
+<li>stream instead of materializing unnecessary intermediates;</li>
+<li>push filtering near storage when semantically safe;</li>
+<li>cache only with bounded size and explicit invalidation.</li>
+</ul>
+<h2 id="measure-at-three-scales">Measure at three scales</h2>
+<ol>
+<li><strong>Micro:</strong> <code>timeit</code> for a small, isolated operation. Warm up and run many times.</li>
+<li><strong>Function/program:</strong> <code>cProfile</code> for call time/count; a sampling or line profiler
+   when call aggregation is insufficient.</li>
+<li><strong>System:</strong> monotonic timing and production telemetry across queues, network,
+   serialization, and downstream dependencies.</li>
+</ol>
+<p>Use <code>time.perf_counter_ns()</code> for elapsed time. Wall-clock timestamps can jump and
+should not measure durations.</p>
+<h2 id="cpython-and-the-gil">CPython and the GIL</h2>
+<p>In the traditional CPython build, a global interpreter lock means only one thread
+executes Python bytecode at a time within an interpreter. That does <strong>not</strong> mean:</p>
+<ul>
+<li>threads are useless (they overlap blocking I/O);</li>
+<li>compound operations are automatically safe;</li>
+<li>code cannot interleave between logical steps;</li>
+<li>native libraries cannot run in parallel (many release the GIL);</li>
+<li>all Python implementations/builds have identical behavior.</li>
+</ul>
+<p>Free-threaded CPython builds are emerging, but code should not depend on accidental
+atomicity. Protect invariants and benchmark the actual deployment runtime.</p>
+<h2 id="the-optimization-ladder">The optimization ladder</h2>
+<p>Use the lowest rung that meets the contract:</p>
+<ol>
+<li>better algorithm/data structure;</li>
+<li>built-ins and standard-library operations implemented efficiently;</li>
+<li>reduce allocation, copying, conversions, and boundary crossings;</li>
+<li>vectorized/columnar libraries for numerical bulk work;</li>
+<li>parallelism or partitioning when the workload supports it;</li>
+<li>JIT/compiled extension/native service for a proven hot path.</li>
+</ol>
+<p>Native boundaries add build, portability, debugging, memory-safety, and deployment
+cost. Isolate them behind a stable interface and keep a correctness reference path.</p>
+<h2 id="vectorization-is-not-magic">Vectorization is not magic</h2>
+<p>Vectorized numerical operations can move loops into optimized native code, improve
+memory locality, and release the GIL. They can also create large temporaries,
+inflate memory, and make irregular branching worse. Profile with realistic shapes.</p>
+<h2 id="memory-and-allocation">Memory and allocation</h2>
+<ul>
+<li>A generator avoids materializing all results but does not make retained source
+  data disappear.</li>
+<li><code>slots</code> can reduce per-instance overhead for many small objects; measure.</li>
+<li>columnar arrays are often denser than millions of Python objects.</li>
+<li>unbounded dictionaries, queues, caches, and retained tracebacks are common leaks.</li>
+<li>object pooling in Python is often counterproductive; measure lifecycle and GC.</li>
+</ul>
+<h2 id="performance-answer-example">Performance answer example</h2>
+<blockquote>
+<p>I would first define the p99 latency and throughput target using a representative
+replay. I would instrument stage latency and queue wait, then profile the CPU-hot
+stage. If parsing dominates, I would test batching and a faster/native parser;
+if queue wait dominates, CPU tuning is irrelevant. I would compare distributions,
+verify outputs bit-for-bit or within an explicit tolerance, and retain a rollback.</p>
+</blockquote>
+<h2 id="drill">Drill</h2>
+<p>Given code that recomputes a 100-point moving average with <code>sum(window) / 100</code> for
+every tick, implement an O(1)-update rolling sum with a <code>deque</code>. Benchmark both on
+the same seeded input, verify identical outputs within a declared tolerance, and
+report p50/p99 if timing individual updates.</p></article>
+      <nav class="page-turns" aria-label="Chapter navigation"><a class="page-turn previous" href="../core-python/05-correctness.html"><small>Previous</small><strong>5. Errors, Testing, and Observability</strong></a><a class="page-turn next" href="02-concurrency.html"><small>Next</small><strong>7. Threads, Processes, and Asyncio</strong></a></nav>
+      <footer class="book-footer"><span>Built as an extensible interview system.</span><a href="../index.html">Return to index ↑</a></footer>
+    </div>
+  </main>
+</body>
+</html>
