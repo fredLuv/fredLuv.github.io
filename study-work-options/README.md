@@ -9,6 +9,7 @@ This folder contains research notes, Master's program evaluations, and general c
 * [UK vs. Canada Analysis (Lifestyle, Dating & Marriage)](UK-vs-Canada-Lifestyle-Dating-Marriage.md)
 * [UK Hedge Fund Interview Strategy & Preparation Plan](UK-Hedge-Fund-Interview-Strategy.md)
 * [Hong Kong Buy-Side & Hedge Fund Strategy](HK-Hedge-Fund-Interview-and-Relocation-Strategy.md)
+* [UK ILR & British Passport: Global Mobility to US & HK](UK-Passport-and-ILR-Global-Mobility-US-HK.md)
 
 ---
 *Maintained by Feiyu (Ethan) Lu*
