@@ -27,10 +27,13 @@
 * [9. Market and Order Lifecycle](quant/01-market-lifecycle.md)
 * [10. Backtesting Without Self-Deception](quant/02-backtesting.md)
 * [11. Time-Series Data Engineering](quant/03-data-engineering.md)
+* [12. Middle and Back Office Lifecycle](quant/04-middle-back-office.md)
 
 ## Production Engineering
 
-* [12. Architecture, CI/CD, and Operations](engineering/01-production.md)
+* [13. Architecture, CI/CD, and Operations](engineering/01-production.md)
+* [14. Relational Databases and SQL](engineering/02-relational-databases-sql.md)
+* [15. Kafka and Durable Event Pipelines](engineering/03-kafka-event-streaming.md)
 
 ## QRT Hong Kong Role Pack
 
@@ -40,6 +43,10 @@
 * [System-Design Drills](interview/system-design.md)
 * [Behavioral Story Bank](interview/behavioral.md)
 * [Three Mock Interview Loops](interview/mock-loops.md)
+
+## Jump Trading Role Pack
+
+* [Middle / Back Office Software Engineer](roles/jump-middle-back-office.md)
 
 ## Practice and Reuse
 

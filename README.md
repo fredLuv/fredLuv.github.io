@@ -8,7 +8,7 @@ Live site: [fredluv.github.io](https://fredluv.github.io/)
 
 - [US Small Product Demand Finder](https://fredluv.github.io/us-small-product-demand-finder/) - a visual workflow for finding lightweight products Americans already want and validating demand through AliExpress, 1688, Amazon, TikTok, and Google Trends.
 - [Source repo: fredLuv/us-small-product-demand-finder](https://github.com/fredLuv/us-small-product-demand-finder)
-- [Hedge Fund Quant Developer Interview Field Guide](https://fredluv.github.io/hedge-dev-interview/) - a three-day Java-to-Python curriculum with real-time systems, backtesting, runnable exercises, and role-specific interview packs.
+- [Hedge Fund Quant & Core Developer Interview Field Guide](https://fredluv.github.io/hedge-dev-interview/) - a three-day Java-to-Python curriculum with SQL, Kafka, real-time systems, post-trade workflows, runnable exercises, and QRT/Jump role packs.
 
 ## Technical Stack
 

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="This role pack is derived from the supplied Jump Trading, Core Development — Software Engineer, Middle / Back Office Technology (Python) description. It is">
+  <title>Jump Trading — Middle / Back Office Software Engineer | Hedge Dev Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+</head>
+<body class="docs">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <a class="wordmark" href="../index.html"><span>EL/</span> FIELD GUIDE</a>
+    <div class="topbar-meta"><span>QRT + JUMP</span><span>PYTHON · SQL · KAFKA</span></div>
+    <a class="portfolio-link" href="../../index.html">Portfolio ↗</a>
+  </header>
+  <aside class="sidebar" aria-label="Book navigation">
+    <div class="sidebar-head">
+      <p>Quant &amp; Core Developer Interview</p>
+      <h1>Three-Day<br>Field Manual</h1>
+      <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
+    </div>
+    <nav class="chapter-nav"><section class="nav-section"><h2>Guide</h2><div class="nav-items"><a class="nav-link" href="../index.html" data-search="guide home"><span>Home</span></a></div></section><section class="nav-section"><h2>Start Here</h2><div class="nav-items"><a class="nav-link" href="../start/role-map.html" data-search="start here role-to-competency map"><span>Role-to-Competency Map</span></a><a class="nav-link" href="../start/three-day-plan.html" data-search="start here three-day schedule"><span>Three-Day Schedule</span></a><a class="nav-link" href="../start/diagnostic.html" data-search="start here 20-minute diagnostic"><span>20-Minute Diagnostic</span></a></div></section><section class="nav-section"><h2>Core Python for Java Engineers</h2><div class="nav-items"><a class="nav-link" href="../core-python/01-java-to-python.html" data-search="core python for java engineers 1. mental model and syntax"><span>1. Mental Model and Syntax</span></a><a class="nav-link" href="../core-python/02-data-model.html" data-search="core python for java engineers 2. objects, mutability, equality, and hashing"><span>2. Objects, Mutability, Equality, and Hashing</span></a><a class="nav-link" href="../core-python/03-functions-iteration.html" data-search="core python for java engineers 3. functions, iteration, and resource scope"><span>3. Functions, Iteration, and Resource Scope</span></a><a class="nav-link" href="../core-python/04-types-architecture.html" data-search="core python for java engineers 4. types and clean architecture"><span>4. Types and Clean Architecture</span></a><a class="nav-link" href="../core-python/05-correctness.html" data-search="core python for java engineers 5. errors, testing, and observability"><span>5. Errors, Testing, and Observability</span></a></div></section><section class="nav-section"><h2>Performance and Real-Time Systems</h2><div class="nav-items"><a class="nav-link" href="../systems/01-performance.html" data-search="performance and real-time systems 6. measure and optimize python"><span>6. Measure and Optimize Python</span></a><a class="nav-link" href="../systems/02-concurrency.html" data-search="performance and real-time systems 7. threads, processes, and asyncio"><span>7. Threads, Processes, and Asyncio</span></a><a class="nav-link" href="../systems/03-realtime.html" data-search="performance and real-time systems 8. real-time pipeline design"><span>8. Real-Time Pipeline Design</span></a></div></section><section class="nav-section"><h2>Quant Platform Foundations</h2><div class="nav-items"><a class="nav-link" href="../quant/01-market-lifecycle.html" data-search="quant platform foundations 9. market and order lifecycle"><span>9. Market and Order Lifecycle</span></a><a class="nav-link" href="../quant/02-backtesting.html" data-search="quant platform foundations 10. backtesting without self-deception"><span>10. Backtesting Without Self-Deception</span></a><a class="nav-link" href="../quant/03-data-engineering.html" data-search="quant platform foundations 11. time-series data engineering"><span>11. Time-Series Data Engineering</span></a><a class="nav-link" href="../quant/04-middle-back-office.html" data-search="quant platform foundations 12. middle and back office lifecycle"><span>12. Middle and Back Office Lifecycle</span></a></div></section><section class="nav-section"><h2>Production Engineering</h2><div class="nav-items"><a class="nav-link" href="../engineering/01-production.html" data-search="production engineering 13. architecture, ci/cd, and operations"><span>13. Architecture, CI/CD, and Operations</span></a><a class="nav-link" href="../engineering/02-relational-databases-sql.html" data-search="production engineering 14. relational databases and sql"><span>14. Relational Databases and SQL</span></a><a class="nav-link" href="../engineering/03-kafka-event-streaming.html" data-search="production engineering 15. kafka and durable event pipelines"><span>15. Kafka and Durable Event Pipelines</span></a></div></section><section class="nav-section"><h2>QRT Hong Kong Role Pack</h2><div class="nav-items"><a class="nav-link" href="../interview/qrt-role-pack.html" data-search="qrt hong kong role pack qrt interview strategy"><span>QRT Interview Strategy</span></a><a class="nav-link" href="../interview/python-question-bank.html" data-search="qrt hong kong role pack python question bank"><span>Python Question Bank</span></a><a class="nav-link" href="../interview/python-answer-guide.html" data-search="qrt hong kong role pack python answer guide"><span>Python Answer Guide</span></a><a class="nav-link" href="../interview/system-design.html" data-search="qrt hong kong role pack system-design drills"><span>System-Design Drills</span></a><a class="nav-link" href="../interview/behavioral.html" data-search="qrt hong kong role pack behavioral story bank"><span>Behavioral Story Bank</span></a><a class="nav-link" href="../interview/mock-loops.html" data-search="qrt hong kong role pack three mock interview loops"><span>Three Mock Interview Loops</span></a></div></section><section class="nav-section"><h2>Jump Trading Role Pack</h2><div class="nav-items"><a class="nav-link is-active" href="jump-middle-back-office.html" data-search="jump trading role pack middle / back office software engineer"><span>Middle / Back Office Software Engineer</span></a></div></section><section class="nav-section"><h2>Practice and Reuse</h2><div class="nav-items"><a class="nav-link" href="../labs/index.html" data-search="practice and reuse runnable capstone lab"><span>Runnable Capstone Lab</span></a><a class="nav-link" href="../cheatsheet.html" data-search="practice and reuse last-hour cheatsheet"><span>Last-Hour Cheatsheet</span></a><a class="nav-link" href="../extension-guide.html" data-search="practice and reuse how to add another role"><span>How to Add Another Role</span></a><a class="nav-link" href="../templates/role-pack-template.html" data-search="practice and reuse role-pack template"><span>Role-Pack Template</span></a><a class="nav-link" href="../references.html" data-search="practice and reuse references"><span>References</span></a></div></section></nav>
+    <div class="sidebar-foot"><a href="https://github.com/fredLuv/fredLuv.github.io/tree/main/hedge-dev-interview/source" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><span>v1 · Aug 2026</span></div>
+  </aside>
+  <button class="nav-scrim" type="button" aria-label="Close navigation"></button>
+  <main class="reading-pane">
+    <div class="content-shell">
+      <div class="page-coordinate"><span>Jump Trading Role Pack</span><span>26/31</span></div>
+
+      <article class="prose"><h1 id="jump-trading-middle-back-office-software-engineer">Jump Trading — Middle / Back Office Software Engineer</h1>
+<p>This role pack is derived from the supplied <strong>Jump Trading, Core Development —
+Software Engineer, Middle / Back Office Technology (Python)</strong> description. It is a
+capability-based preparation plan, not a claim about Jump's exact interview loop.</p>
+<h2 id="role-thesis">Role thesis</h2>
+<p>Jump is hiring a software engineer to build critical transactional infrastructure
+around risk and clearing, post-trade automation, vendor data, and workflows across
+business teams. The strongest candidate combines production Python/Java judgment
+with relational data correctness, Kafka, domain learning, precise requirements,
+and reliable independent delivery.</p>
+<p>This is not primarily an alpha-research or exchange hot-path role. Low-latency
+knowledge helps, but over-indexing on lock-free algorithms while neglecting SQL,
+reconciliation, and settlement correctness would misread the posting.</p>
+<h2 id="posting-to-competency-map">Posting-to-competency map</h2>
+<table>
+<thead>
+<tr>
+<th>Posting signal</th>
+<th>Interview evidence</th>
+<th>Core material</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3+ years Python, Java, or C++</td>
+<td>readable coding, testing, production ownership</td>
+<td>Chapters 1–5</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>SQL databases</td>
+<td>schema, joins/windows, isolation, indexes, query plans</td>
+<td>Chapter 14</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>Kafka/messaging</td>
+<td>keys, ordering, offsets, replay, idempotency, outbox</td>
+<td>Chapter 15</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>Data architecture and software design</td>
+<td>domain model, constraints, lifecycle history, contracts</td>
+<td>Chapters 4, 11–15</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>Risk, clearing, locates, settlement</td>
+<td>accurate lifecycle vocabulary and invariants</td>
+<td>Chapter 12</td>
+<td>High-plus</td>
+</tr>
+<tr>
+<td>Interdepartmental workflows</td>
+<td>requirements, exception ownership, audit, usability</td>
+<td>This pack + behavioral</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Post-trade automation/vendor data</td>
+<td>idempotent batches, validation, lineage, reconciliation</td>
+<td>Chapters 11–15</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Attention to detail</td>
+<td>boundary tests, tie-breakers, money/time/identity policy</td>
+<td>Throughout</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Independent contributor/team dynamic</td>
+<td>scoped ownership plus early risk communication</td>
+<td>Behavioral</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Reliable, predictable availability</td>
+<td>operational ownership without heroics</td>
+<td>Behavioral</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<h2 id="positioning-for-a-java-first-engineer">Positioning for a Java-first engineer</h2>
+<blockquote>
+<p>I bring mature Java experience building reliable event-driven and transactional
+systems, and I have translated those habits into typed, testable Python. For this
+role I focus on the invariants that middle/back-office infrastructure lives or dies
+by: stable identity, relational constraints, transaction boundaries, idempotent
+Kafka consumers, durable workflow state, reconciliation, and observable exception
+handling. I am comfortable turning ambiguous business processes into explicit
+contracts with users and owning them predictably in production.</p>
+</blockquote>
+<p>Use only evidence you can defend. If direct settlement/clearing experience is
+limited, say so and demonstrate the domain model, SQL/outbox lab, and a comparable
+workflow you learned quickly.</p>
+<h2 id="qrt-versus-jump-change-the-emphasis">QRT versus Jump: change the emphasis</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>QRT Quant Developer</th>
+<th>Jump Middle / Back Office</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary outcome</td>
+<td>research/trading framework and strategy support</td>
+<td>correct post-trade, risk, clearing, and data workflows</td>
+</tr>
+<tr>
+<td>Python depth</td>
+<td>critical</td>
+<td>critical</td>
+</tr>
+<tr>
+<td>Real-time/performance</td>
+<td>high</td>
+<td>useful, usually secondary to transactional correctness</td>
+</tr>
+<tr>
+<td>Backtesting</td>
+<td>critical</td>
+<td>not central unless the team says otherwise</td>
+</tr>
+<tr>
+<td>Relational SQL</td>
+<td>important</td>
+<td>critical</td>
+</tr>
+<tr>
+<td>Kafka/messaging</td>
+<td>helpful/high</td>
+<td>explicitly critical</td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>electronic trading and quant platform</td>
+<td>risk, clearing, locates, settlement, reconciliation</td>
+</tr>
+<tr>
+<td>Stakeholders</td>
+<td>traders and quants</td>
+<td>operations, risk, finance, clearing, vendors, engineering</td>
+</tr>
+<tr>
+<td>Failure lens</td>
+<td>stale signals, latency, trading/risk faults</td>
+<td>broken books, missed cutoff, duplicate/missing obligation, unresolved break</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jump-focused-three-day-overlay">Jump-focused three-day overlay</h2>
+<p>Use the shared schedule, but replace QRT-only blocks as follows.</p>
+<h3 id="day-1-python-plus-sql-foundations">Day 1 — Python plus SQL foundations</h3>
+<ul>
+<li>Chapters 1–5: Python object model, typing, exceptions, testing.</li>
+<li>Chapter 14 through transactions: model trades, settlement, and event identity.</li>
+<li>Write four queries: net position, latest status, aged breaks, duplicate detection.</li>
+<li>Run the SQLite ledger/outbox tests in the companion lab.</li>
+</ul>
+<p><strong>Proof:</strong> explain one schema and one concurrent update invariant without notes.</p>
+<h3 id="day-2-kafka-plus-post-trade-domain">Day 2 — Kafka plus post-trade domain</h3>
+<ul>
+<li>Chapter 12: trace one trade from execution through settlement/reconciliation.</li>
+<li>Chapter 15: partitioning, offset commit, duplicates, rebalances, outbox.</li>
+<li>Design the execution-to-settlement pipeline below.</li>
+<li>Rehearse how a timeout/duplicate/amendment changes state.</li>
+</ul>
+<p><strong>Proof:</strong> explain why “Kafka exactly once” does not make a SQL side effect exactly
+once and show the schema constraint that closes the gap.</p>
+<h3 id="day-3-production-and-business-partnership">Day 3 — Production and business partnership</h3>
+<ul>
+<li>Chapter 13: deployment, observability, incident response, schema migration.</li>
+<li>SQL query plan/index drill and one Python coding question.</li>
+<li>Prepare six behavioral stories, including business requirements and availability.</li>
+<li>Run the Jump mock loop and repair the two weakest answers.</li>
+</ul>
+<p><strong>Proof:</strong> deliver a 35-minute design and a two-minute incident/business story.</p>
+<h2 id="likely-capability-prompts">Likely capability prompts</h2>
+<h3 id="python">Python</h3>
+<ul>
+<li>Model trade lifecycle events and current state with dataclasses/enums.</li>
+<li>Deduplicate a stream while rejecting conflicting duplicate IDs.</li>
+<li>Merge or group ordered records under memory constraints.</li>
+<li>Build a context-managed transaction/retry boundary.</li>
+<li>Explain generators, mutability, hashing, typing, async versus threads, and tests.</li>
+</ul>
+<h3 id="sql-and-data-modeling">SQL and data modeling</h3>
+<ul>
+<li>Design trade, allocation, clearing, settlement, locate, and break tables.</li>
+<li>Write latest-row-per-trade and net-exposure queries.</li>
+<li>Explain primary/business keys, constraints, normalization, and history.</li>
+<li>Prevent two workers from consuming the same locate availability.</li>
+<li>Diagnose a slow break report using its query plan.</li>
+<li>Choose an isolation level and retry/locking policy from an explicit anomaly.</li>
+</ul>
+<h3 id="kafka">Kafka</h3>
+<ul>
+<li>Choose a partition key for lifecycle ordering and discuss hot keys.</li>
+<li>Explain offsets, groups, rebalances, lag, retention, and replay.</li>
+<li>Design database-to-Kafka consistency using an outbox.</li>
+<li>Make a Kafka-to-database consumer idempotent.</li>
+<li>Handle poison records without silently skipping financial state.</li>
+<li>Evolve a schema while old/new producers and consumers coexist.</li>
+</ul>
+<h3 id="domain-and-design">Domain and design</h3>
+<ul>
+<li>What is the difference between execution, clearing, and settlement?</li>
+<li>What does a locate protect, and what is the concurrency invariant?</li>
+<li>Design a reconciliation workflow, not only a comparison query.</li>
+<li>Handle a late trade amendment after clearing or settlement instruction.</li>
+<li>Define completeness/freshness SLOs around a market or settlement cutoff.</li>
+</ul>
+<h2 id="system-design-drill-execution-to-settlement">System-design drill: execution to settlement</h2>
+<p>Design for one million executions/day with 10× intraday bursts and several vendors.
+The system must capture/amend trades, enrich instruments/accounts, allocate,
+calculate intraday positions, instruct clearing/settlement, ingest external statuses,
+and manage reconciliation breaks.</p>
+<p>Your answer must include:</p>
+<ol>
+<li>trade/event identity and versioning;</li>
+<li>SQL tables, constraints, history, and current projections;</li>
+<li>Kafka topics, schemas, keys, consumer groups, and retention;</li>
+<li>transactional outbox and processed-event dedupe;</li>
+<li>late/out-of-order amendments and cancel/correct flows;</li>
+<li>vendor validation/quarantine and lineage;</li>
+<li>reconciliation matching, exception ownership, aging, and replay;</li>
+<li>cutoffs, business calendars, SLOs, alerting, and recovery;</li>
+<li>permissions, audit, and sensitive-data handling;</li>
+<li>a compatible schema/deployment migration.</li>
+</ol>
+<p>Pressure questions:</p>
+<ul>
+<li>The database commit succeeded but Kafka timed out. What is the state?</li>
+<li>One trade update is poison and blocks its partition. What do you do?</li>
+<li>A vendor sends the same event ID with a different amount.</li>
+<li>A settlement update arrives before its trade amendment.</li>
+<li>Consumer lag is zero, but positions are wrong. What did monitoring miss?</li>
+<li>A batch says complete but one partition was never assigned.</li>
+</ul>
+<h2 id="sql-drill-schema">SQL drill schema</h2>
+<p>Sketch queries against:</p>
+<pre><code class="language-text">trade(trade_id, account_id, symbol, business_date, quantity, price, currency, version)
+trade_status(trade_id, status, observed_at, source_sequence)
+settlement(trade_id, expected_date, actual_date, status, failure_reason)
+processed_event(consumer_name, event_id, payload_hash, processed_at)
+outbox(event_id, topic, event_key, payload, created_at, published_at)
+</code></pre>
+<p>Tasks:</p>
+<ol>
+<li>return the latest status known as of a timestamp;</li>
+<li>aggregate net quantity and signed notional by account/symbol;</li>
+<li>find failed/late settlements ordered by exposure and age;</li>
+<li>propose indexes and validate them with <code>EXPLAIN</code>;</li>
+<li>atomically apply one event and create its outbox record;</li>
+<li>explain how a duplicate and a conflicting duplicate behave.</li>
+</ol>
+<h2 id="behavioral-story-bank">Behavioral story bank</h2>
+<p>Prepare six SCARL stories:</p>
+<ol>
+<li><strong>Requirements:</strong> turned a user's manual or ambiguous workflow into explicit
+   states, rules, and acceptance checks.</li>
+<li><strong>Detail:</strong> caught a small identity/time/money assumption before it became a
+   large production issue.</li>
+<li><strong>Reliability:</strong> supported a critical deadline or incident predictably, without
+   relying on uncommunicated heroics.</li>
+<li><strong>Independence:</strong> owned a problem end to end while surfacing risk early.</li>
+<li><strong>Collaboration:</strong> resolved a disagreement across engineering and business teams.</li>
+<li><strong>Learning:</strong> entered an unfamiliar domain, found authoritative sources/users,
+   and shipped a correct result.</li>
+</ol>
+<p>For “reliable and predictable availability,” describe on-call/coverage agreements,
+runbooks, early escalation, handoffs, and automation. Do not promise permanent
+personal availability; demonstrate a reliable operating system.</p>
+<h2 id="questions-for-the-interviewers">Questions for the interviewers</h2>
+<ul>
+<li>Which workflows are most in need of modernization: risk, clearing, locates,
+  settlement, reconciliation, or vendor data?</li>
+<li>Where are the current sources of truth, and which reconciliation breaks consume
+  the most human time?</li>
+<li>How are Python services, SQL databases, and Kafka responsibilities divided?</li>
+<li>What processing deadlines or market cutoffs define reliability for the team?</li>
+<li>How closely do engineers work with operations, risk, finance, and vendors?</li>
+<li>What does independent ownership look like during the first six months?</li>
+<li>How are schema and event-contract changes reviewed across departments?</li>
+</ul>
+<h2 id="jump-mock-loop-75-minutes">Jump mock loop (75 minutes)</h2>
+<ul>
+<li>0–10: introduction and why middle/back-office technology.</li>
+<li>10–30: Python coding—deduplicate/apply trade lifecycle events.</li>
+<li>30–45: SQL—latest status plus indexes/concurrency follow-ups.</li>
+<li>45–62: Kafka/SQL outbox and failure semantics.</li>
+<li>62–70: requirements or reliability behavioral story.</li>
+<li>70–75: candidate questions and concise summary.</li>
+</ul>
+<p>Score 0–2 on correctness, Python clarity, relational modeling, SQL, Kafka semantics,
+domain reasoning, production failure handling, and communication. Target 12/16.</p>
+<h2 id="final-answer-frame">Final answer frame</h2>
+<blockquote>
+<p>This role optimizes correctness and business throughput across a long-lived trade
+lifecycle. I would make identity and state explicit, enforce invariants in SQL,
+preserve immutable history, connect services through keyed Kafka events and an
+outbox, make every consumer idempotent, and operate the workflows through
+reconciliation, exception ownership, deadline SLOs, and close user feedback.</p>
+</blockquote></article>
+      <nav class="page-turns" aria-label="Chapter navigation"><a class="page-turn previous" href="../interview/mock-loops.html"><small>Previous</small><strong>Three Mock Interview Loops</strong></a><a class="page-turn next" href="../labs/index.html"><small>Next</small><strong>Runnable Capstone Lab</strong></a></nav>
+      <footer class="book-footer"><span>Built as an extensible interview system.</span><a href="../index.html">Return to index ↑</a></footer>
+    </div>
+  </main>
+</body>
+</html>

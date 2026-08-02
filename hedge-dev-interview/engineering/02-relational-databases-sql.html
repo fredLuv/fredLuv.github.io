@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Model a post-trade workflow with keys and constraints, write production-grade SQL, reason about isolation and locking, diagnose a query plan, and explain h">
+  <title>14. Relational Databases and SQL | Hedge Dev Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650;6..72,750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../app.js" defer></script>
+</head>
+<body class="docs">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <a class="wordmark" href="../index.html"><span>EL/</span> FIELD GUIDE</a>
+    <div class="topbar-meta"><span>QRT + JUMP</span><span>PYTHON · SQL · KAFKA</span></div>
+    <a class="portfolio-link" href="../../index.html">Portfolio ↗</a>
+  </header>
+  <aside class="sidebar" aria-label="Book navigation">
+    <div class="sidebar-head">
+      <p>Quant &amp; Core Developer Interview</p>
+      <h1>Three-Day<br>Field Manual</h1>
+      <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
+    </div>
+    <nav class="chapter-nav"><section class="nav-section"><h2>Guide</h2><div class="nav-items"><a class="nav-link" href="../index.html" data-search="guide home"><span>Home</span></a></div></section><section class="nav-section"><h2>Start Here</h2><div class="nav-items"><a class="nav-link" href="../start/role-map.html" data-search="start here role-to-competency map"><span>Role-to-Competency Map</span></a><a class="nav-link" href="../start/three-day-plan.html" data-search="start here three-day schedule"><span>Three-Day Schedule</span></a><a class="nav-link" href="../start/diagnostic.html" data-search="start here 20-minute diagnostic"><span>20-Minute Diagnostic</span></a></div></section><section class="nav-section"><h2>Core Python for Java Engineers</h2><div class="nav-items"><a class="nav-link" href="../core-python/01-java-to-python.html" data-search="core python for java engineers 1. mental model and syntax"><span>1. Mental Model and Syntax</span></a><a class="nav-link" href="../core-python/02-data-model.html" data-search="core python for java engineers 2. objects, mutability, equality, and hashing"><span>2. Objects, Mutability, Equality, and Hashing</span></a><a class="nav-link" href="../core-python/03-functions-iteration.html" data-search="core python for java engineers 3. functions, iteration, and resource scope"><span>3. Functions, Iteration, and Resource Scope</span></a><a class="nav-link" href="../core-python/04-types-architecture.html" data-search="core python for java engineers 4. types and clean architecture"><span>4. Types and Clean Architecture</span></a><a class="nav-link" href="../core-python/05-correctness.html" data-search="core python for java engineers 5. errors, testing, and observability"><span>5. Errors, Testing, and Observability</span></a></div></section><section class="nav-section"><h2>Performance and Real-Time Systems</h2><div class="nav-items"><a class="nav-link" href="../systems/01-performance.html" data-search="performance and real-time systems 6. measure and optimize python"><span>6. Measure and Optimize Python</span></a><a class="nav-link" href="../systems/02-concurrency.html" data-search="performance and real-time systems 7. threads, processes, and asyncio"><span>7. Threads, Processes, and Asyncio</span></a><a class="nav-link" href="../systems/03-realtime.html" data-search="performance and real-time systems 8. real-time pipeline design"><span>8. Real-Time Pipeline Design</span></a></div></section><section class="nav-section"><h2>Quant Platform Foundations</h2><div class="nav-items"><a class="nav-link" href="../quant/01-market-lifecycle.html" data-search="quant platform foundations 9. market and order lifecycle"><span>9. Market and Order Lifecycle</span></a><a class="nav-link" href="../quant/02-backtesting.html" data-search="quant platform foundations 10. backtesting without self-deception"><span>10. Backtesting Without Self-Deception</span></a><a class="nav-link" href="../quant/03-data-engineering.html" data-search="quant platform foundations 11. time-series data engineering"><span>11. Time-Series Data Engineering</span></a><a class="nav-link" href="../quant/04-middle-back-office.html" data-search="quant platform foundations 12. middle and back office lifecycle"><span>12. Middle and Back Office Lifecycle</span></a></div></section><section class="nav-section"><h2>Production Engineering</h2><div class="nav-items"><a class="nav-link" href="01-production.html" data-search="production engineering 13. architecture, ci/cd, and operations"><span>13. Architecture, CI/CD, and Operations</span></a><a class="nav-link is-active" href="02-relational-databases-sql.html" data-search="production engineering 14. relational databases and sql"><span>14. Relational Databases and SQL</span></a><a class="nav-link" href="03-kafka-event-streaming.html" data-search="production engineering 15. kafka and durable event pipelines"><span>15. Kafka and Durable Event Pipelines</span></a></div></section><section class="nav-section"><h2>QRT Hong Kong Role Pack</h2><div class="nav-items"><a class="nav-link" href="../interview/qrt-role-pack.html" data-search="qrt hong kong role pack qrt interview strategy"><span>QRT Interview Strategy</span></a><a class="nav-link" href="../interview/python-question-bank.html" data-search="qrt hong kong role pack python question bank"><span>Python Question Bank</span></a><a class="nav-link" href="../interview/python-answer-guide.html" data-search="qrt hong kong role pack python answer guide"><span>Python Answer Guide</span></a><a class="nav-link" href="../interview/system-design.html" data-search="qrt hong kong role pack system-design drills"><span>System-Design Drills</span></a><a class="nav-link" href="../interview/behavioral.html" data-search="qrt hong kong role pack behavioral story bank"><span>Behavioral Story Bank</span></a><a class="nav-link" href="../interview/mock-loops.html" data-search="qrt hong kong role pack three mock interview loops"><span>Three Mock Interview Loops</span></a></div></section><section class="nav-section"><h2>Jump Trading Role Pack</h2><div class="nav-items"><a class="nav-link" href="../roles/jump-middle-back-office.html" data-search="jump trading role pack middle / back office software engineer"><span>Middle / Back Office Software Engineer</span></a></div></section><section class="nav-section"><h2>Practice and Reuse</h2><div class="nav-items"><a class="nav-link" href="../labs/index.html" data-search="practice and reuse runnable capstone lab"><span>Runnable Capstone Lab</span></a><a class="nav-link" href="../cheatsheet.html" data-search="practice and reuse last-hour cheatsheet"><span>Last-Hour Cheatsheet</span></a><a class="nav-link" href="../extension-guide.html" data-search="practice and reuse how to add another role"><span>How to Add Another Role</span></a><a class="nav-link" href="../templates/role-pack-template.html" data-search="practice and reuse role-pack template"><span>Role-Pack Template</span></a><a class="nav-link" href="../references.html" data-search="practice and reuse references"><span>References</span></a></div></section></nav>
+    <div class="sidebar-foot"><a href="https://github.com/fredLuv/fredLuv.github.io/tree/main/hedge-dev-interview/source" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><span>v1 · Aug 2026</span></div>
+  </aside>
+  <button class="nav-scrim" type="button" aria-label="Close navigation"></button>
+  <main class="reading-pane">
+    <div class="content-shell">
+      <div class="page-coordinate"><span>Production Engineering</span><span>18/31</span></div>
+
+      <article class="prose"><h1 id="14-relational-databases-and-sql">14. Relational Databases and SQL</h1>
+<h2 id="interview-outcome">Interview outcome</h2>
+<p>Model a post-trade workflow with keys and constraints, write production-grade SQL,
+reason about isolation and locking, diagnose a query plan, and explain how the
+database and Kafka remain consistent.</p>
+<h2 id="the-java-to-relational-bridge">The Java-to-relational bridge</h2>
+<p>An object graph optimizes navigation in one process. A relational model optimizes
+shared facts, integrity, set operations, concurrent transactions, and multiple
+access paths. Do not map every class hierarchy mechanically into tables.</p>
+<p>Start with business identity and invariants:</p>
+<pre><code class="language-sql">CREATE TABLE trade (
+    trade_id        TEXT PRIMARY KEY,
+    execution_id    TEXT NOT NULL,
+    execution_venue TEXT NOT NULL,
+    account_id      TEXT NOT NULL,
+    symbol          TEXT NOT NULL,
+    trade_time      TIMESTAMPTZ NOT NULL,
+    business_date   DATE NOT NULL,
+    quantity        NUMERIC(24, 8) NOT NULL CHECK (quantity &lt;&gt; 0),
+    price           NUMERIC(24, 10) NOT NULL CHECK (price &gt; 0),
+    currency        CHAR(3) NOT NULL,
+    version         INTEGER NOT NULL CHECK (version &gt; 0),
+    UNIQUE (execution_venue, execution_id, version)
+);
+</code></pre>
+<p>The primary key supplies internal identity. The namespaced unique key prevents a
+duplicated external execution/version. <code>NOT NULL</code>, <code>CHECK</code>, <code>UNIQUE</code>, and foreign
+keys make invalid local states unrepresentable even if one application path fails.</p>
+<h2 id="normalize-facts-denormalize-deliberately">Normalize facts; denormalize deliberately</h2>
+<p>Third normal form is a useful default: each fact has one authoritative location
+and non-key attributes depend on the key. This limits contradictory updates.</p>
+<p>Denormalize only for a measured read pattern, with a named source of truth and a
+repair/rebuild path. A current-state projection may duplicate the latest status
+from an immutable event history; that is deliberate because the history remains
+authoritative and the projection is reconstructible.</p>
+<h2 id="keys-and-history">Keys and history</h2>
+<ul>
+<li>Use surrogate internal IDs when external identity is composite, mutable, or
+  vendor-scoped, but preserve a unique business key.</li>
+<li>Do not use timestamps alone as identity.</li>
+<li>Use optimistic version columns to detect lost updates.</li>
+<li>Represent amendments as versions/events; do not silently overwrite audit fields.</li>
+<li>For temporal data, distinguish effective time from system/knowledge time.</li>
+</ul>
+<h2 id="sql-operations-you-should-write-fluently">SQL operations you should write fluently</h2>
+<p>Given <code>trade</code>, <code>trade_status_history</code>, and <code>settlement</code>:</p>
+<h3 id="aggregate-exposure">Aggregate exposure</h3>
+<pre><code class="language-sql">SELECT account_id,
+       symbol,
+       SUM(quantity) AS net_quantity,
+       SUM(quantity * price) AS signed_notional
+FROM trade
+WHERE business_date = :business_date
+GROUP BY account_id, symbol
+HAVING SUM(quantity) &lt;&gt; 0;
+</code></pre>
+<p>Use bound parameters, never string concatenation. Define whether quantity is signed
+and whether notional needs FX conversion or an absolute/gross measure.</p>
+<h3 id="latest-status-per-trade">Latest status per trade</h3>
+<pre><code class="language-sql">WITH ranked AS (
+    SELECT trade_id,
+           status,
+           observed_at,
+           ROW_NUMBER() OVER (
+               PARTITION BY trade_id
+               ORDER BY observed_at DESC, source_sequence DESC
+           ) AS position
+    FROM trade_status_history
+    WHERE observed_at &lt;= :as_of
+)
+SELECT trade_id, status, observed_at
+FROM ranked
+WHERE position = 1;
+</code></pre>
+<p>The deterministic tie-breaker matters. <code>MAX(observed_at)</code> alone does not return
+the other columns from the same row and can duplicate ties.</p>
+<h3 id="find-aged-settlement-breaks">Find aged settlement breaks</h3>
+<pre><code class="language-sql">SELECT t.trade_id,
+       t.account_id,
+       s.expected_date,
+       :business_date - s.expected_date AS days_late,
+       ABS(t.quantity * t.price) AS exposure
+FROM settlement AS s
+JOIN trade AS t USING (trade_id)
+WHERE s.status IN ('PENDING', 'FAILED')
+  AND s.expected_date &lt; :business_date
+ORDER BY exposure DESC, s.expected_date, t.trade_id;
+</code></pre>
+<p>Clarify calendar days versus business days. Real settlement aging often requires a
+calendar table rather than date subtraction.</p>
+<h2 id="transactions-and-isolation">Transactions and isolation</h2>
+<p>ACID is not a spell; state the invariant and anomaly you are preventing.</p>
+<ul>
+<li><strong>Atomicity:</strong> every change in the unit commits or none does.</li>
+<li><strong>Consistency:</strong> committed state satisfies declared invariants.</li>
+<li><strong>Isolation:</strong> concurrent work has defined visibility/serialization behavior.</li>
+<li><strong>Durability:</strong> acknowledged commits survive the database's stated failure model.</li>
+</ul>
+<p>At Read Committed, two statements in one transaction can see different committed
+snapshots. Repeatable Read provides a stable transaction snapshot but can still
+require retries. Serializable prevents serialization anomalies by aborting a
+conflicting transaction; the application must retry the complete transaction.</p>
+<h3 id="prevent-double-consumption-of-a-locate">Prevent double consumption of a locate</h3>
+<pre><code class="language-sql">BEGIN;
+
+SELECT available_quantity
+FROM locate
+WHERE locate_id = :locate_id
+FOR UPDATE;
+
+UPDATE locate
+SET available_quantity = available_quantity - :requested
+WHERE locate_id = :locate_id
+  AND available_quantity &gt;= :requested;
+
+-- Require exactly one updated row, then insert the allocation.
+COMMIT;
+</code></pre>
+<p>The conditional update protects the invariant. <code>FOR UPDATE</code> can make the workflow
+and error reporting clearer but increases blocking; consistent lock order reduces
+deadlocks. Treat deadlock/serialization errors as bounded whole-transaction retries,
+not a retry of only the last statement.</p>
+<h2 id="idempotency-in-the-schema">Idempotency in the schema</h2>
+<p>Put the idempotency boundary in a unique constraint:</p>
+<pre><code class="language-sql">CREATE TABLE processed_event (
+    consumer_name TEXT NOT NULL,
+    event_id      TEXT NOT NULL,
+    payload_hash  TEXT NOT NULL,
+    processed_at  TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (consumer_name, event_id)
+);
+</code></pre>
+<p>An identical duplicate becomes a no-op. The same ID with a different payload is a
+data-integrity incident, not another retry.</p>
+<h2 id="index-design">Index design</h2>
+<p>An index trades read speed for write, storage, vacuum/maintenance, and cache cost.
+Design it from a query:</p>
+<pre><code class="language-sql">CREATE INDEX settlement_open_by_date
+ON settlement (expected_date, trade_id)
+WHERE status IN ('PENDING', 'FAILED');
+</code></pre>
+<p>This partial index matches the aged-break predicate. For a composite B-tree index,
+leading columns matter. Equality columns typically precede range/order columns,
+but verify with the actual planner and data distribution.</p>
+<p>Avoid:</p>
+<ul>
+<li>indexing every column;</li>
+<li>wrapping indexed columns in functions without a matching expression index;</li>
+<li>leading-wildcard search and implicit type casts on hot paths;</li>
+<li>fetching wide rows when only a few columns are needed;</li>
+<li>assuming an index will help a query returning most of a table.</li>
+</ul>
+<h2 id="read-explain-as-evidence">Read <code>EXPLAIN</code> as evidence</h2>
+<p>Use <code>EXPLAIN (ANALYZE, BUFFERS)</code> in a safe representative environment. Compare
+estimated versus actual rows, scan type, join algorithm/order, loops, sort spill,
+buffer hits/reads, and total time. Large row-estimate errors point to statistics,
+correlation, or predicate-model problems. <code>ANALYZE</code> executes the query—do not run it
+carelessly on a mutating production statement.</p>
+<h2 id="schema-evolution">Schema evolution</h2>
+<p>Use expand-and-contract:</p>
+<ol>
+<li>add nullable/compatible structure;</li>
+<li>deploy readers tolerant of old and new;</li>
+<li>dual-write or backfill in bounded chunks;</li>
+<li>validate counts/checksums and lag;</li>
+<li>switch reads;</li>
+<li>enforce stronger constraints and remove the old path later.</li>
+</ol>
+<p>Avoid a long blocking table rewrite or index build during a critical processing
+window. Know the online/concurrent DDL behavior of the actual database/version.</p>
+<h2 id="python-database-hygiene">Python database hygiene</h2>
+<ul>
+<li>Use parameter binding and explicit transactions/context managers.</li>
+<li>Keep transactions short; never wait for a user or remote service while holding
+  locks.</li>
+<li>Bound the connection pool below database capacity and measure queue wait.</li>
+<li>Stream/batch large results rather than <code>fetchall()</code> by default.</li>
+<li>Map rows into validated domain types at the boundary.</li>
+<li>Include SQLSTATE/error category, query name, duration, rows, and correlation ID
+  in observability—never secrets or raw sensitive payloads.</li>
+</ul>
+<h2 id="database-to-kafka-consistency-transactional-outbox">Database-to-Kafka consistency: transactional outbox</h2>
+<p>A database commit followed by a Kafka publish can fail between the two steps. A
+publish followed by a database commit has the inverse failure. Write domain state
+and an outbox row in one database transaction, then let a separate publisher send
+the outbox record to Kafka and mark it published. Consumers still deduplicate:
+publication and acknowledgement can be ambiguous.</p>
+<h2 id="drills">Drills</h2>
+<ol>
+<li>Model trades, allocations, settlement instructions, lifecycle history, and
+   reconciliation breaks with keys and constraints.</li>
+<li>Write a point-in-time latest-status query and explain its tie-breaker.</li>
+<li>Diagnose why <code>WHERE DATE(trade_time) = :day</code> may miss an index; rewrite it as a
+   half-open timestamp range.</li>
+<li>Design a transaction that applies a cash journal and outbox event exactly once
+   per source event.</li>
+</ol>
+<h2 id="answer-frame">Answer frame</h2>
+<blockquote>
+<p>I begin with business identity and invariants, enforce local integrity with
+relational constraints, and choose isolation/locking from the concurrency anomaly
+I must prevent. I design indexes from measured query plans, keep transactions
+short and retryable, evolve schemas compatibly, and use an outbox plus idempotent
+consumers across the database/Kafka boundary.</p>
+</blockquote></article>
+      <nav class="page-turns" aria-label="Chapter navigation"><a class="page-turn previous" href="01-production.html"><small>Previous</small><strong>13. Architecture, CI/CD, and Operations</strong></a><a class="page-turn next" href="03-kafka-event-streaming.html"><small>Next</small><strong>15. Kafka and Durable Event Pipelines</strong></a></nav>
+      <footer class="book-footer"><span>Built as an extensible interview system.</span><a href="../index.html">Return to index ↑</a></footer>
+    </div>
+  </main>
+</body>
+</html>

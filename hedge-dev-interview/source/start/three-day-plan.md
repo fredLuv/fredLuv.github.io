@@ -52,7 +52,7 @@ gaps before the real interview.
 
 | Block | Time | Work | Proof of completion |
 |---|---:|---|---|
-| Production | 1:10 | Chapter 12 | Deployment and rollback design |
+| Production | 1:10 | Chapter 13 | Deployment and rollback design |
 | Capstone | 2:00 | Extend the event-driven backtester | Feature + tests + design notes |
 | Python bank | 1:20 | Questions P7–P18 | 2-minute answers, no notes |
 | Break | 0:20 | Walk, no screen | — |

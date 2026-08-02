@@ -11,3 +11,7 @@ PYTHONPATH=src python3 -m hedgeprep.async_pipeline
 
 The package expects Python 3.12+ and can run directly from this directory; an
 editable installation (`python3 -m pip install -e .`) is optional.
+
+`ledger.py` adds a standard-library SQLite example for the Jump role: balanced
+journal entries, database-enforced event identity, conflicting-duplicate detection,
+and a transactional outbox for a later Kafka publisher.

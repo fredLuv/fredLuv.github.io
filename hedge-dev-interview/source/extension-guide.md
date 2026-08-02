@@ -9,14 +9,15 @@ the Python chapters for every firm.
 core-python/       language and engineering fundamentals
 systems/           performance, concurrency, real time
 quant/             market, backtest, and data foundations
-engineering/       production practices
-interview/         active role pack (QRT in this edition)
+engineering/       production, relational data, and event-streaming practices
+interview/         reusable question banks and the published QRT path
+roles/             employer/team-specific overlays
 templates/         reusable role intake template
 code/              runnable evidence and labs
 ```
 
-For multiple active roles, move employer pages to `roles/<firm-role>/` and add
-each only once to `SUMMARY.md`.
+New employer pages belong in `roles/<firm-role>.md` and appear once in `SUMMARY.md`.
+Existing links may remain at legacy paths when moving them would break published URLs.
 
 ## Extension workflow
 

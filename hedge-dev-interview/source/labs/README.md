@@ -1,8 +1,9 @@
 # Runnable Capstone Lab
 
 The companion project under [`../code/`](../code/README.md) is a deliberately small
-single-symbol event-driven trading simulation. It is not a realistic exchange simulator. Its
-purpose is to make interview concepts executable:
+single-symbol event-driven trading simulation plus a post-trade ledger/outbox lab.
+It is not a realistic exchange or accounting system. Its purpose is to make
+interview concepts executable:
 
 - frozen/slot-based domain events;
 - protocols and injected policies;
@@ -11,7 +12,8 @@ purpose is to make interview concepts executable:
 - pre-trade position/order limits;
 - explicit fills, positions, cash, and decisions;
 - bounded `asyncio` pipeline with observable backpressure;
-- standard-library unit tests.
+- standard-library unit tests;
+- transactional SQLite journal and Kafka outbox boundary.
 
 ## Run it
 
@@ -34,6 +36,7 @@ Python 3.12 or newer is recommended.
 4. `engine.py`: deterministic orchestration and accounting.
 5. `async_pipeline.py`: queue bounds, producer/consumer ownership, sentinel end.
 6. `tests/`: executable invariants.
+7. `ledger.py`: balanced entries, idempotency, and transactional outbox.
 
 ## Day 3 extension choices
 
@@ -59,6 +62,13 @@ fills. Test the difference between halting decisions and halting state updates.
 Hash the input events and write a JSON manifest containing code/config version,
 seed, event count, and result checksum. Explain what is still missing for six-month
 reproducibility.
+
+### E. Extend the post-trade ledger
+
+Add a `reconciliation_break` table and a consumer checkpoint. Process a duplicate
+cash-settlement event safely, reject a conflicting duplicate, publish through the
+outbox, and add an aged-break query/index. Explain the remaining acknowledgement
+race between Kafka and `mark_published`.
 
 ## Interview walkthrough (five minutes)
 

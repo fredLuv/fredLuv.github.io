@@ -45,6 +45,46 @@
 - Critical risk checks live independently at the execution boundary.
 - Point-in-time query uses what was published and observed by decision time.
 
+## Relational databases and SQL
+
+- Start from business identity and invariants; enforce `NOT NULL`, `CHECK`,
+  `UNIQUE`, and foreign keys in the database.
+- A surrogate ID does not replace the unique external/business key.
+- Preserve immutable lifecycle history; build reconstructible current projections.
+- Choose isolation from the anomaly. Read Committed can change snapshots between
+  statements; Serializable may abort and requires whole-transaction retry.
+- Keep transactions short. Never hold locks across remote calls or user waits.
+- Use conditional updates/row locks for scarce resources such as locates.
+- Design indexes from real predicates, joins, ordering, and cardinality; verify with
+  `EXPLAIN (ANALYZE, BUFFERS)` in a safe environment.
+- Latest-row query needs a deterministic tie-break (`ROW_NUMBER` is often useful).
+- Parameterize SQL; bound pools; stream large results; evolve schemas expand/contract.
+- SQL state + Kafka event: write an outbox row in the same transaction.
+
+## Kafka
+
+- Ordering is within one partition. Choose the key from the domain invariant.
+- Consumer-group parallelism is bounded by partition count.
+- At-least-once = side effect then offset commit; duplicates are expected.
+- Database consumer: processed-event unique key and business write in one transaction.
+- “Exactly once” for Kafka-to-Kafka does not cover arbitrary external side effects.
+- Rebalance safely: finish/stop in-flight work and commit only completed offsets.
+- Poison record policy needs quarantine, ownership, alert, evidence, and replay.
+- Retry topics can reorder one key; decide whether ordering or availability wins.
+- Measure time/freshness lag, not only offset count; zero lag does not prove correctness.
+- Schema evolution: tolerant consumers first, additive fields, compatibility in CI.
+
+## Middle and back office
+
+- Execution → capture/enrich → allocate → confirm → clear → settle → reconcile.
+- Track economic, allocation, confirmation, clearing, settlement, and reconciliation
+  state separately.
+- A timeout after external instruction is `UNKNOWN`; query and reconcile before retry.
+- Ledger corrections are reversing/replacement entries, not deleted history.
+- Reconciliation produces durable owned breaks with age, exposure, evidence, and resolution.
+- Business dates, calendars, cutoffs, completeness, and correctness often matter
+  more than microsecond latency.
+
 ## System design order
 
 1. Requirements and scale.

@@ -163,8 +163,8 @@ def render_page(source_path: Path, items: list[NavItem]) -> None:
         body_class = " home-page"
         home_intro = (
             '<div class="briefing-strip" aria-label="Course summary">'
-            '<span><b>03</b> focused days</span><span><b>12</b> core chapters</span>'
-            '<span><b>07</b> tested Python checks</span></div>'
+            '<span><b>03</b> focused days</span><span><b>15</b> core chapters</span>'
+            '<span><b>11</b> tested Python checks</span></div>'
         )
 
     document = f'''<!doctype html>
@@ -187,12 +187,12 @@ def render_page(source_path: Path, items: list[NavItem]) -> None:
   <header class="topbar">
     <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
     <a class="wordmark" href="{home_url}"><span>EL/</span> FIELD GUIDE</a>
-    <div class="topbar-meta"><span>QRT · HK</span><span>PYTHON TRACK</span></div>
+    <div class="topbar-meta"><span>QRT + JUMP</span><span>PYTHON · SQL · KAFKA</span></div>
     <a class="portfolio-link" href="{relative_url(page_output, ROOT.parent / 'index.html')}">Portfolio ↗</a>
   </header>
   <aside class="sidebar" aria-label="Book navigation">
     <div class="sidebar-head">
-      <p>Quant Developer Interview</p>
+      <p>Quant &amp; Core Developer Interview</p>
       <h1>Three-Day<br>Field Manual</h1>
       <label class="search-label"><span>Find a chapter</span><input id="chapter-search" type="search" placeholder="Press / to search" autocomplete="off"></label>
     </div>

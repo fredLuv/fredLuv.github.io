@@ -1,4 +1,4 @@
-# 12. Architecture, CI/CD, and Operations
+# 13. Architecture, CI/CD, and Operations
 
 ## Interview outcome
 

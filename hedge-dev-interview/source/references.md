@@ -6,6 +6,8 @@ when you want specification-level depth or behavior changes across Python versio
 ## Role and book structure
 
 - Supplied file: `QRT - Quant Dev QP (HK).docx` (the authority for this role pack).
+- User-supplied Jump Trading Middle / Back Office Technology description (the
+  authority for the Jump role pack).
 - [QRT Quantitative Development careers](https://www.qube-rt.com/careers/technology/quantitative-development/singapore/)
 - [GitBook content configuration](https://gitbook.com/docs/getting-started/git-sync/content-configuration)
 
@@ -25,6 +27,16 @@ when you want specification-level depth or behavior changes across Python versio
 - [`timeit`](https://docs.python.org/3/library/timeit.html)
 - [`unittest`](https://docs.python.org/3/library/unittest.html)
 - [`decimal`](https://docs.python.org/3/library/decimal.html)
+
+## Relational databases and Kafka
+
+- [PostgreSQL SQL language](https://www.postgresql.org/docs/current/sql.html)
+- [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
+- [PostgreSQL indexes](https://www.postgresql.org/docs/current/indexes.html)
+- [PostgreSQL `EXPLAIN`](https://www.postgresql.org/docs/current/using-explain.html)
+- [Apache Kafka documentation](https://kafka.apache.org/documentation/)
+- [Apache Kafka introduction](https://kafka.apache.org/intro/)
+- [Apache Kafka producer configuration](https://kafka.apache.org/documentation/#producerconfigs)
 
 ## Study caveat
 
