@@ -15,6 +15,7 @@ This folder contains research notes, Master's program evaluations, and general c
 * [UK Crypto & Digital Asset Regulatory Framework](UK-Crypto-Regulation-and-Institutional-Landscape.md)
 * [London: The Premier Global Node Outside NYC & Silicon Valley](London-As-Top-Global-Tech-Finance-Node.md)
 * [4-Passport Comparison: UK vs. US vs. China vs. Hong Kong](4-Passport-Comparison-UK-US-China-HK.md)
+* [How to Unlock Hong Kong Residency (HK PR) with UK ILR](How-to-Unlock-HK-Residency-with-UK-ILR.md)
 
 ---
 *Global Career Strategy Research*
