@@ -1,25 +1,18 @@
-# Study & Work Options (Research & Strategy)
+# Study & Work Options (Master Strategy Directory)
 
-This folder contains research notes, Master's program evaluations, and general career/lifestyle relocation frameworks.
+This directory contains consolidated, high-impact research guides covering academic Master's programs, global career relocation frameworks, lifestyle dynamics, and buy-side engineering interview preparation.
 
-## Documents
-* [UW and UCSD CS/Bioinformatics Research](UW-and-UCSD-CS-Bioinformatics-Research.md)
-* [UK Global Talent Visa & ILR vs. US Green Card Analysis](UK-Global-Talent-Visa-and-ILR-vs-US-GreenCard.md)
-* [UK vs. Canada Strategic Comparison (Career & Pay)](UK-vs-Canada-Strategic-Comparison.md)
-* [UK vs. Canada Analysis (Lifestyle, Dating & Marriage)](UK-vs-Canada-Lifestyle-Dating-Marriage.md)
-* [UK Hedge Fund Interview Strategy & Preparation Plan](UK-Hedge-Fund-Interview-Strategy.md)
-* [Hong Kong Buy-Side & Hedge Fund Strategy](HK-Hedge-Fund-Interview-and-Relocation-Strategy.md)
-* [UK ILR & British Passport: Global Mobility to US & HK](UK-Passport-and-ILR-Global-Mobility-US-HK.md)
-* [UK 4-Year FIG Tax Exemption Scheme Explained](UK-4-Year-FIG-Tax-Exemption-Explained.md)
-* [How Hedge Fund SWE Interviews Evolved (2026 Trends)](Hedge-Fund-SWE-Interview-Trends-2026.md)
-* [UK Crypto & Digital Asset Regulatory Framework](UK-Crypto-Regulation-and-Institutional-Landscape.md)
-* [London: The Premier Global Node Outside NYC & Silicon Valley](London-As-Top-Global-Tech-Finance-Node.md)
-* [4-Passport Comparison: UK vs. US vs. China vs. Hong Kong](4-Passport-Comparison-UK-US-China-HK.md)
-* [How to Unlock Hong Kong Residency (HK PR) with UK ILR](How-to-Unlock-HK-Residency-with-UK-ILR.md)
-* [Fast-Track US Relocation Without Relinquishing Chinese Citizenship](Fast-Track-US-Relocation-Without-Losing-Chinese-Citizenship.md)
-* [Geopolitical Strategy: Why UK ILR is the Optimal Solution](Geopolitical-Optimal-Solution-UK-ILR.md)
-* [UK Resident Schengen Travel Guide](UK-Resident-Schengen-Travel-Guide.md)
-* [Dating Market Analysis for Chinese Professionals in London](UK-London-Dating-Market-Guide-For-Chinese-Professionals.md)
+## 📚 Master Documents Index
+
+1. **[01-Academic-Options-UW-UCSD.md](01-Academic-Options-UW-UCSD.md)**
+   * University of Waterloo (MMath CS / MDSAI) & UC San Diego (MS CS Plan II) evaluation.
+2. **[02-Global-Relocation-Strategy-UK-HK-Canada.md](02-Global-Relocation-Strategy-UK-HK-Canada.md)**
+   * Comprehensive strategic comparison: London vs. Hong Kong vs. Canada.
+   * UK Global Talent Visa (3-Yr ILR), 4-Year FIG Tax Exemption, 4-Passport Comparison, and L-1 Fast-Track US Relocation.
+3. **[03-Lifestyle-Dating-and-Travel-Guide.md](03-Lifestyle-Dating-and-Travel-Guide.md)**
+   * London & UK lifestyle dynamics, dating market analysis for international professionals, and European Schengen travel guide.
+4. **[04-Hedge-Fund-SWE-Interview-Master-Guide.md](04-Hedge-Fund-SWE-Interview-Master-Guide.md)**
+   * Middle Office engineering core architecture (100k updates/sec PnL Engine), 2026 AI & multi-file codebase debugging interview trends, and 4-week prep sprint roadmap.
 
 ---
 *Global Career Strategy Research*
