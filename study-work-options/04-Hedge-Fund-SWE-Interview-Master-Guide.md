@@ -43,10 +43,10 @@ Middle Office Technology sits directly between Front Office Execution (OEMS/Trad
 ### System Design 1: Real-Time PnL Aggregator (100,000 updates/sec)
 
 #### A. Scale & Performance Targets
-* **Execution Fills**: $100,000\text{ msg/sec}$
-* **Market Price Ticks**: $500,000\text{ msg/sec}$
-* **Throughput**: $120\text{ MB/sec} = 960\text{ Mbps}$
-* **Latency Budget**: Processing to UI update $\le 20\text{ ms}$ (p99).
+* **Execution Fills**: 100,000 msg/sec
+* **Market Price Ticks**: 500,000 msg/sec
+* **Throughput**: 120 MB/sec (960 Mbps)
+* **Latency Budget**: Processing to UI update <= 20 ms (p99).
 
 #### B. Threading & Lock-Free Partitioning Strategy
 * **Partition Kafka by `Portfolio_ID`**: All trades and order updates for a given portfolio land on the **same Kafka partition** and are consumed by the **same dedicated worker thread**.
@@ -67,28 +67,36 @@ struct PositionState {
 
 #### D. PnL Mathematics
 
-1. **When an Execution Fill Arrives (`fill_qty`, `fill_price`)**:
-   * **Increasing Position** (Same sign, e.g., Long 100 $\rightarrow$ Buy 50):
-     $$\text{new\_avg\_cost} = \frac{(\text{net\_qty} \times \text{avg\_cost}) + (\text{fill\_qty} \times \text{fill\_price})}{\text{net\_qty} + \text{fill\_qty}}$$
-     $$\text{net\_qty} = \text{net\_qty} + \text{fill\_qty}$$
+1. **When an Execution Fill Arrives (`FillQty`, `FillPrice`)**:
+   * **Increasing Position** (Same sign, e.g., Long 100 -> Buy 50):
 
-   * **Closing/Reducing Position** (Opposite sign, e.g., Long 100 $\rightarrow$ Sell 40):
-     $$\text{qty\_closed} = \min(|\text{net\_qty}|, |\text{fill\_qty}|)$$
-     $$\text{realized\_pnl} += \text{qty\_closed} \times (\text{fill\_price} - \text{avg\_cost})$$
-     $$\text{net\_qty} = \text{net\_qty} + \text{fill\_qty}$$
+$$\text{NewAvgCost} = \frac{(\text{NetQty} \times \text{AvgCost}) + (\text{FillQty} \times \text{FillPrice})}{\text{NetQty} + \text{FillQty}}$$
 
-2. **When a Market Price Tick Arrives (`current_price`)**:
+$$\text{NetQty} = \text{NetQty} + \text{FillQty}$$
+
+   * **Closing/Reducing Position** (Opposite sign, e.g., Long 100 -> Sell 40):
+
+$$\text{QtyClosed} = \min(|\text{NetQty}|, |\text{FillQty}|)$$
+
+$$\text{RealizedPnL} = \text{RealizedPnL} + (\text{QtyClosed} \times (\text{FillPrice} - \text{AvgCost}))$$
+
+$$\text{NetQty} = \text{NetQty} + \text{FillQty}$$
+
+2. **When a Market Price Tick Arrives (`CurrentPrice`)**:
    * **Unrealized PnL Calculation**:
-     $$\text{Unrealized PnL} = \text{net\_qty} \times (\text{current\_price} - \text{avg\_cost})$$
+
+$$\text{UnrealizedPnL} = \text{NetQty} \times (\text{CurrentPrice} - \text{AvgCost})$$
+
    * **Total PnL**:
-     $$\text{Total PnL} = \text{Realized PnL} + \text{Unrealized PnL}$$
+
+$$\text{TotalPnL} = \text{RealizedPnL} + \text{UnrealizedPnL}$$
 
 #### E. Storage Tiering Strategy
 | Storage Tier | Technology | Purpose | Latency Target |
 | :--- | :--- | :--- | :--- |
-| **L0 Cache** | Thread-Local RAM / Shared Memory | Sub-millisecond PnL calculation loop | $< 1\text{ ms}$ |
-| **L1 Cache** | Redis Cluster | Real-time Risk Alerts & UI Websockets | $< 5\text{ ms}$ |
-| **L2 OLAP Database** | Apache Druid / ClickHouse | Multidimensional slicing, dicing & intraday risk | $< 50\text{ ms}$ |
+| **L0 Cache** | Thread-Local RAM / Shared Memory | Sub-millisecond PnL calculation loop | < 1 ms |
+| **L1 Cache** | Redis Cluster | Real-time Risk Alerts & UI Websockets | < 5 ms |
+| **L2 OLAP Database** | Apache Druid / ClickHouse | Multidimensional slicing, dicing & intraday risk | < 50 ms |
 | **L3 Cold Archive** | Parquet files on S3 | End-of-Day (EOD) Accounting & Regulatory Audit | Batch |
 
 ---
@@ -96,7 +104,7 @@ struct PositionState {
 ### System Design 2: Intraday Risk Alert & Limit Enforcement Engine
 
 * **Objective**: Evaluate pre-trade/post-trade risk limits (Max Drawdown, Value at Risk / VaR, Leverage Caps) across 10,000 active strategies.
-* **Sliding Window Drawdown Calculation**: Maintain a **Monotonic Deque** of peak PnL values over a rolling 1-hour window to calculate Max Drawdown in $O(1)$ time complexity.
+* **Sliding Window Drawdown Calculation**: Maintain a **Monotonic Deque** of peak PnL values over a rolling 1-hour window to calculate Max Drawdown in O(1) time complexity.
 * **Circuit Breakers**: If a trading pod breaches 80% of its daily drawdown limit, trigger automated risk warnings; at 100%, issue an automated **Kill-Switch API call** to the OEMS to cancel all open orders and flatten positions.
 
 ---
@@ -104,7 +112,7 @@ struct PositionState {
 ### System Design 3: Idempotent Trade Ingestion & Position Reconciliation Pipeline
 
 * **Exactly-Once Ingestion**: Maintain a high-speed **Bloom Filter + In-Memory LRU Cache** indexed by `Execution_ID`. Duplicate execution reports from exchanges are dropped instantly at the ingress gateway.
-* **EOD Position Reconciliation**: Asynchronous worker nodes pull End-of-Day position files from Prime Brokers (Goldman Sachs, Morgan Stanley) and perform automated diffing against Middle Office internal positions. Flag mismatches exceeding threshold $\ge \$0.01$.
+* **EOD Position Reconciliation**: Asynchronous worker nodes pull End-of-Day position files from Prime Brokers (Goldman Sachs, Morgan Stanley) and perform automated diffing against Middle Office internal positions. Flag mismatches exceeding threshold >= $0.01.
 
 ---
 
@@ -133,7 +141,7 @@ Buy-side technical rounds in London and HK probe deep low-level execution detail
    * `ByteBuffer.allocateDirect()` allocates memory outside the JVM garbage-collected heap.
    * Eliminates buffer copying between native OS sockets and JVM heap.
 2. **Zero-Pause GC Algorithms**:
-   * **ZGC** and **Shenandoah**: Concurrent garbage collectors maintaining max pause times $< 1\text{ ms}$ regardless of heap size (up to terabytes).
+   * **ZGC** and **Shenandoah**: Concurrent garbage collectors maintaining max pause times < 1 ms regardless of heap size (up to terabytes).
 
 ### D. Zero-Copy & High-Performance Binary Serialization
 * **Protobuf**: Compact binary encoding; requires parsing overhead.
@@ -184,7 +192,7 @@ A Senior Middle Office Engineer must speak the language of Portfolio Managers:
 ```
 
 ### 1. The Full Trade Lifecycle
-$$\text{Order Entry} \longrightarrow \text{Matching/Fill} \longrightarrow \text{Position State} \longrightarrow \text{PnL Engine} \longrightarrow \text{Risk Limits} \longrightarrow \text{EOD Reconciliation} \longrightarrow \text{Clearing/Settlement}$$
+Order Entry -> Matching/Fill -> Position State -> PnL Engine -> Risk Limits -> EOD Reconciliation -> Clearing/Settlement
 
 ### 2. Core Asset Classes & Derivatives
 * **Equities**: Common stocks, ETFs, ADRs.
