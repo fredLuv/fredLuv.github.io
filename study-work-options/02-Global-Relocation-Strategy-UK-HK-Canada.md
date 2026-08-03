@@ -1,6 +1,6 @@
 # Global Relocation Strategy: UK, Hong Kong & Canada Analysis
 
-This document synthesizes the strategic, financial, tax, and passport analysis for relocating to **The United Kingdom (London)**, **Hong Kong**, or **Canada**.
+This document synthesizes the strategic, financial, tax, passport analysis, and UK spouse/marriage immigration policy for relocating to **The United Kingdom (London)**, **Hong Kong**, or **Canada**.
 
 ---
 
@@ -11,6 +11,28 @@ Outside NYC and Silicon Valley, **London (UK)** stands out as the #1 global node
 * **Immigration Speed**: **3 Years to UK Permanent Residency (ILR)** via Global Talent Visa; 4 Years to UK Passport.
 * **Tax Exemption**: **4-Year Foreign Income and Gains (FIG) Regime** (100% tax exemption on overseas stock/crypto gains and 100% tax-free remittance).
 * **Dual Opportunity**: Work 1 year in London ➔ L-1 transfer back to NYC/Chicago without H-1B lottery, while retaining 100% Chinese citizenship.
+
+---
+
+## 💍 UK Spouse Visa & Marriage Green Card (ILR) Policy
+
+If you marry a **British Citizen** or a person with **UK Permanent Residency (ILR)**, here is the legal breakdown for obtaining UK PR and Citizenship:
+
+### 1. The 5-Year Spouse Route to Permanent Residency (ILR)
+* **First Spouse Visa**: Granted for **2.5 years** (30 months).
+* **Extension Visa**: Granted for another **2.5 years** (30 months).
+* **Time to Permanent Residency (ILR)**: **5 Years** of continuous living in the UK under the Spouse Visa.
+
+### 2. Fast-Track British Citizenship via Marriage
+* **Standard Rule (Non-Married)**: Must hold ILR for 1 full year before applying for a British Passport.
+* **Marriage Advantage**: If married to a British Citizen, you can apply for **British Citizenship IMMEDIATELY on Day 1 of receiving ILR** (waives the 1-year waiting period!).
+
+### 3. Key Comparison: Your Own GTV (3 Yrs) vs. Marriage Visa (5 Yrs)
+
+$$\text{Your Own Global Talent Visa (3 Years to ILR)} \;\mathbf{<}\; \text{Marriage Spouse Visa (5 Years to ILR)}$$
+
+* **Insight**: Obtaining UK ILR via your own **Global Talent Visa (3 Years)** is **2 YEARS FASTER** than getting ILR through marriage to a British citizen (5 Years).
+* **Bringing a Partner**: If **YOU** hold a GTV or Skilled Worker Visa, your partner receives a **Dependent Visa** with **100% unrestricted UK work rights** on Day 1.
 
 ---
 
