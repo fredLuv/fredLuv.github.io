@@ -1,6 +1,6 @@
 # Study & Work Options (Master Strategy Directory)
 
-This directory contains consolidated, high-impact research guides covering academic Master's programs, global career relocation frameworks, lifestyle dynamics, and buy-side engineering interview preparation.
+This directory contains consolidated, high-impact research guides covering academic Master's programs, global career relocation frameworks, lifestyle dynamics, buy-side engineering interview preparation, and UK Master's fallback strategies.
 
 ## 📚 Master Documents Index
 
@@ -13,12 +13,8 @@ This directory contains consolidated, high-impact research guides covering acade
    * London & UK lifestyle dynamics, dating market analysis for international professionals, and European Schengen travel guide.
 4. **[04-Hedge-Fund-SWE-Interview-Master-Guide.md](04-Hedge-Fund-SWE-Interview-Master-Guide.md)**
    * Middle Office engineering core architecture (100k updates/sec PnL Engine), 2026 AI & multi-file codebase debugging interview trends, and 4-week prep sprint roadmap.
-5. **[05-UK-Masters-Fallback-Programs.md](05-UK-Masters-Fallback-Programs.md)**
-   * UK 1-Year General CS (AI/ML focus) & Computational Finance Master's programs (Imperial, UCL, Edinburgh, KCL, QMUL, Bath) with tuition, application deadlines, and January/Spring intake options.
-6. **[06-UK-Work-Visa-Age-Limit-Myth-Debunked.md](06-UK-Work-Visa-Age-Limit-Myth-Debunked.md)**
-   * Explanation of UK Home Office immigration rules, clarifying that Graduate Route (PSW) and Skilled Worker visas have **NO age limit** (explaining the "New Entrant" <26 salary threshold discount).
-7. **[07-Direct-Senior-Hire-vs-Masters-Salary-Comparison.md](07-Direct-Senior-Hire-vs-Masters-Salary-Comparison.md)**
-   * Financial comparison demonstrating why applying directly as a Senior Experienced Hire yields **3x higher salary** (£260k–£420k+ TC) compared to a Master's entry, saving **$450,000+ USD in opportunity cost**.
+5. **[05-UK-Work-and-Masters-Fallback-Strategy.md](05-UK-Work-and-Masters-Fallback-Strategy.md)**
+   * Master guide combining Direct Senior Hire vs. Master's salary comparison (£260k–£420k+ vs £80k–£125k TC), UK visa age myths debunked, General CS (AI/ML) & Computational Finance programs, and January/Spring intake options.
 
 ---
 *Global Career Strategy Research*
