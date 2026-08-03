@@ -13,6 +13,7 @@ This folder contains research notes, Master's program evaluations, and general c
 * [UK 4-Year FIG Tax Exemption Scheme Explained](UK-4-Year-FIG-Tax-Exemption-Explained.md)
 * [How Hedge Fund SWE Interviews Evolved (2026 Trends)](Hedge-Fund-SWE-Interview-Trends-2026.md)
 * [UK Crypto & Digital Asset Regulatory Framework](UK-Crypto-Regulation-and-Institutional-Landscape.md)
+* [London: The Premier Global Node Outside NYC & Silicon Valley](London-As-Top-Global-Tech-Finance-Node.md)
 
 ---
 *Global Career Strategy Research*
