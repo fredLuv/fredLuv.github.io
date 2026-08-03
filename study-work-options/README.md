@@ -12,6 +12,7 @@ This folder contains research notes, Master's program evaluations, and general c
 * [UK ILR & British Passport: Global Mobility to US & HK](UK-Passport-and-ILR-Global-Mobility-US-HK.md)
 * [UK 4-Year FIG Tax Exemption Scheme Explained](UK-4-Year-FIG-Tax-Exemption-Explained.md)
 * [How Hedge Fund SWE Interviews Evolved (2026 Trends)](Hedge-Fund-SWE-Interview-Trends-2026.md)
+* [UK Crypto & Digital Asset Regulatory Framework](UK-Crypto-Regulation-and-Institutional-Landscape.md)
 
 ---
 *Global Career Strategy Research*
