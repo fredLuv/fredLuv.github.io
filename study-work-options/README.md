@@ -14,7 +14,7 @@ This directory contains consolidated, high-impact research guides covering acade
 4. **[04-Hedge-Fund-SWE-Interview-Master-Guide.md](04-Hedge-Fund-SWE-Interview-Master-Guide.md)**
    * Middle Office engineering core architecture (100k updates/sec PnL Engine), 2026 AI & multi-file codebase debugging interview trends, and 4-week prep sprint roadmap.
 5. **[05-UK-Masters-Fallback-Programs.md](05-UK-Masters-Fallback-Programs.md)**
-   * UK 1-Year Master's fallback programs (UCL, Imperial, KCL, QMUL, Bath) with tuition, application deadlines, and **January/Spring intake options**.
+   * UK 1-Year General CS (AI/ML focus) & Computational Finance Master's programs (Imperial, UCL, Edinburgh, KCL, QMUL, Bath) with tuition, application deadlines, and **January/Spring intake options**.
 
 ---
 *Global Career Strategy Research*
