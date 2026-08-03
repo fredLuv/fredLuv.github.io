@@ -14,6 +14,7 @@ This folder contains research notes, Master's program evaluations, and general c
 * [How Hedge Fund SWE Interviews Evolved (2026 Trends)](Hedge-Fund-SWE-Interview-Trends-2026.md)
 * [UK Crypto & Digital Asset Regulatory Framework](UK-Crypto-Regulation-and-Institutional-Landscape.md)
 * [London: The Premier Global Node Outside NYC & Silicon Valley](London-As-Top-Global-Tech-Finance-Node.md)
+* [4-Passport Comparison: UK vs. US vs. China vs. Hong Kong](4-Passport-Comparison-UK-US-China-HK.md)
 
 ---
 *Global Career Strategy Research*
