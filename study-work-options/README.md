@@ -17,6 +17,8 @@ This directory contains consolidated, high-impact research guides covering acade
    * UK 1-Year General CS (AI/ML focus) & Computational Finance Master's programs (Imperial, UCL, Edinburgh, KCL, QMUL, Bath) with tuition, application deadlines, and January/Spring intake options.
 6. **[06-UK-Work-Visa-Age-Limit-Myth-Debunked.md](06-UK-Work-Visa-Age-Limit-Myth-Debunked.md)**
    * Explanation of UK Home Office immigration rules, clarifying that Graduate Route (PSW) and Skilled Worker visas have **NO age limit** (explaining the "New Entrant" <26 salary threshold discount).
+7. **[07-Direct-Senior-Hire-vs-Masters-Salary-Comparison.md](07-Direct-Senior-Hire-vs-Masters-Salary-Comparison.md)**
+   * Financial comparison demonstrating why applying directly as a Senior Experienced Hire yields **3x higher salary** (£260k–£420k+ TC) compared to a Master's entry, saving **$450,000+ USD in opportunity cost**.
 
 ---
 *Global Career Strategy Research*
