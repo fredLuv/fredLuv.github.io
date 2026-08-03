@@ -16,6 +16,7 @@ This folder contains research notes, Master's program evaluations, and general c
 * [London: The Premier Global Node Outside NYC & Silicon Valley](London-As-Top-Global-Tech-Finance-Node.md)
 * [4-Passport Comparison: UK vs. US vs. China vs. Hong Kong](4-Passport-Comparison-UK-US-China-HK.md)
 * [How to Unlock Hong Kong Residency (HK PR) with UK ILR](How-to-Unlock-HK-Residency-with-UK-ILR.md)
+* [Fast-Track US Relocation Without Relinquishing Chinese Citizenship](Fast-Track-US-Relocation-Without-Losing-Chinese-Citizenship.md)
 
 ---
 *Global Career Strategy Research*
