@@ -1,6 +1,6 @@
 # Study & Work Options (Research & Strategy)
 
-This folder contains research notes, Master me, Master's program evaluations, and general career/lifestyle relocation frameworks.
+This folder contains research notes, Master's program evaluations, and general career/lifestyle relocation frameworks.
 
 ## Documents
 * [UW and UCSD CS/Bioinformatics Research](UW-and-UCSD-CS-Bioinformatics-Research.md)
@@ -19,6 +19,7 @@ This folder contains research notes, Master me, Master's program evaluations, an
 * [Fast-Track US Relocation Without Relinquishing Chinese Citizenship](Fast-Track-US-Relocation-Without-Losing-Chinese-Citizenship.md)
 * [Geopolitical Strategy: Why UK ILR is the Optimal Solution](Geopolitical-Optimal-Solution-UK-ILR.md)
 * [UK Resident Schengen Travel Guide](UK-Resident-Schengen-Travel-Guide.md)
+* [Dating Market Analysis for Chinese Professionals in London](UK-London-Dating-Market-Guide-For-Chinese-Professionals.md)
 
 ---
 *Global Career Strategy Research*
