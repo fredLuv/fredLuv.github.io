@@ -1,0 +1,45 @@
+UChicago MPCS Short Essay Responses
+
+Feiyu (Ethan) Lu
+
+
+1. What are your short and long term career goals?
+My short-term goal is to use the MPCS to sharpen the computer science foundations behind the systems I already build in production: distributed services, data-intensive infrastructure, reliability, and AI-enabled observability. Over the past nine years I have worked as a backend and systems engineer at Amazon, Goldman Sachs, ExodusPoint, and AWS. I have shipped Java services for global advertising platforms, real-time trading and risk systems, and cloud log-ingestion infrastructure. I now want a more rigorous academic frame for the design choices I make every day, especially around algorithms, systems, data modeling, concurrency, and scalable software architecture.
+
+After graduation, I plan to return to industry as a stronger senior engineer or technical lead building reliable AI, data, and cloud infrastructure. I am especially interested in platforms where high-volume data, low latency, and correctness all matter: observability systems, financial infrastructure, data platforms for AI products, and developer-facing cloud services.
+
+Longer term, I want to become an architect-level technical leader who can connect deep engineering judgment with product and business context. The through line in my career is turning complex, high-volume systems into dependable tools for other teams. MPCS would help me move from being an experienced production engineer to a more complete computer scientist and systems leader.
+
+
+2. How will the MPCS at the University of Chicago help you achieve your stated short- and long-term career goals?
+UChicago's MPCS fits my situation because it is rigorous, applied, and efficient. The 9-course MSCS pathway can be completed in 9-15 months, which matters because I am stepping away from high-responsibility engineering work and want a program with strong opportunity-cost discipline. At the same time, the curriculum is not a lightweight analytics credential; it is a real computer science program built around programming, theory, algorithms, and computer systems.
+
+I am especially drawn to the ability to combine core systems and theory courses with electives in areas such as distributed systems, cloud computing, big data, machine learning, generative AI, high-performance computing, and software engineering. My professional work has taught me how to ship at scale, but I want to strengthen the principles behind those systems: when to choose one architecture over another, how to reason about performance and correctness, and how to design data platforms that remain reliable as AI usage grows.
+
+The Chicago location is also meaningful. My experience spans both technology and finance: Amazon Advertising and AWS on one side, Goldman Sachs and ExodusPoint on the other. UChicago's connection to a major financial and technology ecosystem would let me continue developing in that intersection. MPCS is the right next step because it gives me academic depth, speed, and a professional CS network aligned with the kind of infrastructure leadership I want.
+
+
+3. Please describe any programming experience you have, including the languages used and your level of experience with each.
+I have nine years of professional programming experience, primarily in Java and distributed backend systems, with production Python, SQL, JavaScript/React, and infrastructure tools. Java is my strongest language. At Amazon Advertising, I built AWS-based Java microservices and distributed event pipelines using DynamoDB, SQS/SNS, Lambda, Fargate, and CloudWatch/X-Ray. Those systems processed millions of ad events per day and required careful handling of concurrency, idempotency, retries, observability, and global reliability.
+
+At ExodusPoint, I used Java/Spring Boot, Kafka, Apache Druid, WebSocket, and Protobuf to build real-time PnL and risk infrastructure for fixed income and equities. I optimized concurrent Java services and in-memory Druid workflows that generated 100GB position snapshots every minute, reducing p99 latency by 50% under peak load. In my current AWS role, I work on Java-based distributed log ingestion, Kinesis provisioning, throttling behavior, authorization caching, and React-based operational workflows spanning CloudWatch Logs, IAM, and Secrets Manager.
+
+Python is a strong secondary language for data workflows and scripting. At Goldman Sachs, I used Spark in Python with SQL/Sqoop-based pipelines to process 80GB+ compliance datasets. At DigitasLBi, I used Python and Spark with TF-IDF, Word2Vec, and K-Means to cluster 50,000+ search phrases. I also use React/JavaScript for dashboards and developer-facing tools.
+
+
+4. Describe your background in advanced mathematics, including any coursework in Discrete Mathematics and Algorithms.
+My quantitative foundation began with a B.S. in Computer Science from Tufts University, where my coursework included Algorithms, Operating Systems, Machine Learning, Security, Web Applications, and Human-Computer Interaction. The CS curriculum gave me formal training in algorithmic thinking, discrete-structure reasoning, complexity tradeoffs, and systems analysis; my industry work has since forced me to apply those ideas under production constraints.
+
+In practice, my advanced quantitative experience has been strongest in performance analysis, data-intensive systems, and financial risk infrastructure. At ExodusPoint, I worked with real-time PnL, exposure, and risk data for fixed income and equities. The platform had to transform large market and position datasets into sub-second updates, requiring careful reasoning about data models, streaming behavior, serialization, caching, indexing, and latency distributions. Optimizing 100GB position snapshots every minute and cutting p99 latency by 50% required a quantitative understanding of bottlenecks, memory behavior, and load patterns, not just coding.
+
+My data background also includes machine learning and analytics. At DigitasLBi, I applied TF-IDF, Word2Vec, and K-Means to search-query clustering. At Goldman Sachs, I worked with SQL, Sqoop, and Spark/Python pipelines for 80GB+ compliance datasets. Across these roles, I have become comfortable using mathematics as an engineering tool: measuring system behavior, validating tradeoffs, and designing algorithms and data flows that can be trusted at scale.
+
+
+5. Describe any past internship, research or work experience that was technical or professional in nature.
+My most formative technical experiences have come from building production systems where reliability and scale are non-negotiable. At Amazon Advertising, I designed and launched Java microservices and AWS event pipelines for billing and interactive video ads. Processing millions of ad events per day taught me that global systems fail in practical, distributed ways: duplicate events, retries, delayed queues, partial outages, schema changes, and incomplete observability. I learned to design services with operational reality in mind, using CI/CD, integration testing, CloudWatch/X-Ray, and asynchronous AWS components.
+
+At ExodusPoint, the constraints were different but equally demanding. I built real-time PnL and risk infrastructure for trading workflows using Java, Kafka, Apache Druid, WebSocket, and Protobuf. The work required low-latency data modeling, fast APIs, in-memory analytics, and careful communication with trading and risk users. Optimizing p99 latency under peak load taught me how closely engineering decisions connect to user trust.
+
+At AWS, I now work on distributed log-ingestion and observability infrastructure. I have optimized Kinesis provisioning and throttling behavior, reduced authorization latency through caching, and built a React workflow for managing API keys across CloudWatch Logs, IAM, and Secrets Manager. This role has reinforced my interest in the infrastructure behind modern AI and cloud products: durable ingestion, authorization, governance, observability, and developer experience.
+
+These experiences taught me that strong engineering is not only about writing code. It is about understanding constraints, making measured architectural tradeoffs, and building systems that continue to work when load, complexity, and organizational stakes increase.

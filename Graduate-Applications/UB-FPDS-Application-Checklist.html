@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UB FPDS Application Prep</title>
+  <style>
+    :root { color-scheme: light; --ink: #162033; --muted: #667085; --line: #d6dbe3; --soft: #f6f8fb; --accent: #0f766e; --warn: #9a3412; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, Arial, sans-serif; color: var(--ink); background: #fff; }
+    header { padding: 38px 42px 26px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #f8fbff, #fff); }
+    h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+    .sub { color: var(--muted); max-width: 980px; line-height: 1.45; }
+    main { padding: 28px 42px 48px; max-width: 1180px; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 22px; }
+    .metric { border: 1px solid var(--line); border-radius: 8px; padding: 16px; background: #fff; }
+    .metric strong { display: block; font-size: 22px; margin-bottom: 4px; }
+    .metric span { color: var(--muted); font-size: 13px; }
+    section { margin-top: 26px; }
+    h2 { font-size: 18px; margin: 0 0 12px; }
+    table { width: 100%; border-collapse: collapse; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 14px; line-height: 1.35; }
+    th { background: var(--soft); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #475467; }
+    tr:last-child td { border-bottom: 0; }
+    .todo { display: grid; grid-template-columns: 22px 1fr 170px; gap: 10px; align-items: start; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; margin: 8px 0; }
+    .box { width: 16px; height: 16px; border: 1.7px solid var(--accent); border-radius: 3px; margin-top: 2px; }
+    .due { color: var(--muted); font-size: 13px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .note { border-left: 4px solid var(--warn); background: #fff7ed; padding: 12px 14px; border-radius: 6px; line-height: 1.45; }
+    @media (max-width: 760px) { header, main { padding-left: 20px; padding-right: 20px; } .grid { grid-template-columns: 1fr; } .todo { grid-template-columns: 22px 1fr; } .due { grid-column: 2; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UB Fundamental Principles of Data Science - Application Prep</h1>
+    <div class="sub">Prepared for Feiyu Lu. Strategy: use the 1-year English UB program as a low-cost Barcelona base, with a rigorous data-science foundation and a narrative anchored in 9 years of production-scale data systems.</div>
+  </header>
+  <main>
+    <div class="grid">
+      <div class="metric"><strong>June 11, 2026</strong><span>Second-period application deadline</span></div>
+      <div class="metric"><strong>60 ECTS</strong><span>1 academic year, face-to-face, English</span></div>
+      <div class="metric"><strong>5 places</strong><span>Second-period places listed by UB</span></div>
+      <div class="metric"><strong>~EUR 4,920</strong><span>60 x EUR 82 non-EU/non-resident tuition, before fees</span></div>
+    </div>
+
+    <section>
+      <h2>Official Links</h2>
+      <table>
+        <tr><th>Item</th><th>Link</th><th>Why it matters</th></tr>
+        <tr><td>Program page</td><td><a href="https://web.ub.edu/en/web/estudis/w/masterdegree-md901">UB studies portal</a></td><td>Official duration, language, price per credit, curriculum, access requirements.</td></tr>
+        <tr><td>Admissions page</td><td><a href="https://mat.ub.edu/sciencedata/preinscripcio/">Faculty pre-enrolment page</a></td><td>Current 2026 dates, document list, recommendation email, selection weights.</td></tr>
+        <tr><td>Program site</td><td><a href="https://datascience.ub.edu/course/master-in-fundamental-principles-of-data-science">Data Science @ UB page</a></td><td>Applicant profile and program positioning.</td></tr>
+        <tr><td>Foreign degree access</td><td><a href="https://web.ub.edu/en/web/informacio-academica/admissions-university-masters-foreign-qualifications">UB foreign qualifications page</a></td><td>Non-EHEA degree recognition / validation pathway for Tufts degree.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Immediate Checklist</h2>
+      <div class="todo"><div class="box"></div><div>Upload passport, Tufts degree certificate, and Tufts transcript. Use English documents where possible.</div><div class="due">Now</div></div>
+      <div class="todo"><div class="box"></div><div>Upload <strong>FeiyuLu-UB-FPDS-CV.pdf</strong>. UB evaluates academic transcript 70% and CV/recommendations 30%, so keep the CV technical and quantified.</div><div class="due">Now</div></div>
+      <div class="todo"><div class="box"></div><div>Upload <strong>FeiyuLu-UB-FPDS-Motivation-Letter.pdf</strong>. It is one page and aligned to UB's data science foundations curriculum.</div><div class="due">Now</div></div>
+      <div class="todo"><div class="box"></div><div>Ask two recommenders to send letters directly to <strong>master.fds@ub.edu</strong>. Send them the prepared request email and attach CV + motivation letter.</div><div class="due">Before Jun 11</div></div>
+      <div class="todo"><div class="box"></div><div>Confirm English proof exemption. Tufts degree was completed in the US/English, but if the portal requires a file, upload transcript/diploma and add a short note.</div><div class="due">Before submit</div></div>
+      <div class="todo"><div class="box"></div><div>Prepare for admitted-student paperwork: EUR 500 first enrolment payment, EUR 218.15 foreign-degree equivalence study fee, and possible apostille/legalization before final enrolment.</div><div class="due">After admit</div></div>
+    </section>
+
+    <section>
+      <h2>PS Highlight Points</h2>
+      <table>
+        <tr><th>UB theme</th><th>Feiyu evidence</th></tr>
+        <tr><td>Mathematical and algorithmic foundations</td><td>Tufts CS plus production systems where optimization, latency distributions, and data-model choices affected business-critical outcomes.</td></tr>
+        <tr><td>Scalable data processing</td><td>Amazon Advertising millions of events/day; Goldman 80GB+ compliance datasets; AWS log ingestion and Kinesis provisioning.</td></tr>
+        <tr><td>Finance and time-series relevance</td><td>ExodusPoint real-time PnL/risk infrastructure, 100GB+ position snapshots per minute, p99 latency reduced 50%.</td></tr>
+        <tr><td>Applied capstone fit</td><td>Potential project: financial-data analytics, AI observability, cloud telemetry, or decision-support infrastructure.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Reality Check</h2>
+      <div class="note">This is a good strategic choice if you value a one-year degree, Barcelona lifestyle, low tuition, and a builder runway. It is not a guaranteed Netherlands/quant outcome by itself. The application should be positioned as serious data-science foundations plus your production engineering edge.</div>
+    </section>
+  </main>
+</body>
+</html>

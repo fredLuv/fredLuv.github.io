@@ -1,0 +1,18 @@
+Recommendation request email
+
+Subject: Recommendation request for University of Barcelona Data Science master's application
+
+Hi [Name],
+
+I hope you are doing well. I am applying to the University of Barcelona's Master in Fundamental Principles of Data Science for the September 2026 intake, and I wanted to ask if you would be comfortable writing a recommendation letter for me.
+
+The program is a one-year, English-taught master's in the Faculty of Mathematics and Computer Science. My application story focuses on my nine years of production engineering experience across AWS, Amazon Advertising, ExodusPoint, Goldman Sachs, and data/ML work, and on my goal of deepening the mathematical and algorithmic foundations behind data science, AI infrastructure, and financial analytics systems.
+
+UB asks for two recommendation letters to be emailed directly to master.fds@ub.edu. The current application round closes on June 11, 2026, so ideally the letter would be sent before then.
+
+If helpful, I can send you my CV, motivation letter draft, and a few bullet points about projects we worked on together.
+
+Thank you very much for considering it.
+
+Best,
+Feiyu Lu

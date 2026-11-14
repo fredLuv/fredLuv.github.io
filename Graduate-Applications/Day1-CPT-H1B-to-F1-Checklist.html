@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H1B Max-Out to Day 1 CPT Checklist</title>
+    <style>
+      :root {
+        --ink: #15202b;
+        --muted: #627386;
+        --line: #d9e1e8;
+        --paper: #f7f9fb;
+        --panel: #ffffff;
+        --good: #176f4d;
+        --warn: #a05a00;
+        --bad: #a33535;
+        --blue: #245f9f;
+        --teal: #0f766e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.45;
+      }
+
+      a {
+        color: var(--blue);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .shell {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 28px 18px 48px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 1fr 330px;
+        gap: 22px;
+        align-items: start;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 880px;
+        font-size: clamp(34px, 5vw, 58px);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        max-width: 900px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .datebox,
+      .notice,
+      .card,
+      .checklist,
+      .sources {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: 0 10px 28px rgba(20, 38, 54, 0.06);
+      }
+
+      .datebox {
+        padding: 18px;
+      }
+
+      .datebox b {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .datebox span,
+      .notice,
+      .fineprint {
+        color: var(--muted);
+      }
+
+      .notice {
+        padding: 16px 18px;
+        margin-bottom: 20px;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .metric {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 18px;
+      }
+
+      .metric b {
+        display: block;
+        font-size: 32px;
+        line-height: 1;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .card h2,
+      .checklist h2,
+      .sources h2 {
+        margin: 0 0 14px;
+        font-size: 22px;
+      }
+
+      .schoolline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        border: 1px solid var(--line);
+        background: #eef3f7;
+        color: #34495c;
+        padding: 4px 9px;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .tag.good {
+        background: #e7f5ef;
+        color: var(--good);
+        border-color: #b9e3d1;
+      }
+
+      .tag.warn {
+        background: #fff3df;
+        color: var(--warn);
+        border-color: #f0d5a8;
+      }
+
+      .tag.bad {
+        background: #fae8e8;
+        color: var(--bad);
+        border-color: #e9b8b8;
+      }
+
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin: 18px 0;
+      }
+
+      .fact {
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+      }
+
+      .fact span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .fact b {
+        display: block;
+        margin-top: 4px;
+      }
+
+      ul {
+        margin: 10px 0 0;
+        padding-left: 20px;
+      }
+
+      li + li {
+        margin-top: 7px;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .links a {
+        border: 1px solid var(--line);
+        background: #f8fbfd;
+        padding: 8px 10px;
+      }
+
+      .checklist {
+        margin-top: 16px;
+        padding: 22px;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: baseline;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 10px;
+        margin-bottom: 12px;
+      }
+
+      .section-title strong {
+        font-size: 18px;
+      }
+
+      .section-title span {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .checks {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      label.check {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 10px;
+        align-items: start;
+        border: 1px solid var(--line);
+        background: #fbfdff;
+        padding: 12px;
+      }
+
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        accent-color: var(--teal);
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .step {
+        border: 1px solid var(--line);
+        background: #fbfdff;
+        padding: 12px;
+      }
+
+      .step b {
+        display: block;
+        color: var(--teal);
+      }
+
+      .sources {
+        margin-top: 16px;
+        padding: 22px;
+      }
+
+      .sources ul {
+        columns: 2;
+      }
+
+      @media (max-width: 860px) {
+        header,
+        .grid,
+        .metrics,
+        .checks,
+        .timeline {
+          grid-template-columns: 1fr;
+        }
+
+        .facts {
+          grid-template-columns: 1fr;
+        }
+
+        .sources ul {
+          columns: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <h1>H1B Max-Out to Day 1 CPT Control Sheet</h1>
+          <p class="subtitle">
+            Focus: Amazon Seattle style H1B 6-year max-out planning, using H1B-to-F1 change of status plus full-time CPT only if school, program, identity status, CPT authorization, and F1 maintenance all line up.
+          </p>
+        </div>
+        <div class="datebox">
+          <b>Screened on May 12, 2026</b>
+          <span>This is a planning checklist, not legal advice. Confirm every step with the school's DSO and an immigration attorney before filing I-539 or starting CPT work.</span>
+        </div>
+      </header>
+
+      <section class="notice">
+        Important correction: H1B does not have SEVIS. For change of status, the school issues a Form I-20 for F1 change of status, the student pays the I-901 SEVIS fee, then files Form I-539 with USCIS. CPT work can start only after F1 status is effective and the school has issued a CPT-authorized I-20 for the specific employer, site, dates, and full-time/part-time basis.
+      </section>
+
+      <section class="metrics" aria-label="Quick metrics">
+        <div class="metric"><b>2</b><span>Schools checked</span></div>
+        <div class="metric"><b>3</b><span>Hard gates: I-20, COS, CPT I-20</span></div>
+        <div class="metric"><b>11 mo</b><span>Full-time CPT cap to preserve OPT</span></div>
+        <div class="metric"><b>3-6 mo</b><span>Minimum planning runway</span></div>
+      </section>
+
+      <main class="grid">
+        <article class="card">
+          <h2>Trine University</h2>
+          <div class="schoolline">
+            <span class="tag good">SEVP school to verify in SEVP list</span>
+            <span class="tag warn">COS timing risk</span>
+            <span class="tag">Hybrid graduate programs</span>
+          </div>
+          <p>
+            Trine is common in Day 1 CPT discussions because its international graduate pages explicitly discuss CPT eligibility, full-time CPT limits, employer/course matching, and hybrid graduate study. For H1B-to-F1 COS, the biggest issue is timing: Trine says students in H1B status cannot access the CPT application until the change of visa status is processed.
+          </p>
+          <div class="facts">
+            <div class="fact"><span>Relevant programs</span><b>MSIS, MSBA, MSEM, MBA and related hybrid graduate options</b></div>
+            <div class="fact"><span>Tuition math</span><b>$575/credit; 30-credit degree tuition about $17,250 before fees/insurance/CPT course fees</b></div>
+            <div class="fact"><span>Full-time load</span><b>Minimum 6 credits/semester for F1 graduate students per Trine CPT page</b></div>
+            <div class="fact"><span>Seattle reality</span><b>Confirm campus, in-person attendance cadence, and whether Seattle worksite is acceptable on CPT I-20</b></div>
+          </div>
+          <ul>
+            <li>Trine says CPT is available only if the work matches the degree and the student is enrolled in the required CPT course.</li>
+            <li>If planning OPT after the degree, keep full-time CPT below 12 months; Trine advises 364 days max.</li>
+            <li>Apply early: Trine states CPT processing can take up to 14 business days and should be submitted 14-30 days before the employment start date.</li>
+          </ul>
+          <div class="links">
+            <a href="https://www.trine.edu/international/graduate/international-apply.aspx" target="_blank" rel="noopener">Apply</a>
+            <a href="https://www.trine.edu/international/graduate/hybrid-degrees.aspx" target="_blank" rel="noopener">Hybrid degrees</a>
+            <a href="https://www.trine.edu/international/graduate/tuition.aspx" target="_blank" rel="noopener">Tuition</a>
+            <a href="https://www.trine.edu/international/graduate/curricular-practical-training.aspx" target="_blank" rel="noopener">CPT policy</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Westcliff University</h2>
+          <div class="schoolline">
+            <span class="tag good">SEVP school to verify in SEVP list</span>
+            <span class="tag warn">Professional tuition tier</span>
+            <span class="tag">Graduate CPT handbook</span>
+          </div>
+          <p>
+            Westcliff is another common Day 1 CPT path because its F1 handbook describes CPT as integral to programs with Practical Learning Experience requirements, including graduate College of Technology and Engineering programs. It is stronger for Ethan's CS/data narrative if choosing MSCS or MSIT rather than a generic business degree.
+          </p>
+          <div class="facts">
+            <div class="fact"><span>Relevant programs</span><b>MSCS, MSIT, MSEM, MBA; confirm the exact Professional / CPT-eligible format</b></div>
+            <div class="fact"><span>Tuition math</span><b>Master's $835/credit or Professional $875/credit; 36-credit MSCS about $30,060-$31,500 before fees</b></div>
+            <div class="fact"><span>CPT course cost</span><b>Internship/CPT course is 1 credit per 16-week semester or 0.5 credit per session</b></div>
+            <div class="fact"><span>Seattle reality</span><b>Nearest practical campus may still require travel; confirm hybrid attendance and CPT worksite match</b></div>
+          </div>
+          <ul>
+            <li>Westcliff says graduate COTE students must complete Practical Learning Experience hours before graduation.</li>
+            <li>The handbook says new students' earliest CPT start date can be the program start date on the I-20 if processed in SEVIS before that date.</li>
+            <li>For full-time CPT, keep the cumulative total under 12 months if preserving OPT matters.</li>
+          </ul>
+          <div class="links">
+            <a href="https://www.westcliff.edu/admissions/how-to-apply/" target="_blank" rel="noopener">Apply</a>
+            <a href="https://www.westcliff.edu/academics/college-of-technology-and-engineering/master-of-science-in-computer-science-mscs/" target="_blank" rel="noopener">MSCS</a>
+            <a href="https://www.westcliff.edu/financial-aid/tuition-fees/" target="_blank" rel="noopener">Tuition</a>
+            <a href="https://www.westcliff.edu/wp-content/uploads/2026/05/F-1-Student-Handbook-2025-2026.pdf" target="_blank" rel="noopener">F1 handbook</a>
+          </div>
+        </article>
+      </main>
+
+      <section class="checklist">
+        <h2>Compliance Checklist</h2>
+        <div class="section-title">
+          <strong>1. School and program gates</strong>
+          <span>Failing any one can break the whole Day 1 CPT plan</span>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" /> <span>School is active in the ICE SEVP certified school search under the exact campus / instructional site used for the I-20.</span></label>
+          <label class="check"><input type="checkbox" /> <span>Program is graduate-level and matches Ethan's current role: software engineering, cloud infrastructure, CS, data systems, analytics, or AI infrastructure.</span></label>
+          <label class="check"><input type="checkbox" /> <span>Program has a documented curricular/practical requirement, not merely optional employment.</span></label>
+          <label class="check"><input type="checkbox" /> <span>School DSO confirms full-time CPT can be authorized at program start for a student entering by H1B-to-F1 COS.</span></label>
+        </div>
+
+        <div class="section-title" style="margin-top: 22px;">
+          <strong>2. H1B to F1 change of status</strong>
+          <span>Do not assume approval timing</span>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" /> <span>I-94 and H1B remain valid; no unlawful presence or unauthorized employment history.</span></label>
+          <label class="check"><input type="checkbox" /> <span>School issues an I-20 for change of status before H1B expiry and before I-539 filing.</span></label>
+          <label class="check"><input type="checkbox" /> <span>I-901 SEVIS fee is paid for the new F1 SEVIS record.</span></label>
+          <label class="check"><input type="checkbox" /> <span>Attorney/DSO confirms whether H1B work can continue while I-539 is pending and exactly when it must stop.</span></label>
+        </div>
+
+        <div class="section-title" style="margin-top: 22px;">
+          <strong>3. CPT authorization</strong>
+          <span>Employment is not legal until the CPT I-20 exists</span>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" /> <span>CPT I-20 lists Amazon or the exact employer, worksite/remote arrangement, full-time status, and start/end dates.</span></label>
+          <label class="check"><input type="checkbox" /> <span>Job description maps directly to the degree: distributed systems, cloud infrastructure, AI observability, data platforms, backend engineering.</span></label>
+          <label class="check"><input type="checkbox" /> <span>Full-time CPT cumulative days are tracked and kept below 12 months if OPT for this degree may be needed.</span></label>
+          <label class="check"><input type="checkbox" /> <span>Payroll, offer letter, CPT approvals, I-20 versions, attendance, grades, and tuition payments are archived each term.</span></label>
+        </div>
+
+        <div class="section-title" style="margin-top: 22px;">
+          <strong>4. F1 maintenance</strong>
+          <span>This is the continuing risk after approval</span>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" /> <span>Full-time enrollment is maintained every required term.</span></label>
+          <label class="check"><input type="checkbox" /> <span>All in-person/hybrid attendance requirements are met and documented.</span></label>
+          <label class="check"><input type="checkbox" /> <span>Address is updated with school/SEVIS and USCIS consistently after any move.</span></label>
+          <label class="check"><input type="checkbox" /> <span>No work occurs outside the CPT authorization dates, employer, location, or hours.</span></label>
+        </div>
+
+        <div class="timeline" aria-label="Timeline">
+          <div class="step"><b>T-6 to T-3 months</b>Pick SEVP school, confirm Day 1 CPT policy, campus attendance, and work-degree fit.</div>
+          <div class="step"><b>T-3 months</b>Get admission + COS I-20, pay I-901, prepare I-539.</div>
+          <div class="step"><b>Before H1B expiry</b>File I-539 while still in lawful H1B status.</div>
+          <div class="step"><b>F1 effective + start</b>DSO issues CPT I-20 before any F1/CPT work begins.</div>
+          <div class="step"><b>Every term</b>Renew CPT, attend class, pay tuition, keep grades and evidence clean.</div>
+        </div>
+      </section>
+
+      <section class="sources">
+        <h2>Official Links</h2>
+        <ul>
+          <li><a href="https://www.ice.gov/sevis/schools" target="_blank" rel="noopener">ICE SEVP certified schools search</a></li>
+          <li><a href="https://studyinthestates.dhs.gov/stem-opt-hub/additional-resources/opt-and-cpt-employment-comparison" target="_blank" rel="noopener">DHS Study in the States: CPT / OPT comparison</a></li>
+          <li><a href="https://www.uscis.gov/i-539" target="_blank" rel="noopener">USCIS Form I-539</a></li>
+          <li><a href="https://www.fmjfee.com/i901fee/index.html" target="_blank" rel="noopener">I-901 SEVIS fee</a></li>
+          <li><a href="https://www.trine.edu/international/graduate/curricular-practical-training.aspx" target="_blank" rel="noopener">Trine CPT policy</a></li>
+          <li><a href="https://www.trine.edu/international/graduate/tuition.aspx" target="_blank" rel="noopener">Trine tuition</a></li>
+          <li><a href="https://www.trine.edu/international/graduate/international-apply.aspx" target="_blank" rel="noopener">Trine application</a></li>
+          <li><a href="https://www.westcliff.edu/financial-aid/tuition-fees/" target="_blank" rel="noopener">Westcliff tuition</a></li>
+          <li><a href="https://www.westcliff.edu/admissions/how-to-apply/" target="_blank" rel="noopener">Westcliff application</a></li>
+          <li><a href="https://www.westcliff.edu/wp-content/uploads/2026/05/F-1-Student-Handbook-2025-2026.pdf" target="_blank" rel="noopener">Westcliff F1 handbook</a></li>
+        </ul>
+        <p class="fineprint">
+          Tuition figures are tuition-only estimates unless stated otherwise. CPT course charges, health insurance, technology fees, deposits, travel for hybrid attendance, and legal filing fees can materially change the real budget.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>

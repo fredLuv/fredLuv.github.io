@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feiyu (Ethan) Lu Resume - Northwestern MSDS</title>
+    <style>
+      :root {
+        --page-bg: #edf2f4;
+        --paper: #ffffff;
+        --text: #102027;
+        --muted: #54626c;
+        --line: #d9e1e5;
+        --accent: #0f766e;
+        --accent-soft: #e5f5f2;
+      }
+
+      @page {
+        size: Letter;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--page-bg);
+        color: var(--text);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      body {
+        padding: 28px;
+      }
+
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+        margin: 0 auto;
+        background: var(--paper);
+        box-shadow: 0 18px 48px rgba(16, 32, 39, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 0.2in;
+        background: linear-gradient(180deg, var(--accent) 0%, #0b5b55 100%);
+      }
+
+      .inner {
+        padding: 0.42in 0.42in 0.32in 0.58in;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 1.45fr 1fr;
+        gap: 0.24in;
+        align-items: end;
+        padding-bottom: 0.14in;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .eyebrow {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 32px;
+        line-height: 1;
+        letter-spacing: 0.01em;
+      }
+
+      .headline {
+        margin-top: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .summary {
+        margin: 11px 0 0;
+        max-width: 5.3in;
+        font-size: 10.8px;
+        line-height: 1.38;
+      }
+
+      .contact {
+        align-self: center;
+        justify-self: end;
+        width: 100%;
+        padding: 12px 14px;
+        background: linear-gradient(180deg, #f6fbfa 0%, #f0f7f5 100%);
+        border: 1px solid #d7ebe7;
+      }
+
+      .contact-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 10.2px;
+        line-height: 1.35;
+      }
+
+      .contact-row + .contact-row {
+        margin-top: 4px;
+      }
+
+      .contact-label {
+        min-width: 62px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      .contact a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.9fr) minmax(2.05in, 1fr);
+        gap: 0.28in;
+        margin-top: 0.18in;
+      }
+
+      .section {
+        margin-top: 0.14in;
+      }
+
+      .section:first-child {
+        margin-top: 0;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 9px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .section-title::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--line);
+      }
+
+      .experience-item + .experience-item {
+        margin-top: 11px;
+        padding-top: 9px;
+        border-top: 1px solid #eef2f3;
+      }
+
+      .job-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 14px;
+        align-items: baseline;
+      }
+
+      .job-title {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .job-meta {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 9.5px;
+        line-height: 1.3;
+      }
+
+      .job-date {
+        text-align: right;
+        font-size: 9.4px;
+        color: var(--muted);
+        line-height: 1.3;
+        white-space: nowrap;
+      }
+
+      ul {
+        margin: 6px 0 0;
+        padding-left: 15px;
+      }
+
+      li {
+        margin: 0 0 4px;
+        font-size: 10px;
+        line-height: 1.28;
+      }
+
+      li:last-child {
+        margin-bottom: 0;
+      }
+
+      .sidebar-block + .sidebar-block {
+        margin-top: 13px;
+      }
+
+      .pill {
+        display: inline-block;
+        margin: 0 5px 5px 0;
+        padding: 4px 7px;
+        background: var(--accent-soft);
+        border: 1px solid #d7ebe7;
+        font-size: 9.2px;
+        line-height: 1;
+        border-radius: 999px;
+      }
+
+      .compact-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .compact-item-title {
+        font-size: 10.6px;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+
+      .compact-item-meta {
+        margin-top: 2px;
+        font-size: 9.4px;
+        line-height: 1.35;
+        color: var(--muted);
+      }
+
+      .text-block {
+        font-size: 10px;
+        line-height: 1.38;
+        color: var(--text);
+      }
+
+      .skill-group + .skill-group {
+        margin-top: 8px;
+      }
+
+      .skill-label {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 5px;
+      }
+
+      .skill-copy {
+        font-size: 9.8px;
+        line-height: 1.35;
+      }
+
+      @media print {
+        html,
+        body {
+          background: white;
+        }
+
+        body {
+          padding: 0;
+        }
+
+        .page {
+          width: 8.5in;
+          min-height: 11in;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="page">
+      <div class="inner">
+        <header class="header">
+          <div>
+            <div class="eyebrow">Northwestern MSDS Application Resume</div>
+            <h1>Feiyu (Ethan) Lu</h1>
+            <div class="headline">Software engineer focused on data engineering, cloud observability, and real-time analytics.</div>
+            <p class="summary">
+              Nine years of experience building low-latency, high-throughput systems across AWS cloud services, trading platforms, advertising technology, and operational analytics. Prepared for graduate study in data science to formalize data engineering, machine learning, governance, and analytics application design for reliable AI-enabled infrastructure.
+            </p>
+          </div>
+
+          <div class="contact">
+            <div class="contact-row">
+              <span class="contact-label">Location</span>
+              <span>Seattle, WA · Open to Relocate</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">Phone</span>
+              <span>415-361-2108</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">Email</span>
+              <a href="mailto:FredLu0521@gmail.com">FredLu0521@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/feiyulu001">linkedin.com/in/feiyulu001</a>
+            </div>
+          </div>
+        </header>
+
+        <div class="layout">
+          <main>
+            <section class="section">
+              <h2 class="section-title">Experience</h2>
+
+              <div class="experience-item">
+                <div class="job-header">
+                  <div>
+                    <h3 class="job-title">Software Engineer II · Amazon, AWS</h3>
+                    <div class="job-meta">Seattle, WA</div>
+                  </div>
+                  <div class="job-date">Aug 2024 - Present</div>
+                </div>
+                <ul>
+                  <li>Optimized distributed Java log ingestion and observability infrastructure, improving throughput, responsiveness, and operational visibility across multi-region systems.</li>
+                  <li>Built low-latency Kinesis provisioning logic and safely migrated PutLogEvents throttling to AWST, cutting ingestion response time by 87% under peak load while improving throttle responsiveness and reducing cost.</li>
+                  <li>Introduced L0 caching that reduced authorization latency by 3x for account- and resource-level policy enforcement.</li>
+                  <li>Launched the CLW HEC Console, a React workflow for creating and managing API keys across CloudWatch Logs, IAM, and Secrets Manager.</li>
+                </ul>
+              </div>
+
+              <div class="experience-item">
+                <div class="job-header">
+                  <div>
+                    <h3 class="job-title">Software Developer · ExodusPoint Capital Management</h3>
+                    <div class="job-meta">New York, NY</div>
+                  </div>
+                  <div class="job-date">Oct 2022 - Jul 2024</div>
+                </div>
+                <ul>
+                  <li>Built real-time PnL and risk data infrastructure for fixed income and equities, streaming sub-second updates with Java, Kafka, Apache Druid, WebSocket, and Protobuf.</li>
+                  <li>Delivered Java and Python APIs plus dashboards that embedded risk, exposure, and position analytics into trading workflows for data-driven decisions.</li>
+                  <li>Optimized low-latency Java/Spring Boot services and in-memory Apache Druid workflows that generated 100GB position snapshots every minute, cutting p99 latency by 50% under peak load.</li>
+                </ul>
+              </div>
+
+              <div class="experience-item">
+                <div class="job-header">
+                  <div>
+                    <h3 class="job-title">Software Engineer II · Amazon, Advertising</h3>
+                    <div class="job-meta">New York, NY</div>
+                  </div>
+                  <div class="job-date">Oct 2019 - Oct 2022</div>
+                </div>
+                <ul>
+                  <li>Designed and launched AWS-based Java microservices powering billing and interactive video ads at global scale.</li>
+                  <li>Built distributed data pipelines with DynamoDB, SQS/SNS, Lambda, and Fargate to process millions of ad events per day.</li>
+                  <li>Improved reliability with CI/CD automation, integration testing, and CloudWatch/X-Ray observability.</li>
+                </ul>
+              </div>
+
+              <div class="experience-item">
+                <div class="job-header">
+                  <div>
+                    <h3 class="job-title">Software Engineer · Goldman Sachs</h3>
+                    <div class="job-meta">New York, NY</div>
+                  </div>
+                  <div class="job-date">Jan 2019 - Oct 2019</div>
+                </div>
+                <ul>
+                  <li>Built consumer compliance pipelines, extracting 80GB+ via Apache Sqoop and SQL and transforming datasets with Spark in Python.</li>
+                  <li>Improved compliance web applications with Java Spring, Node.js, and React, and built searchable APIs on Elasticsearch.</li>
+                </ul>
+              </div>
+
+              <div class="experience-item">
+                <div class="job-header">
+                  <div>
+                    <h3 class="job-title">Software Engineer · Oracle Health (formerly Cerner)</h3>
+                    <div class="job-meta">Kansas City, MO</div>
+                  </div>
+                  <div class="job-date">Sep 2017 - Jan 2019</div>
+                </div>
+                <ul>
+                  <li>Enhanced a 10TB/day operational analytics platform using SQL, Python Airflow, Linux, and Hadoop.</li>
+                  <li>Replaced Oracle Enterprise Manager data collection with an internal solution, saving about $2M annually.</li>
+                </ul>
+              </div>
+
+              <div class="experience-item">
+                <div class="job-header">
+                  <div>
+                    <h3 class="job-title">Data Scientist Intern · DigitasLBi</h3>
+                    <div class="job-meta">Boston, MA</div>
+                  </div>
+                  <div class="job-date">May 2016 - Aug 2016</div>
+                </div>
+                <ul>
+                  <li>Applied TF-IDF, Word2Vec, and K-Means with Python and Spark to cluster 50k+ search phrases, improving keyword extraction and campaign targeting.</li>
+                </ul>
+              </div>
+
+            </section>
+          </main>
+
+          <aside>
+            <section class="section sidebar-block">
+              <h2 class="section-title">Core Skills</h2>
+              <div>
+                <span class="pill">Java</span>
+                <span class="pill">Spring Boot</span>
+                <span class="pill">AWS</span>
+                <span class="pill">Kinesis</span>
+                <span class="pill">Kafka</span>
+                <span class="pill">SQL</span>
+                <span class="pill">REST APIs</span>
+                <span class="pill">Python</span>
+                <span class="pill">Data Engineering</span>
+                <span class="pill">Machine Learning</span>
+                <span class="pill">Apache Druid</span>
+                <span class="pill">Redis</span>
+                <span class="pill">Spark</span>
+                <span class="pill">Docker</span>
+                <span class="pill">Linux</span>
+                <span class="pill">ReactJs</span>
+                <span class="pill">CI/CD</span>
+                <span class="pill">WebSocket</span>
+                <span class="pill">gRPC</span>
+              </div>
+            </section>
+
+            <section class="section sidebar-block">
+              <h2 class="section-title">Education</h2>
+              <div class="compact-list">
+                <div>
+                  <div class="compact-item-title">B.S. in Computer Science</div>
+                  <div class="compact-item-meta">Tufts University · Medford, MA · Sep 2013 - May 2017</div>
+                  <div class="text-block" style="margin-top: 5px;">
+                    Algorithms, Operating Systems, Web Applications, Security, Machine Learning, Human-Computer Interaction.
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="section sidebar-block">
+              <h2 class="section-title">Toolbox</h2>
+              <div class="skill-group">
+                <div class="skill-label">Cloud & Data Engineering</div>
+                <div class="skill-copy">DynamoDB, Kinesis, SQS, S3, CDK, Airflow, Apache Druid, Hadoop, MongoDB</div>
+              </div>
+              <div class="skill-group">
+                <div class="skill-label">Backend</div>
+                <div class="skill-copy">Low-latency services, distributed systems, caching, observability, API design, real-time streaming</div>
+              </div>
+              <div class="skill-group">
+                <div class="skill-label">Analytics & ML</div>
+                <div class="skill-copy">Machine learning, operational analytics, data mining, Spark, TF-IDF, Word2Vec, K-Means</div>
+              </div>
+              <div class="skill-group">
+                <div class="skill-label">Frontend</div>
+                <div class="skill-copy">ReactJs, dashboards, developer UX, operational interfaces</div>
+              </div>
+            </section>
+
+            <section class="section sidebar-block">
+              <h2 class="section-title">Leadership</h2>
+              <div class="compact-list">
+                <div>
+                  <div class="compact-item-title">Conference Organizer</div>
+                  <div class="compact-item-meta">MIT-China Innovation and Entrepreneurship Forum · 2015 - 2017</div>
+                </div>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </article>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>UPC Barcelona CS / DS / Analytics Master's Programs</title>
+  <style>
+    :root {
+      --ink:#172033; --muted:#667085; --line:#d7dde6; --soft:#f6f8fb; --green:#047857; --amber:#b45309; --blue:#1d4ed8;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter, Arial, sans-serif; color:var(--ink); background:white; }
+    header { padding:38px 42px 26px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#f8fafc,#fff); }
+    h1 { margin:0 0 8px; font-size:30px; letter-spacing:0; }
+    .sub { max-width:1040px; color:var(--muted); line-height:1.48; }
+    main { max-width:1260px; padding:26px 42px 54px; }
+    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin:0 0 22px; }
+    .metric { border:1px solid var(--line); border-radius:8px; padding:15px 16px; background:#fff; }
+    .metric strong { display:block; font-size:22px; margin-bottom:5px; }
+    .metric span { color:var(--muted); font-size:13px; }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 16px; }
+    button { border:1px solid var(--line); background:#fff; border-radius:7px; padding:9px 12px; cursor:pointer; color:var(--ink); }
+    button.active { border-color:var(--blue); background:#eff6ff; color:var(--blue); }
+    h2 { margin:28px 0 12px; font-size:19px; }
+    .tablewrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; }
+    table { width:100%; min-width:1580px; border-collapse:collapse; }
+    th,td { padding:11px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; font-size:13.2px; line-height:1.38; }
+    th { background:var(--soft); color:#475467; text-transform:uppercase; letter-spacing:.04em; font-size:11px; }
+    tr:last-child td { border-bottom:0; }
+    td span, .meta { color:var(--muted); }
+    a { color:var(--blue); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .rank { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+    .box, article { border:1px solid var(--line); border-radius:8px; padding:15px; background:#fff; }
+    .box strong { display:block; margin-bottom:6px; }
+    .good { border-left:4px solid var(--green); }
+    .warn { border-left:4px solid var(--amber); }
+    .coursegrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    article h3 { margin:0 0 6px; font-size:16px; }
+    article p { margin:0 0 8px; line-height:1.45; }
+    .checklist { display:grid; gap:8px; }
+    .task { display:grid; grid-template-columns:20px 1fr 170px; gap:10px; align-items:start; border:1px solid var(--line); border-radius:8px; padding:11px 12px; }
+    .tick { width:15px; height:15px; border:1.8px solid var(--green); border-radius:3px; margin-top:2px; }
+    .due { color:var(--muted); font-size:13px; }
+    .note { background:#fff7ed; border-left:4px solid var(--amber); border-radius:6px; padding:12px 14px; line-height:1.45; }
+    footer { color:var(--muted); font-size:12px; margin-top:26px; line-height:1.45; }
+    @media (max-width:860px) {
+      header,main { padding-left:20px; padding-right:20px; }
+      .metrics,.rank,.coursegrid { grid-template-columns:1fr; }
+      table { min-width:1500px; }
+      .task { grid-template-columns:20px 1fr; }
+      .due { grid-column:2; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UPC Barcelona CS / DS / Analytics Master's Programs</h1>
+    <div class="sub">Prepared for Feiyu Lu on 2026-05-28. Focus: programs in Barcelona that connect nine years of production-scale Java/AWS/data-systems experience with CS, data science, AI, analytics, and quant-relevant infrastructure. Current urgent finding: the FIB September 2026 application deadline is 2026-05-29.</div>
+  </header>
+  <main>
+    <section class="metrics">
+      <div class="metric"><strong>May 29</strong><span>FIB MIRI/MDS/MAI/MEI deadline for Sep 2026</span></div>
+      <div class="metric"><strong>3</strong><span>English programs worth action now: MIRI, MDS, MAI</span></div>
+      <div class="metric"><strong>EUR 4.6k-6.1k</strong><span>UPC general non-EU estimate for 90-120 ECTS</span></div>
+      <div class="metric"><strong>2 pages</strong><span>FIB motivation letter max length</span></div>
+    </section>
+
+    <section>
+      <h2>Recommendation</h2>
+      <div class="rank">
+        <div class="box good"><strong>1. MIRI</strong>Best strategic CS signal for your profile: distributed systems, HPC, networks, advanced computing. It is the closest UPC match to AWS + ExodusPoint high-scale infrastructure.</div>
+        <div class="box good"><strong>2. MDS</strong>Best pure data science brand at UPC/FIB. Strong data management + analytics. Good for AI/data infrastructure, but 2 years and admissions weight favors transcripts.</div>
+        <div class="box warn"><strong>3. MAI</strong>Useful 1.5-year AI option. Good content, but less systems/infra-specific and requires mobility across UPC/UB/URV including Tarragona.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Program Table</h2>
+      <div class="filters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="Apply now">Apply now</button>
+        <button data-filter="backup">Backup</button>
+        <button data-filter="Closed">Closed</button>
+        <button data-filter="Not recommended">Not recommended</button>
+      </div>
+      <div class="tablewrap"><table id="programs">
+        <thead>
+          <tr>
+            <th>Program</th><th>Status</th><th>Application Dates</th><th>Duration / Start</th><th>Tuition</th><th>Requirements</th><th>Career Fit</th><th>Links</th>
+          </tr>
+        </thead>
+        <tbody><tr data-status="Apply now">
+          <td><strong>Master in Innovation and Research in Informatics (MIRI)</strong><br><span>Barcelona School of Informatics (FIB)</span></td>
+          <td>Apply now</td>
+          <td>Sep 2026 intake: 25 Feb-29 May 2026; 2nd period 20 Apr-29 May; decision by 16 Jun.</td>
+          <td>4 semesters, 120 ECTS, face-to-face, English.<br><em>September and February listed on UPC/FIB general details; current official calendar is September 2026.</em></td>
+          <td>UPC page estimate: EUR 5,400 for non-EU residents for the full 120 ECTS degree, excluding admin/degree fees. UPC general fee table gives an estimate up to EUR 6,100 for non-EU 120 ECTS before final July fee approval.</td>
+          <td>Bachelor-level access; English B2; FIB documents: CV, passport, academic certificate/transcript with grades/credits/mark scheme, diploma, language certificate, GPA equivalence statement for foreign degree, motivation letter up to 2 pages.</td>
+          <td>Best UPC fit for Feiyu if the goal is high-end CS: distributed systems, advanced computing, HPC, research/innovation.</td>
+          <td><a href="https://www.fib.upc.edu/en/masters/master-innovation-and-research-informatics">Program</a><br><a href="https://www.upc.edu/en/masters/innovation-and-research-in-informatics-miri">UPC page</a><br><a href="https://www.fib.upc.edu/en/masters/do-you-want-study-master-degree/pre-enrolment-and-admission">Apply / admissions</a></td>
+        </tr>
+<tr data-status="Apply now">
+          <td><strong>Master in Data Science (MDS)</strong><br><span>Barcelona School of Informatics (FIB)</span></td>
+          <td>Apply now</td>
+          <td>Sep 2026 intake: 25 Feb-29 May 2026; 2nd period 20 Apr-29 May; decision by 16 Jun.</td>
+          <td>4 semesters, 120 ECTS, face-to-face, English; full-time workload listed as 20h lectures + 20h personal work per week.<br><em>September.</em></td>
+          <td>UPC page estimate: EUR 5,400 for non-EU residents for the full 120 ECTS degree, excluding admin/degree fees. UPC general fee table gives an estimate up to EUR 6,100 for non-EU 120 ECTS before final July fee approval.</td>
+          <td>Bachelor in CS/Math or related degree with strong CS + math; English B2; admission weights: transcript 60%, bachelor relevance 20%, professional background 5%, motivation 15%; same FIB required document set.</td>
+          <td>Strong data-management + analytics program; good if the narrative is data systems to data science/AI infrastructure. Less CS-systems-heavy than MIRI.</td>
+          <td><a href="https://www.fib.upc.edu/en/masters/master-data-science">Program</a><br><a href="https://www.upc.edu/en/masters/data-science">UPC page</a><br><a href="https://www.fib.upc.edu/en/masters/do-you-want-study-master-degree/pre-enrolment-and-admission">Apply / admissions</a></td>
+        </tr>
+<tr data-status="Apply now / backup">
+          <td><strong>Master in Artificial Intelligence (MAI)</strong><br><span>FIB UPC + UB + URV interuniversity</span></td>
+          <td>Apply now / backup</td>
+          <td>Sep 2026 intake: 25 Feb-29 May 2026; 2nd period 20 Apr-29 May; decision by 16 Jun.</td>
+          <td>3 semesters, 90 ECTS, full-time, face-to-face, English.<br><em>September.</em></td>
+          <td>UPC general fee table estimates EUR 4,600 for non-EU residents for 90 ECTS; UPC program page links to official fee table rather than giving a program-specific total.</td>
+          <td>Bachelor-level access; English B2; preference for CS/math backgrounds; same FIB documents: CV, passport, transcript, diploma, language certificate, GPA equivalence, motivation letter up to 2 pages.</td>
+          <td>Good AI credential and 1.5-year duration; note classes occur across UPC/UB/URV, with URV in Tarragona requiring mobility.</td>
+          <td><a href="https://www.fib.upc.edu/en/masters/master-artificial-intelligence">Program</a><br><a href="https://www.upc.edu/en/masters/artificial-intelligence">UPC page</a><br><a href="https://www.fib.upc.edu/en/masters/do-you-want-study-master-degree/pre-enrolment-and-admission">Apply / admissions</a></td>
+        </tr>
+<tr data-status="Closed for current cycle">
+          <td><strong>Master&#x27;s degree in Statistics and Operations Research (UPC-UB)</strong><br><span>School of Mathematics and Statistics (FME) + UB</span></td>
+          <td>Closed for current cycle</td>
+          <td>2026-2027 single round: 09 Feb-15 May 2026; final admitted/excluded list 04 Jun 2026.</td>
+          <td>1.5 academic years, 90 ECTS, afternoons, face-to-face.<br><em>September.</em></td>
+          <td>UPC page estimate: EUR 4,050 for non-EU residents for 90 ECTS, excluding admin/degree fees. UPC general fee table estimates EUR 4,600 for non-EU 90 ECTS.</td>
+          <td>Appropriate for statistics/OR/math/CS/engineering/econ/bio backgrounds; CV must include degree years and 1-10 GPA average plus statistics/OR coursework and work experience; motivation letter; academic qualification certificates; English B2 recommended.</td>
+          <td>Excellent analytics/optimization fit for quant/product analytics, but the 2026 round is already closed. Keep as future-cycle option.</td>
+          <td><a href="https://mesioupcub.masters.upc.edu/en">Program</a><br><a href="https://www.upc.edu/en/masters/statistics-and-operations-research">UPC page</a><br><a href="https://mesioupcub.masters.upc.edu/en/pre-enrolment">Apply / admissions</a></td>
+        </tr>
+<tr data-status="Not recommended unless language-ready">
+          <td><strong>Master in Informatics Engineering (MEI)</strong><br><span>Barcelona School of Informatics (FIB)</span></td>
+          <td>Not recommended unless language-ready</td>
+          <td>Sep 2026 intake: 25 Feb-29 May 2026; 2nd period 20 Apr-29 May; decision by 16 Jun.</td>
+          <td>3 semesters, 90 ECTS, face-to-face, mainly afternoons.<br><em>September and February listed on UPC/FIB general details; current official calendar is September 2026.</em></td>
+          <td>UPC page estimate: EUR 4,050 for non-EU residents for 90 ECTS; UPC general fee table estimates EUR 4,600 for non-EU 90 ECTS.</td>
+          <td>Bachelor-level access; B2 Spanish or Catalan; FIB required document set.</td>
+          <td>Broad professional CS/IT management degree, but not recommended for Feiyu now because language of instruction is Catalan/Spanish and B2 Spanish/Catalan is required.</td>
+          <td><a href="https://www.fib.upc.edu/en/masters/master-informatics-engineering">Program</a><br><a href="https://www.upc.edu/en/masters/informatics-engineering">UPC page</a><br><a href="https://www.fib.upc.edu/en/masters/do-you-want-study-master-degree/pre-enrolment-and-admission">Apply / admissions</a></td>
+        </tr></tbody>
+      </table></div>
+    </section>
+
+    <section>
+      <h2>Curriculum Highlights</h2>
+      <div class="coursegrid"><article>
+          <h3>Master in Innovation and Research in Informatics (MIRI)</h3>
+          <p class="meta">4 semesters, 120 ECTS, face-to-face, English.</p>
+          <p>Specializations: Advanced Computing; Computer Networks and Distributed Systems; High Performance Computing; Computer Graphics/VR. Relevant subjects include Concurrence, Parallelism and Distributed Systems; Statistical Modelling and Experimental Design; Network Architecture and Management; Algorithmic Methods for Mathematical Models.</p>
+        </article>
+<article>
+          <h3>Master in Data Science (MDS)</h3>
+          <p class="meta">4 semesters, 120 ECTS, face-to-face, English; full-time workload listed as 20h lectures + 20h personal work per week.</p>
+          <p>Core: Algorithms, Data Structures and Databases; Data Warehousing; Multivariate Analysis; Process-Oriented Data Science; Statistical Inference and Modelling; Big Data Management; Machine Learning; Mining Unstructured Data; Semantic Data Management. Useful electives: Advanced Machine Learning, Cloud Computing and Big Data Analytics, MLOps, Information Retrieval and Recommender Systems, Optimization Techniques for Data Mining, Data Visualization.</p>
+        </article>
+<article>
+          <h3>Master in Artificial Intelligence (MAI)</h3>
+          <p class="meta">3 semesters, 90 ECTS, full-time, face-to-face, English.</p>
+          <p>Compulsory: Computational Intelligence, Computational Vision, Introduction to Human Language Technology, Multiagent Systems, Machine Learning, Planning and Approximate Reasoning. Relevant electives: Big Data Analytics, Deep Learning, Reinforcement Learning, Probabilistic Graphical Models, Responsible AI, Intelligent Data Analysis Applications in Business.</p>
+        </article>
+<article>
+          <h3>Master&#x27;s degree in Statistics and Operations Research (UPC-UB)</h3>
+          <p class="meta">1.5 academic years, 90 ECTS, afternoons, face-to-face.</p>
+          <p>Relevant paths include Operations Research and Data Science. Courses include Continuous Optimisation, Optimisation in Data Science, Risk Quantification, Simulation, Linear and Generalised Linear Models, Econometric Analysis, Statistical Programming and Databases.</p>
+        </article></div>
+    </section>
+
+    <section>
+      <h2>Application Checklist</h2>
+      <div class="checklist">
+        <div class="task"><div class="tick"></div><div>Submit FIB pre-enrolment before 2026-05-29 if applying MIRI/MDS/MAI.</div><div class="due">Immediate</div></div>
+        <div class="task"><div class="tick"></div><div>Upload UPC-tailored CV and 2-page motivation letter for each program.</div><div class="due">Immediate</div></div>
+        <div class="task"><div class="tick"></div><div>Prepare passport, Tufts diploma, Tufts transcript/academic certificate with grade scheme and credits/hours.</div><div class="due">Immediate</div></div>
+        <div class="task"><div class="tick"></div><div>Prepare English B2 proof. Since Tufts was in English, test exemption may be possible, but FIB lists a language certificate as required, so upload proof or ask FIB.</div><div class="due">Before submit</div></div>
+        <div class="task"><div class="tick"></div><div>Generate Spain official statement of equivalence of average grade for the foreign degree if the portal asks for it.</div><div class="due">Before submit</div></div>
+        <div class="task"><div class="tick"></div><div>Plan translation/legalisation/apostille for non-EU documents at enrolment stage.</div><div class="due">After admit</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Reality Check</h2>
+      <div class="note">Because the current FIB deadline is tomorrow, this is an execution sprint. Do not over-polish. Use the CV + motivation letters generated in this folder, submit, then refine if the portal allows updates. For fit, MIRI is the highest-leverage CS/infra story; MDS is the best data-science brand; MAI is a reasonable AI backup.</div>
+    </section>
+
+    <footer>
+      Sources used: UPC official program pages for <a href="https://www.upc.edu/en/masters/data-science">Data Science</a>, <a href="https://www.upc.edu/en/masters/innovation-and-research-in-informatics-miri">MIRI</a>, <a href="https://www.fib.upc.edu/en/masters/master-artificial-intelligence">MAI</a>, <a href="https://www.upc.edu/en/masters/statistics-and-operations-research">Statistics and Operations Research</a>, <a href="https://www.fib.upc.edu/en/masters/master-informatics-engineering">MEI</a>, <a href="https://www.fib.upc.edu/en/masters/do-you-want-study-master-degree/pre-enrolment-and-admission">FIB pre-enrolment/admission</a>, and <a href="https://www.upc.edu/en/masters/fees-grants">UPC fees</a>. Tuition numbers are estimates because UPC says final public fees are approved around July before enrolment.
+    </footer>
+  </main>
+  <script>
+    const buttons = document.querySelectorAll('button[data-filter]');
+    const rows = document.querySelectorAll('#programs tbody tr');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      rows.forEach(row => {
+        const s = row.dataset.status;
+        row.style.display = f === 'all' || s.includes(f) ? '' : 'none';
+      });
+    }));
+  </script>
+</body>
+</html>

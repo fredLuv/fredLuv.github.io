@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>May 11 International MSCS Shortlist</title>
+    <style>
+      :root {
+        --bg: #f5f7f8;
+        --paper: #ffffff;
+        --ink: #18232f;
+        --muted: #667482;
+        --line: #dce3e8;
+        --soft: #eef4f5;
+        --good: #11684f;
+        --watch: #8a5b12;
+        --bad: #8f3c22;
+        --accent: #0b6f6a;
+        --shadow: 0 14px 34px rgba(24, 35, 47, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--bg);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .shell {
+        width: min(1220px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 30px 0 46px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 22px;
+        align-items: end;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 22px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        max-width: 820px;
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .datebox,
+      form,
+      .metric,
+      .card,
+      .sources {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .datebox {
+        padding: 15px 16px;
+      }
+
+      .datebox b,
+      .datebox span {
+        display: block;
+      }
+
+      .datebox b {
+        font-size: 14px;
+      }
+
+      .datebox span {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin: 22px 0;
+      }
+
+      .metric {
+        padding: 14px 16px;
+      }
+
+      .metric b {
+        display: block;
+        font-size: 24px;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .forms {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 16px;
+        align-items: start;
+        margin-bottom: 18px;
+      }
+
+      form {
+        padding: 18px;
+      }
+
+      form h2,
+      .sources h2 {
+        margin: 0 0 14px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      select,
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fbfcfd;
+        color: var(--ink);
+        padding: 10px 11px;
+        font: inherit;
+        font-size: 13px;
+      }
+
+      textarea {
+        min-height: 210px;
+        resize: vertical;
+        line-height: 1.45;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+
+      button {
+        border: 1px solid var(--accent);
+        border-radius: 6px;
+        background: var(--accent);
+        color: white;
+        padding: 10px 13px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: white;
+        color: var(--accent);
+      }
+
+      .programs {
+        display: grid;
+        gap: 12px;
+      }
+
+      .card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 310px;
+        gap: 18px;
+        padding: 18px;
+      }
+
+      .card.good {
+        border-left: 5px solid var(--good);
+      }
+
+      .card.confirm {
+        border-left: 5px solid var(--watch);
+      }
+
+      .card.excluded {
+        border-left: 5px solid #9aa6b2;
+        opacity: 0.82;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 19px;
+        line-height: 1.25;
+      }
+
+      .school {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        border-radius: 999px;
+        padding: 4px 8px;
+        background: var(--soft);
+        color: #344454;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .tag.good {
+        background: #e4f5ee;
+        color: var(--good);
+      }
+
+      .tag.confirm {
+        background: #fff1d1;
+        color: var(--watch);
+      }
+
+      .tag.excluded {
+        background: #f4e7e0;
+        color: var(--bad);
+      }
+
+      .summary {
+        margin: 12px 0 0;
+        color: #314151;
+        font-size: 13px;
+        line-height: 1.52;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .links a {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: white;
+        padding: 8px 10px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .ps {
+        margin-top: 14px;
+        border-top: 1px solid var(--line);
+        padding-top: 12px;
+      }
+
+      .ps strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .ps ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .ps li {
+        margin-bottom: 5px;
+        font-size: 13px;
+        line-height: 1.42;
+      }
+
+      .details {
+        display: grid;
+        gap: 8px;
+        align-content: start;
+      }
+
+      .fact {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fbfcfd;
+        padding: 9px 10px;
+      }
+
+      .fact span {
+        display: block;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .fact b {
+        display: block;
+        margin-top: 3px;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .tuition-calc {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .empty {
+        padding: 26px;
+        text-align: center;
+        border: 1px dashed var(--line);
+        background: white;
+        color: var(--muted);
+      }
+
+      .sources {
+        margin-top: 24px;
+        padding: 18px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .sources p {
+        margin: 0 0 10px;
+      }
+
+      .sources ul {
+        columns: 2;
+        gap: 28px;
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      @media (max-width: 980px) {
+        header,
+        .forms,
+        .card {
+          grid-template-columns: 1fr;
+        }
+
+        .metrics,
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        .shell {
+          width: min(100vw - 20px, 1220px);
+          padding-top: 14px;
+        }
+
+        .metrics,
+        .grid,
+        .sources ul {
+          grid-template-columns: 1fr;
+          columns: 1;
+        }
+
+        form,
+        .card,
+        .sources {
+          padding: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <h1>May 11 International MSCS Shortlist</h1>
+          <p class="subtitle">
+            Screened as of May 11, 2026 for international/F-1 applicants who still have a realistic Fall 2026 application path after May 11, do not need GRE, and can plausibly finish in 12-18 months. Default view prioritizes Silicon Valley, Greater NYC, Greater Boston, Chicago, Miami, Houston, and Denver.
+          </p>
+        </div>
+        <div class="datebox">
+          <b>Hard filter: after May 11, 2026</b>
+          <span>Good = official international deadline or current accepting status remains open. Confirm first = rolling/space-available, international suggested date passed, or schedule needs advisor confirmation.</span>
+        </div>
+      </header>
+
+      <section class="metrics" aria-label="Summary metrics">
+        <div class="metric"><b id="goodCount">0</b><span>Visible good after 5/11</span></div>
+        <div class="metric"><b id="confirmCount">0</b><span>Visible confirm first</span></div>
+        <div class="metric"><b id="preferredGeoCount">0</b><span>Visible preferred geos</span></div>
+        <div class="metric"><b id="cheapCount">0</b><span>Visible tuition under $70k</span></div>
+      </section>
+
+      <section class="forms" aria-label="Interactive controls">
+        <form id="filterForm">
+          <h2>Form 1 - Filter Programs</h2>
+          <div class="grid">
+            <label>
+              Area
+              <select id="areaFilter">
+                <option value="all">All areas</option>
+                <option value="CS">CS / software</option>
+                <option value="Data">Data / analytics</option>
+                <option value="AI">AI / ML</option>
+                <option value="IT">IT / systems leadership</option>
+              </select>
+            </label>
+            <label>
+              Status
+              <select id="statusFilter">
+                <option value="active">Good + confirm first</option>
+                <option value="good">Good after 5/11 only</option>
+                <option value="confirm">Confirm first only</option>
+                <option value="excluded">Excluded only</option>
+                <option value="all">Include excluded</option>
+              </select>
+            </label>
+            <label>
+              Geo Priority
+              <select id="geoFilter">
+                <option value="preferred">Preferred geos only</option>
+                <option value="all">All geos</option>
+                <option value="silicon-valley">Silicon Valley / Bay Area</option>
+                <option value="nyc">Greater NYC</option>
+                <option value="boston">Greater Boston</option>
+                <option value="chicago">Chicago</option>
+                <option value="miami">Miami</option>
+                <option value="houston">Houston</option>
+                <option value="denver">Denver / Boulder</option>
+              </select>
+            </label>
+            <label>
+              International Path
+              <select id="intlFilter">
+                <option value="after-may-11">Open after May 11</option>
+                <option value="clear">Clear official international date</option>
+                <option value="risk">Rolling / visa-risk open</option>
+                <option value="all">Show all</option>
+              </select>
+            </label>
+            <label>
+              Max Tuition
+              <select id="tuitionFilter">
+                <option value="all">Any tuition</option>
+                <option value="50000">Under $50k</option>
+                <option value="70000">Under $70k</option>
+                <option value="90000">Under $90k</option>
+              </select>
+            </label>
+            <label>
+              Search
+              <input id="searchFilter" type="search" placeholder="school, city, keyword" />
+            </label>
+          </div>
+          <div class="actions">
+            <button type="submit">Apply filters</button>
+            <button class="secondary" type="button" id="resetFilters">Reset</button>
+          </div>
+        </form>
+
+        <form id="psForm">
+          <h2>Form 2 - PS Highlight Builder</h2>
+          <label>
+            Pick a program
+            <select id="psProgram"></select>
+          </label>
+          <label style="margin-top: 12px;">
+            Essay angle
+            <select id="psAngle">
+              <option value="systems">Global production systems</option>
+              <option value="data">Data analytics / ML transition</option>
+              <option value="fintech">Fintech + low-latency risk</option>
+              <option value="leadership">Technical leadership</option>
+            </select>
+          </label>
+          <div class="actions">
+            <button type="submit">Generate points</button>
+          </div>
+          <textarea id="psOutput" readonly aria-label="Generated personal statement highlights"></textarea>
+        </form>
+      </section>
+
+      <main class="programs" id="programList" aria-live="polite"></main>
+
+      <section class="sources">
+        <h2>Source Notes</h2>
+        <p>
+          Tuition is tuition-only unless the card says fees are included. Living costs, health insurance, transcript fees, deposits, and annual increases are usually excluded. For every Confirm first item, email admissions today before spending essay/application effort.
+        </p>
+        <ul id="sourceList"></ul>
+      </section>
+    </div>
+
+    <script>
+      const preferredGeos = ["silicon-valley", "nyc", "boston", "chicago", "miami", "houston", "denver"];
+
+      const programs = [
+        {
+          id: "uchicago-mpcs",
+          school: "University of Chicago",
+          name: "Masters Program in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "chicago",
+          geoLabel: "Chicago",
+          status: "good",
+          statusLabel: "Good after 5/11",
+          intl: "clear",
+          internationalPath: "Yes. Full-time Round 3 deadline is July 1, 2026; visa applicants are strongly encouraged to apply early.",
+          deadline: "July 1, 2026",
+          gre: "GRE/GMAT optional in practice for Ethan; acceptable to apply without given CS/professional background.",
+          duration: "9-course: 9 months; 12-course: 15 months",
+          tuition: "$64,194 / $85,592",
+          tuitionNumber: 64194,
+          tuitionCalc: "Official 2025-26 total tuition: 9-course MS $64,194; 12-course MS $85,592. Fees/living excluded.",
+          programUrl: "https://masters.cs.uchicago.edu/",
+          applyUrl: "https://masters.cs.uchicago.edu/mpcs-admissions/application-deadlines/",
+          tuitionUrl: "https://masters.cs.uchicago.edu/mpcs-admissions/tuition-fees/",
+          notes: "Best pure CS fit under the constraints: strong brand, Chicago location, high-performance computing/software engineering/data analytics options, and a timeline that fits 1.5 years.",
+          ps: [
+            "Lead with 9 years of production engineering, not a career switch.",
+            "Use Amazon AWS + Amazon Advertising for global scale, reliability, Java services, Kinesis/log pipelines, and production deployment maturity.",
+            "Use ExodusPoint for concurrent Java, Kafka, WebSocket, Protobuf, and in-memory Druid producing 100GB position snapshots per minute.",
+            "Tie MPCS to advanced CS foundations, high-performance computing, AI/data analytics, and software engineering leadership."
+          ]
+        },
+        {
+          id: "northwestern-msit",
+          school: "Northwestern University",
+          name: "M.S. in Information Technology",
+          area: ["IT", "CS", "Data"],
+          geo: "chicago",
+          geoLabel: "Chicago / Evanston",
+          status: "good",
+          statusLabel: "Good after 5/11",
+          intl: "clear",
+          internationalPath: "Yes. Round Two deadline for full-time applicants is June 15, 2026.",
+          deadline: "June 15, 2026",
+          gre: "GRE/GMAT not required.",
+          duration: "10 months or 15 months full-time",
+          tuition: "$66,300+",
+          tuitionNumber: 66300,
+          tuitionCalc: "$22,100 per quarter x 3 quarters = $66,300 for the three-quarter option; four-quarter option adds an estimated future-rate quarter.",
+          programUrl: "https://www.mccormick.northwestern.edu/information-technology/",
+          applyUrl: "https://www.mccormick.northwestern.edu/information-technology/study-options/full-time/admissions/",
+          tuitionUrl: "https://www.mccormick.northwestern.edu/information-technology/study-options/full-time/tuition-financial-aid.html",
+          notes: "Not pure CS, but very strong for Ethan's profile if the positioning is technical leadership in cloud, data, cybersecurity, and enterprise IT systems.",
+          ps: [
+            "Frame the degree as the move from senior engineer to architect/technical leader.",
+            "Use AWS reliability, authorization caching, CloudWatch, and cross-service delivery as IT leadership evidence.",
+            "Use ExodusPoint/Goldman finance systems to show high-stakes business technology decisions.",
+            "Mention cohort model, one-year format, cloud/data/security, and product-facing systems."
+          ]
+        },
+        {
+          id: "northwestern-sps-msds",
+          school: "Northwestern University SPS",
+          name: "Accelerated M.S. in Data Science",
+          area: ["Data", "AI"],
+          geo: "chicago",
+          geoLabel: "Chicago",
+          status: "confirm",
+          statusLabel: "Open; confirm space",
+          intl: "risk",
+          internationalPath: "Yes. SPS says the accelerated MSDS final deadline for the 2026 cohort is July 15, subject to space availability; international applicants were strongly encouraged to apply by April 15.",
+          deadline: "July 15, 2026 final; April 15 priority for international applicants",
+          gre: "GRE not required.",
+          duration: "1 year accelerated full-time; student visa eligible",
+          tuition: "$62,796",
+          tuitionNumber: 62796,
+          tuitionCalc: "Official 2026-27 SPS MSDS estimate: $5,098/course plus $135 technology fee x 12 courses = $62,796.",
+          programUrl: "https://sps.northwestern.edu/masters/data-science/",
+          applyUrl: "https://sps.northwestern.edu/masters/admission.html",
+          tuitionUrl: "https://webhost1.sps.northwestern.edu/masters/data-science/tuition-costs.php",
+          notes: "This is Northwestern SPS, not McCormick MLDS. It is still viable after May 11 if space remains, visa timing works, and Ethan is comfortable with a more applied/analytics-oriented degree.",
+          ps: [
+            "Use DigitasLBi as the early data analytics spark and connect it to nine years of production data systems.",
+            "Position Amazon AWS/Advertising as high-volume data infrastructure, observability, and reliable deployment experience.",
+            "Use ExodusPoint for real-time analytics under latency pressure: concurrent Java, Kafka, WebSocket, Protobuf, and in-memory Druid.",
+            "Career goal: lead AI-enabled data infrastructure and analytics platforms, not simply become an entry-level data scientist."
+          ]
+        },
+        {
+          id: "bu-met-mscs",
+          school: "Boston University MET",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "boston",
+          geoLabel: "Greater Boston",
+          status: "good",
+          statusLabel: "Good after 5/11",
+          intl: "clear",
+          internationalPath: "Yes. Fall 2026 international on-campus application deadline is June 1, 2026.",
+          deadline: "June 1, 2026",
+          gre: "No GRE/GMAT.",
+          duration: "12-16 months on the 3-semester full-time path",
+          tuition: "$82,387",
+          tuitionNumber: 82387,
+          tuitionCalc: "Official 2026-27 full-time 4-course path total degree cost listed as $82,387.",
+          programUrl: "https://www.bu.edu/met/degrees-certificates/ms-computer-science/",
+          applyUrl: "https://www.bu.edu/met/admissions/apply-now-graduate/",
+          tuitionUrl: "https://www.bu.edu/met/degrees-certificates/ms-computer-science/#cost",
+          notes: "Good practical CS target in Boston with AI/ML and Data Analytics concentrations. Strong if speed and no GRE matter.",
+          ps: [
+            "Position Ethan as a senior Java/AWS engineer seeking formal depth in algorithms, systems, data, and security.",
+            "Use Amazon Advertising for high-volume global event systems processing millions of ad events per day.",
+            "Use AWS for cloud infrastructure, observability, Kinesis, and reliability work.",
+            "Use ExodusPoint as evidence of low-latency concurrent Java and in-memory analytics."
+          ]
+        },
+        {
+          id: "bu-met-msada",
+          school: "Boston University MET",
+          name: "M.S. in Applied Data Analytics",
+          area: ["Data", "AI"],
+          geo: "boston",
+          geoLabel: "Greater Boston",
+          status: "good",
+          statusLabel: "Good after 5/11",
+          intl: "clear",
+          internationalPath: "Yes. Fall 2026 international on-campus application deadline is June 1, 2026.",
+          deadline: "June 1, 2026",
+          gre: "No GRE/GMAT.",
+          duration: "8-16 months possible on the fastest full-time path",
+          tuition: "$74,072-$82,387",
+          tuitionNumber: 74072,
+          tuitionCalc: "Official 2026-27 full-time total degree cost range for 32-40 units: $74,072-$82,387.",
+          programUrl: "https://www.bu.edu/met/degrees-certificates/ms-applied-data-analytics/",
+          applyUrl: "https://www.bu.edu/met/admissions/apply-now-graduate/",
+          tuitionUrl: "https://www.bu.edu/met/degrees-certificates/ms-applied-data-analytics/#cost",
+          notes: "Good data/AI backup with a practical applied analytics curriculum and a clear no-GRE path.",
+          ps: [
+            "Use DigitasLBi junior-year data science internship as the origin of the data/ML interest.",
+            "Show growth from TF-IDF/Word2Vec/K-Means work to AWS-scale data and observability platforms.",
+            "Connect ExodusPoint real-time risk/PnL analytics to applied analytics under latency constraints.",
+            "Goal: lead production-grade AI/data infrastructure and analytics platforms."
+          ]
+        },
+        {
+          id: "fiu-mscs",
+          school: "Florida International University",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "miami",
+          geoLabel: "Miami",
+          status: "good",
+          statusLabel: "Good after 5/11",
+          intl: "clear",
+          internationalPath: "Yes. International applicant deadline for Fall is June 1.",
+          deadline: "June 1, 2026",
+          gre: "No GRE requirement on the program page.",
+          duration: "30 credits; 1.5 years should be possible with heavy full-time planning",
+          tuition: "$30,828.26",
+          tuitionNumber: 30828,
+          tuitionCalc: "Official MSCS estimate for non-Florida residents: $30,828.26 total for the 30-credit program.",
+          programUrl: "https://cec.fiu.edu/degrees-programs/graduate/ms-in-computer-science/index.html",
+          applyUrl: "https://www.cis.fiu.edu/degree/master-of-science-in-computer-science/",
+          tuitionUrl: "https://www.cis.fiu.edu/degree/master-of-science-in-computer-science/",
+          notes: "Best Miami option: affordable, STEM, no GRE, and still open for international Fall applicants after May 11. Brand is less elite, but application economics are excellent.",
+          ps: [
+            "Use FIU as a practical CS degree to formalize systems, networks, ML, and data structures.",
+            "Emphasize Amazon AWS/Advertising as proof that Ethan is already operating at large production scale.",
+            "Mention Miami as a growing tech/finance market, but keep the essay technical.",
+            "Use ExodusPoint to show financial data systems under latency and reliability pressure."
+          ]
+        },
+        {
+          id: "usf-mscs",
+          school: "University of San Francisco",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "silicon-valley",
+          geoLabel: "San Francisco / Silicon Valley",
+          status: "confirm",
+          statusLabel: "Late-open, confirm capacity",
+          intl: "risk",
+          internationalPath: "Current page says Fall applications are still being accepted; official final deadline was March 1 and late applications are considered until full.",
+          deadline: "Late/space-available after March 1; page says still accepting Fall 2026",
+          gre: "GRE optional.",
+          duration: "1.5 years possible for qualified students",
+          tuition: "$62,460",
+          tuitionNumber: 62460,
+          tuitionCalc: "$1,735 per unit x 36 units = $62,460 for 2026-27; fees/living excluded.",
+          programUrl: "https://www.usfca.edu/arts-sciences/programs/graduate/computer-science",
+          applyUrl: "https://www.usfca.edu/arts-sciences/programs/graduate/computer-science/how-to-apply",
+          tuitionUrl: "https://www.usfca.edu/arts-sciences/programs/graduate/computer-science/tuition-financial-aid",
+          notes: "Best late Silicon Valley/Bay Area CS option if space remains. Apply only after confirming capacity and international processing timing.",
+          ps: [
+            "Make Silicon Valley fit concrete: distributed systems, AI concentration, and production software roles.",
+            "Use AWS AI observability and CloudWatch work as the bridge to AI infrastructure.",
+            "Emphasize 9 years of software development and leadership-ready professional maturity.",
+            "Mention Amazon alumni/employer fit only as career context, not as name-dropping."
+          ]
+        },
+        {
+          id: "wpi-mcs",
+          school: "Worcester Polytechnic Institute",
+          name: "Master of Computer Science / M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "boston",
+          geoLabel: "Greater Boston / Worcester",
+          status: "confirm",
+          statusLabel: "Rolling, confirm F-1 timing",
+          intl: "risk",
+          internationalPath: "Rolling admission; CS MCS and CS MS pages show rolling and GRE not required. Confirm F-1 processing and 3-semester plan.",
+          deadline: "Rolling",
+          gre: "GRE not required.",
+          duration: "30 credits; confirm 3-semester plan with advisor",
+          tuition: "$53,250",
+          tuitionNumber: 53250,
+          tuitionCalc: "2026-27 general graduate tuition $1,775/credit x 30 credits = $53,250; fees/living excluded.",
+          programUrl: "https://www.wpi.edu/academics/study/computer-science-mcs",
+          applyUrl: "https://www.wpi.edu/admissions/graduate/application-requirements",
+          tuitionUrl: "https://www.wpi.edu/offices/bursar/tuition",
+          notes: "Good Greater Boston backup for practical CS, AI, systems, and project-based learning. Requires confirmation on international timing.",
+          ps: [
+            "Stress hands-on project-based CS and production engineering maturity.",
+            "Use AWS and Amazon Advertising as global-scale software evidence.",
+            "Use ExodusPoint for low-latency Java and data-intensive engineering.",
+            "Connect WPI to AI/ML, big data management, software systems, and cybersecurity."
+          ]
+        },
+        {
+          id: "stevens-mscs",
+          school: "Stevens Institute of Technology",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "nyc",
+          geoLabel: "Greater NYC / Hoboken",
+          status: "confirm",
+          statusLabel: "Rolling after preferred date",
+          intl: "risk",
+          internationalPath: "Preferred Fall full-time deadline was April 15, but Stevens says graduate programs admit on a rolling basis after preferred deadlines; F-1 students are strongly encouraged to apply by preferred dates.",
+          deadline: "Preferred April 15; rolling after if space remains",
+          gre: "GRE/GMAT optional.",
+          duration: "30 credits; confirm 3-semester graduation plan",
+          tuition: "$64,560-$68,985",
+          tuitionNumber: 64560,
+          tuitionCalc: "Approx. 2026-27 per-credit tuition $2,152 x 30 credits = $64,560; full-time semester billing can be about $22,995 x 3 = $68,985 before fees.",
+          programUrl: "https://www.stevens.edu/program/computer-science-masters",
+          applyUrl: "https://www.stevens.edu/admission-aid/graduate-admissions/application-deadlines",
+          tuitionUrl: "https://www.stevens.edu/page-chapter/tuition-and-fees",
+          notes: "Strong NYC/Hoboken fintech CS backup, especially with Ethan's Goldman and ExodusPoint background. Needs immediate admissions email before applying.",
+          ps: [
+            "Connect Hoboken/NYC directly to Goldman Sachs and ExodusPoint systems work.",
+            "Lead with sub-second PnL/risk, concurrent Java, Kafka, WebSocket, Protobuf, and in-memory Druid.",
+            "Use Amazon global systems experience to show readiness for advanced professional CS.",
+            "Goal: software architect in finance, cloud, and AI infrastructure."
+          ]
+        },
+        {
+          id: "columbia-applied-analytics",
+          school: "Columbia University SPS",
+          name: "M.S. in Applied Analytics",
+          area: ["Data", "AI", "IT"],
+          geo: "nyc",
+          geoLabel: "Greater NYC",
+          status: "confirm",
+          statusLabel: "Final open; visa-risk",
+          intl: "risk",
+          internationalPath: "Final deadline is June 1, 2026, but the suggested date for F-1/international documents was March 15.",
+          deadline: "June 1, 2026 final; March 15 suggested for F-1/international docs",
+          gre: "GRE/GMAT optional.",
+          duration: "3 consecutive terms",
+          tuition: "~$99,144+",
+          tuitionNumber: 99144,
+          tuitionCalc: "$2,754/point x 36 points = $99,144 before fees; summer points may price higher.",
+          programUrl: "https://sps.columbia.edu/academics/masters/applied-analytics",
+          applyUrl: "https://sps.columbia.edu/admissions/masters-degree-applicants#application-deadlines",
+          tuitionUrl: "https://sps.columbia.edu/admissions/masters-degree-applicants/tuition-and-financing",
+          notes: "Excellent NYC analytics/brand option, but less technical than MSCS and visa/document timing is the risk after May 11.",
+          ps: [
+            "Answer Columbia's current-role prompt directly: AWS engineer building reliable data/observability infrastructure.",
+            "Use DigitasLBi as the early analytics spark, then Amazon/ExodusPoint as production-scale proof.",
+            "Use the 100GB/minute ExodusPoint challenge for the supplemental data/analytics challenge essay.",
+            "Career goal: analytics leader who can bridge engineering depth and business decision-making."
+          ]
+        },
+        {
+          id: "rice-mcs",
+          school: "Rice University",
+          name: "Master of Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "houston",
+          geoLabel: "Houston",
+          status: "confirm",
+          statusLabel: "Deadline passed; rolling review",
+          intl: "risk",
+          internationalPath: "International deadline was May 1, 2026. Rice CS says Fall 2026 on-campus MCS applications continue to be reviewed on a rolling basis, so confirm late international/F-1 processing before applying.",
+          deadline: "International May 1, 2026; rolling review after",
+          gre: "GRE optional / not required.",
+          duration: "30 credits; 3 semesters should be possible with full-time planning",
+          tuition: "~$93,711",
+          tuitionNumber: 93711,
+          tuitionCalc: "2025-26 Engineering graduate full-time tuition $31,237/semester x 3 semesters = $93,711; fees/living excluded.",
+          programUrl: "https://csweb.rice.edu/academics/graduate-programs/masters-programs",
+          applyUrl: "https://csweb.rice.edu/academics/graduate-programs/admission/graduate-program-application",
+          tuitionUrl: "https://bursar.rice.edu/tuition_fee_rates/graduate-programs/engineering",
+          notes: "High-brand CS option in Houston. It is worth checking because Rice is strong, GRE-optional, and rolling after the international date, but this is a Confirm first application after May 11.",
+          ps: [
+            "Use Rice as a rigorous professional CS brand, not a backup-only story.",
+            "Frame Ethan's nine years of Amazon AWS/Advertising and ExodusPoint systems work as preparation for advanced software systems and AI/data infrastructure.",
+            "Houston works as a strong tech, energy, and finance market; keep the PS anchored in CS depth and production reliability.",
+            "Career goal: architect reliable cloud, data, and AI infrastructure at scale."
+          ]
+        },
+        {
+          id: "iit-mscs",
+          school: "Illinois Institute of Technology",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "chicago",
+          geoLabel: "Chicago",
+          status: "confirm",
+          statusLabel: "Open; confirm acceleration",
+          intl: "clear",
+          internationalPath: "Yes. Illinois Tech lists June 15, 2026 for Fall master's/certificate applications.",
+          deadline: "June 15, 2026",
+          gre: "GRE optional / not required for master's applications.",
+          duration: "32 credits; official degree is often planned over 2 years, but a 3-semester plan may be possible with heavy full-time loading",
+          tuition: "~$59,232",
+          tuitionNumber: 59232,
+          tuitionCalc: "2025-26 Mies graduate tuition $1,851/credit x 32 credits = $59,232 before fees/living.",
+          programUrl: "https://www.iit.edu/academics/programs/computer-science-ms",
+          applyUrl: "https://www.iit.edu/admissions-aid/graduate-admission",
+          tuitionUrl: "https://www.iit.edu/student-accounting/tuition-and-fees/current-tuition-and-fees/current-mies-campus-graduate",
+          notes: "Strong Chicago technical option with AI, big data, cybersecurity, and project/thesis pathways. Keep as Confirm first because the graduation pace should be checked with an advisor.",
+          ps: [
+            "Use Chicago plus Illinois Tech's applied technical orientation as the fit.",
+            "Lead with Amazon AWS/Advertising global scalability, production deployment, and high-volume Java services.",
+            "Use ExodusPoint for concurrent Java, Kafka, WebSocket, Protobuf, and in-memory Druid risk/PnL systems.",
+            "Career goal: deepen CS systems foundations and build reliable AI/data/cloud infrastructure."
+          ]
+        },
+        {
+          id: "depaul-mscs",
+          school: "DePaul University",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "chicago",
+          geoLabel: "Chicago",
+          status: "confirm",
+          statusLabel: "Open; confirm course load",
+          intl: "clear",
+          internationalPath: "Yes. DePaul CDM lists June 15 as the Fall international deadline for MS Computer Science.",
+          deadline: "June 15, 2026",
+          gre: "No GRE/GMAT required for CDM master's programs.",
+          duration: "48 quarter credits plus any waived/non-waived introductory courses; confirm fastest full-time plan",
+          tuition: "~$47,184",
+          tuitionNumber: 47184,
+          tuitionCalc: "2025-26 Jarvis College of Computing and Digital Media tuition $983/credit x 48 credits = $47,184 before fees/living.",
+          programUrl: "https://www.depaul.edu/academics/programs/ms-in-computer-science/requirements-ms-in-computer-science",
+          applyUrl: "https://www-dft.cdm.depaul.edu/Admission-and-Aid/Pages/Grad-Program-Requirements.aspx",
+          tuitionUrl: "https://www.depaul.edu/tuition-and-aid/graduate-and-professional-tuition-and-fees",
+          notes: "Good Chicago practical CS option if introductory courses are waived based on Ethan's CS degree and nine years of experience. Confirm exact waivers and 1.5-year load.",
+          ps: [
+            "Use DePaul as a practical software, systems, AI/data, and cloud degree in Chicago.",
+            "Emphasize that Ethan is not entering from scratch: Tufts CS plus nine years of backend/distributed systems work.",
+            "Use Amazon Advertising and AWS for high-volume production systems and global reliability.",
+            "Use ExodusPoint for low-latency finance infrastructure and in-memory analytics."
+          ]
+        },
+        {
+          id: "fordham-mscs",
+          school: "Fordham University",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "nyc",
+          geoLabel: "Greater NYC",
+          status: "confirm",
+          statusLabel: "Rolling after recommended date",
+          intl: "risk",
+          internationalPath: "Fordham GSAS says 2026 master's applications are open and rolling begins April 2 after the April 1 recommended deadline; international applicants should apply early for visa processing.",
+          deadline: "Recommended April 1, 2026; rolling after April 2",
+          gre: "GRE optional for the M.S. program.",
+          duration: "30 credits; confirm 3-semester plan",
+          tuition: "~$50,640",
+          tuitionNumber: 50640,
+          tuitionCalc: "2025-26 CIS tuition $1,688/credit x 30 credits = $50,640 before fees/living.",
+          programUrl: "https://www.fordham.edu/academics/departments/computer-and-information-science/academic-programs/graduate-programs/master-of-science-in-computer-science/",
+          applyUrl: "https://www.fordham.edu/graduate-school-of-arts-and-sciences/admissions/how-to-apply/application-deadlines/",
+          tuitionUrl: "https://www.fordham.edu/student-financial-services/tuition-and-payments/graduate-tuition/graduate-school-of-arts-and-sciences/",
+          notes: "Greater NYC CS option with AI track relevance and a rolling path after May 11. Confirm F-1 processing before paying.",
+          ps: [
+            "Connect Fordham/NYC to Goldman Sachs and ExodusPoint experience.",
+            "Use the 100GB/minute ExodusPoint snapshots and sub-second risk/PnL work as the technical challenge.",
+            "Position Amazon AWS/Advertising as proof of production reliability beyond finance.",
+            "Career goal: architect AI-enabled software and data systems for finance/cloud markets."
+          ]
+        },
+        {
+          id: "njit-mscs",
+          school: "New Jersey Institute of Technology",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "nyc",
+          geoLabel: "Greater NYC / Newark",
+          status: "confirm",
+          statusLabel: "Open; confirm acceleration",
+          intl: "clear",
+          internationalPath: "Yes. NJIT catalog says Fall applications must be received by June 1, 2026.",
+          deadline: "June 1, 2026",
+          gre: "GRE is not required.",
+          duration: "30 credits; confirm 3-semester plan",
+          tuition: "~$58,530",
+          tuitionNumber: 58530,
+          tuitionCalc: "2025-26 out-of-state graduate tuition $1,951/credit x 30 credits = $58,530 before semester fees/living.",
+          programUrl: "https://cs.njit.edu/ms-computer-science",
+          applyUrl: "https://catalog.njit.edu/graduate/admissions-financial-support/admissions/",
+          tuitionUrl: "https://catalog.njit.edu/graduate/admissions-financial-support/tuition-fees/",
+          notes: "Good Greater NYC technical/ROI option: no GRE, June 1 deadline, 30-credit CS degree with AI, cybersecurity, hyperscale computing, and software engineering choices.",
+          ps: [
+            "Use Greater NYC fit through Goldman Sachs and ExodusPoint, but keep the essay technical.",
+            "Emphasize AWS-scale reliability and observability plus low-latency finance data systems.",
+            "Tie NJIT's AI/hyperscale/software engineering options to Ethan's infrastructure background.",
+            "Career goal: senior architect for reliable AI/data/cloud platforms."
+          ]
+        },
+        {
+          id: "pace-mscs",
+          school: "Pace University",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "nyc",
+          geoLabel: "Greater NYC",
+          status: "confirm",
+          statusLabel: "Open; lower-priority NYC",
+          intl: "risk",
+          internationalPath: "Pace lists F-1 eligibility and an August 24, 2026 Fall online deadline; confirm the on-campus international/F-1 deadline before applying.",
+          deadline: "Confirm on-campus international deadline; online Fall deadline August 24, 2026",
+          gre: "No GMAT/GRE required for the online MSCS; confirm on-campus policy if applying in person.",
+          duration: "30-34 credits; official full-time duration 24 months, but ask whether a 1.5-year path is possible",
+          tuition: "$50,100-$56,780",
+          tuitionNumber: 50100,
+          tuitionCalc: "Official program page: $1,670/credit on-campus and total program cost $50,100-$56,780; confirm modality and fees.",
+          programUrl: "https://www.pace.edu/program/computer-science-ms",
+          applyUrl: "https://online.pace.edu/graduate-programs/ms-in-computer-science/calendar/",
+          tuitionUrl: "https://www.pace.edu/program/computer-science-ms",
+          notes: "Lower-priority NYC option, but useful if the application window and F-1 timing are confirmed. Keep below Stevens/Fordham/NJIT unless you want more NYC backups.",
+          ps: [
+            "Use Pace only as an NYC practical CS backup.",
+            "Highlight cloud, database, grid/cloud computing, and AI project fit.",
+            "Use nine years of production Java/AWS work as readiness evidence.",
+            "Avoid spending premium essay time here until admissions confirms international timing."
+          ]
+        },
+        {
+          id: "uchicago-msads",
+          school: "University of Chicago",
+          name: "M.S. in Applied Data Science",
+          area: ["Data", "AI"],
+          geo: "chicago",
+          geoLabel: "Chicago",
+          status: "excluded",
+          statusLabel: "Exclude: visa deadline passed",
+          intl: "closed",
+          internationalPath: "Final deadline is June 23, but new UChicago-sponsored F-1/J-1 visa deadline was January 26.",
+          deadline: "June 23 final; January 26 new sponsored visa deadline",
+          gre: "GRE not listed as required.",
+          duration: "12-15 months",
+          tuition: "$76,608+",
+          tuitionNumber: 76608,
+          tuitionCalc: "$6,384 per course x 12 courses = $76,608; fees/living excluded.",
+          programUrl: "https://datascience.uchicago.edu/education/masters-programs/ms-in-applied-data-science/",
+          applyUrl: "https://datascience.uchicago.edu/education/masters-programs/ms-in-applied-data-science/how-to-apply/",
+          tuitionUrl: "https://datascience.uchicago.edu/education/tuition-fees-aid/",
+          notes: "Academically excellent for Ethan's data story, but not safe for a new international visa applicant after May 11.",
+          ps: [
+            "Use only if admissions confirms Ethan does not need new UChicago visa sponsorship.",
+            "DigitasLBi origin story is highly relevant here.",
+            "AWS AI observability + ExodusPoint Druid/Kafka data systems are strong fit points.",
+            "Avoid applying before visa eligibility is confirmed."
+          ]
+        },
+        {
+          id: "northwestern-msai",
+          school: "Northwestern University",
+          name: "M.S. in Artificial Intelligence",
+          area: ["AI", "CS"],
+          geo: "chicago",
+          geoLabel: "Chicago / Evanston",
+          status: "excluded",
+          statusLabel: "Exclude: deadline passed",
+          intl: "closed",
+          internationalPath: "Fall 2026 final deadline was April 15, 2026, which is before the May 11 screening date.",
+          deadline: "April 15, 2026 final",
+          gre: "GRE optional / may be submitted, but deadline is the blocker.",
+          duration: "15 months",
+          tuition: "Confirm",
+          tuitionNumber: 999999,
+          tuitionCalc: "Excluded because the Fall 2026 application deadline has passed; do not spend time estimating unless admissions reopens seats.",
+          programUrl: "https://www.mccormick.northwestern.edu/artificial-intelligence/",
+          applyUrl: "https://www.mccormick.northwestern.edu/artificial-intelligence/admissions/",
+          tuitionUrl: "https://www.northwestern.edu/evanston-graduate-financial-aid/getting-started/tuition-cost-of-attendance/meas/msai.html",
+          notes: "Strong technical fit, but not eligible for a new Fall 2026 application after May 11 unless the program confirms a late exception.",
+          ps: [
+            "Only revisit if MSAI explicitly confirms late application availability.",
+            "Fit would be AWS AI observability, responsible AI, and production deployment.",
+            "Do not prioritize under the current deadline constraint."
+          ]
+        },
+        {
+          id: "northwestern-mlds",
+          school: "Northwestern University",
+          name: "M.S. in Machine Learning and Data Science",
+          area: ["AI", "Data"],
+          geo: "chicago",
+          geoLabel: "Chicago / Evanston",
+          status: "excluded",
+          statusLabel: "Exclude: deadline passed",
+          intl: "closed",
+          internationalPath: "Fall 2026 regular decision deadline was January 15, 2026 and the program does not review applications on a rolling basis.",
+          deadline: "January 15, 2026 regular decision",
+          gre: "GRE/GMAT not required, but deadline is the blocker.",
+          duration: "Fall 2026 to Fall 2027",
+          tuition: "Confirm",
+          tuitionNumber: 999999,
+          tuitionCalc: "Excluded because the Fall 2026 non-rolling deadline has passed; do not spend time estimating unless admissions reopens.",
+          programUrl: "https://www.mccormick.northwestern.edu/machine-learning-data-science/",
+          applyUrl: "https://www.mccormick.northwestern.edu/machine-learning-data-science/admissions/",
+          tuitionUrl: "https://www.mccormick.northwestern.edu/machine-learning-data-science/admissions/",
+          notes: "Academically relevant to Ethan, but not a viable May 11+ Fall 2026 application path.",
+          ps: [
+            "Only revisit for a future cycle.",
+            "Fit would be data engineering, ML systems, AWS observability, and ExodusPoint analytics.",
+            "For Fall 2026, use Northwestern SPS accelerated MSDS instead if a Northwestern data option is desired."
+          ]
+        },
+        {
+          id: "scu-msai",
+          school: "Santa Clara University",
+          name: "M.S. in Artificial Intelligence",
+          area: ["AI", "Data", "CS"],
+          geo: "silicon-valley",
+          geoLabel: "Silicon Valley",
+          status: "confirm",
+          statusLabel: "Confirm 1.5-year plan",
+          intl: "clear",
+          internationalPath: "Yes. International Fall 2026 deadline is June 1, 2026 and I-20 deadline is July 1, 2026. Confirm whether the 46-unit MS AI can be accelerated to 1.5 years on an F-1 full-time plan.",
+          deadline: "June 1, 2026",
+          gre: "GRE not required for MS AI per school distinction.",
+          duration: "46 quarter units; official I-20 note references a 2-year MS path, but accelerated 1.5-year planning may be possible if course load/offerings allow",
+          tuition: "~$57,684",
+          tuitionNumber: 57684,
+          tuitionCalc: "Official MS AI page lists $1,254/unit for 2025-26; 46 units x $1,254 = $57,684 before fees/living.",
+          programUrl: "https://www.scu.edu/engineering/graduate/ms-ai/",
+          applyUrl: "https://www.scu.edu/engineering/graduate/apply-here/",
+          tuitionUrl: "https://www.scu.edu/engineering/graduate/ms-ai/",
+          notes: "Bring back as a strong Silicon Valley AI target: no GRE for MS AI, clear Fall international deadline, strong AI practicum/responsible AI fit. Must confirm acceleration before final submission.",
+          ps: [
+            "Lead with Ethan's nine years of high-end production systems work, then pivot to AI infrastructure.",
+            "Best angles: responsible AI, AI practicum, AWS AI observability, DigitasLBi data science, and cloud-scale deployment.",
+            "Use Amazon AWS/Advertising for global scalability, reliability, high data volume, and production deployment maturity.",
+            "Ask admissions/advisor to confirm a 1.5-year course plan before finalizing the essay."
+          ]
+        },
+        {
+          id: "scu-mscse",
+          school: "Santa Clara University",
+          name: "M.S. in Computer Science and Engineering",
+          area: ["CS", "AI", "Data"],
+          geo: "silicon-valley",
+          geoLabel: "Silicon Valley",
+          status: "excluded",
+          statusLabel: "Exclude: GRE required",
+          intl: "clear",
+          internationalPath: "International deadline is June 1, 2026, but GRE is mandatory for MS CSE.",
+          deadline: "June 1, 2026",
+          gre: "GRE mandatory for MS CSE.",
+          duration: "Confirm",
+          tuition: "Confirm",
+          tuitionNumber: 999999,
+          tuitionCalc: "Excluded because GRE is required and there is no time to test.",
+          programUrl: "https://begin.scu.edu/computer-science-engineering/",
+          applyUrl: "https://www.scu.edu/engineering/academic-programs/graduate-admissions/",
+          tuitionUrl: "https://www.scu.edu/bursar/tuition/",
+          notes: "Location is excellent, but this does not satisfy the no-GRE strategy.",
+          ps: [
+            "Do not prioritize unless GRE requirement changes.",
+            "If reopened later, use Silicon Valley + distributed systems + AI/data infrastructure story.",
+            "For now, SCU AI is the more plausible SCU route, but duration remains a problem."
+          ]
+        },
+        {
+          id: "cu-denver-mscs",
+          school: "University of Colorado Denver",
+          name: "M.S. in Computer Science",
+          area: ["CS", "AI", "Data"],
+          geo: "denver",
+          geoLabel: "Denver",
+          status: "excluded",
+          statusLabel: "Exclude: 2-year program",
+          intl: "unknown",
+          internationalPath: "Program is designed to be completed in two years; not prioritized under the 1.5-year rule.",
+          deadline: "Confirm",
+          gre: "Confirm",
+          duration: "Designed for 2 years",
+          tuition: "~$48,450",
+          tuitionNumber: 48450,
+          tuitionCalc: "2025-26 non-resident engineering graduate tuition $1,615/credit x 30 credits = $48,450 before fees.",
+          programUrl: "https://engineering.ucdenver.edu/computer-science-programs-graduate/computer-science-ms",
+          applyUrl: "https://engineering.ucdenver.edu/computer-science-programs-graduate/computer-science-ms",
+          tuitionUrl: "https://www.ucdenver.edu/student-finances/tuition-fees/graduate/2025-2026-graduate-tuition-fees",
+          notes: "Denver location is good and cost is reasonable, but official page says the MSCS is designed to be completed in two years.",
+          ps: [
+            "Only revisit if the 1.5-year requirement relaxes.",
+            "Systems, AI, big data, and distributed computing fit Ethan well.",
+            "Use AWS and ExodusPoint as technical-readiness evidence."
+          ]
+        }
+      ];
+
+      const sources = [
+        ["UChicago MPCS deadlines", "https://masters.cs.uchicago.edu/mpcs-admissions/application-deadlines/"],
+        ["UChicago MPCS tuition", "https://masters.cs.uchicago.edu/mpcs-admissions/tuition-fees/"],
+        ["Northwestern MSIT admissions", "https://www.mccormick.northwestern.edu/information-technology/study-options/full-time/admissions/"],
+        ["Northwestern MSIT tuition", "https://www.mccormick.northwestern.edu/information-technology/study-options/full-time/tuition-financial-aid.html"],
+        ["Northwestern SPS MSDS", "https://sps.northwestern.edu/masters/data-science/"],
+        ["Northwestern SPS admissions", "https://sps.northwestern.edu/masters/admission.html"],
+        ["Northwestern SPS MSDS tuition", "https://webhost1.sps.northwestern.edu/masters/data-science/tuition-costs.php"],
+        ["Northwestern MSAI admissions", "https://www.mccormick.northwestern.edu/artificial-intelligence/admissions/"],
+        ["Northwestern MLDS admissions", "https://www.mccormick.northwestern.edu/machine-learning-data-science/admissions/"],
+        ["BU MET graduate deadlines", "https://www.bu.edu/met/admissions/apply-now-graduate/"],
+        ["BU MET MSCS cost", "https://www.bu.edu/met/degrees-certificates/ms-computer-science/"],
+        ["BU MET MS Applied Data Analytics cost", "https://www.bu.edu/met/degrees-certificates/ms-applied-data-analytics/"],
+        ["FIU MSCS program/deadline/tuition", "https://www.cis.fiu.edu/degree/master-of-science-in-computer-science/"],
+        ["USF MSCS application", "https://www.usfca.edu/arts-sciences/programs/graduate/computer-science/how-to-apply"],
+        ["USF MSCS tuition", "https://www.usfca.edu/arts-sciences/programs/graduate/computer-science/tuition-financial-aid"],
+        ["WPI application requirements", "https://www.wpi.edu/admissions/graduate/application-requirements"],
+        ["WPI tuition", "https://www.wpi.edu/offices/bursar/tuition"],
+        ["Stevens deadlines", "https://www.stevens.edu/admission-aid/graduate-admissions/application-deadlines"],
+        ["Stevens MSCS", "https://www.stevens.edu/program/computer-science-masters"],
+        ["Stevens tuition", "https://www.stevens.edu/page-chapter/tuition-and-fees"],
+        ["Columbia SPS deadlines", "https://sps.columbia.edu/admissions/masters-degree-applicants#application-deadlines"],
+        ["Columbia SPS tuition", "https://sps.columbia.edu/admissions/masters-degree-applicants/tuition-and-financing"],
+        ["UChicago MS Applied Data Science tuition", "https://datascience.uchicago.edu/education/tuition-fees-aid/"],
+        ["Santa Clara MS AI", "https://www.scu.edu/engineering/graduate/ms-ai/"],
+        ["Santa Clara graduate admissions", "https://www.scu.edu/engineering/graduate/apply-here/"],
+        ["Rice MCS program", "https://csweb.rice.edu/academics/graduate-programs/masters-programs"],
+        ["Rice CS graduate application", "https://csweb.rice.edu/academics/graduate-programs/admission/graduate-program-application"],
+        ["Rice Engineering tuition", "https://bursar.rice.edu/tuition_fee_rates/graduate-programs/engineering"],
+        ["Illinois Tech MSCS", "https://www.iit.edu/academics/programs/computer-science-ms"],
+        ["Illinois Tech graduate admission", "https://www.iit.edu/admissions-aid/graduate-admission"],
+        ["Illinois Tech graduate tuition", "https://www.iit.edu/student-accounting/tuition-and-fees/current-tuition-and-fees/current-mies-campus-graduate"],
+        ["DePaul MSCS requirements", "https://www.depaul.edu/academics/programs/ms-in-computer-science/requirements-ms-in-computer-science"],
+        ["DePaul graduate program requirements", "https://www-dft.cdm.depaul.edu/Admission-and-Aid/Pages/Grad-Program-Requirements.aspx"],
+        ["DePaul graduate tuition", "https://www.depaul.edu/tuition-and-aid/graduate-and-professional-tuition-and-fees"],
+        ["Fordham MSCS", "https://www.fordham.edu/academics/departments/computer-and-information-science/academic-programs/graduate-programs/master-of-science-in-computer-science/"],
+        ["Fordham GSAS deadlines", "https://www.fordham.edu/graduate-school-of-arts-and-sciences/admissions/how-to-apply/application-deadlines/"],
+        ["Fordham GSAS tuition", "https://www.fordham.edu/student-financial-services/tuition-and-payments/graduate-tuition/graduate-school-of-arts-and-sciences/"],
+        ["NJIT MSCS", "https://cs.njit.edu/ms-computer-science"],
+        ["NJIT graduate admissions", "https://catalog.njit.edu/graduate/admissions-financial-support/admissions/"],
+        ["NJIT graduate tuition", "https://catalog.njit.edu/graduate/admissions-financial-support/tuition-fees/"],
+        ["Pace MSCS", "https://www.pace.edu/program/computer-science-ms"],
+        ["Pace online MSCS calendar", "https://online.pace.edu/graduate-programs/ms-in-computer-science/calendar/"],
+        ["CU Denver MSCS", "https://engineering.ucdenver.edu/computer-science-programs-graduate/computer-science-ms"],
+        ["CU Denver tuition", "https://www.ucdenver.edu/student-finances/tuition-fees/graduate/2025-2026-graduate-tuition-fees"]
+      ];
+
+      const els = {
+        programList: document.getElementById("programList"),
+        filterForm: document.getElementById("filterForm"),
+        resetFilters: document.getElementById("resetFilters"),
+        areaFilter: document.getElementById("areaFilter"),
+        statusFilter: document.getElementById("statusFilter"),
+        geoFilter: document.getElementById("geoFilter"),
+        intlFilter: document.getElementById("intlFilter"),
+        tuitionFilter: document.getElementById("tuitionFilter"),
+        searchFilter: document.getElementById("searchFilter"),
+        psForm: document.getElementById("psForm"),
+        psProgram: document.getElementById("psProgram"),
+        psAngle: document.getElementById("psAngle"),
+        psOutput: document.getElementById("psOutput"),
+        sourceList: document.getElementById("sourceList"),
+        goodCount: document.getElementById("goodCount"),
+        confirmCount: document.getElementById("confirmCount"),
+        preferredGeoCount: document.getElementById("preferredGeoCount"),
+        cheapCount: document.getElementById("cheapCount")
+      };
+
+      function statusTag(program) {
+        if (program.status === "good") return `<span class="tag good">${program.statusLabel}</span>`;
+        if (program.status === "confirm") return `<span class="tag confirm">${program.statusLabel}</span>`;
+        return `<span class="tag excluded">${program.statusLabel}</span>`;
+      }
+
+      function matches(program) {
+        const area = els.areaFilter.value;
+        const status = els.statusFilter.value;
+        const geo = els.geoFilter.value;
+        const intl = els.intlFilter.value;
+        const tuitionMax = els.tuitionFilter.value;
+        const query = els.searchFilter.value.trim().toLowerCase();
+
+        if (area !== "all" && !program.area.includes(area)) return false;
+        if (status === "active" && program.status === "excluded") return false;
+        if (status !== "active" && status !== "all" && program.status !== status) return false;
+        if (geo === "preferred" && !preferredGeos.includes(program.geo)) return false;
+        if (geo !== "preferred" && geo !== "all" && program.geo !== geo) return false;
+        if (intl === "after-may-11" && program.intl === "closed") return false;
+        if (intl === "clear" && program.intl !== "clear") return false;
+        if (intl === "risk" && program.intl !== "risk") return false;
+        if (tuitionMax !== "all" && program.tuitionNumber > Number(tuitionMax)) return false;
+        if (query) {
+          const haystack = `${program.school} ${program.name} ${program.geoLabel} ${program.notes} ${program.area.join(" ")}`.toLowerCase();
+          if (!haystack.includes(query)) return false;
+        }
+        return true;
+      }
+
+      function renderPrograms() {
+        const filtered = programs.filter(matches);
+        updateMetrics(filtered);
+        els.programList.innerHTML = "";
+
+        if (!filtered.length) {
+          els.programList.innerHTML = `<div class="empty">No programs match this filter set. Try including Confirm first or excluded programs.</div>`;
+          return;
+        }
+
+        filtered.forEach((program) => {
+          const article = document.createElement("article");
+          article.className = `card ${program.status}`;
+          article.innerHTML = `
+            <div>
+              <h3>${program.school} - ${program.name}</h3>
+              <div class="school">${program.geoLabel} · ${program.area.join(" / ")}</div>
+              <div class="tags">
+                ${statusTag(program)}
+                <span class="tag">${program.gre}</span>
+                <span class="tag">${program.duration}</span>
+              </div>
+              <p class="summary">${program.notes}</p>
+              <div class="links">
+                <a href="${program.programUrl}" target="_blank" rel="noopener">Program page</a>
+                <a href="${program.applyUrl}" target="_blank" rel="noopener">Application / deadlines</a>
+                <a href="${program.tuitionUrl}" target="_blank" rel="noopener">Tuition source</a>
+              </div>
+              <div class="ps">
+                <strong>PS highlight points</strong>
+                <ul>${program.ps.map((point) => `<li>${point}</li>`).join("")}</ul>
+              </div>
+            </div>
+            <div class="details">
+              <div class="fact"><span>International after 5/11</span><b>${program.internationalPath}</b></div>
+              <div class="fact"><span>Deadline</span><b>${program.deadline}</b></div>
+              <div class="fact"><span>GRE</span><b>${program.gre}</b></div>
+              <div class="fact"><span>Completion</span><b>${program.duration}</b></div>
+              <div class="fact"><span>Tuition</span><b>${program.tuition}</b><small class="tuition-calc">${program.tuitionCalc}</small></div>
+            </div>
+          `;
+          els.programList.appendChild(article);
+        });
+      }
+
+      function updateMetrics(filteredPrograms = programs.filter(matches)) {
+        els.goodCount.textContent = filteredPrograms.filter((p) => p.status === "good").length;
+        els.confirmCount.textContent = filteredPrograms.filter((p) => p.status === "confirm").length;
+        els.preferredGeoCount.textContent = filteredPrograms.filter((p) => preferredGeos.includes(p.geo)).length;
+        els.cheapCount.textContent = filteredPrograms.filter((p) => p.tuitionNumber < 70000).length;
+      }
+
+      function populatePsPrograms() {
+        programs
+          .filter((program) => program.status !== "excluded")
+          .forEach((program) => {
+            const option = document.createElement("option");
+            option.value = program.id;
+            option.textContent = `${program.school} - ${program.name}`;
+            els.psProgram.appendChild(option);
+          });
+      }
+
+      function generatePsPoints() {
+        const program = programs.find((item) => item.id === els.psProgram.value);
+        if (!program) return;
+        const angleLines = {
+          systems: [
+            "Open with nine years of high-end production engineering.",
+            "Make Amazon AWS and Amazon Advertising the proof of global scale, reliability, high data volume, concurrent Java, and mature deployment."
+          ],
+          data: [
+            "Mention DigitasLBi as the junior-year data analytics spark only for data/AI-heavy programs.",
+            "Tie Kinesis, Kafka, Druid, CloudWatch, dashboards, and AI observability into one data-platform story."
+          ],
+          fintech: [
+            "Lead with ExodusPoint: sub-second PnL/risk, concurrent Java, in-memory Druid, and 100GB position snapshots per minute.",
+            "Use Goldman/ExodusPoint to make the NYC/fintech angle concrete."
+          ],
+          leadership: [
+            "Position the degree as a step from experienced engineer to architect/technical leader.",
+            "Emphasize tradeoffs across latency, reliability, security, cost, analytics quality, and product workflows."
+          ]
+        };
+
+        els.psOutput.value = [
+          `${program.school} - ${program.name}`,
+          "",
+          "Program-specific points:",
+          ...program.ps.map((point) => `- ${point}`),
+          "",
+          "Angle-specific additions:",
+          ...angleLines[els.psAngle.value].map((point) => `- ${point}`),
+          "",
+          "Avoid:",
+          "- Do not frame Ethan as a beginner switching into CS/data.",
+          "- Do not spend space on Oracle Health unless the prompt is health-related.",
+          "- Do not mention GRE; the strategy is no-GRE.",
+          "- Do not overuse DigitasLBi unless the program is data/ML/AI heavy."
+        ].join("\n");
+      }
+
+      function renderSources() {
+        sources.forEach(([label, url]) => {
+          const item = document.createElement("li");
+          item.innerHTML = `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
+          els.sourceList.appendChild(item);
+        });
+      }
+
+      els.filterForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        renderPrograms();
+      });
+
+      [els.areaFilter, els.statusFilter, els.geoFilter, els.intlFilter, els.tuitionFilter, els.searchFilter].forEach((input) => {
+        input.addEventListener("change", renderPrograms);
+        input.addEventListener("input", renderPrograms);
+      });
+
+      els.resetFilters.addEventListener("click", () => {
+        els.areaFilter.value = "all";
+        els.statusFilter.value = "active";
+        els.geoFilter.value = "preferred";
+        els.intlFilter.value = "after-may-11";
+        els.tuitionFilter.value = "all";
+        els.searchFilter.value = "";
+        renderPrograms();
+      });
+
+      els.psForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        generatePsPoints();
+      });
+      els.psProgram.addEventListener("change", generatePsPoints);
+      els.psAngle.addEventListener("change", generatePsPoints);
+
+      populatePsPrograms();
+      renderSources();
+      renderPrograms();
+      generatePsPoints();
+    </script>
+  </body>
+</html>

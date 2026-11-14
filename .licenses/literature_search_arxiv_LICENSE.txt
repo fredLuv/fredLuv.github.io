@@ -1,0 +1,2 @@
+Please check the arXiv API Terms of Use at https://info.arxiv.org/help/api/index.html and always check the license of the papers retrieved by the literature-search-arxiv skill for any restrictions.
+Timestamp: 2026-11-02T11:38:10-08:00
